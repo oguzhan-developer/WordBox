@@ -1,11 +1,12 @@
 import { useState, useMemo } from 'react';
-import { Search, Filter, Grid, List, X } from 'lucide-react';
+import { Search, Filter, Grid, List, X, Bookmark, Heart } from 'lucide-react';
 import { useUser } from '../context/UserContext';
 import { LevelBadge } from '../components/Badge';
 import { supabaseService } from '../services/supabaseService';
 import { useEffect } from 'react';
 import ContentCard from '../components/ContentCard';
 import { SkeletonContentCard } from '../components/Skeleton';
+import { getBookmarks, getBookmarkStats } from '../utils/bookmarks';
 
 export default function Library() {
     const { user } = useUser();
@@ -15,10 +16,12 @@ export default function Library() {
     const [selectedLevel, setSelectedLevel] = useState(user.level);
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [selectedType, setSelectedType] = useState('all');
+    const [showBookmarksOnly, setShowBookmarksOnly] = useState(false);
     const [viewMode, setViewMode] = useState('grid');
     const [showFilters, setShowFilters] = useState(false);
     const [content, setContent] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [bookmarkIds, setBookmarkIds] = useState([]);
 
     const levels = ['A1', 'A2', 'B1', 'B2', 'C1'];
     const categories = ['all', 'Teknoloji', 'Çevre', 'Bilim', 'Spor', 'Sağlık', 'Macera', 'Gizem'];
@@ -27,6 +30,12 @@ export default function Library() {
         { value: 'news', label: 'Haberler', icon: '📰' },
         { value: 'story', label: 'Hikayeler', icon: '😄' },
     ];
+
+    // Bookmark'ları yükle
+    useEffect(() => {
+        const bookmarks = getBookmarks();
+        setBookmarkIds(bookmarks.map(b => b.id));
+    }, []);
 
     // Fetch data from Supabase
     useEffect(() => {
@@ -59,6 +68,11 @@ export default function Library() {
                     );
                 }
 
+                // Filter by bookmarks only
+                if (showBookmarksOnly) {
+                    allContent = allContent.filter(item => bookmarkIds.includes(item.id));
+                }
+
                 setContent(allContent);
             } catch (error) {
                 console.error("Failed to fetch content:", error);
@@ -68,7 +82,7 @@ export default function Library() {
         };
 
         fetchData();
-    }, [selectedLevel, selectedCategory, selectedType, searchQuery]);
+    }, [selectedLevel, selectedCategory, selectedType, searchQuery, showBookmarksOnly, bookmarkIds]);
 
     // Get counts (placeholder for stats, could be optimized)
     const stats = {
@@ -82,9 +96,10 @@ export default function Library() {
         setSelectedLevel(user.level);
         setSelectedCategory('all');
         setSelectedType('all');
+        setShowBookmarksOnly(false);
     };
 
-    const hasActiveFilters = searchQuery || selectedLevel !== user.level || selectedCategory !== 'all' || selectedType !== 'all';
+    const hasActiveFilters = searchQuery || selectedLevel !== user.level || selectedCategory !== 'all' || selectedType !== 'all' || showBookmarksOnly;
 
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-[#18181b] pt-20 pb-12">
@@ -182,6 +197,17 @@ export default function Library() {
                                             <span>{type.label}</span>
                                         </button>
                                     ))}
+                                    {/* Bookmarks Filter */}
+                                    <button
+                                        onClick={() => setShowBookmarksOnly(!showBookmarksOnly)}
+                                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${showBookmarksOnly
+                                            ? 'bg-pink-600 text-white'
+                                            : 'bg-gray-100 dark:bg-white/10 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/20'
+                                            }`}
+                                    >
+                                        <Bookmark className="w-4 h-4" />
+                                        <span>Favorilerim ({bookmarkIds.length})</span>
+                                    </button>
                                 </div>
                             </div>
 
@@ -245,6 +271,15 @@ export default function Library() {
                                     <span className="inline-flex items-center gap-1 px-2 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs">
                                         {selectedCategory}
                                         <button onClick={() => setSelectedCategory('all')}>
+                                            <X className="w-3 h-3" />
+                                        </button>
+                                    </span>
+                                )}
+                                {showBookmarksOnly && (
+                                    <span className="inline-flex items-center gap-1 px-2 py-1 bg-pink-100 text-pink-700 rounded-full text-xs">
+                                        <Bookmark className="w-3 h-3" />
+                                        Favorilerim
+                                        <button onClick={() => setShowBookmarksOnly(false)}>
                                             <X className="w-3 h-3" />
                                         </button>
                                     </span>

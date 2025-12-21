@@ -10,6 +10,8 @@ import { CircularProgress } from '../../components/ProgressBar';
 import { LevelBadge } from '../../components/Badge';
 import { SuccessModal } from '../../components/Modal';
 import { calculatePracticeXp } from '../../utils/gamification';
+import { speak } from '../../utils/speechSynthesis';
+import { recordReview, getWordSrsInfo } from '../../utils/spacedRepetition';
 
 export default function FlashcardMode() {
     const navigate = useNavigate();
@@ -60,13 +62,14 @@ export default function FlashcardMode() {
     const currentWord = words[currentIndex];
     const progress = (answeredCards.size / words.length) * 100;
 
-    // Speak word
+    // Speak word with enhanced TTS
     const speakWord = useCallback(() => {
         if (!currentWord) return;
-        const utterance = new SpeechSynthesisUtterance(currentWord.word);
-        utterance.lang = 'en-US';
-        utterance.rate = 0.8;
-        speechSynthesis.speak(utterance);
+        speak(currentWord.word, {
+            rate: 0.85,
+            pitch: 1.0,
+            volume: 1.0,
+        });
     }, [currentWord]);
 
     // Handle answer
@@ -74,6 +77,11 @@ export default function FlashcardMode() {
         if (!currentWord || answeredCards.has(currentWord.id)) return;
 
         setAnsweredCards(prev => new Set([...prev, currentWord.id]));
+        
+        // Record SRS review
+        const wordId = currentWord.id || currentWord.word;
+        const isCorrect = type === 'correct';
+        recordReview(wordId, isCorrect);
 
         if (type === 'correct') {
             setResults(prev => ({ ...prev, correct: prev.correct + 1 }));

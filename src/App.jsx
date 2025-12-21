@@ -1,9 +1,14 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { lazy, Suspense, useState, useCallback } from 'react';
 import { UserProvider, useUser } from './context/UserContext';
+import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { ToastProvider } from './components/Toast';
 import Navbar from './components/Navbar';
 import ErrorBoundary from './components/ErrorBoundary';
+import KeyboardShortcutsModal from './components/KeyboardShortcutsModal';
+import AchievementNotification from './components/AchievementNotification';
+import { QuickAddFAB } from './components/QuickAddWord';
+import useKeyboardShortcuts from './hooks/useKeyboardShortcuts';
 
 // Pages - Lazy loaded for code splitting
 const AuthPage = lazy(() => import('./pages/AuthPage'));
@@ -16,6 +21,10 @@ const ProgressPage = lazy(() => import('./pages/ProgressPage'));
 const FlashcardMode = lazy(() => import('./pages/practice/FlashcardMode'));
 const MatchingMode = lazy(() => import('./pages/practice/MatchingMode'));
 const SprintMode = lazy(() => import('./pages/practice/SprintMode'));
+const MultipleChoiceMode = lazy(() => import('./pages/practice/MultipleChoiceMode'));
+const FillBlankMode = lazy(() => import('./pages/practice/FillBlankMode'));
+const TranslationMode = lazy(() => import('./pages/practice/TranslationMode'));
+const ListeningMode = lazy(() => import('./pages/practice/ListeningMode'));
 const ProfilePage = lazy(() => import('./pages/ProfilePage'));
 const SettingsPage = lazy(() => import('./pages/SettingsPage'));
 
@@ -58,7 +67,39 @@ function Layout({ children, showNavbar = true }) {
   return (
     <>
       {showNavbar && <Navbar />}
-      <main>{children}</main>
+      <main id="main-content" tabIndex={-1}>{children}</main>
+      <AchievementNotification />
+      <QuickAddFAB />
+    </>
+  );
+}
+
+// Global Keyboard Shortcuts Handler
+function GlobalShortcuts({ children }) {
+  const navigate = useNavigate();
+  const { isLoggedIn, updateProfile, profile } = useUser();
+  const { toggleTheme } = useTheme();
+  const [showShortcutsModal, setShowShortcutsModal] = useState(false);
+  
+  useKeyboardShortcuts({
+    GO_HOME: () => isLoggedIn && navigate('/dashboard'),
+    GO_LIBRARY: () => isLoggedIn && navigate('/library'),
+    GO_PRACTICE: () => isLoggedIn && navigate('/practice'),
+    GO_VOCABULARY: () => isLoggedIn && navigate('/vocabulary'),
+    GO_PROGRESS: () => isLoggedIn && navigate('/progress'),
+    GO_SETTINGS: () => isLoggedIn && navigate('/settings'),
+    TOGGLE_DARK_MODE: toggleTheme,
+    SHOW_SHORTCUTS: () => setShowShortcutsModal(true),
+    ESCAPE: () => setShowShortcutsModal(false),
+  });
+  
+  return (
+    <>
+      {children}
+      <KeyboardShortcutsModal 
+        isOpen={showShortcutsModal} 
+        onClose={() => setShowShortcutsModal(false)} 
+      />
     </>
   );
 }
@@ -166,6 +207,46 @@ function AppRoutes() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/practice/multiplechoice"
+          element={
+            <ProtectedRoute>
+              <Layout showNavbar={false}>
+                <MultipleChoiceMode />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/practice/fillblank"
+          element={
+            <ProtectedRoute>
+              <Layout showNavbar={false}>
+                <FillBlankMode />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/practice/translation"
+          element={
+            <ProtectedRoute>
+              <Layout showNavbar={false}>
+                <TranslationMode />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/practice/listening"
+          element={
+            <ProtectedRoute>
+              <Layout showNavbar={false}>
+                <ListeningMode />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
 
         {/* Progress & Profile (placeholders) */}
         <Route
@@ -225,13 +306,17 @@ function AppRoutes() {
 function App() {
   return (
     <ErrorBoundary>
-      <Router>
-        <UserProvider>
-          <ToastProvider>
-            <AppRoutes />
-          </ToastProvider>
-        </UserProvider>
-      </Router>
+      <ThemeProvider>
+        <Router>
+          <UserProvider>
+            <ToastProvider>
+              <GlobalShortcuts>
+                <AppRoutes />
+              </GlobalShortcuts>
+            </ToastProvider>
+          </UserProvider>
+        </Router>
+      </ThemeProvider>
     </ErrorBoundary>
   );
 }

@@ -6,38 +6,45 @@ export default function Card({
     padding = 'md',
     rounded = 'xl',
     shadow = 'md',
+    glass = false,
     onClick,
     ...props
 }) {
     const paddings = {
         none: '',
         sm: 'p-3',
-        md: 'p-4 sm:p-5',
+        md: 'p-4 sm:p-6',
         lg: 'p-6 sm:p-8',
     };
 
     const roundeds = {
         none: '',
-        sm: 'rounded-md',
-        md: 'rounded-lg',
-        lg: 'rounded-xl',
-        xl: 'rounded-2xl',
+        sm: 'rounded-lg',
+        md: 'rounded-xl',
+        lg: 'rounded-2xl',
+        xl: 'rounded-3xl',
     };
 
     const shadows = {
         none: '',
         sm: 'shadow-sm',
-        md: 'shadow-md',
-        lg: 'shadow-lg',
-        xl: 'shadow-xl',
+        md: 'shadow-lg shadow-gray-200/50 dark:shadow-slate-900/50',
+        lg: 'shadow-xl shadow-gray-200/50 dark:shadow-slate-900/50',
+        xl: 'shadow-2xl shadow-gray-300/50 dark:shadow-slate-900/70',
     };
 
-    const hoverStyles = hover ? 'cursor-pointer hover:shadow-lg hover:-translate-y-1 transition-all duration-300' : '';
+    const baseStyles = glass 
+        ? 'glass' 
+        : 'bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700';
+
+    const hoverStyles = hover 
+        ? 'cursor-pointer hover:shadow-2xl hover:shadow-gray-300/50 dark:hover:shadow-slate-900/70 hover:-translate-y-1 transition-all duration-300 hover:scale-[1.02]' 
+        : 'transition-all duration-300';
 
     return (
         <div
             className={`
-        bg-white dark:bg-[#27272a] border border-gray-100 dark:border-[#333]
+        ${baseStyles}
         ${paddings[padding]}
         ${roundeds[rounded]}
         ${shadows[shadow]}

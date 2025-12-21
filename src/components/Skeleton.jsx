@@ -6,16 +6,23 @@
 export function Skeleton({ className = '', width = 'w-full', height = 'h-4', ...props }) {
     return (
         <div
-            className={`animate-pulse bg-gray-200 dark:bg-gray-700 rounded ${width} ${height} ${className}`}
+            className={`relative overflow-hidden rounded ${width} ${height} ${className}`}
             {...props}
-        />
+        >
+            <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 dark:from-slate-700 dark:via-slate-600 dark:to-slate-700 animate-shimmer" 
+                style={{
+                    backgroundSize: '200% 100%',
+                    animation: 'shimmer 2s infinite'
+                }}
+            />
+        </div>
     );
 }
 
 // Skeleton for cards
 export function SkeletonCard({ className = '' }) {
     return (
-        <div className={`bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 ${className}`}>
+        <div className={`glass rounded-2xl p-6 shadow-lg ${className}`}>
             <div className="space-y-4">
                 <Skeleton height="h-6" width="w-3/4" />
                 <Skeleton height="h-4" width="w-full" />

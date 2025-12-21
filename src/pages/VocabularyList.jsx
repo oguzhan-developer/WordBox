@@ -1,10 +1,11 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import {
     Search,
     Grid,
     List,
     Filter,
     Download,
+    Upload,
     Plus,
     BookOpen,
     Clock,
@@ -17,10 +18,22 @@ import Card, { StatCard } from '../components/Card';
 import VocabularyCard, { VocabularyListItem, WordDetailCard } from '../components/VocabularyCard';
 import { LevelBadge } from '../components/Badge';
 import { SkeletonVocabularyCard, SkeletonListItem } from '../components/Skeleton';
+import Modal from '../components/Modal';
+import { 
+    exportToJSON, 
+    exportToCSV, 
+    exportToAnki, 
+    exportToQuizlet,
+    exportToPrint,
+    importFromJSON,
+    importFromCSV,
+    SUPPORTED_FORMATS 
+} from '../utils/vocabularyExport';
 
 export default function VocabularyList() {
-    const { user, removeWord } = useUser();
+    const { user, removeWord, addWord } = useUser();
     const toast = useToast();
+    const fileInputRef = useRef(null);
 
     // State
     const [searchQuery, setSearchQuery] = useState('');
@@ -29,6 +42,9 @@ export default function VocabularyList() {
     const [viewMode, setViewMode] = useState('grid');
     const [selectedWord, setSelectedWord] = useState(null);
     const [selectedWords, setSelectedWords] = useState(new Set());
+    const [showExportModal, setShowExportModal] = useState(false);
+    const [showImportModal, setShowImportModal] = useState(false);
+    const [importResult, setImportResult] = useState(null);
 
     const levels = ['all', 'A1', 'A2', 'B1', 'B2', 'C1'];
     const statuses = [
@@ -101,27 +117,89 @@ export default function VocabularyList() {
     };
 
     // Export vocabulary
-    const handleExport = () => {
-        const data = user.vocabulary.map(w => ({
-            word: w.word,
-            turkish: w.turkish,
-            level: w.level,
-            status: w.status || 'new'
-        }));
-
-        const csv = [
-            'Word,Turkish,Level,Status',
-            ...data.map(d => `${d.word},${d.turkish},${d.level},${d.status}`)
-        ].join('\n');
-
-        const blob = new Blob([csv], { type: 'text/csv' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'vocabulary.csv';
-        a.click();
-
-        toast.success('Kelimeler dışa aktarıldı!');
+    const handleExport = (format) => {
+        if (user.vocabulary.length === 0) {
+            toast.error('Dışa aktarılacak kelime yok');
+            return;
+        }
+        
+        let result;
+        switch (format) {
+            case 'json':
+                result = exportToJSON(user.vocabulary);
+                break;
+            case 'csv':
+                result = exportToCSV(user.vocabulary);
+                break;
+            case 'anki':
+                result = exportToAnki(user.vocabulary);
+                break;
+            case 'quizlet':
+                result = exportToQuizlet(user.vocabulary);
+                break;
+            case 'print':
+                result = exportToPrint(user.vocabulary, { 
+                    title: 'Kelime Listem', 
+                    columns: 2,
+                    groupByLevel: true 
+                });
+                break;
+            default:
+                result = exportToJSON(user.vocabulary);
+        }
+        
+        if (result.success) {
+            const message = format === 'print' 
+                ? 'Yazdırma penceresi açıldı!' 
+                : `${result.wordCount} kelime dışa aktarıldı!`;
+            toast.success(message);
+            setShowExportModal(false);
+        }
+    };
+    
+    // Import vocabulary
+    const handleFileSelect = async (e) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        
+        try {
+            let result;
+            if (file.name.endsWith('.json')) {
+                result = await importFromJSON(file);
+            } else if (file.name.endsWith('.csv')) {
+                result = await importFromCSV(file);
+            } else {
+                toast.error('Desteklenmeyen dosya formatı. JSON veya CSV kullanın.');
+                return;
+            }
+            
+            setImportResult(result);
+        } catch (error) {
+            toast.error(error.message);
+        }
+        
+        // Reset file input
+        e.target.value = '';
+    };
+    
+    // Confirm import
+    const handleConfirmImport = () => {
+        if (!importResult?.words) return;
+        
+        // Filter out duplicates
+        const existingWords = new Set(user.vocabulary.map(w => w.word.toLowerCase()));
+        const newWords = importResult.words.filter(w => !existingWords.has(w.word.toLowerCase()));
+        
+        // Add new words
+        newWords.forEach(word => addWord(word));
+        
+        toast.success(`${newWords.length} yeni kelime eklendi!`);
+        if (newWords.length < importResult.words.length) {
+            toast.info(`${importResult.words.length - newWords.length} kelime zaten listede vardı.`);
+        }
+        
+        setImportResult(null);
+        setShowImportModal(false);
     };
 
     return (
@@ -136,13 +214,22 @@ export default function VocabularyList() {
                             {user.vocabulary.length} kelime koleksiyonunda
                         </p>
                     </div>
-                    <button
-                        onClick={handleExport}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 dark:border-[#333] text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
-                    >
-                        <Download className="w-4 h-4" />
-                        Dışa Aktar
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            onClick={() => setShowImportModal(true)}
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 dark:border-[#333] text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+                        >
+                            <Upload className="w-4 h-4" />
+                            İçe Aktar
+                        </button>
+                        <button
+                            onClick={() => setShowExportModal(true)}
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl gradient-primary text-white hover:opacity-90 transition-opacity"
+                        >
+                            <Download className="w-4 h-4" />
+                            Dışa Aktar
+                        </button>
+                    </div>
                 </div>
 
                 {/* Stats */}
@@ -368,6 +455,105 @@ export default function VocabularyList() {
                     )}
                 </div>
             </div>
+            
+            {/* Export Modal */}
+            <Modal
+                isOpen={showExportModal}
+                onClose={() => setShowExportModal(false)}
+                title="Kelimeleri Dışa Aktar"
+            >
+                <div className="space-y-4">
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                        {user.vocabulary.length} kelimeyi dışa aktarmak için bir format seçin:
+                    </p>
+                    
+                    <div className="grid grid-cols-2 gap-3">
+                        {SUPPORTED_FORMATS.export.map(format => (
+                            <button
+                                key={format.id}
+                                onClick={() => handleExport(format.id)}
+                                className="flex flex-col items-start gap-1 p-4 rounded-xl border border-gray-200 dark:border-[#333] hover:border-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all text-left"
+                            >
+                                <span className="font-bold text-gray-900 dark:text-white">{format.label}</span>
+                                <span className="text-xs text-gray-500 dark:text-gray-400">{format.description}</span>
+                                <span className="text-xs text-indigo-600 dark:text-indigo-400 font-medium">{format.extension}</span>
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            </Modal>
+            
+            {/* Import Modal */}
+            <Modal
+                isOpen={showImportModal}
+                onClose={() => { setShowImportModal(false); setImportResult(null); }}
+                title="Kelimeleri İçe Aktar"
+            >
+                <div className="space-y-4">
+                    {!importResult ? (
+                        <>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">
+                                JSON veya CSV formatında kelime dosyası yükleyin:
+                            </p>
+                            
+                            <div className="space-y-3">
+                                {SUPPORTED_FORMATS.import.map(format => (
+                                    <div key={format.id} className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 dark:bg-white/5">
+                                        <span className="text-lg">📄</span>
+                                        <div>
+                                            <span className="font-medium text-gray-900 dark:text-white">{format.label}</span>
+                                            <p className="text-xs text-gray-500 dark:text-gray-400">{format.description}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            
+                            <input
+                                ref={fileInputRef}
+                                type="file"
+                                accept=".json,.csv"
+                                onChange={handleFileSelect}
+                                className="hidden"
+                            />
+                            
+                            <button
+                                onClick={() => fileInputRef.current?.click()}
+                                className="w-full py-3 rounded-xl gradient-primary text-white font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+                            >
+                                <Upload className="w-5 h-5" />
+                                Dosya Seç
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
+                                <h4 className="font-bold text-green-700 dark:text-green-300 mb-2">Dosya okundu!</h4>
+                                <div className="space-y-1 text-sm text-green-600 dark:text-green-400">
+                                    <p>✓ {importResult.validCount} geçerli kelime bulundu</p>
+                                    {importResult.skippedCount > 0 && (
+                                        <p>⚠ {importResult.skippedCount} kelime atlandı (eksik veri)</p>
+                                    )}
+                                </div>
+                            </div>
+                            
+                            <div className="flex gap-3">
+                                <button
+                                    onClick={() => setImportResult(null)}
+                                    className="flex-1 py-3 rounded-xl border border-gray-200 dark:border-[#333] text-gray-700 dark:text-gray-300 font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+                                >
+                                    Farklı Dosya
+                                </button>
+                                <button
+                                    onClick={handleConfirmImport}
+                                    className="flex-1 py-3 rounded-xl gradient-primary text-white font-medium hover:opacity-90 transition-opacity"
+                                >
+                                    İçe Aktar
+                                </button>
+                            </div>
+                        </>
+                    )}
+                </div>
+            </Modal>
         </div>
     );
 }

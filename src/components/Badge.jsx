@@ -8,45 +8,45 @@ export default function Badge({
     dot = false,
 }) {
     const variants = {
-        default: 'bg-gray-100 text-gray-700',
-        primary: 'bg-indigo-100 text-indigo-700',
-        secondary: 'bg-purple-100 text-purple-700',
-        success: 'bg-green-100 text-green-700',
-        warning: 'bg-orange-100 text-orange-700',
-        danger: 'bg-red-100 text-red-700',
-        info: 'bg-blue-100 text-blue-700',
+        default: 'glass text-gray-700 dark:text-gray-300 shadow-md',
+        primary: 'glass text-indigo-700 dark:text-indigo-400 shadow-md shadow-indigo-500/20',
+        secondary: 'glass text-purple-700 dark:text-purple-400 shadow-md shadow-purple-500/20',
+        success: 'glass text-green-700 dark:text-green-400 shadow-md shadow-green-500/20',
+        warning: 'glass text-orange-700 dark:text-orange-400 shadow-md shadow-orange-500/20',
+        danger: 'glass text-red-700 dark:text-red-400 shadow-md shadow-red-500/20',
+        info: 'glass text-blue-700 dark:text-blue-400 shadow-md shadow-blue-500/20',
 
         // Level badges
-        a1: 'bg-blue-500 text-white',
-        a2: 'bg-green-500 text-white',
-        b1: 'bg-orange-500 text-white',
-        b2: 'bg-red-500 text-white',
-        c1: 'bg-purple-500 text-white',
+        a1: 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/50',
+        a2: 'bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg shadow-green-500/50',
+        b1: 'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-lg shadow-orange-500/50',
+        b2: 'bg-gradient-to-r from-red-500 to-rose-500 text-white shadow-lg shadow-red-500/50',
+        c1: 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/50',
 
         // Rarity badges
-        common: 'bg-gray-100 text-gray-700 border border-gray-300',
-        uncommon: 'bg-green-100 text-green-700 border border-green-300',
-        rare: 'bg-blue-100 text-blue-700 border border-blue-300',
-        epic: 'bg-purple-100 text-purple-700 border border-purple-300',
-        legendary: 'bg-gradient-to-r from-yellow-400 to-orange-500 text-white',
+        common: 'glass text-gray-700 dark:text-gray-300 border border-gray-300/30',
+        uncommon: 'glass text-green-700 dark:text-green-400 border border-green-500/30 shadow-green-500/20',
+        rare: 'glass text-blue-700 dark:text-blue-400 border border-blue-500/30 shadow-blue-500/20',
+        epic: 'glass text-purple-700 dark:text-purple-400 border border-purple-500/30 shadow-purple-500/20',
+        legendary: 'bg-gradient-to-r from-yellow-400 via-orange-500 to-amber-600 text-white shadow-lg shadow-yellow-500/50 animate-pulse',
 
         // Status badges
-        new: 'bg-blue-500 text-white animate-pulse',
-        learning: 'bg-orange-500 text-white',
-        learned: 'bg-green-500 text-white',
+        new: 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/50',
+        learning: 'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-lg shadow-orange-500/50',
+        learned: 'bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg shadow-green-500/50',
     };
 
     const sizes = {
-        xs: 'px-1.5 py-0.5 text-xs',
-        sm: 'px-2 py-0.5 text-xs',
-        md: 'px-2.5 py-1 text-sm',
-        lg: 'px-3 py-1.5 text-sm',
+        xs: 'px-2 py-1 text-xs',
+        sm: 'px-3 py-1 text-xs',
+        md: 'px-3 py-1.5 text-sm',
+        lg: 'px-4 py-2 text-sm',
     };
 
     return (
         <span
             className={`
-        inline-flex items-center gap-1 font-medium rounded-full
+        inline-flex items-center gap-1.5 font-bold rounded-full transition-all hover:scale-105
         ${variants[variant]}
         ${sizes[size]}
         ${className}

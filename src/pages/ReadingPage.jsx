@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
 import {
     ArrowLeft,
@@ -19,6 +19,10 @@ import Modal from '../components/Modal';
 import { supabaseService } from '../services/supabaseService';
 import Card from '../components/Card';
 import { LevelBadge, CategoryBadge } from '../components/Badge';
+import { useLocalStorage } from '../hooks/useLocalStorage';
+import { speak } from '../utils/speechSynthesis';
+import { recordReadingSession } from '../utils/readingStats';
+import { isBookmarked, toggleBookmark } from '../utils/bookmarks';
 
 export default function ReadingPage() {
     const { id } = useParams();
@@ -35,10 +39,45 @@ export default function ReadingPage() {
     const [addedWords, setAddedWords] = useState(new Set());
     const [isCompleted, setIsCompleted] = useState(false);
     const [similarArticles, setSimilarArticles] = useState([]);
+    const [isArticleBookmarked, setIsArticleBookmarked] = useState(false);
 
     const [isLoading, setIsLoading] = useState(true);
+    const [showReaderPanel, setShowReaderPanel] = useState(false);
+    const readingStartTime = useRef(null);
+    const [readerPrefs, setReaderPrefs] = useLocalStorage('reader-preferences', {
+        fontSize: 'medium',
+        lineHeight: 'relaxed',
+        width: 'medium',
+        focusMode: false
+    });
 
     const levels = ['A1', 'A2', 'B1', 'B2', 'C1'];
+
+    const fontSizeMap = {
+        small: 'text-base',
+        medium: 'text-lg',
+        large: 'text-xl'
+    };
+
+    const lineHeightMap = {
+        compact: 'leading-normal',
+        relaxed: 'leading-relaxed',
+        spacious: 'leading-loose'
+    };
+
+    const widthMap = {
+        narrow: 'lg:max-w-2xl',
+        medium: 'lg:max-w-3xl',
+        wide: 'lg:max-w-4xl'
+    };
+
+    const contentFontClass = fontSizeMap[readerPrefs.fontSize] || fontSizeMap.medium;
+    const contentLineHeightClass = lineHeightMap[readerPrefs.lineHeight] || lineHeightMap.relaxed;
+    const contentWidthClass = widthMap[readerPrefs.width] || widthMap.medium;
+
+    const updateReaderPref = (key, value) => {
+        setReaderPrefs(prev => ({ ...prev, [key]: value }));
+    };
 
     // Load article and similar stories
     useEffect(() => {
@@ -57,6 +96,7 @@ export default function ReadingPage() {
 
                 if (data) {
                     setArticle(data);
+                    setIsArticleBookmarked(isBookmarked(data.id));
                     // Fetch similar articles from same table
                     const similar = await supabaseService.getContentByLevel(type, selectedLevel);
                     setSimilarArticles(similar.filter(a => a.id !== data.id).slice(0, 3));
@@ -71,6 +111,7 @@ export default function ReadingPage() {
                 setIsLoading(false);
                 setIsCompleted(false);
                 setReadProgress(0);
+                readingStartTime.current = Date.now(); // Start tracking reading time
                 window.scrollTo(0, 0);
             }
         };
@@ -93,12 +134,25 @@ export default function ReadingPage() {
                 readArticle(article?.id);
                 addXp(50, 'Makale tamamlandı');
                 recordActivity();
+                
+                // Record reading session for stats
+                const timeSpent = readingStartTime.current 
+                    ? Math.round((Date.now() - readingStartTime.current) / 1000)
+                    : 0;
+                recordReadingSession({
+                    articleId: article?.id,
+                    articleTitle: article?.title,
+                    level: selectedLevel,
+                    wordsRead: article?.wordCount || article?.content?.split(/\s+/).length || 0,
+                    timeSpent,
+                    completed: true,
+                });
             }
         };
 
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [isCompleted, article, readArticle, addXp, recordActivity]);
+    }, [isCompleted, article, readArticle, addXp, recordActivity, selectedLevel]);
 
     // Change level
     const handleLevelChange = (level) => {
@@ -107,53 +161,105 @@ export default function ReadingPage() {
         setShowLevelDropdown(false);
     };
 
-    // Speak word
+    // Speak word with enhanced TTS
     const speakWord = (word) => {
-        const utterance = new SpeechSynthesisUtterance(word);
-        utterance.lang = 'en-US';
-        utterance.rate = 0.8;
-        speechSynthesis.speak(utterance);
+        speak(word, {
+            rate: 0.85,
+            pitch: 1.0,
+            volume: 1.0,
+            onError: (error) => {
+                console.error('Speech error:', error);
+            }
+        });
     };
+
+    // Normalize helper for word ids
+    const normalizeWord = (text) => text?.trim().toLowerCase();
 
     // Handle word click
     const handleWordClick = useCallback(async (word, e) => {
         e.stopPropagation();
 
-        // Try to find in Supabase dictionary first (to be implemented more fully)
-        // For now, we search in the words table
+        const normalized = normalizeWord(word);
+        const fallbackId = normalized ? `local-${normalized}` : `local-${Date.now()}`;
+
         try {
             const results = await supabaseService.searchWords(word);
-            const wordInfo = results.find(w => w.word.toLowerCase() === word.toLowerCase());
+            const wordInfo = results.find(w => normalizeWord(w.word) === normalized);
 
-            if (wordInfo) {
-                setSelectedWord({
-                    ...wordInfo,
-                    isAdded: user.vocabulary.some(v => v.id === wordInfo.id) || addedWords.has(wordInfo.id)
-                });
-            } else {
-                setSelectedWord({
-                    word: word,
-                    turkish: '-',
-                    definition: 'Bu kelime veritabanında bulunamadı.',
-                    phonetic: '',
-                    partOfSpeech: '',
-                    examples: [],
-                    isAdded: false
-                });
-            }
+            const base = wordInfo || {
+                id: fallbackId,
+                word,
+                turkish: '-',
+                definition: 'Bu kelime veritabanında bulunamadı.',
+                phonetic: '',
+                partOfSpeech: '',
+                examples: [],
+                level: selectedLevel,
+            };
+
+            const derivedId = base.id || fallbackId;
+            const alreadyAdded = user.vocabulary.some(v => normalizeWord(v.word) === normalized || v.id === derivedId) || addedWords.has(derivedId);
+
+            setSelectedWord({
+                ...base,
+                id: derivedId,
+                isAdded: alreadyAdded,
+            });
         } catch (error) {
             console.error("Word search error:", error);
         }
-    }, [user.vocabulary, addedWords]);
+    }, [user.vocabulary, addedWords, selectedLevel]);
 
     // Add word to vocabulary
     const handleAddWord = () => {
-        if (selectedWord && selectedWord.id) {
-            addWord(selectedWord);
-            setAddedWords(prev => new Set([...prev, selectedWord.id]));
-            setSelectedWord(prev => ({ ...prev, isAdded: true }));
-            toast.success(`"${selectedWord.word}" kelime listene eklendi!`);
-            toast.xp(5);
+        if (!selectedWord) return;
+
+        const normalized = normalizeWord(selectedWord.word);
+        const fallbackId = selectedWord.id || (normalized ? `local-${normalized}` : `local-${Date.now()}`);
+
+        const payload = {
+            id: fallbackId,
+            word: selectedWord.word,
+            turkish: selectedWord.turkish || '-',
+            definition: selectedWord.definition || '',
+            phonetic: selectedWord.phonetic || '',
+            partOfSpeech: selectedWord.partOfSpeech || '',
+            examples: selectedWord.examples || [],
+            level: selectedWord.level || selectedLevel,
+            source: 'reading',
+        };
+
+        addWord(payload);
+        setAddedWords(prev => new Set([...prev, payload.id]));
+        toast.success(`"${selectedWord.word}" kelime listene eklendi!`);
+        toast.xp(5);
+        
+        // Close the modal after adding word
+        setTimeout(() => {
+            setSelectedWord(null);
+        }, 300);
+    };
+
+    // Toggle bookmark
+    const handleToggleBookmark = () => {
+        if (!article) return;
+        
+        const content = {
+            id: article.id,
+            title: article.title,
+            type: article.type || 'article',
+            level: selectedLevel,
+            thumbnail: article.image || null
+        };
+        
+        const newState = toggleBookmark(content);
+        setIsArticleBookmarked(newState);
+        
+        if (newState) {
+            toast.success('Favorilere eklendi!');
+        } else {
+            toast.info('Favorilerden kaldırıldı');
         }
     };
 
@@ -162,25 +268,49 @@ export default function ReadingPage() {
         if (!article) return null;
 
         const paragraphs = article.content.split('\n\n');
+        
+        // Get user's vocabulary words for comparison
+        const userWordSet = new Set(
+            user.vocabulary.map(v => normalizeWord(v.word))
+        );
+        // Also include words added in this session
+        const addedWordSet = new Set([...addedWords].map(id => {
+            // Extract word from id if it's in local-word format
+            if (id.startsWith('local-')) {
+                return id.replace('local-', '');
+            }
+            return id;
+        }));
 
         return paragraphs.map((paragraph, pIndex) => {
             if (!paragraph.trim()) return null;
 
-            // Highlight new words
+            // Highlight new words - check if already in user's vocabulary
             let content = paragraph;
             article.newWords?.forEach(word => {
+                const normalized = normalizeWord(word);
+                const isInVocabulary = userWordSet.has(normalized) || addedWordSet.has(normalized);
+                const highlightClass = isInVocabulary ? 'word-highlight-added' : 'word-highlight-new';
+                
                 const regex = new RegExp(`\\b(${word})\\b`, 'gi');
-                content = content.replace(regex, `<span class="word-highlight-new" data-word="$1">$1</span>`);
+                content = content.replace(regex, `<span class="${highlightClass}" data-word="$1" data-added="${isInVocabulary}">$1</span>`);
             });
 
             return (
                 <p
                     key={pIndex}
-                    className="mb-6 text-lg leading-relaxed text-gray-800 dark:text-gray-200"
+                    className={`mb-6 ${contentFontClass} ${contentLineHeightClass} text-gray-800 dark:text-gray-200`}
                     dangerouslySetInnerHTML={{ __html: content }}
                     onClick={(e) => {
+                        // Only open modal for new words, not already added ones
                         if (e.target.classList.contains('word-highlight-new')) {
                             handleWordClick(e.target.dataset.word, e);
+                        }
+                        // For added words, just speak the word
+                        if (e.target.classList.contains('word-highlight-added')) {
+                            e.stopPropagation();
+                            speakWord(e.target.dataset.word);
+                            toast.info(`"${e.target.dataset.word}" zaten listende mevcut`);
                         }
                     }}
                 />
@@ -202,7 +332,7 @@ export default function ReadingPage() {
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-[#18181b]">
             {/* Progress Bar (Sticky at Top) */}
-            <div className="sticky top-0 left-0 right-0 z-[60] h-1 bg-gray-200 dark:bg-white/10">
+            <div className="sticky top-0 left-0 right-0 z-[100] h-1 bg-gray-200 dark:bg-white/10">
                 <div
                     className="h-full bg-indigo-600 transition-all duration-300 shadow-[0_0_10px_rgba(79,70,229,0.5)]"
                     style={{ width: `${isCompleted ? 100 : readProgress}%` }}
@@ -222,7 +352,7 @@ export default function ReadingPage() {
                     </button>
 
                     {/* Center - Level Selector */}
-                    <div className="relative">
+                    <div className="relative z-[70]">
                         <button
                             onClick={() => setShowLevelDropdown(!showLevelDropdown)}
                             className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-white/10 rounded-xl hover:bg-gray-200 dark:hover:bg-white/20 transition-colors text-gray-900 dark:text-white"
@@ -254,19 +384,154 @@ export default function ReadingPage() {
 
                     {/* Right */}
                     <div className="flex items-center gap-2">
-                        <button
-                            onClick={() => speakWord(article.title)}
-                            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 text-gray-600 dark:text-gray-300"
-                            title="Dinle"
-                        >
+                        <button className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 text-gray-600 dark:text-gray-300" title="Dinle">
                             <Volume2 className="w-5 h-5" />
                         </button>
-                        <button className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 text-gray-600 dark:text-gray-300" title="Kaydet">
-                            <Bookmark className="w-5 h-5" />
+                        <button 
+                            onClick={handleToggleBookmark}
+                            className={`p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition-colors ${
+                                isArticleBookmarked 
+                                    ? 'text-pink-600 dark:text-pink-400' 
+                                    : 'text-gray-600 dark:text-gray-300'
+                            }`}
+                            title={isArticleBookmarked ? 'Favorilerden kaldır' : 'Favorilere ekle'}
+                        >
+                            <Bookmark className={`w-5 h-5 ${isArticleBookmarked ? 'fill-current' : ''}`} />
                         </button>
                         <button className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 text-gray-600 dark:text-gray-300" title="Paylaş">
                             <Share2 className="w-5 h-5" />
                         </button>
+
+                        <div className="relative">
+                            <button
+                                onClick={() => setShowReaderPanel(prev => !prev)}
+                                className={`p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition-colors ${showReaderPanel ? 'bg-gray-100 dark:bg-white/10' : 'text-gray-600 dark:text-gray-300'}`}
+                                title="Okuma tercihleri"
+                                aria-haspopup="dialog"
+                                aria-expanded={showReaderPanel}
+                            >
+                                <Settings className="w-5 h-5" />
+                            </button>
+
+                            {showReaderPanel && (
+                                <div className="absolute right-0 mt-2 w-80 bg-white dark:bg-[#1b1b1f] border border-gray-100 dark:border-[#333] rounded-2xl shadow-2xl p-4 z-[90] animate-slideDown">
+                                    <div className="flex items-start justify-between mb-3">
+                                        <div>
+                                            <p className="text-[11px] font-black uppercase tracking-widest text-gray-400">Okuma Tercihleri</p>
+                                            <p className="text-sm text-gray-600 dark:text-gray-300">Metni göz konforuna göre ayarla.</p>
+                                        </div>
+                                        <span className="px-2 py-1 rounded-full text-[10px] font-bold bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-800">Canlı</span>
+                                    </div>
+
+                                    <div className="space-y-3">
+                                        <div className="space-y-2">
+                                            <div className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">Yazı Boyutu</div>
+                                            <div className="grid grid-cols-3 gap-2">
+                                                {[{
+                                                    id: 'small',
+                                                    label: 'Küçük',
+                                                    sample: 'Aa'
+                                                }, {
+                                                    id: 'medium',
+                                                    label: 'Orta',
+                                                    sample: 'Aa'
+                                                }, {
+                                                    id: 'large',
+                                                    label: 'Büyük',
+                                                    sample: 'Aa'
+                                                }].map(option => (
+                                                    <button
+                                                        key={option.id}
+                                                        onClick={() => updateReaderPref('fontSize', option.id)}
+                                                        className={`flex flex-col items-center gap-1 px-3 py-2 rounded-xl text-sm font-semibold border transition-all ${readerPrefs.fontSize === option.id
+                                                            ? 'border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-200 shadow-sm'
+                                                            : 'border-gray-100 dark:border-[#333] text-gray-600 dark:text-gray-300 hover:border-gray-200 dark:hover:border-white/10'}`}
+                                                        aria-pressed={readerPrefs.fontSize === option.id}
+                                                    >
+                                                        <span className="text-lg leading-none">{option.sample}</span>
+                                                        <span className="text-[11px] uppercase tracking-wide">{option.label}</span>
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <div className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">Satır Aralığı</div>
+                                            <div className="grid grid-cols-3 gap-2">
+                                                {[{
+                                                    id: 'compact',
+                                                    label: 'Sıkı'
+                                                }, {
+                                                    id: 'relaxed',
+                                                    label: 'Rahat'
+                                                }, {
+                                                    id: 'spacious',
+                                                    label: 'Ferahl'
+                                                }].map(option => (
+                                                    <button
+                                                        key={option.id}
+                                                        onClick={() => updateReaderPref('lineHeight', option.id)}
+                                                        className={`px-3 py-2 rounded-xl text-sm font-semibold border transition-all text-left ${readerPrefs.lineHeight === option.id
+                                                            ? 'border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-200 shadow-sm'
+                                                            : 'border-gray-100 dark:border-[#333] text-gray-600 dark:text-gray-300 hover:border-gray-200 dark:hover:border-white/10'}`}
+                                                        aria-pressed={readerPrefs.lineHeight === option.id}
+                                                    >
+                                                        {option.label}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <div className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">Sütun Genişliği</div>
+                                            <div className="grid grid-cols-3 gap-2">
+                                                {[{
+                                                    id: 'narrow',
+                                                    label: 'Dar'
+                                                }, {
+                                                    id: 'medium',
+                                                    label: 'Standart'
+                                                }, {
+                                                    id: 'wide',
+                                                    label: 'Geniş'
+                                                }].map(option => (
+                                                    <button
+                                                        key={option.id}
+                                                        onClick={() => updateReaderPref('width', option.id)}
+                                                        className={`px-3 py-2 rounded-xl text-sm font-semibold border transition-all ${readerPrefs.width === option.id
+                                                            ? 'border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-200 shadow-sm'
+                                                            : 'border-gray-100 dark:border-[#333] text-gray-600 dark:text-gray-300 hover:border-gray-200 dark:hover:border-white/10'}`}
+                                                        aria-pressed={readerPrefs.width === option.id}
+                                                    >
+                                                        {option.label}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        <div className="space-y-1">
+                                            <button
+                                                role="switch"
+                                                aria-checked={readerPrefs.focusMode}
+                                                onClick={() => updateReaderPref('focusMode', !readerPrefs.focusMode)}
+                                                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl border transition-all ${readerPrefs.focusMode
+                                                    ? 'border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-200 shadow-sm'
+                                                    : 'border-gray-100 dark:border-[#333] text-gray-700 dark:text-gray-200 hover:border-gray-200 dark:hover:border-white/10'}`}
+                                            >
+                                                <div className="flex items-center gap-2">
+                                                    <Target className="w-4 h-4" />
+                                                    <span className="font-semibold">Odak Modu</span>
+                                                </div>
+                                                <span className={`px-2 py-1 rounded-full text-[11px] font-bold ${readerPrefs.focusMode ? 'bg-indigo-600 text-white' : 'bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-200'}`}>
+                                                    {readerPrefs.focusMode ? 'Açık' : 'Kapalı'}
+                                                </span>
+                                            </button>
+                                            <p className="text-xs text-gray-500 dark:text-gray-400">Arka planı sadeleştirir, uzun metinlerde göz yorgunluğunu azaltır.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -276,7 +541,9 @@ export default function ReadingPage() {
                 <div className="w-full">
 
                     {/* Article Content */}
-                    <article className="flex-1 lg:max-w-3xl">
+                    <article
+                        className={`flex-1 w-full mx-auto ${contentWidthClass} transition-all duration-300 ${readerPrefs.focusMode ? 'bg-white dark:bg-[#0f1115] border border-gray-100 dark:border-gray-800 shadow-2xl rounded-3xl px-4 sm:px-8 py-8 sm:py-10' : ''}`}
+                    >
                         {/* Hero Image */}
                         <div className="relative rounded-2xl overflow-hidden mb-8">
                             <img
@@ -304,7 +571,7 @@ export default function ReadingPage() {
                         </header>
 
                         {/* Article Body */}
-                        <div className="prose prose-lg max-w-none">
+                        <div className={`prose prose-lg max-w-none ${contentFontClass} ${contentLineHeightClass}`}>
                             {renderContent()}
                         </div>
 
@@ -463,6 +730,8 @@ export default function ReadingPage() {
                 onClose={() => setSelectedWord(null)}
                 size="md"
                 showCloseButton={true}
+                closeOnOverlay={false}
+                id="word-detail-modal"
             >
                 {selectedWord && (
                     <div>
@@ -560,6 +829,13 @@ export default function ReadingPage() {
             </Modal>
 
             {/* Click outside to close level dropdown */}
+            {showReaderPanel && (
+                <div
+                    className="fixed inset-0 z-30"
+                    onClick={() => setShowReaderPanel(false)}
+                />
+            )}
+
             {showLevelDropdown && (
                 <div
                     className="fixed inset-0 z-20"

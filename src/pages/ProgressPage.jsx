@@ -1,12 +1,25 @@
+import { useMemo } from 'react';
 import { useUser } from '../context/UserContext';
 import {
     calculateLevel,
     getLevelProgress,
     calculateDailyProgress
 } from '../utils/gamification';
+import { getWeeklyActivity, getWeeklyTotal, getBestDayThisWeek } from '../utils/weeklyActivity';
+import { getReadingStats, getWeeklyReadingSummary, formatReadingTime } from '../utils/readingStats';
 
 export default function ProgressPage() {
     const { user } = useUser();
+
+    // Weekly activity data
+    const weeklyActivity = useMemo(() => getWeeklyActivity(), [user.wordsToday]);
+    const weeklyTotal = useMemo(() => getWeeklyTotal(), [user.wordsToday]);
+    const bestDay = useMemo(() => getBestDayThisWeek(), [user.wordsToday]);
+    const weeklyMax = bestDay > 0 ? bestDay : 20;
+    
+    // Reading stats
+    const readingStats = useMemo(() => getReadingStats(), []);
+    const weeklyReading = useMemo(() => getWeeklyReadingSummary(), []);
 
     if (!user) return null;
 
@@ -142,10 +155,113 @@ export default function ProgressPage() {
                                 </div>
                             </div>
                         </div>
+
+                        {/* Weekly Activity Chart */}
+                        <div className="bg-white dark:bg-[#2a2a24] p-8 rounded-2xl border border-gray-100 dark:border-[#333] shadow-sm">
+                            <div className="flex justify-between items-start mb-6">
+                                <h2 className="text-xl font-bold flex items-center gap-2">
+                                    <span className="material-symbols-outlined text-brand-purple">calendar_month</span>
+                                    Haftalık Aktivite
+                                </h2>
+                                <div className="text-right">
+                                    <div className="text-2xl font-black text-brand-purple">{weeklyTotal}</div>
+                                    <div className="text-xs text-gray-500 font-bold uppercase">Bu Hafta Toplam</div>
+                                </div>
+                            </div>
+
+                            {/* Chart */}
+                            <div className="flex items-end justify-between gap-3 h-40 mb-4">
+                                {weeklyActivity.map((day) => {
+                                    const heightPercent = weeklyMax > 0 ? Math.max(8, (day.words / weeklyMax) * 100) : 8;
+                                    const isActive = day.words > 0;
+                                    const isToday = day.isToday;
+                                    
+                                    return (
+                                        <div key={day.date} className="flex-1 flex flex-col items-center">
+                                            {/* Value on top */}
+                                            <div className={`text-xs font-bold mb-2 ${isActive ? 'text-gray-700 dark:text-gray-300' : 'text-gray-300 dark:text-gray-600'}`}>
+                                                {day.words > 0 ? day.words : '-'}
+                                            </div>
+                                            
+                                            {/* Bar */}
+                                            <div 
+                                                className={`w-full rounded-t-lg transition-all ${
+                                                    isToday 
+                                                        ? 'bg-gradient-to-t from-brand-purple to-brand-blue' 
+                                                        : isActive 
+                                                            ? 'bg-brand-purple/50' 
+                                                            : 'bg-gray-100 dark:bg-white/5'
+                                                }`}
+                                                style={{ height: `${heightPercent}%` }}
+                                            />
+                                            
+                                            {/* Day label */}
+                                            <div className={`text-xs mt-2 font-bold ${isToday ? 'text-brand-purple' : 'text-gray-400'}`}>
+                                                {day.day}
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+
+                            {/* Stats row */}
+                            <div className="flex justify-center gap-6 pt-4 border-t border-gray-100 dark:border-white/5">
+                                <div className="text-center">
+                                    <div className="text-sm font-bold">{bestDay}</div>
+                                    <div className="text-xs text-gray-500">En İyi Gün</div>
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-sm font-bold">{Math.round(weeklyTotal / 7)}</div>
+                                    <div className="text-xs text-gray-500">Günlük Ort.</div>
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-sm font-bold">{weeklyActivity.filter(d => d.words > 0).length}/7</div>
+                                    <div className="text-xs text-gray-500">Aktif Gün</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     {/* Right Column: Skills & History */}
                     <div className="space-y-8">
+                        {/* Reading Stats */}
+                        <div className="bg-white dark:bg-[#2a2a24] p-6 rounded-2xl border border-gray-100 dark:border-[#333] shadow-sm">
+                            <h2 className="text-lg font-bold mb-4 flex items-center gap-2">
+                                <span className="material-symbols-outlined text-brand-blue">auto_stories</span>
+                                Okuma İstatistikleri
+                            </h2>
+                            <div className="grid grid-cols-2 gap-3">
+                                <div className="p-3 bg-brand-blue/5 rounded-xl border border-brand-blue/10">
+                                    <div className="text-2xl font-black text-brand-blue">{readingStats.articlesCompleted}</div>
+                                    <div className="text-xs text-gray-500 font-bold">Makale</div>
+                                </div>
+                                <div className="p-3 bg-brand-green/5 rounded-xl border border-brand-green/10">
+                                    <div className="text-2xl font-black text-brand-green">{readingStats.totalWordsRead.toLocaleString()}</div>
+                                    <div className="text-xs text-gray-500 font-bold">Kelime</div>
+                                </div>
+                                <div className="p-3 bg-brand-purple/5 rounded-xl border border-brand-purple/10">
+                                    <div className="text-2xl font-black text-brand-purple">{formatReadingTime(readingStats.totalTimeSpent)}</div>
+                                    <div className="text-xs text-gray-500 font-bold">Toplam Süre</div>
+                                </div>
+                                <div className="p-3 bg-brand-orange/5 rounded-xl border border-brand-orange/10">
+                                    <div className="text-2xl font-black text-brand-orange">{readingStats.averageReadingSpeed}</div>
+                                    <div className="text-xs text-gray-500 font-bold">Kelime/dk</div>
+                                </div>
+                            </div>
+                            {readingStats.achievements.length > 0 && (
+                                <div className="mt-4 pt-4 border-t border-gray-100 dark:border-white/5">
+                                    <div className="text-xs text-gray-400 font-bold uppercase mb-2">Başarılar</div>
+                                    <div className="flex flex-wrap gap-1">
+                                        {readingStats.achievements.map((badge) => (
+                                            <span key={badge} className="px-2 py-1 text-xs bg-brand-purple/10 text-brand-purple rounded-lg font-bold">
+                                                🏆 {badge}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+
                         {/* Skills Radar-ish */}
                         <div className="bg-white dark:bg-[#2a2a24] p-6 rounded-2xl border border-gray-100 dark:border-[#333] shadow-sm">
                             <h2 className="text-lg font-bold mb-6">Yetenek Dağılımı</h2>

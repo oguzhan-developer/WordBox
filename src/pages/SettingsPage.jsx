@@ -1,5 +1,18 @@
 import { useState, useEffect } from 'react';
 import { useUser } from '../context/UserContext';
+import { useTheme, THEMES } from '../context/ThemeContext';
+import { speak } from '../utils/speechSynthesis';
+import ThemeToggle from '../components/ThemeToggle';
+import KeyboardNavigationGuide from '../components/KeyboardNavigationGuide';
+import {
+    getNotificationSettings,
+    saveNotificationSettings,
+    requestNotificationPermission,
+    checkNotificationPermission,
+    sendTestNotification,
+    startReminderScheduler,
+    stopReminderScheduler
+} from '../services/notificationService';
 
 // Icons using Material Symbols
 const Icon = ({ name, className = "" }) => (
@@ -26,12 +39,227 @@ const SettingsCard = ({ title, description, children, icon }) => (
     </div>
 );
 
+// Notifications Tab Component
+const NotificationsTab = () => {
+    const [settings, setSettings] = useState(getNotificationSettings());
+    const [permissionStatus, setPermissionStatus] = useState(checkNotificationPermission());
+    const [testSent, setTestSent] = useState(false);
+
+    useEffect(() => {
+        setPermissionStatus(checkNotificationPermission());
+    }, []);
+
+    const handleSettingChange = (key, value) => {
+        const newSettings = { ...settings, [key]: value };
+        setSettings(newSettings);
+        saveNotificationSettings(newSettings);
+        
+        // Zamanlayıcıyı güncelle
+        if (key === 'enabled') {
+            if (value) {
+                startReminderScheduler();
+            } else {
+                stopReminderScheduler();
+            }
+        }
+    };
+
+    const handleRequestPermission = async () => {
+        const result = await requestNotificationPermission();
+        setPermissionStatus(result);
+        if (result === 'granted') {
+            handleSettingChange('permissionGranted', true);
+        }
+    };
+
+    const handleTestNotification = () => {
+        sendTestNotification();
+        setTestSent(true);
+        setTimeout(() => setTestSent(false), 3000);
+    };
+
+    return (
+        <div className="space-y-6 animate-fadeIn">
+            {/* Permission Status */}
+            <SettingsCard title="Bildirim İzni" icon="notifications" description="Hatırlatmalar için bildirim izni gereklidir.">
+                <div className="space-y-4">
+                    {permissionStatus === 'unsupported' ? (
+                        <div className="flex items-center gap-3 p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-xl border border-yellow-200 dark:border-yellow-800">
+                            <Icon name="warning" className="text-yellow-600" />
+                            <p className="text-sm text-yellow-700 dark:text-yellow-400">
+                                Bu tarayıcı bildirimleri desteklemiyor.
+                            </p>
+                        </div>
+                    ) : permissionStatus === 'granted' ? (
+                        <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                                <div className="size-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                                    <Icon name="check_circle" className="text-green-600" />
+                                </div>
+                                <div>
+                                    <p className="font-medium text-gray-900 dark:text-white">Bildirimler Aktif</p>
+                                    <p className="text-sm text-gray-500">Hatırlatmalar gönderilecek.</p>
+                                </div>
+                            </div>
+                            <button
+                                onClick={handleTestNotification}
+                                disabled={testSent}
+                                className={`px-4 py-2 rounded-xl font-medium text-sm transition-all ${
+                                    testSent
+                                        ? 'bg-green-100 text-green-600'
+                                        : 'bg-brand-blue/10 text-brand-blue hover:bg-brand-blue/20'
+                                }`}
+                            >
+                                {testSent ? '✓ Gönderildi' : 'Test Bildirimi'}
+                            </button>
+                        </div>
+                    ) : permissionStatus === 'denied' ? (
+                        <div className="flex items-center gap-3 p-4 bg-red-50 dark:bg-red-900/20 rounded-xl border border-red-200 dark:border-red-800">
+                            <Icon name="block" className="text-red-600" />
+                            <div>
+                                <p className="font-medium text-red-700 dark:text-red-400">Bildirimler Engellendi</p>
+                                <p className="text-sm text-red-600 dark:text-red-500">
+                                    Tarayıcı ayarlarından bildirimlere izin verin.
+                                </p>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="font-medium text-gray-900 dark:text-white">Bildirim İzni Gerekli</p>
+                                <p className="text-sm text-gray-500">Hatırlatmalar için izin verin.</p>
+                            </div>
+                            <button
+                                onClick={handleRequestPermission}
+                                className="px-4 py-2 bg-brand-blue text-white rounded-xl font-medium text-sm hover:bg-blue-700 transition-colors"
+                            >
+                                İzin Ver
+                            </button>
+                        </div>
+                    )}
+                </div>
+            </SettingsCard>
+
+            {/* Reminder Settings */}
+            <SettingsCard title="Hatırlatma Ayarları" icon="schedule" description="Ne zaman hatırlatma almak istediğinizi seçin.">
+                <div className="space-y-4">
+                    {/* Master Toggle */}
+                    <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-white/5 rounded-xl">
+                        <div>
+                            <p className="font-medium text-gray-900 dark:text-white">Hatırlatmaları Etkinleştir</p>
+                            <p className="text-sm text-gray-500">Çalışma hatırlatmaları al</p>
+                        </div>
+                        <label className="relative inline-flex items-center cursor-pointer">
+                            <input
+                                type="checkbox"
+                                checked={settings.enabled}
+                                onChange={(e) => handleSettingChange('enabled', e.target.checked)}
+                                disabled={permissionStatus !== 'granted'}
+                                className="sr-only peer"
+                            />
+                            <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-blue peer-disabled:opacity-50"></div>
+                        </label>
+                    </div>
+
+                    {/* Daily Reminder Time */}
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <p className="font-medium text-gray-900 dark:text-white">Günlük Hatırlatma Saati</p>
+                            <p className="text-sm text-gray-500">Her gün bu saatte hatırlat</p>
+                        </div>
+                        <input
+                            type="time"
+                            value={settings.reminderTime}
+                            onChange={(e) => handleSettingChange('reminderTime', e.target.value)}
+                            disabled={!settings.enabled}
+                            className="px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a1a1a] text-gray-900 dark:text-white disabled:opacity-50"
+                        />
+                    </div>
+
+                    {/* Practice Interval */}
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <p className="font-medium text-gray-900 dark:text-white">Pratik Hatırlatma Aralığı</p>
+                            <p className="text-sm text-gray-500">Kaç saatte bir hatırlat</p>
+                        </div>
+                        <select
+                            value={settings.practiceReminderInterval}
+                            onChange={(e) => handleSettingChange('practiceReminderInterval', parseInt(e.target.value))}
+                            disabled={!settings.enabled}
+                            className="px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a1a1a] text-gray-900 dark:text-white disabled:opacity-50"
+                        >
+                            <option value={2}>2 saat</option>
+                            <option value={4}>4 saat</option>
+                            <option value={6}>6 saat</option>
+                            <option value={8}>8 saat</option>
+                            <option value={12}>12 saat</option>
+                        </select>
+                    </div>
+                </div>
+            </SettingsCard>
+
+            {/* Notification Types */}
+            <SettingsCard title="Bildirim Türleri" icon="tune" description="Hangi bildirimleri almak istediğinizi seçin.">
+                <div className="space-y-3">
+                    {[
+                        { key: 'dailyGoalReminder', label: 'Günlük Hedef Hatırlatması', desc: 'Hedefe ulaşmadığınızda hatırlat', icon: '🎯' },
+                        { key: 'streakReminder', label: 'Seri Hatırlatması', desc: 'Seriyi kaybetmemek için hatırlat', icon: '🔥' },
+                        { key: 'wordOfDayReminder', label: 'Günün Kelimesi', desc: 'Yeni kelime bildirimlerini al', icon: '✨' },
+                        { key: 'practiceReminder', label: 'Pratik Hatırlatması', desc: 'Periyodik çalışma hatırlatması', icon: '📚' },
+                    ].map((item) => (
+                        <div key={item.key} className="flex items-center justify-between p-3 hover:bg-gray-50 dark:hover:bg-white/5 rounded-xl transition-colors">
+                            <div className="flex items-center gap-3">
+                                <span className="text-xl">{item.icon}</span>
+                                <div>
+                                    <p className="font-medium text-gray-900 dark:text-white">{item.label}</p>
+                                    <p className="text-sm text-gray-500">{item.desc}</p>
+                                </div>
+                            </div>
+                            <label className="relative inline-flex items-center cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    checked={settings[item.key]}
+                                    onChange={(e) => handleSettingChange(item.key, e.target.checked)}
+                                    disabled={!settings.enabled}
+                                    className="sr-only peer"
+                                />
+                                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-blue peer-disabled:opacity-50"></div>
+                            </label>
+                        </div>
+                    ))}
+                </div>
+            </SettingsCard>
+
+            {/* Sound Settings */}
+            <SettingsCard title="Ses Ayarları" icon="volume_up">
+                <div className="flex items-center justify-between">
+                    <div>
+                        <p className="font-medium text-gray-900 dark:text-white">Bildirim Sesi</p>
+                        <p className="text-sm text-gray-500">Bildirim geldiğinde ses çal</p>
+                    </div>
+                    <label className="relative inline-flex items-center cursor-pointer">
+                        <input
+                            type="checkbox"
+                            checked={settings.soundEnabled}
+                            onChange={(e) => handleSettingChange('soundEnabled', e.target.checked)}
+                            className="sr-only peer"
+                        />
+                        <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-blue"></div>
+                    </label>
+                </div>
+            </SettingsCard>
+        </div>
+    );
+};
+
 export default function SettingsPage() {
     const { user, updatePreferences, updateAvatar, logout, changePassword } = useUser();
+    const { theme, setTheme, isDark } = useTheme();
     const [activeTab, setActiveTab] = useState('account');
     const [currentPrefs, setCurrentPrefs] = useState({ ...user.preferences });
     const [showAvatarModal, setShowAvatarModal] = useState(false);
     const [showPasswordModal, setShowPasswordModal] = useState(false);
+    const [showKeyboardGuide, setShowKeyboardGuide] = useState(false);
 
     // Change Password State
     const [passwords, setPasswords] = useState({
@@ -111,7 +339,9 @@ export default function SettingsPage() {
     const sections = [
         { id: 'account', label: 'Hesap Ayarları', icon: 'person' },
         { id: 'learning', label: 'Öğrenme Tercihleri', icon: 'school' },
+        { id: 'notifications', label: 'Bildirimler', icon: 'notifications' },
         { id: 'appearance', label: 'Görünüm', icon: 'palette' },
+        { id: 'accessibility', label: 'Erişilebilirlik', icon: 'accessibility' },
         { id: 'privacy', label: 'Gizlilik & Güvenlik', icon: 'lock' },
         { id: 'subscription', label: 'Abonelik', icon: 'credit_card' },
         { id: 'data', label: 'Veri & Dışa Aktar', icon: 'database' },
@@ -256,23 +486,38 @@ export default function SettingsPage() {
                                 <hr className="border-gray-100 dark:border-white/5" />
 
                                 <div>
-                                    <label className="font-bold text-gray-900 dark:text-white block mb-4">İçerik Türleri</label>
-                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                    <label className="font-bold text-gray-900 dark:text-white block mb-2">Ses Aksanı</label>
+                                    <p className="text-sm text-gray-500 mb-4">Kelime telaffuzları için tercih ettiğin aksanı seç.</p>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                         {[
-                                            { id: 'news', label: 'Haberler', icon: 'newspaper' },
-                                            { id: 'stories', label: 'Hikayeler', icon: 'auto_stories' },
-                                            { id: 'novels', label: 'Romanlar', icon: 'book_2' },
-                                        ].map(type => (
-                                            <label key={type.id} className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 cursor-pointer transition-all ${currentPrefs.contentTypes?.[type.id] ? 'border-brand-blue bg-blue-50/50 dark:bg-brand-blue/10 text-brand-blue' : 'border-gray-100 dark:border-[#333] hover:border-gray-200 dark:hover:border-white/10 text-gray-500 dark:text-gray-400'}`}>
-                                                <input
-                                                    type="checkbox"
-                                                    className="hidden"
-                                                    checked={currentPrefs.contentTypes?.[type.id]}
-                                                    onChange={(e) => handlePrefChange('contentTypes', type.id, e.target.checked)}
-                                                />
-                                                <Icon name={type.icon} className="text-2xl" />
-                                                <span className="font-black text-[10px] uppercase tracking-widest">{type.label}</span>
-                                            </label>
+                                            { id: 'american', label: 'Amerikan', icon: '🇺🇸', example: 'Hello, how are you today?' },
+                                            { id: 'british', label: 'İngiliz', icon: '🇬🇧', example: 'Hello, how are you today?' },
+                                        ].map(accent => (
+                                            <button
+                                                key={accent.id}
+                                                onClick={() => {
+                                                    handlePrefChange(null, 'voiceAccent', accent.id);
+                                                    // Play example sound
+                                                    setTimeout(() => {
+                                                        speak(accent.example, { 
+                                                            accent: accent.id,
+                                                            rate: 0.85,
+                                                        });
+                                                    }, 100);
+                                                }}
+                                                className={`flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all text-left ${currentPrefs.voiceAccent === accent.id ? 'border-brand-blue bg-blue-50/50 dark:bg-brand-blue/10' : 'border-gray-100 dark:border-[#333] hover:border-gray-200 dark:hover:border-white/10'}`}
+                                            >
+                                                <span className="text-3xl">{accent.icon}</span>
+                                                <div className="flex-1">
+                                                    <span className={`font-bold block ${currentPrefs.voiceAccent === accent.id ? 'text-brand-blue' : 'text-gray-900 dark:text-white'}`}>
+                                                        {accent.label} Aksanı
+                                                    </span>
+                                                    <span className="text-xs text-gray-500">Seçmek için tıkla ve dinle</span>
+                                                </div>
+                                                {currentPrefs.voiceAccent === accent.id && (
+                                                    <Icon name="check_circle" className="text-brand-blue text-xl" />
+                                                )}
+                                            </button>
                                         ))}
                                     </div>
                                 </div>
@@ -290,18 +535,14 @@ export default function SettingsPage() {
                             <div className="space-y-8">
                                 <div>
                                     <label className="font-bold text-gray-900 dark:text-white block mb-4">Tema</label>
-                                    <div className="grid grid-cols-2 gap-4">
-                                        {['light', 'dark'].map(theme => (
-                                            <button
-                                                key={theme}
-                                                onClick={() => handlePrefChange(null, 'theme', theme)}
-                                                className={`p-6 rounded-2xl border-2 flex flex-col items-center gap-3 transition-all ${currentPrefs.theme === theme ? 'border-brand-blue bg-brand-blue/5 text-brand-blue' : 'border-gray-100 dark:border-[#333] hover:border-white/10 text-gray-500 dark:text-gray-400'}`}
-                                            >
-                                                <Icon name={theme === 'light' ? 'light_mode' : 'dark_mode'} className="text-2xl" />
-                                                <span className="font-black text-xs uppercase tracking-widest">{theme === 'light' ? 'Açık' : 'Koyu'}</span>
-                                            </button>
-                                        ))}
-                                    </div>
+                                    <ThemeToggle variant="segmented" showLabel={true} />
+                                    <p className="text-xs text-gray-500 mt-3">
+                                        {theme === THEMES.system 
+                                            ? 'Sistem ayarına göre otomatik değişir' 
+                                            : theme === THEMES.dark 
+                                                ? 'Karanlık tema aktif' 
+                                                : 'Aydınlık tema aktif'}
+                                    </p>
                                 </div>
 
                                 <hr className="border-gray-100 dark:border-white/5" />
@@ -329,6 +570,106 @@ export default function SettingsPage() {
                                         <span className="text-gray-300 dark:text-gray-600">Aa</span>
                                         <span className="text-lg">Aa</span>
                                     </div>
+                                </div>
+                            </div>
+                        </SettingsCard>
+                    </div>
+                );
+            case 'notifications':
+                return (
+                    <NotificationsTab />
+                );
+            case 'accessibility':
+                return (
+                    <div className="space-y-6 animate-fadeIn">
+                        <SettingsCard title="Erişilebilirlik" icon="accessibility" description="Klavye navigasyonu ve yardımcı teknoloji ayarları.">
+                            <div className="space-y-6">
+                                {/* Keyboard Navigation Guide */}
+                                <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-white/5 rounded-xl">
+                                    <div className="flex items-center gap-4">
+                                        <div className="size-12 rounded-xl bg-brand-purple/10 flex items-center justify-center">
+                                            <Icon name="keyboard" className="text-brand-purple text-xl" />
+                                        </div>
+                                        <div>
+                                            <p className="font-bold text-gray-900 dark:text-white">Klavye Navigasyonu Rehberi</p>
+                                            <p className="text-sm text-gray-500 dark:text-gray-400">Uygulamayı klavye ile nasıl kullanacağınızı öğrenin</p>
+                                        </div>
+                                    </div>
+                                    <button 
+                                        onClick={() => setShowKeyboardGuide(true)}
+                                        className="px-4 py-2 bg-brand-purple/10 text-brand-purple font-bold rounded-xl hover:bg-brand-purple/20 transition-colors"
+                                    >
+                                        Rehberi Aç
+                                    </button>
+                                </div>
+
+                                {/* Keyboard Shortcuts */}
+                                <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-white/5 rounded-xl">
+                                    <div className="flex items-center gap-4">
+                                        <div className="size-12 rounded-xl bg-brand-blue/10 flex items-center justify-center">
+                                            <Icon name="shortcut" className="text-brand-blue text-xl" />
+                                        </div>
+                                        <div>
+                                            <p className="font-bold text-gray-900 dark:text-white">Klavye Kısayolları</p>
+                                            <p className="text-sm text-gray-500 dark:text-gray-400">Tüm kısayolları göster (Shift + ?)</p>
+                                        </div>
+                                    </div>
+                                    <kbd className="px-3 py-1.5 bg-gray-200 dark:bg-white/10 text-gray-600 dark:text-gray-300 font-mono text-sm rounded-lg">
+                                        Shift + ?
+                                    </kbd>
+                                </div>
+
+                                <hr className="border-gray-100 dark:border-white/5" />
+
+                                {/* Reduced Motion */}
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <label className="font-bold text-gray-900 dark:text-white block">Animasyonları Azalt</label>
+                                        <p className="text-sm text-gray-500">Hareket hassasiyeti olanlar için animasyonları devre dışı bırak</p>
+                                    </div>
+                                    <label className="relative inline-flex items-center cursor-pointer">
+                                        <input
+                                            type="checkbox"
+                                            className="sr-only peer"
+                                            checked={currentPrefs.reducedMotion || false}
+                                            onChange={(e) => handlePrefChange(null, 'reducedMotion', e.target.checked)}
+                                        />
+                                        <div className="w-11 h-6 bg-gray-200 dark:bg-[#444] peer-focus:outline-none ring-offset-2 peer-focus:ring-2 peer-focus:ring-brand-blue/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-blue"></div>
+                                    </label>
+                                </div>
+
+                                {/* Focus Indicators */}
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <label className="font-bold text-gray-900 dark:text-white block">Gelişmiş Odak Göstergeleri</label>
+                                        <p className="text-sm text-gray-500">Klavye odağını daha görünür yap</p>
+                                    </div>
+                                    <label className="relative inline-flex items-center cursor-pointer">
+                                        <input
+                                            type="checkbox"
+                                            className="sr-only peer"
+                                            checked={currentPrefs.enhancedFocus !== false}
+                                            onChange={(e) => handlePrefChange(null, 'enhancedFocus', e.target.checked)}
+                                        />
+                                        <div className="w-11 h-6 bg-gray-200 dark:bg-[#444] peer-focus:outline-none ring-offset-2 peer-focus:ring-2 peer-focus:ring-brand-blue/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-blue"></div>
+                                    </label>
+                                </div>
+
+                                {/* Screen Reader Announcements */}
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <label className="font-bold text-gray-900 dark:text-white block">Ekran Okuyucu Bildirimleri</label>
+                                        <p className="text-sm text-gray-500">Önemli değişiklikleri ekran okuyucuya bildir</p>
+                                    </div>
+                                    <label className="relative inline-flex items-center cursor-pointer">
+                                        <input
+                                            type="checkbox"
+                                            className="sr-only peer"
+                                            checked={currentPrefs.screenReaderAnnouncements !== false}
+                                            onChange={(e) => handlePrefChange(null, 'screenReaderAnnouncements', e.target.checked)}
+                                        />
+                                        <div className="w-11 h-6 bg-gray-200 dark:bg-[#444] peer-focus:outline-none ring-offset-2 peer-focus:ring-2 peer-focus:ring-brand-blue/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-blue"></div>
+                                    </label>
                                 </div>
                             </div>
                         </SettingsCard>
@@ -528,6 +869,12 @@ export default function SettingsPage() {
                     </div>
                 </div>
             )}
+
+            {/* Keyboard Navigation Guide */}
+            <KeyboardNavigationGuide 
+                isOpen={showKeyboardGuide} 
+                onClose={() => setShowKeyboardGuide(false)} 
+            />
         </div>
     );
 }

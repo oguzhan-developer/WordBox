@@ -2,27 +2,19 @@ import { useState, useCallback, memo } from 'react';
 import { Volume2, Star, Trash2, BarChart2 } from 'lucide-react';
 import Card from './Card';
 import { LevelBadge, StatusBadge } from './Badge';
+import { speak } from '../utils/speechSynthesis';
+import { WordDifficultyBadge, WordProgressBar } from './WordDifficultyIndicator';
 
-// Speech synthesis helper with error handling
+// Enhanced speech synthesis with better voice quality
 const speakWord = (text) => {
-    try {
-        if (!window.speechSynthesis) {
-            console.warn('Speech synthesis not supported');
-            return;
+    speak(text, {
+        rate: 0.85,
+        pitch: 1.0,
+        volume: 1.0,
+        onError: (error) => {
+            console.warn('Speech synthesis error:', error);
         }
-        // Cancel any ongoing speech
-        window.speechSynthesis.cancel();
-        
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'en-US';
-        utterance.rate = 0.8;
-        utterance.onerror = (event) => {
-            console.error('Speech synthesis error:', event.error);
-        };
-        window.speechSynthesis.speak(utterance);
-    } catch (error) {
-        console.error('Error playing audio:', error);
-    }
+    });
 };
 
 // Vocabulary Card for word list
@@ -58,76 +50,84 @@ const VocabularyCard = memo(function VocabularyCard({
 
     return (
         <div
-            className="card-flip h-48 cursor-pointer"
+            className="card-flip h-52 cursor-pointer"
             onClick={handleFlip}
         >
             <div className={`card-flip-inner relative w-full h-full ${isFlipped ? 'flipped' : ''}`}>
                 {/* Front Side */}
-                <Card className="card-flip-front absolute inset-0 flex flex-col">
+                <Card glass className="card-flip-front absolute inset-0 flex flex-col shadow-xl hover:shadow-2xl transition-all">
                     {/* Top bar */}
-                    <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center justify-between mb-4">
                         <LevelBadge level={word.level} size="sm" />
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-2">
                             <button
                                 onClick={handlePlayAudio}
-                                className="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
+                                className="size-9 rounded-xl glass hover:bg-indigo-500/20 transition-all hover:scale-110 flex items-center justify-center"
                             >
-                                <Volume2 className="w-4 h-4 text-gray-500 dark:text-gray-300" />
+                                <Volume2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                             </button>
                             <button
                                 onClick={handleFavorite}
-                                className="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
+                                className="size-9 rounded-xl glass hover:bg-yellow-500/20 transition-all hover:scale-110 flex items-center justify-center"
                             >
-                                <Star className={`w-4 h-4 ${isFavorite ? 'text-yellow-500 fill-yellow-500' : 'text-gray-400 dark:text-gray-500'}`} />
+                                <Star className={`w-4 h-4 ${isFavorite ? 'text-yellow-500 fill-yellow-500' : 'text-gray-500 dark:text-gray-400'}`} />
                             </button>
                         </div>
                     </div>
 
                     {/* Word */}
                     <div className="flex-1 flex flex-col items-center justify-center">
-                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">{word.word}</h3>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">{word.phonetic}</p>
-                        <span className="mt-2 text-xs text-gray-400 dark:text-gray-500">{word.partOfSpeech}</span>
+                        <h3 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2">{word.word}</h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 font-medium">{word.phonetic}</p>
+                        <span className="mt-2 px-3 py-1 text-xs glass rounded-full text-gray-700 dark:text-gray-300">{word.partOfSpeech}</span>
                     </div>
 
                     {/* Status */}
-                    <div className="flex items-center justify-between mt-auto pt-3 border-t border-gray-100 dark:border-gray-700">
-                        <StatusBadge status={word.status || 'new'} />
-                        <span className="text-xs text-gray-400 dark:text-gray-500">Çevirmek için tıkla</span>
+                    <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-200/50 dark:border-slate-700/50">
+                        <div className="flex items-center gap-2">
+                            <StatusBadge status={word.status || 'new'} />
+                            <WordDifficultyBadge wordId={word.id || word.word} size="xs" showLabel={false} />
+                        </div>
+                        <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">Çevirmek için tıkla</span>
                     </div>
                 </Card>
 
                 {/* Back Side */}
-                <Card className="card-flip-back absolute inset-0 flex flex-col bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-900">
+                <Card glass className="card-flip-back absolute inset-0 flex flex-col bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 shadow-xl">
                     {/* Turkish meaning */}
-                    <div className="flex-1 flex flex-col items-center justify-center text-center">
-                        <p className="text-xl font-bold text-indigo-700 dark:text-indigo-300 mb-2">{word.turkish}</p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">{word.definition}</p>
+                    <div className="flex-1 flex flex-col items-center justify-center text-center px-4">
+                        <p className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-3">{word.turkish}</p>
+                        <p className="text-sm text-gray-700 dark:text-gray-300 line-clamp-2">{word.definition}</p>
                     </div>
 
                     {/* Example sentence */}
                     {word.examples && word.examples[0] && (
-                        <div className="p-2 bg-white/50 dark:bg-white/10 rounded-lg mb-3">
-                            <p className="text-xs text-gray-600 dark:text-gray-300 italic line-clamp-2">
+                        <div className="p-3 glass rounded-xl mb-3 shadow-lg">
+                            <p className="text-xs text-gray-700 dark:text-gray-300 italic line-clamp-2">
                                 "{word.examples[0]}"
                             </p>
                         </div>
                     )}
 
+                    {/* SRS Progress */}
+                    <div className="mb-3 px-1">
+                        <WordProgressBar wordId={word.id || word.word} showBox={true} />
+                    </div>
+
                     {/* Actions */}
-                    <div className="flex items-center justify-between mt-auto pt-3 border-t border-indigo-100 dark:border-gray-700">
+                    <div className="flex items-center justify-between mt-auto pt-3 border-t border-gray-200/50 dark:border-slate-700/50">
                         <button
                             onClick={(e) => {
                                 e.stopPropagation();
                                 onPractice?.(word);
                             }}
-                            className="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
+                            className="px-4 py-2 gradient-primary text-white text-sm font-bold rounded-xl hover:shadow-lg hover:shadow-indigo-500/50 transition-all hover:-translate-y-0.5"
                         >
                             Pratik Yap
                         </button>
                         <button
                             onClick={handleRemove}
-                            className="p-1.5 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/20 transition-colors"
+                            className="size-10 rounded-xl glass hover:bg-red-500/20 transition-all hover:scale-110 flex items-center justify-center"
                         >
                             <Trash2 className="w-4 h-4 text-red-500 dark:text-red-400" />
                         </button>

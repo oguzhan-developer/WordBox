@@ -34,7 +34,7 @@ const defaultUser = {
         dailyGoal: 20,
         level: 'B1', // Default target level
         difficultyAdaptation: true,
-        contentTypes: { news: true, stories: true, novels: false },
+        voiceAccent: 'american', // american, british
         aiPersonalization: true,
 
         // Vocabulary

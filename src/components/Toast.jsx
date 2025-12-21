@@ -8,43 +8,48 @@ const ToastContext = createContext(null);
 const toastConfig = {
     success: {
         icon: CheckCircle,
-        bgColor: 'bg-green-50 dark:bg-green-900/20',
-        borderColor: 'border-green-200 dark:border-green-800',
+        bgColor: 'glass-strong',
+        borderColor: 'border-green-500/30',
         iconColor: 'text-green-500 dark:text-green-400',
         textColor: 'text-green-800 dark:text-green-200',
         role: 'status',
+        gradient: 'from-green-500/10 to-emerald-500/10',
     },
     error: {
         icon: XCircle,
-        bgColor: 'bg-red-50 dark:bg-red-900/20',
-        borderColor: 'border-red-200 dark:border-red-800',
+        bgColor: 'glass-strong',
+        borderColor: 'border-red-500/30',
         iconColor: 'text-red-500 dark:text-red-400',
         textColor: 'text-red-800 dark:text-red-200',
         role: 'alert',
+        gradient: 'from-red-500/10 to-rose-500/10',
     },
     warning: {
         icon: AlertTriangle,
-        bgColor: 'bg-orange-50 dark:bg-orange-900/20',
-        borderColor: 'border-orange-200 dark:border-orange-800',
+        bgColor: 'glass-strong',
+        borderColor: 'border-orange-500/30',
         iconColor: 'text-orange-500 dark:text-orange-400',
         textColor: 'text-orange-800 dark:text-orange-200',
         role: 'alert',
+        gradient: 'from-orange-500/10 to-amber-500/10',
     },
     info: {
         icon: Info,
-        bgColor: 'bg-blue-50 dark:bg-blue-900/20',
-        borderColor: 'border-blue-200 dark:border-blue-800',
+        bgColor: 'glass-strong',
+        borderColor: 'border-blue-500/30',
         iconColor: 'text-blue-500 dark:text-blue-400',
         textColor: 'text-blue-800 dark:text-blue-200',
         role: 'status',
+        gradient: 'from-blue-500/10 to-cyan-500/10',
     },
     xp: {
         icon: null,
-        bgColor: 'bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20',
-        borderColor: 'border-yellow-200 dark:border-yellow-800',
+        bgColor: 'glass-strong bg-gradient-to-r from-yellow-500/20 to-orange-500/20',
+        borderColor: 'border-yellow-500/30',
         iconColor: 'text-yellow-500 dark:text-yellow-400',
         textColor: 'text-yellow-800 dark:text-yellow-200',
         role: 'status',
+        gradient: 'from-yellow-500/20 to-orange-500/20',
     },
 };
 
@@ -76,27 +81,31 @@ function Toast({ id, type = 'info', message, onClose, duration = 3000 }) {
             aria-live={config.role === 'alert' ? 'assertive' : 'polite'}
             aria-atomic="true"
             className={`
-        flex items-center gap-3 p-4 rounded-xl border shadow-lg backdrop-blur-sm
+        flex items-center gap-3 p-4 rounded-2xl border shadow-2xl
         ${config.bgColor} ${config.borderColor}
         ${isExiting ? 'animate-slideUp' : 'animate-slideDown'}
-        min-w-[300px] max-w-md
-        transition-all duration-300
+        min-w-[320px] max-w-md
+        transition-all duration-300 hover:scale-105
       `}
         >
             {type === 'xp' ? (
-                <span className="text-2xl" role="img" aria-label="star">⭐</span>
+                <div className="size-10 rounded-xl bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center shadow-lg">
+                    <span className="text-2xl" role="img" aria-label="star">⭐</span>
+                </div>
             ) : Icon ? (
-                <Icon className={`w-5 h-5 flex-shrink-0 ${config.iconColor}`} aria-hidden="true" />
+                <div className={`size-10 rounded-xl glass flex items-center justify-center ${config.iconColor} shadow-lg`}>
+                    <Icon className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
+                </div>
             ) : null}
 
-            <p className={`flex-1 text-sm font-medium ${config.textColor}`}>
+            <p className={`flex-1 text-sm font-semibold ${config.textColor}`}>
                 {message}
             </p>
 
             <button
                 onClick={handleClose}
                 aria-label="Bildirimi kapat"
-                className={`p-1 rounded-lg hover:bg-white/50 dark:hover:bg-black/20 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 ${config.iconColor}`}
+                className={`size-8 rounded-xl glass hover:bg-red-500/10 transition-all hover:scale-110 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-1 ${config.iconColor}`}
             >
                 <X className="w-4 h-4" aria-hidden="true" />
             </button>
@@ -108,7 +117,7 @@ function Toast({ id, type = 'info', message, onClose, duration = 3000 }) {
 export function ToastContainer({ toasts, removeToast }) {
     return (
         <div 
-            className="fixed top-20 right-4 z-50 flex flex-col gap-2 pointer-events-none"
+            className="fixed top-24 right-4 z-50 flex flex-col gap-2 pointer-events-none"
             aria-label="Bildirimler"
         >
             {toasts.map((toast) => (

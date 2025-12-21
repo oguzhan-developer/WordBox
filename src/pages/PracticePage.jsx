@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
     Layers,
@@ -15,6 +15,7 @@ import { useUser } from '../context/UserContext';
 import Card from '../components/Card';
 import Button from '../components/Button';
 import { LevelBadge } from '../components/Badge';
+import { getSrsStats, getDueWords, BOX_LABELS, BOX_COLORS } from '../utils/spacedRepetition';
 
 export default function PracticePage() {
     const navigate = useNavigate();
@@ -24,6 +25,10 @@ export default function PracticePage() {
     const [selectedMode, setSelectedMode] = useState(searchParams.get('mode') || null);
     const [wordCount, setWordCount] = useState(20);
     const [wordSource, setWordSource] = useState('all');
+    
+    // SRS Statistics
+    const srsStats = useMemo(() => getSrsStats(user.vocabulary || []), [user.vocabulary]);
+    const dueWords = useMemo(() => getDueWords(user.vocabulary || []), [user.vocabulary]);
 
     const practiceModes = [
         {
@@ -59,7 +64,7 @@ export default function PracticePage() {
             icon: PenTool,
             description: 'Cümledeki boşluğu tamamla',
             duration: '15 dk',
-            available: false,
+            available: true,
             color: 'from-green-500 to-teal-600',
         },
         {
@@ -68,7 +73,7 @@ export default function PracticePage() {
             icon: Languages,
             description: 'TR ↔ EN çeviri yap',
             duration: '12 dk',
-            available: false,
+            available: true,
             color: 'from-orange-500 to-red-600',
         },
         {
@@ -77,7 +82,7 @@ export default function PracticePage() {
             icon: CheckSquare,
             description: 'Doğru anlamı seç',
             duration: '10 dk',
-            available: false,
+            available: true,
             color: 'from-cyan-500 to-blue-600',
         },
         {
@@ -86,7 +91,7 @@ export default function PracticePage() {
             icon: Headphones,
             description: 'Dinleyip doğru yaz',
             duration: '15 dk',
-            available: false,
+            available: true,
             color: 'from-yellow-500 to-orange-600',
         },
     ];
@@ -141,6 +146,45 @@ export default function PracticePage() {
                         {user.vocabulary.length} kelime ile pratik yap
                     </p>
                 </div>
+
+                {/* SRS Overview */}
+                <section className="mb-8">
+                    <div className="bg-gradient-to-r from-brand-purple/10 to-brand-blue/10 dark:from-brand-purple/20 dark:to-brand-blue/20 rounded-2xl p-6 border border-brand-purple/20">
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                            <div>
+                                <h2 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                                    <span className="material-symbols-outlined text-brand-purple">psychology</span>
+                                    Akıllı Tekrar Sistemi
+                                </h2>
+                                <p className="text-sm text-gray-500 dark:text-gray-400">Bugün tekrar edilmesi gereken {srsStats.dueToday} kelime var</p>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <div className="px-3 py-1.5 bg-brand-green/10 text-brand-green rounded-lg text-sm font-bold">
+                                    %{srsStats.averageAccuracy} Doğruluk
+                                </div>
+                                <div className="px-3 py-1.5 bg-brand-blue/10 text-brand-blue rounded-lg text-sm font-bold">
+                                    {srsStats.mastered} Uzman
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {/* Box Distribution */}
+                        <div className="grid grid-cols-6 gap-2">
+                            {[1, 2, 3, 4, 5, 6].map((box) => (
+                                <div key={box} className="text-center">
+                                    <div className={`h-16 rounded-lg ${BOX_COLORS[box]} bg-opacity-20 flex items-end justify-center pb-1`}>
+                                        <div 
+                                            className={`w-full mx-1 ${BOX_COLORS[box]} rounded-t-md transition-all`}
+                                            style={{ height: `${Math.max(10, (srsStats.boxes[box] / Math.max(1, srsStats.total)) * 100)}%` }}
+                                        />
+                                    </div>
+                                    <div className="text-xs font-bold mt-1">{srsStats.boxes[box]}</div>
+                                    <div className="text-[10px] text-gray-500">{BOX_LABELS[box]}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
 
                 {/* Practice Mode Selection */}
                 <section className="mb-8">
@@ -218,25 +262,26 @@ export default function PracticePage() {
                                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                                         Kelime Kaynağı
                                     </label>
-                                    <div className="space-y-2">
+                                    <div className="space-y-3">
                                         {wordSources.map((source) => (
                                             <button
                                                 key={source.value}
                                                 onClick={() => setWordSource(source.value)}
                                                 disabled={source.count === 0}
-                                                className={`w-full flex items-center justify-between p-3 rounded-xl border-2 transition-all ${wordSource === source.value
-                                                    ? 'border-indigo-600 bg-indigo-50 dark:bg-indigo-900/20'
+                                                className={`w-full flex items-center justify-between p-4 rounded-2xl border-2 transition-all duration-300 group ${wordSource === source.value
+                                                    ? 'border-indigo-500 dark:border-indigo-400 glass-strong shadow-lg shadow-indigo-500/20 dark:shadow-indigo-500/30 scale-[1.02]'
                                                     : source.count > 0
-                                                        ? 'border-gray-200 dark:border-[#333] hover:border-gray-300 dark:hover:border-gray-500'
-                                                        : 'border-gray-100 dark:border-[#333] opacity-50 cursor-not-allowed'
+                                                        ? 'border-gray-200/80 dark:border-slate-700/60 glass hover:glass-strong hover:border-indigo-300 dark:hover:border-indigo-500/50 hover:shadow-md hover:scale-[1.01]'
+                                                        : 'border-gray-100 dark:border-slate-800 glass opacity-40 cursor-not-allowed'
                                                     }`}
                                             >
-                                                <span className={wordSource === source.value ? 'font-medium text-indigo-700 dark:text-indigo-400' : 'text-gray-700 dark:text-gray-300'}>
+                                                <span className={`flex items-center gap-2 transition-all ${wordSource === source.value ? 'font-semibold text-indigo-700 dark:text-indigo-400' : 'text-gray-700 dark:text-gray-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400'}}`}>
+                                                    {wordSource === source.value && <span className="text-lg">✓</span>}
                                                     {source.label}
                                                 </span>
-                                                <span className={`px-2 py-1 rounded-full text-xs font-medium ${wordSource === source.value
-                                                    ? 'bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300'
-                                                    : 'bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400'
+                                                <span className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${wordSource === source.value
+                                                    ? 'gradient-primary text-white shadow-md'
+                                                    : 'glass text-gray-600 dark:text-gray-400 group-hover:glass-strong'
                                                     }`}>
                                                     {source.count} kelime
                                                 </span>
@@ -250,17 +295,17 @@ export default function PracticePage() {
                                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                                         Kelime Sayısı
                                     </label>
-                                    <div className="grid grid-cols-4 gap-2">
+                                    <div className="grid grid-cols-4 gap-3">
                                         {wordCounts.map((count) => (
                                             <button
                                                 key={count}
                                                 onClick={() => setWordCount(count)}
                                                 disabled={count > user.vocabulary.length}
-                                                className={`py-3 rounded-xl border-2 font-bold text-lg transition-all ${wordCount === count
-                                                    ? 'border-indigo-600 bg-indigo-600 text-white'
+                                                className={`py-4 rounded-2xl border-2 font-bold text-xl transition-all duration-300 ${wordCount === count
+                                                    ? 'border-indigo-500 gradient-primary text-white shadow-lg shadow-indigo-500/50 dark:shadow-indigo-500/30 scale-110'
                                                     : count <= user.vocabulary.length
-                                                        ? 'border-gray-200 dark:border-[#333] text-gray-700 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-500'
-                                                        : 'border-gray-100 dark:border-[#333] text-gray-300 dark:text-gray-600 cursor-not-allowed'
+                                                        ? 'border-gray-200/80 dark:border-slate-700/60 text-gray-700 dark:text-gray-300 glass hover:glass-strong hover:border-indigo-300 dark:hover:border-indigo-500/50 hover:shadow-md hover:scale-105'
+                                                        : 'border-gray-100 dark:border-slate-800 text-gray-300 dark:text-gray-600 glass opacity-40 cursor-not-allowed'
                                                     }`}
                                             >
                                                 {count}
@@ -273,11 +318,11 @@ export default function PracticePage() {
                                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                             Seviye (opsiyonel)
                                         </label>
-                                        <div className="flex gap-2">
+                                        <div className="flex flex-wrap gap-2">
                                             {['Tümü', 'A1', 'A2', 'B1', 'B2', 'C1'].map((level, index) => (
                                                 <button
                                                     key={level}
-                                                    className="px-3 py-2 rounded-lg text-sm font-medium bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/20 transition-colors"
+                                                    className="px-4 py-2.5 rounded-xl text-sm font-semibold glass text-gray-700 dark:text-gray-300 hover:glass-strong hover:scale-105 hover:shadow-md transition-all duration-300 border border-gray-200/50 dark:border-slate-700/50 hover:border-indigo-300 dark:hover:border-indigo-500/50"
                                                 >
                                                     {level}
                                                 </button>
@@ -325,46 +370,56 @@ export default function PracticePage() {
                     </section>
                 )}
 
-                {/* Quick Actions */}
-                {!selectedMode && (
-                    <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <Card
-                            hover
-                            onClick={() => {
-                                setSelectedMode('flashcard');
-                                setTimeout(startPractice, 100);
-                            }}
-                            className="bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-100 cursor-pointer"
-                        >
-                            <div className="flex items-center gap-4">
-                                <div className="p-4 bg-blue-100 rounded-2xl">
-                                    <Zap className="w-8 h-8 text-blue-600" />
-                                </div>
-                                <div>
-                                    <h3 className="font-semibold text-gray-900 dark:text-white">Hızlı Başla</h3>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400">20 kelime ile Flashcard pratiği</p>
-                                </div>
+                {/* Quick Actions - Always visible */}
+                <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <Card
+                        hover
+                        onClick={() => {
+                            setSelectedMode('flashcard');
+                            setWordCount(20);
+                            setWordSource('all');
+                            setTimeout(() => {
+                                navigate(`/practice/flashcard?count=20&source=all`);
+                            }, 100);
+                        }}
+                        className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 border-blue-100 dark:border-blue-900/50 cursor-pointer"
+                    >
+                        <div className="flex items-center gap-4">
+                            <div className="p-4 bg-blue-100 dark:bg-blue-900/40 rounded-2xl">
+                                <Zap className="w-8 h-8 text-blue-600 dark:text-blue-400" />
                             </div>
-                        </Card>
+                            <div>
+                                <h3 className="font-semibold text-gray-900 dark:text-white">Hızlı Başla</h3>
+                                <p className="text-sm text-gray-600 dark:text-gray-400">20 kelime ile Flashcard pratiği</p>
+                            </div>
+                        </div>
+                    </Card>
 
-                        <Card
-                            hover
-                            className="bg-gradient-to-br from-orange-50 to-yellow-50 border-orange-100 cursor-pointer"
-                        >
-                            <div className="flex items-center gap-4">
-                                <div className="p-4 bg-orange-100 rounded-2xl">
-                                    <Clock className="w-8 h-8 text-orange-600" />
-                                </div>
-                                <div>
-                                    <h3 className="font-semibold text-gray-900 dark:text-white">Tekrar Zamanı</h3>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                                        {Math.min(user.vocabulary.length, 15)} kelime tekrar bekliyor
-                                    </p>
-                                </div>
+                    <Card
+                        hover
+                        onClick={() => {
+                            setSelectedMode('flashcard');
+                            setWordCount(15);
+                            setWordSource('review');
+                            setTimeout(() => {
+                                navigate(`/practice/flashcard?count=15&source=review`);
+                            }, 100);
+                        }}
+                        className="bg-gradient-to-br from-orange-50 to-yellow-50 dark:from-orange-950/30 dark:to-yellow-950/30 border-orange-100 dark:border-orange-900/50 cursor-pointer"
+                    >
+                        <div className="flex items-center gap-4">
+                            <div className="p-4 bg-orange-100 dark:bg-orange-900/40 rounded-2xl">
+                                <Clock className="w-8 h-8 text-orange-600 dark:text-orange-400" />
                             </div>
-                        </Card>
-                    </section>
-                )}
+                            <div>
+                                <h3 className="font-semibold text-gray-900 dark:text-white">Tekrar Zamanı</h3>
+                                <p className="text-sm text-gray-600 dark:text-gray-400">
+                                    {Math.min(user.vocabulary.length, 15)} kelime tekrar bekliyor
+                                </p>
+                            </div>
+                        </div>
+                    </Card>
+                </section>
             </div>
         </div>
     );

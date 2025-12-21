@@ -23,6 +23,37 @@ Yapılan Düzeltmeler:
 Son Build Durumu:
 - BAŞARILI
 
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-21 18:22]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/ReadingPage.jsx
+
+Yapılan Geliştirme:
+- Okuma sayfasında ilerleme çubuğunun z-index değeri z-[60]'tan z-[100]'e yükseltildi
+- Sayfa aşağı kaydırıldığında ilerleme çubuğu artık navbar'ın (z-[90]) önünde görünüyor
+- UI/UX hatası düzeltildi: İlerleme çubuğu artık her zaman görünür durumda
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
 [ITERASYON | 2025-12-21 17:35]
 
 Değiştirilen Dosyalar:
@@ -298,6 +329,28 @@ Son Build Durumu:
 [ITERASYON | 2025-12-21 18:20]
 
 Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/ReadingPage.jsx
+
+Yapılan Geliştirme:
+- Okuma sayfasına okuma tercihleri paneli eklendi (yazı boyutu, satır aralığı, sütun genişliği) ve tercihler localStorage ile kalıcı hale getirildi.
+- Odak modu ile içerik bölümü cam stilde çerçevelenip göz yorgunluğu azaltıldı; paragraf tipografisi tercihlere göre dinamikleşti.
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+Değiştirilen Dosyalar:
 - /Users/oguz/Documents/EnglishLearnApp/src/components/Toast.jsx
 - /Users/oguz/Documents/EnglishLearnApp/src/index.css
 
@@ -362,6 +415,1823 @@ Hatalar:
 
 Yapılan Düzeltmeler:
 - Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-21 18:30]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/hooks/useNetworkStatus.js (YENİ)
+- /Users/oguz/Documents/EnglishLearnApp/src/components/Navbar.jsx
+
+Yapılan Geliştirme:
+- Bağlantı Durumu Göstergesi eklendi
+  - useNetworkStatus hook ile online/offline dinleme
+  - Navbar'da çevrimdışı uyarı bandı (aria-live=assertive)
+  - Dark mode uyumlu, erişilebilir metin ve ikon
+  - Otomatik güncelleme, ek işlem gerekmez
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+[ITERASYON | 2025-12-21 18:11]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/components/Navbar.jsx
+
+Yapılan Geliştirme:
+- Navbar tasarımında iyileştirmeler: cam efekti ve degrade arka plan, aktif sekme vurgusu, mobil menü kartı ve bildirim rozeti animasyonu
+- Erişilebilirlik: focus ring'leri, aria-label/expanded eklemeleri, menü durumlarında görsel geri bildirim
+- Çevrimdışı uyarı bandı korundu, koyu/açık mod uyumlu detaylı stil güncellemesi
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+[ITERASYON | 2025-12-21 18:14]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/components/Logo.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/components/Navbar.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/ReadingPage.jsx
+
+Yapılan Geliştirme:
+- Yeni WordBox logo bileşeni eklendi ve navbar'da kullanıldı; degrade cam efektli marka rozeti tasarlandı
+- Bildirim kutucuğu tasarlandı: açılır panel, animasyonlu rozet, hızlı özet listesi ve kapatma overlay'i
+- Profil ve okuma sayfasındaki açılır menülerin arkada kalma sorunu için z-index iyileştirmeleri (navbar sticky/z-boost, dropdown z-[95], ReadingPage seviye seçimi z-[70])
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+[ITERASYON | 2025-12-21 18:19]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/ReadingPage.jsx
+
+Yapılan Geliştirme:
+- Kelime detay modali stabilize edildi (overlay tıklamasında kapanmıyor) ve kelime kimliği fallback ile üretildi
+- “Listeme Ekle” işlemi artık Supabase sonucu olmasa bile kelimeyi (normalized ID ile) ekliyor; eklendi durumu anında güncelleniyor
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+[ITERASYON | 2025-12-21 18:20]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/components/Modal.jsx
+
+Yapılan Geliştirme:
+- Modal z-index değeri yükseltildi (z-[130]); kelime ekleme popup'ı artık navbar/progress çubuğu arkasında kalmıyor
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-21 18:36]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/utils/speechSynthesis.js (YENİ)
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/ReadingPage.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/components/VocabularyCard.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/practice/FlashcardMode.jsx
+
+Yapılan Geliştirme:
+- Gelişmiş TTS (Text-to-Speech) Sistemi İmplementasyonu:
+  - Yeni speechSynthesis.js utility dosyası oluşturuldu
+  - Akıllı ses seçimi algoritması: Google UK/US, Microsoft, Apple seslerini önceliklendirir
+  - Doğal ve kaliteli İngilizce sesler otomatik seçiliyor
+  - Ses parametreleri optimize edildi: rate 0.85, pitch 1.0, volume 1.0
+  - speak(), stopSpeaking(), pauseSpeaking(), resumeSpeaking() fonksiyonları
+  - Chrome/Edge için otomatik voice preloading
+  - Error handling ve callback desteği
+  - isSpeaking() status checker
+  - getAvailableVoices() voice listesi
+- ReadingPage, VocabularyCard ve FlashcardMode'da eski TTS kodu değiştirildi
+- 30+ farklı ses profili arasından en iyisi otomatik seçiliyor
+- Daha temiz ve profesyonel İngilizce telaffuz
+- Tüm ses fonksiyonları merkezi sistem kullanıyor
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+[ITERASYON | 2025-12-21 18:22]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/ReadingPage.jsx
+
+Yapılan Geliştirme:
+- Okuma sayfasına okuma tercihleri paneli eklendi (yazı boyutu, satır aralığı, sütun genişliği) ve tercihler localStorage ile kalıcı hale getirildi.
+- Odak modu ile içerik bölümü cam stilde çerçevelenip göz yorgunluğu azaltıldı; paragraf tipografisi tercihlere göre dinamikleşti.
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-21 18:24]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/index.css
+- /Users/oguz/Documents/EnglishLearnApp/src/components/Button.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/components/Card.jsx
+
+Yapılan Geliştirme:
+- Modern tasarım sistemi implementasyonu: glassmorphism efektleri, gradient utilities ve gelişmiş animasyonlar eklendi
+- CSS değişkenleri güncellendi: Slate renk paleti ile daha modern ve profesyonel görünüm
+- Button komponentine gradient arka planlar, hover glow efektleri ve gelişmiş shadow animasyonları eklendi
+- Card komponentine glassmorphism desteği, scale animasyonları ve gelişmiş shadow efektleri eklendi
+- Tüm komponentler için border-radius değerleri artırıldı (daha modern rounded köşeler)
+- Dark mode için backdrop-filter ve blur efektleri optimize edildi
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+[ITERASYON | 2025-12-21 18:27]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/components/Navbar.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/components/ProgressBar.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/components/Skeleton.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/index.css
+
+Yapılan Geliştirme:
+- Navbar komponenti glassmorphism efektleri ile tamamen yenilendi: backdrop-filter blur, modern shadow ve gradient butonlar eklendi
+- Nav linkleri için aktif durum tasarımı güncellendi: gradient arka plan ile modern görünüm
+- Bildirim paneli glassmorphism ve modern spacing ile yeniden tasarlandı
+- Level rozeti glassmorphism efekti ile güncellendi
+- ProgressBar komponentine gradient renkler ve shadow efektleri eklendi, glass arka plan ile daha modern görünüm
+- CircularProgress komponentine SVG gradient ve drop-shadow efektleri eklendi
+- Skeleton loading komponenti shimmer animasyonu ile yenilendi: gradient animasyon ile daha dinamik yükleme görünümü
+- CSS'e shimmer keyframe animasyonu eklendi
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+[ITERASYON | 2025-12-21 18:31]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/Dashboard.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/components/Modal.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/components/Toast.jsx
+
+Yapılan Geliştirme:
+- Dashboard sayfası modern gradient arka plan ve glassmorphism kartlarla tamamen yeniden tasarlandı
+- Hero bölümü: Başlık gradient text-clip efekti, animasyonlu emoji ve modern istatistik kartları
+- Stat kartları: Glassmorphism efektleri, gradient ikonlar, hover scale animasyonları, modern shadow efektleri
+- Grid kartlar: Glass-strong efekt, modern border-radius (2xl/3xl), hover scale ve shadow animasyonları
+- Practice butonları: Glassmorphism efekti, hover gradient arka planlar, scale ve color geçişleri
+- Modal komponenti: Glassmorphism backdrop ve container, modern border-radius (3xl), smooth animasyonlar
+- Toast bildirimleri: Glassmorphism arka plan, gradient icon container, hover scale efekti, modern shadow
+- Tüm renk paletleri güncellendi: Indigo/purple/pink gradient kombinasyonları
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- HATALI (ilk deneme - Modal.jsx syntax hatası)
+- BAŞARILI (ikinci deneme - hata düzeltildi)
+
+Hatalar:
+- Modal.jsx'te duplicate return statement ve eksik closing brace (satır 219)
+
+Yapılan Düzeltmeler:
+- Modal.jsx dosyasındaki duplicate kod bloğu kaldırıldı, tek bir temiz return statement bırakıldı
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+[ITERASYON | 2025-12-21 18:34]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/components/VocabularyCard.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/components/Badge.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/components/ContentCard.jsx
+
+Yapılan Geliştirme:
+- VocabularyCard komponenti glassmorphism ile yeniden tasarlandı: Ön ve arka yüzde glass efekti
+- Kelime kartı butonları modern rounded-xl glass tasarıma geçirildi, hover scale ve color efektleri eklendi
+- Kelime başlığı gradient text-clip efekti, part of speech badge glassmorphism
+- Arka yüz: Gradient arka plan, example sentence glass container, pratik butonu gradient primary
+- Badge komponenti tamamen yeniden tasarlandı: Glass efektli default badges, gradient level badges
+- Badge shadow efektleri: Renkli shadow-lg efektleri (blue/500, green/500, etc.)
+- Legendary badge: Gradient + animate-pulse + glow efekti
+- Status badges: Gradient arka planlar ve renkli shadow efektleri
+- Badge hover scale animasyonu ve font-weight bold eklendi
+- ContentCard glassmorphism implementasyonu: Glass container, gradient image overlay on hover
+- İmaj hover scale artırıldı (1.05 → 1.10), duration uzatıldı (300ms → 500ms)
+- Badge ve overlay positioning güncellendi, modern spacing ve shadow efektleri
+- Progress bar: Glass arka plan, gradient fill (indigo → purple)
+- Action button: İsRead durumunda glass + gradient hover, değilse gradient-primary + shadow glow
+- Meta info icon boyutları artırıldı, font-weight semibold yapıldı
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-21 18:33]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/PracticePage.jsx
+
+Yapılan Geliştirme:
+- PracticePage'deki "Hızlı Başla" ve "Tekrar Zamanı" butonlarının dark mode görünürlük sorunu düzeltildi
+- Kartlara dark mode gradient arka planlar eklendi (dark:from-blue-950/30, dark:from-orange-950/30)
+- İkon konteynerlerine dark mode arka planlar eklendi (dark:bg-blue-900/40, dark:bg-orange-900/40)
+- İkon renklerine dark mode varyantları eklendi (dark:text-blue-400, dark:text-orange-400)
+- Border renklerine dark mode desteği eklendi (dark:border-blue-900/50, dark:border-orange-900/50)
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Quick action butonlarının dark mode'da görünmez olması sorunu giderildi
+
+Son Build Durumu:
+- BAŞARILI
+
+[ITERASYON | 2025-12-21 18:35]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/PracticePage.jsx
+
+Yapılan Geliştirme:
+- "Hızlı Başla" ve "Tekrar Zamanı" butonlarının conditional rendering'i kaldırıldı - artık her zaman görünür
+- Butonlar mod seçildikten sonra da görünür kalıyor ve doğrudan pratiğe başlatıyor
+- "Tekrar Zamanı" butonuna onClick handler eklendi (önceden eksikti)
+- Her iki buton da artık doğrudan ilgili mod ve ayarlarla pratiğe başlatıyor
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- {!selectedMode && ()} koşullu rendering'i kaldırıldı, butonlar artık her zaman render ediliyor
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-21 18:40]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/practice/MultipleChoiceMode.jsx (YENİ)
+- /Users/oguz/Documents/EnglishLearnApp/src/App.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/PracticePage.jsx
+
+Yapılan Geliştirme:
+- YENİ ÖZELLİK: Çoktan Seçmeli (Multiple Choice) pratik modu eklendi
+- 4 seçenekli soru formatı ile kelime testi
+- Combo sistemi: Ardışık doğru cevaplarda combo sayacı ve bonus XP
+- Hızlı cevap bonusu: 3 saniyeden az süren cevaplarda +5 XP
+- Sesli okuma desteği: Her kelime için TTS butonu
+- İlerleme çubuğu ve soru sayacı
+- Cevap sonrası geri bildirim: Doğru/yanlış animasyonları
+- Örnek cümle gösterimi
+- Tamamlama ekranı: Detaylı istatistikler (doğru/yanlış/doğruluk oranı/max combo)
+- XP hesaplama: Base XP + combo bonus + hızlı cevap bonus
+- Çıkış onay modalı ile yanlışlıkla çıkışı engelleme
+- Dark mode tam desteği
+- Glassmorphism tasarım ile modern görünüm
+- App.jsx'e lazy import ve route eklendi
+- PracticePage'de mod aktif hale getirildi (available: true)
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-21 18:40]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/components/Modal.jsx
+
+Yapılan Geliştirme:
+- Modal.jsx dosyasındaki duplicate kod bloğu kaldırıldı (satır 148-207 arası tekrarlanan return statement)
+- Okuma sayfasında (ReadingPage) Modal import hatası düzeltildi
+- Dosya tek bir temiz return statement ile düzenlendi
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Modal.jsx'te JSX element closing tag hatası, duplicate return statement
+- Beklenmeyen token hataları ('}' ve '</')
+
+Yapılan Düzeltmeler:
+- Modal.jsx'teki tüm duplicate kod blokları temizlendi
+- Body bölümü ve closing tags düzeltildi
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-01-27 22:45]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/index.css
+
+Yapılan Geliştirme:
+- 🐛 HATA DÜZELTMESİ: Okuma sayfasında kelime seçme modalının görünmezlik sorunu çözüldü
+- CSS'te duplicate @keyframes slideUp tanımı vardı:
+  - İlk tanım: opacity 0→1, translateY 20px→0 (görünür yapma)
+  - İkinci tanım: opacity 1→0, translateY 0→-20px (kaybolma - YANLIŞ!)
+- Son CSS kuralı geçerli olduğundan modal açıldığında kaybolma animasyonu çalışıyordu
+- Duplicate .animate-slideUp class tanımı da silindi
+- Artık modal düzgün şekilde görünür ve tıklanabilir
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Duplicate @keyframes slideUp (line 135-145) silindi
+- Duplicate .animate-slideUp class (line 246-248) silindi
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-21 18:45]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/utils/speechSynthesis.js
+
+Yapılan Geliştirme:
+- TTS sistemi Amerikan aksanına geçirildi
+- Ses öncelik listesi güncellendi: Google US English öncelikli
+- Microsoft Aria, Jenny, Guy (US Natural) sesleri üst sıraya taşındı
+- Apple Samantha, Alex, Allison, Ava, Susan, Tom (US) sesleri eklendi
+- İngiliz aksanlı sesler (UK) yedek olarak alt sıraya alındı
+- Fallback mantığı güncellendi: önce en-US, sonra diğer İngilizce sesler
+- Amerikan İngilizcesi telaffuzu artık varsayılan
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+[ITERASYON | 2025-12-21 18:43]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/practice/FillBlankMode.jsx (YENİ)
+- /Users/oguz/Documents/EnglishLearnApp/src/App.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/PracticePage.jsx
+
+Yapılan Geliştirme:
+- YENİ ÖZELLİK: Boşluk Doldurma (Fill in the Blank) pratik modu eklendi
+- Kullanıcı Türkçe anlama göre İngilizce kelimeyi yazar
+- Örnek cümlelerden boşluklu soru üretimi
+- Typo tolerance: Levenshtein mesafesi ile 1 karakter hatalı yazımları kabul eder
+- İpucu sistemi: İlk harf gösterimi (XP ceza ile)
+- Combo sistemi: Ardışık doğru cevaplarda bonus XP
+- Hızlı cevap bonusu: 5 saniyeden az cevaplarda +5 XP
+- Enter tuşu ile hızlı cevaplama
+- Sesli okuma butonu (doğru cevap sonrası)
+- Tamamlama ekranı: Detaylı istatistikler
+- XP hesaplama: Base XP + combo bonus + hızlı cevap bonus - ipucu cezası
+- Dark mode tam desteği
+- App.jsx lazy import ve route eklendi
+- PracticePage modde aktif hale getirildi (available: true)
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+[ITERASYON | 2025-12-21 18:46]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/practice/TranslationMode.jsx (YENİ)
+- /Users/oguz/Documents/EnglishLearnApp/src/App.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/PracticePage.jsx
+
+Yapılan Geliştirme:
+- YENİ ÖZELLİK: Çeviri Pratiği (Translation Mode) pratik modu eklendi
+- İki yönlü çeviri: EN→TR ve TR→EN alternatif olarak değişiyor
+- Türkçe karakter normalizasyonu ile doğru karşılaştırma
+- Virgül/noktalı virgül ile ayrılmış alternatif çeviriler kabul edilir
+- Typo tolerance: Levenshtein distance ile 1 karakter hata toleransı
+- Combo sistemi: Ardışık doğru cevaplarda bonus XP
+- Hızlı cevap bonusu: 5 saniyeden az cevaplarda +5 XP
+- Yön göstergesi: Bayrak ikonları ile EN-TR veya TR-EN gösterimi
+- Sesli okuma desteği (İngilizce sorularda)
+- Enter tuşu ile hızlı cevaplama
+- Tamamlama ekranı: Detaylı istatistikler
+- Dark mode tam desteği
+- App.jsx lazy import ve route eklendi
+- PracticePage modde aktif hale getirildi (available: true)
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+[ITERASYON | 2025-12-21 22:50]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/PracticePage.jsx
+
+Yapılan Geliştirme:
+- 🎨 TASARIM İYİLEŞTİRMESİ: Pratik sayfası seçim menülerinin tasarımı modernleştirildi
+- Kelime Kaynağı seçim butonları:
+  - Glassmorphism efekti (glass/glass-strong)
+  - Seçili durum için gradient border ve glow shadow
+  - Hover animasyonları (scale-[1.01], shadow-md)
+  - Checkmark ikonu seçili öğelerde
+  - Kelime sayısı badge'ine gradient-primary eklendi
+  - Smooth transition-all duration-300
+- Kelime Sayısı butonları:
+  - Seçili butonlara gradient-primary ve glow shadow
+  - Scale-110 transform seçili durumda
+  - Hover scale-105 animasyonu
+  - Glassmorphism arkaplan
+  - Daha büyük font (text-xl) ve padding
+- Seviye filtresi butonları:
+  - Glassmorphism tasarım
+  - Border ile subtle outline
+  - Hover scale-105 ve shadow
+  - İnce border hover animasyonu
+- Tüm butonlara smooth geçişler ve tutarlı spacing
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-21 18:50]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/utils/speechSynthesis.js
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/SettingsPage.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/context/UserContext.jsx
+
+Yapılan Geliştirme:
+- Ayarlarda "İçerik Türleri" bölümü kaldırıldı
+- YENİ: Ses Aksanı seçimi eklendi (Amerikan 🇺🇸 / İngiliz 🇬🇧)
+- Kullanıcı aksanı seçtiğinde örnek ses çalınıyor
+- speechSynthesis.js aksana göre ses seçimi yapıyor
+- Amerikan ve İngiliz sesleri için ayrı öncelik listeleri
+- localStorage'dan voiceAccent tercihi okunuyor
+- speak() fonksiyonuna accent parametresi eklendi
+- UserContext'te varsayılan voiceAccent: "american" eklendi
+- Seçili aksan görsel olarak vurgulanıyor (check icon)
+- Dark mode tam desteği
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+[ITERASYON | 2025-12-21 18:50]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/practice/ListeningMode.jsx (YENİ)
+- /Users/oguz/Documents/EnglishLearnApp/src/App.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/PracticePage.jsx
+
+Yapılan Geliştirme:
+- YENİ ÖZELLİK: Dinle & Yaz (Listening Mode) pratik modu eklendi
+- Text-to-Speech ile kelime dinleme
+- Otomatik ilk oynatma (sayfa açıldığında kelime okunur)
+- Büyük animasyonlu play butonu
+- Tekrar dinleme sayacı
+- İlk dinlemede doğru cevap bonusu (+3 XP)
+- Yavaşlatılmış tekrar dinleme (0.6x hız)
+- Türkçe çeviri ipucu
+- Typo tolerance: Levenshtein distance ile 1 karakter hata toleransı
+- Combo sistemi: Ardışık doğru cevaplarda bonus XP
+- Hızlı cevap bonusu: 8 saniyeden az cevaplarda +5 XP
+- Sound wave animasyonu (konuşurken)
+- Enter tuşu ile hızlı cevaplama
+- Tamamlama ekranı: Detaylı istatistikler
+- Dark mode tam desteği
+- App.jsx lazy import ve route eklendi
+- PracticePage modde aktif hale getirildi (available: true)
+- TÜM PRATİK MODLARI ARTIK AKTİF! (7/7)
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+[ITERASYON | 2025-12-21 18:54]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/utils/weeklyActivity.js (YENİ)
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/Dashboard.jsx
+
+Yapılan Geliştirme:
+- YENİ UTILITY: Haftalık aktivite takip sistemi eklendi (weeklyActivity.js)
+- localStorage ile son 7 günün kelime aktivitesi saklanıyor
+- Otomatik eski veri temizleme (30 günden eski veriler silinir)
+- Dashboard haftalık grafik artık GERÇEK VERİ gösteriyor
+- Her gün için kelime sayısı çubuğu dinamik yükseklikte
+- Hover ile tooltip: gün adı ve kelime sayısı
+- Bugünün çubuğu yeşil vurgulu
+- Aktif günler yarı saydam yeşil, pasif günler gri
+- useMemo ile performans optimizasyonu
+- Türkçe gün kısaltmaları (Pt, Sa, Ça, Pe, Cu, Ct, Pz)
+- wordsToday değiştiğinde otomatik localStorage güncelleme
+- Haftalık en iyi gün hesaplaması ile dinamik ölçekleme
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-21 19:45]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/practice/FlashcardMode.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/practice/MultipleChoiceMode.jsx
+
+Yapılan Geliştirme:
+- FlashcardMode'a SRS entegrasyonu eklendi
+- MultipleChoiceMode'a SRS entegrasyonu eklendi
+- Her cevap sonrası recordReview() ile SRS kaydı yapılıyor
+- Doğru cevap: Kelime bir üst kutuya geçiyor
+- Yanlış cevap: Kelime kutu 1 veya 2'ye düşüyor
+- Sonraki tekrar tarihi otomatik hesaplanıyor
+- spacedRepetition.js ayrı chunk olarak yükleniyor (1.54 kB)
+- FlashcardMode: 8.54 kB (+0.1 kB)
+- MultipleChoiceMode: 11.96 kB (+0.1 kB)
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/utils/spacedRepetition.js (YENİ)
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/PracticePage.jsx
+
+Yapılan Geliştirme:
+- YENİ ÖZELLİK: Spaced Repetition System (SRS) - Akıllı Tekrar Sistemi
+- SM-2 algoritmasına dayalı 6 kutulu sistem
+- Kutu aralıkları: Bugün → 1 gün → 3 gün → 7 gün → 14 gün → 30 gün (Uzman)
+- recordReview(): Doğru/yanlış cevaba göre kutu geçişi
+- getDueWords(): Bugün tekrar edilmesi gereken kelimeler
+- getSrsStats(): İstatistikler (doğruluk oranı, uzman sayısı, en uzun seri)
+- getStudyQueue(): Öncelikli çalışma sırası
+- PracticePage'e SRS widget'ı eklendi
+- 6 kutunun görsel dağılım grafiği
+- "Bugün tekrar edilmesi gereken X kelime" gösterimi
+- Doğruluk oranı ve Uzman sayısı badge'leri
+- localStorage ile kalıcı veri saklama
+- PracticePage bundle: 14.42 kB (+2.68 kB)
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/utils/wordOfTheDay.js (YENİ)
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/Dashboard.jsx
+
+Yapılan Geliştirme:
+- YENİ ÖZELLİK: Günün Kelimesi (Word of the Day) sistemi
+- 21 özenle seçilmiş İngilizce kelime koleksiyonu
+- Her gün aynı kelime gösterilir (tarih bazlı deterministic)
+- Kelime detayları: fonetik, Türkçe anlam, tanım, örnek cümle, seviye
+- TTS ile telaffuz dinleme
+- "Listeme Ekle" butonu: Kelime vocabulary'e eklenir
+- +25 XP ödülü öğrenildiğinde
+- Günlük seri (streak) takibi
+- Öğrenildi durumu localStorage'da saklanır
+- Mor-mavi gradient kart tasarımı
+- Dashboard bundle: 33.72 kB (+8.77 kB)
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/ProgressPage.jsx
+
+Yapılan Geliştirme:
+- ProgressPage'e okuma istatistikleri kartı eklendi
+- 4 istatistik göstergesi: Makale sayısı, Toplam kelime, Toplam süre, Okuma hızı
+- formatReadingTime ile okunabilir süre gösterimi
+- Başarı rozetleri (achievements) gösterimi
+- readingStats utility entegre edildi
+- Renk kodlu kartlar: Mavi (makale), Yeşil (kelime), Mor (süre), Turuncu (hız)
+- ProgressPage bundle: 13.89 kB (+2 kB)
+- readingStats ayrı chunk: 3.12 kB
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/utils/readingStats.js (YENİ)
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/ReadingPage.jsx
+
+Yapılan Geliştirme:
+- YENİ UTILITY: Okuma istatistikleri takip sistemi (readingStats.js)
+- Toplam okunan kelime, harcanan zaman, tamamlanan makale sayısı
+- Ortalama okuma hızı (kelime/dakika) hesaplama
+- En uzun okuma oturumu takibi
+- Günlük istatistikler (90 gün geçmişi)
+- Haftalık ve aylık özet fonksiyonları
+- Okuma serisi (streak) hesaplama
+- 8 farklı başarı (achievement): İlk Okuma, Okuyucu, Kitap Kurdu, 1000/10K Kelime, Hızlı Okuyucu, Maraton, Haftalık Seri
+- ReadingPage'e okuma süresi takibi eklendi
+- Makale tamamlandığında otomatik istatistik kaydı
+- formatReadingTime utility: Süre gösterimi (sn/dk/sa)
+- ReadingPage bundle: 24.81 kB (+2.43 kB)
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/components/FocusTimer.jsx (YENİ)
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/Dashboard.jsx
+
+Yapılan Geliştirme:
+- YENİ ÖZELLİK: Pomodoro tarzı Odak Zamanlayıcısı (Focus Timer) eklendi
+- 4 hazır mod: Pomodoro (25/5), Kısa (15/3), Uzun (45/10), Özel
+- Özel mod: Kullanıcı çalışma ve mola sürelerini ayarlayabiliyor
+- Dairesel ilerleme animasyonu (SVG)
+- Otomatik mola geçişi: Çalışma bitince mola başlar
+- Oturum sayacı: Tamamlanan çalışma oturumlarını sayar
+- Web Audio API ile bildirim sesi (farklı tonlar: çalışma/mola)
+- Ses açma/kapama butonu
+- Renk geçişleri: Mor (çalışma), Yeşil (mola)
+- Motivasyon ipuçları (çalışma ve mola için farklı)
+- Dashboard'a FAB (Floating Action Button) eklendi
+- Erişilebilirlik: role="dialog", aria-modal, aria-label
+- Dashboard bundle: 24.95 kB (+7.74 kB)
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/hooks/useKeyboardShortcuts.js (YENİ)
+- /Users/oguz/Documents/EnglishLearnApp/src/components/KeyboardShortcutsModal.jsx (YENİ)
+- /Users/oguz/Documents/EnglishLearnApp/src/App.jsx
+
+Yapılan Geliştirme:
+- YENİ ÖZELLİK: Klavye kısayolları sistemi eklendi
+- useKeyboardShortcuts hook: Global ve contextual shortcut desteği
+- Navigasyon kısayolları: Ctrl+H (Ana Sayfa), Ctrl+L (Kütüphane), Ctrl+P (Pratik), Ctrl+V (Kelime), Ctrl+G (İlerleme), Ctrl+, (Ayarlar)
+- Eylem kısayolları: Ctrl+Shift+D (Dark mode toggle), Shift+? (Kısayolları göster)
+- Mac desteği: Command tuşu otomatik algılanır
+- KeyboardShortcutsModal: Tüm kısayolları kategorize şekilde gösteren modal
+- Erişilebilirlik: role="dialog", aria-modal, aria-labelledby
+- Input alanlarında kısayollar devre dışı (Escape hariç)
+- formatShortcut utility: Platform-aware kısayol gösterimi
+- GlobalShortcuts wrapper component App.jsx'e eklendi
+- Dark mode toggle localStorage'a kaydediliyor
+- Bundle size: 443.10 kB (sadece 7 kB artış)
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/ProgressPage.jsx
+
+Yapılan Geliştirme:
+- ProgressPage'e haftalık aktivite grafiği eklendi
+- weeklyActivity.js utility'si entegre edildi
+- Haftalık toplam kelime sayısı başlıkta gösteriliyor
+- Dinamik bar chart: Günlük kelime sayısına göre yükseklik
+- Bugünün çubuğu gradient vurgulu (purple to blue)
+- Pasif günler gri, aktif günler mor
+- İstatistik satırı: En iyi gün, günlük ortalama, aktif gün sayısı
+- useMemo ile performans optimizasyonu
+- Türkçe gün kısaltmaları
+- Dark mode tam desteği
+- ProgressPage bundle: 11.85 kB
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+[ITERASYON | 2025-12-21 19:05]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/ReadingPage.jsx
+
+Yapılan Geliştirme:
+- Okuma sayfasında kelime detay modalinde "Listeme Ekle" tıklandığında modal artık otomatik kapanıyor
+- 300ms delay ile toast mesajının görünmesine izin veriliyor
+- UX iyileştirmesi: Kullanıcı ekleme sonrası manuel kapatma yapmak zorunda değil
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+[ITERASYON 14 | 2025-01-08 14:30]
+
+Değiştirilen Dosyalar:
+- /src/utils/bookmarks.js (YENİ)
+- /src/pages/Library.jsx
+- /src/pages/ReadingPage.jsx
+
+Yapılan Geliştirme:
+- Content Bookmarks (İçerik Yer İmleri) sistemi oluşturuldu
+- bookmarks.js utility dosyası:
+  - addBookmark(): İçerik favorilere ekleme
+  - removeBookmark(): Favorilerden kaldırma
+  - isBookmarked(): Bookmark durumu kontrolü
+  - toggleBookmark(): Toggle fonksiyonu
+  - getBookmarks(): Tüm bookmark ları getir (filtrelerle)
+  - createCollection(): Koleksiyon oluşturma
+  - deleteCollection(): Koleksiyon silme
+  - getCollections(): Tüm koleksiyonları getir
+  - getBookmarkStats(): İstatistikler
+- Library.jsx: Favoriler filtresi eklendi
+- ReadingPage.jsx: Bookmark toggle butonu
+- localStorage ile persistence
+- Bundle: bookmarks-BfNGNBd3.js (1.19 kB)
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON 15 | 2025-01-08 14:40]
+
+Değiştirilen Dosyalar:
+- /src/pages/practice/FillBlankMode.jsx
+- /src/pages/practice/TranslationMode.jsx
+- /src/pages/practice/ListeningMode.jsx
+
+Yapılan Geliştirme:
+- Kalan 3 practice moduna SRS (Spaced Repetition) entegrasyonu yapıldı
+- FillBlankMode: recordReview import ve kullanımı eklendi
+- TranslationMode: recordReview import ve kullanımı eklendi  
+- ListeningMode: recordReview import ve kullanımı eklendi
+- Artık tüm practice modlarında kelime performansları SRS ile takip ediliyor
+- spacedRepetition bundle: 4.24 kB (artış: kod paylaşımı optimize edildi)
+- FillBlankMode: 13.01 kB
+- TranslationMode: 13.19 kB
+- ListeningMode: 13.78 kB
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-21 19:15]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/ReadingPage.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/components/Toast.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/index.css
+
+Yapılan Geliştirme:
+1. Okuma sayfasında daha önce listeye eklenmiş kelimeler:
+   - Mavi arka plan ve alt çizgi ile farklı renkte gösteriliyor
+   - Tıklanınca modal açılmıyor
+   - Sadece kelime sesli okunuyor ve "zaten listende mevcut" mesajı gösteriliyor
+   - Dark mode desteği
+
+2. Toast mesajları:
+   - Üst bardan boşluk artırıldı (top-20 -> top-24)
+   - Navbar ile çakışma önlendi
+
+3. Yeni CSS class: .word-highlight-added
+   - Mavi arka plan (#DBEAFE)
+   - Mavi alt çizgi
+   - cursor: default (tıklanamaz görünümü)
+   - Dark mode: rgba(59, 130, 246, 0.2)
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON 16 | 2025-01-08 14:55]
+
+Değiştirilen Dosyalar:
+- /src/utils/studyGoals.js (YENİ)
+- /src/pages/Dashboard.jsx
+
+Yapılan Geliştirme:
+- Study Goals (Çalışma Hedefleri) sistemi oluşturuldu
+- studyGoals.js utility dosyası:
+  - Günlük hedefler: wordsToLearn(10), practiceMinutes(15), articlesToRead(1), reviewWords(20)
+  - Haftalık hedefler: wordsToLearn(50), practiceMinutes(90), articlesToRead(5), perfectPractice(3)
+  - recordWordsLearned(): Kelime öğrenme kaydı
+  - recordPracticeTime(): Practice süresi kaydı
+  - recordArticleRead(): Makale okuma kaydı
+  - recordReviewsCompleted(): Review tamamlama kaydı
+  - getDailyGoalStatus(): Günlük hedef durumu
+  - getWeeklyGoalStatus(): Haftalık hedef durumu
+  - getStreakInfo(): Streak bilgisi
+  - getMotivationMessage(): Dinamik motivasyon mesajları
+- Dashboard Study Goals widget:
+  - Günlük hedef progress barları
+  - Motivasyon mesajı (emoji + text)
+  - Tamamlanan hedefler için yeşil checkmark
+  - Gradient progress barlar
+  - "Tüm hedefler" link
+- Leaderboard widget kaldırıldı (Study Goals ile değiştirildi)
+- Dashboard bundle: 38.16 kB (artış: studyGoals utility)
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON 17 | 2025-01-08 15:05]
+
+Değiştirilen Dosyalar:
+- /src/components/ContentCard.jsx
+
+Yapılan Geliştirme:
+- ContentCard bileşenine Bookmark butonu eklendi
+- useState ve useEffect ile bookmark durumu takibi
+- isBookmarked() ile mount sırasında durum kontrolü
+- handleBookmarkClick fonksiyonu:
+  - e.preventDefault() ve e.stopPropagation() ile Link içinde çalışır
+  - toggleBookmark() ile durum değişikliği
+- Görsel özellikler:
+  - Glass effect rounded-xl buton
+  - Hover scale-110 animasyonu
+  - Bookmarked: pink-600 renk + filled icon
+  - Not bookmarked: gray-600 renk
+- Library sayfasında tüm içerik kartlarında görünür
+- Library bundle: 14.66 kB (artış: 0.51 kB)
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON 18 | 2025-01-08 15:20]
+
+Değiştirilen Dosyalar:
+- /src/utils/vocabularyExport.js (YENİ)
+- /src/pages/VocabularyList.jsx
+
+Yapılan Geliştirme:
+- Vocabulary Export/Import sistemi oluşturuldu
+- vocabularyExport.js utility dosyası:
+  - exportToJSON(): Tam veri yedeklemesi
+  - exportToCSV(): Excel uyumlu format
+  - exportToAnki(): Anki flashcard uygulaması için
+  - exportToQuizlet(): Quizlet formatı
+  - importFromJSON(): JSON dosyasından içe aktarma
+  - importFromCSV(): CSV dosyasından içe aktarma
+  - SUPPORTED_FORMATS: Format bilgileri
+- VocabularyList güncellemeleri:
+  - Export Modal: 4 format seçeneği (JSON, CSV, Anki, Quizlet)
+  - Import Modal: Dosya seçme + önizleme + onay
+  - Duplicate kontrolü (aynı kelime eklenmez)
+  - Hata yönetimi ve toast bildirimleri
+  - useRef ile file input kontrolü
+- VocabularyList bundle: 26.17 kB (artış: 8.69 kB)
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI (hata düzeltme sonrası)
+
+Hatalar:
+- İlk build: Kapanmamış div tag hatasI
+
+Yapılan Düzeltmeler:
+- Eksik kapanış tagleri eklendi
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-21 19:25]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/index.css
+
+Yapılan Geliştirme:
+- Listeye eklenmiş kelimelerin vurgu stili güncellendi:
+  - Mavi arka plan -> çok soluk gri arka plan (rgba(156, 163, 175, 0.15))
+  - Mavi alt çizgi kaldırıldı
+  - Okuma sırasında dikkat dağıtmayan, sayfa arkaplanına yakın renk
+  - Dark mode: daha da soluk (rgba(156, 163, 175, 0.1))
+- UX iyileştirmesi: Zaten bilinen kelimeler görsel olarak geri planda kalıyor
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON 19 | 2025-01-08 15:35]
+
+Değiştirilen Dosyalar:
+- /src/utils/achievements.js (YENİ)
+- /src/components/AchievementNotification.jsx (YENİ)
+- /src/App.jsx
+
+Yapılan Geliştirme:
+- Achievement Notifications sistemi oluşturuldu
+- achievements.js utility dosyası:
+  - 20+ farklı başarı tanımı (kelime, streak, XP, okuma, practice)
+  - checkAndAwardAchievement(): Başarı kontrolü ve ödül
+  - getNextNotification(): FIFO bildirim kuyruğu
+  - checkAchievementsForMetrics(): Metrik bazlı kontrol
+  - isAchievementEarned(): Başarı kazanıldı mı kontrolü
+  - getAllEarnedAchievements(): Tüm kazanılmış başarılar
+  - getAchievementProgress(): İlerleme durumu
+  - awardPerfectPractice(): Perfect practice ödülü
+- AchievementNotification.jsx bileşeni:
+  - Gradient arka plan ile animasyonlu bildirim
+  - 5 saniye otomatik kapanma
+  - XP bonus gösterimi
+  - Zincirleme bildirimler (sonraki otomatik gösterilir)
+  - AchievementBadge alt bileşeni
+  - AchievementProgressBar alt bileşeni
+- App.jsx Layout içine AchievementNotification eklendi
+- Main bundle: 446.24 kB (artış: 2.98 kB)
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON 20 | 2025-01-08 16:10]
+
+Değiştirilen Dosyalar:
+- /src/components/Navbar.jsx
+- /src/App.jsx
+
+Yapılan Geliştirme:
+- Skip to Content erişilebilirlik linki eklendi
+- Navbar.jsx güncellemeleri:
+  - "İçeriğe Atla" linki eklendi (ilk element olarak)
+  - sr-only class ile gizleniyor, focus ile görünür
+  - focus:absolute, focus:z-[100], focus:bg-indigo-600
+  - Klavye kullanıcıları için hızlı navigasyon
+- App.jsx güncellemeleri:
+  - Main element'e id="main-content" eklendi
+  - tabIndex={-1} ile programatik focus için
+- Erişilebilirlik (A11Y) iyileştirmesi tamamlandı
+- Main bundle: 446.53 kB (minimal artış)
+- CSS: 103.06 kB
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON 21 | 2025-01-08 16:20]
+
+Değiştirilen Dosyalar:
+- /src/pages/Dashboard.jsx
+
+Yapılan Geliştirme:
+- Vocabulary Stats Widget oluşturuldu
+- Dashboard alt kısmına yeni widget eklendi
+- Özellikler:
+  - Toplam kelime sayısı (gradient text)
+  - Durum dağılım çubuğu (yeşil: öğrenildi, turuncu: tekrar, mavi: yeni)
+  - 3 sütunlu legend (Öğrenildi, Tekrar, Yeni)
+  - Kelime listesine yönlendirme linki
+- Dashboard bundle: 38.16 kB → 40.87 kB (artış: 2.71 kB)
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+[ITERASYON | 2025-12-21 19:30]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/components/VocabularyCard.jsx
+
+Yapılan Geliştirme:
+- VocabularyCard component düzeltildi
+- Eski speechSynthesis kodu yeni TTS sistemi ile değiştirildi
+- Kelime kartına tıklanınca kart çevirme işlevi artık çalışıyor
+- Gelişmiş ses kalitesi (aksana göre ses seçimi)
+- VocabularyList bundle: 26.17 kB → 25.57 kB (optimizasyon: 0.60 kB)
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON 22 | 2025-01-08 16:35]
+
+Değiştirilen Dosyalar:
+- /src/context/ThemeContext.jsx (YENİ)
+- /src/components/ThemeToggle.jsx (YENİ)
+- /src/App.jsx
+- /src/components/Navbar.jsx
+- /src/pages/SettingsPage.jsx
+
+Yapılan Geliştirme:
+- Theme Context oluşturuldu (ThemeContext.jsx)
+  - 3 mod: light, dark, system
+  - localStorage ile tema kalıcılığı
+  - Sistem tercihi dinleme (prefers-color-scheme)
+  - toggleTheme() ve setTheme() fonksiyonları
+- ThemeToggle bileşeni oluşturuldu (3 varyant):
+  - icon: Sadece ikon butonu
+  - switch: Toggle switch etiketi ile
+  - segmented: 3 seçenekli (Aydınlık/Karanlık/Sistem)
+- Navbar: Tema toggle ikonu eklendi
+- SettingsPage: Görünüm sekmesi ThemeToggle segmented ile güncellendi
+- App.jsx: ThemeProvider entegre edildi
+- GlobalShortcuts: useTheme().toggleTheme kullanıyor
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+[ITERASYON 23 | 2025-01-08 16:50]
+
+Değiştirilen Dosyalar:
+- /src/components/PracticeSummary.jsx (YENİ)
+- /src/pages/practice/MultipleChoiceMode.jsx
+
+Yapılan Geliştirme:
+- PracticeSummary bileşeni oluşturuldu
+  - Tüm pratik modlarında kullanılabilir
+  - Performans tier sistemi (Perfect/Excellent/Good/Okay/Practice)
+  - Gradient header performansa göre değişir
+  - 4 istatistik kartı (Doğru, Yanlış, Doğruluk, Max Combo)
+  - Süre ve XP kartı (bonus XP gösterimi)
+  - Yanlış cevaplanan kelimeler listesi
+  - Paylaş butonu (Web Share API)
+  - Tamamla, Tekrar Dene, Farklı Mod butonları
+- MultipleChoiceMode entegrasyonu:
+  - missedWords state eklendi
+  - PracticeSummary import edildi
+  - Mevcut completion screen değiştirildi
+  - isPerfect desteği eklendi
+- MultipleChoiceMode: 11.93 kB → 15.13 kB
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+[ITERASYON 24 | 2025-01-08 17:05]
+
+Değiştirilen Dosyalar:
+- /src/components/KeyboardNavigationGuide.jsx (YENİ)
+- /src/pages/SettingsPage.jsx
+
+Yapılan Geliştirme:
+- KeyboardNavigationGuide bileşeni oluşturuldu
+  - 4 adımlı interaktif rehber
+  - Adımlar: Welcome, Navigasyon, Odaklanma, Erişilebilirlik
+  - Performans tier göstergeleri
+  - Klavye navigasyonu (←/→/Enter/Esc)
+  - Adım indikatörleri
+  - localStorage ile "görüldü" takibi
+  - useKeyboardGuide hook (ilk kullanıcılar için otomatik)
+- SettingsPage güncellemeleri:
+  - Erişilebilirlik sekmesi eklendi
+  - Klavye Navigasyonu Rehberi butonu
+  - Klavye Kısayolları referansı
+  - Animasyonları Azalt toggle
+  - Gelişmiş Odak Göstergeleri toggle
+  - Ekran Okuyucu Bildirimleri toggle
+- SettingsPage: 18.30 kB → 30.85 kB
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+[ITERASYON 25 | 2025-01-08 17:15]
+
+Değiştirilen Dosyalar:
+- /src/utils/readingTime.js (YENİ)
+- /src/components/ContentCard.jsx
+
+Yapılan Geliştirme:
+- Reading Time Estimation utility oluşturuldu
+  - calculateReadingTime(): Kelime ve seviyeye göre süre hesaplama
+  - formatReadingTime(): Dakika/saat formatlaması
+  - getReadingTimeInfo(): Zorluk göstergeli okuma bilgisi
+  - getReadingProgress(): İlerleme hesaplama
+  - estimatePages(): Sayfa tahmini
+  - getReadingTimeEmoji(): Süreye göre emoji
+  - WPM tablosu (A1:80 - C2:250 kelime/dakika)
+- ContentCard güncellemeleri:
+  - Kişiselleştirilmiş okuma süresi tahmini
+  - Kullanıcı seviyesine göre WPM hesaplaması
+  - Zorluk göstergesi (Çok Kolay/Kolay/Uygun/Zorlu/Zor)
+  - Süre emojisi (⚡/☕/📖/��/📕)
+  - views yerine zorluk etiketi gösterimi
+- Library: 14.66 kB → 15.80 kB
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+[ITERASYON 26 | 2025-01-08 18:30]
+
+Değiştirilen Dosyalar:
+- /src/components/WordDifficultyIndicator.jsx (YENİ)
+- /src/components/VocabularyCard.jsx
+
+Yapılan Geliştirme:
+- WordDifficultyIndicator bileşeni oluşturuldu
+  - WordDifficultyBadge: SRS verisine göre zorluk rozeti (xs/sm/md boyutları)
+  - WordProgressBar: SRS kutu ilerlemesi (6 kutu görsel)
+  - WordStatsMini: Doğruluk, seri, son çalışma özeti
+  - WordDifficultyCard: Tam zorluk detay kartı
+  - calculateDifficulty(): SRS verisinden zorluk hesaplama
+  - DIFFICULTY_LEVELS: mastered, easy, normal, challenging, hard, unknown
+- VocabularyCard güncellemeleri:
+  - Ön yüze WordDifficultyBadge eklendi (status yanına)
+  - Arka yüze WordProgressBar eklendi (SRS kutu ilerlemesi)
+  - Kelime öğrenme durumu görsel feedback
+- 1806 modül, build süresi: 2.78s
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON 27 | 2025-01-08 18:45]
+
+Değiştirilen Dosyalar:
+- /src/components/PracticeStreakWidget.jsx (YENİ)
+- /src/pages/Dashboard.jsx
+
+Yapılan Geliştirme:
+- PracticeStreakWidget bileşeni oluşturuldu
+  - 3 varyant: full, compact, mini
+  - StreakFlames: Animasyonlu ateş göstergesi (streak yoğunluğuna göre)
+  - StreakRing: Dairesel ilerleme göstergesi
+  - WeeklyStreakView: Haftalık streak görselleştirmesi
+  - Milestone sistemi: 7, 14, 30, 60, 100, 365 gün hedefleri
+  - Motivasyon mesajları streak seviyesine göre
+  - Detay paneli: WOTD streak, Reading streak, Longest streak
+  - Bugünkü ilerleme göstergesi
+- Dashboard güncellemeleri:
+  - PracticeStreakWidget import ve entegrasyonu
+  - Bottom widgets section'a eklendi
+  - updatePracticeTime import hatası düzeltildi
+- Dashboard: 40.87 kB → 50.00 kB
+- 1807 modül, build süresi: 2.10s
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+[ITERASYON 28 | 2025-01-08 19:10]
+
+Değiştirilen Dosyalar:
+- /src/services/notificationService.js (YENİ)
+- /src/pages/SettingsPage.jsx
+
+Yapılan Geliştirme:
+- notificationService.js oluşturuldu (Web Notification API)
+  - getNotificationSettings, saveNotificationSettings
+  - requestNotificationPermission, checkNotificationPermission
+  - sendNotification (generic), sendTestNotification
+  - Tip bazlı bildirimler: dailyGoal, streak, wordOfDay, practice, achievement, levelUp
+  - startReminderScheduler, stopReminderScheduler
+  - Bildirim geçmişi (son 50 bildirim)
+  - useNotifications hook
+- SettingsPage güncellemeleri:
+  - Yeni "Bildirimler" sekmesi eklendi
+  - NotificationsTab bileşeni:
+    - İzin durumu göstergesi (granted/denied/default/unsupported)
+    - Test bildirimi butonu
+    - Hatırlatma etkinleştirme toggle
+    - Günlük hatırlatma saati seçici
+    - Pratik hatırlatma aralığı (2-12 saat)
+    - Bildirim türleri toggle'ları (hedef, seri, kelime, pratik)
+    - Ses ayarı toggle
+- SettingsPage: 30.85 kB → 41.80 kB
+- 1808 modül, build süresi: 2.31s
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+[ITERASYON 29 | 2025-01-08 19:30]
+
+Değiştirilen Dosyalar:
+- /src/utils/vocabularyExport.js
+- /src/pages/VocabularyList.jsx
+
+Yapılan Geliştirme:
+- vocabularyExport.js güncellemeleri:
+  - exportToPrint fonksiyonu eklendi
+    - Yazdırılabilir HTML formatı
+    - Özelleştirilebilir sütun sayısı
+    - Seviyeye göre gruplama seçeneği
+    - İstatistik gösterme seçeneği
+    - Yazdırma dostu CSS
+    - Otomatik print dialog açma
+  - SUPPORTED_FORMATS'a print seçeneği eklendi
+- VocabularyList güncellemeleri:
+  - exportToPrint import edildi
+  - handleExport'a print case eklendi
+  - groupByLevel: true varsayılan
+- VocabularyList: 27.46 kB → 31.32 kB
+- 1808 modül, build süresi: 2.24s
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+[ITERASYON 30 | 2025-01-08 19:50]
+
+Değiştirilen Dosyalar:
+- /src/utils/wordLists.js (YENİ)
+- /src/components/ListSelector.jsx (YENİ)
+
+Yapılan Geliştirme:
+- wordLists.js utility oluşturuldu
+  - getAllLists, getCustomLists, createList, updateList, deleteList
+  - addWordToList, removeWordFromList, getListsForWord, getListWords
+  - getListById, getListStats, updateWordLists
+  - DEFAULT_CATEGORIES: Favoriler, Zor Kelimeler, Tekrar Edilecek
+  - useWordLists hook
+  - LIST_ICONS: 40 emoji seçeneği
+  - LIST_COLORS: 20 renk seçeneği
+  - localStorage persistence
+- ListSelector.jsx bileşenleri:
+  - CreateListForm: Yeni liste oluşturma formu
+    - Emoji picker, renk picker
+  - ListSelectorDropdown: Listelere ekleme/çıkarma dropdown
+  - ListSelectorModal: Modal versiyonu
+  - ListManagerPanel: Liste yönetimi paneli
+    - İstatistikler, varsayılan listeler, özel listeler
+    - Liste silme, oluşturma
+  - ListButton: Kelime kartı için buton
+- 1808 modül, build süresi: 2.31s
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+[ITERASYON 31 | 2025-01-08 20:10]
+
+Değiştirilen Dosyalar:
+- /src/components/VoiceRecorder.jsx (YENİ)
+
+Yapılan Geliştirme:
+- VoiceRecorder.jsx bileşeni oluşturuldu
+  - Web Audio API ve MediaRecorder kullanımı
+  - AudioWaveform: Animasyonlu ses dalga görselleştirici
+  - RecordingTimer: Kayıt süresi göstergesi
+  - VoiceRecorder: Ana bileşen
+    - 4 durum: IDLE, RECORDING, RECORDED, PLAYING
+    - Mikrofon izni kontrolü
+    - echoCancellation, noiseSuppression, autoGainControl
+    - maxDuration limiti
+    - Referans kelime dinleme (TTS)
+    - Kaydı oynatma, yeniden kaydetme
+    - Başarı/başarısız callback'leri
+  - VoiceRecorderMini: Kompakt versiyon
+    - Kelime kartlarında kullanım için
+    - 5 saniye otomatik durdurma
+    - 3 durumlu toggle (kaydet/durdur/sıfırla)
+- CSS: 106.82 kB (animasyonlar eklendi)
+- 1808 modül, build süresi: 2.16s
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON 32 | 2025-01-08 20:25]
+
+Değiştirilen Dosyalar:
+- /src/components/QuickAddWord.jsx (YENİ)
+- /src/App.jsx (GÜNCELLEME)
+
+Yapılan Geliştirme:
+- QuickAddWord.jsx bileşeni oluşturuldu
+  - Hızlı kelime ekleme modal'ı
+  - WordSuggestionCard: Kelime öneri kartı (telaffuz dinleme)
+  - QuickAddForm: Kelime ekleme formu
+    - İngilizce/Türkçe input
+    - Seviye seçimi (A1-C2)
+    - Otomatik çeviri toggle
+  - QuickAddWord: Ana modal bileşeni
+    - Kelime arama
+    - Öneriler listesi
+    - Az önce eklenenler
+    - Popüler kelimeler
+  - QuickAddFAB: Floating Action Button
+    - Sağ alt köşede sabit buton
+    - Modal açma/kapama
+  - QuickAddInline: Satır içi kompakt versiyon
+- App.jsx'e QuickAddFAB entegrasyonu
+  - Layout bileşenine eklendi
+  - Tüm protected sayfalarda erişilebilir
+- 1809 modül, bundle: 463.76 kB
+- Build süresi: 3.19s
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+
+[ITERASYON | 2025-12-21 19:35]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/components/ContentCard.jsx
+
+Yapılan Geliştirme:
+- Kütüphane kartlarındaki içerik hizalama sorunu düzeltildi
+- Başlık için sabit minimum yükseklik eklendi (min-h-[3.5rem])
+- Flex spacer eklendi (butonları her kartta aynı hizaya getirmek için)
+- Artık tüm kartlarda:
+  - Başlıklar aynı hizada
+  - Kelime/süre bilgileri aynı hizada
+  - Oku/Tekrar Oku butonları aynı hizada (kart altında sabit)
+- space-y-4 kaldırılıp manuel spacing eklendi
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
 
 Son Build Durumu:
 - BAŞARILI

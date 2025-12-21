@@ -11,37 +11,37 @@ export default function ProgressBar({
     const percentage = Math.min(Math.max((value / max) * 100, 0), 100);
 
     const sizes = {
-        xs: 'h-1',
+        xs: 'h-1.5',
         sm: 'h-2',
         md: 'h-3',
         lg: 'h-4',
-        xl: 'h-5',
+        xl: 'h-6',
     };
 
     const colors = {
-        primary: 'bg-indigo-600',
-        secondary: 'bg-purple-600',
-        success: 'bg-green-500',
-        warning: 'bg-orange-500',
-        danger: 'bg-red-500',
-        gradient: 'bg-gradient-to-r from-indigo-500 to-purple-500',
+        primary: 'bg-gradient-to-r from-indigo-600 to-purple-600',
+        secondary: 'bg-gradient-to-r from-purple-600 to-pink-600',
+        success: 'bg-gradient-to-r from-green-500 to-emerald-500',
+        warning: 'bg-gradient-to-r from-orange-500 to-amber-500',
+        danger: 'bg-gradient-to-r from-red-500 to-rose-500',
+        gradient: 'bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500',
     };
 
     return (
         <div className={`w-full ${className}`}>
             {(showLabel || label) && (
-                <div className="flex justify-between items-center mb-1">
-                    <span className="text-sm text-gray-600">{label}</span>
+                <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{label}</span>
                     {showLabel && (
-                        <span className="text-sm font-medium text-gray-900">
+                        <span className="text-sm font-bold text-gray-900 dark:text-white">
                             {Math.round(percentage)}%
                         </span>
                     )}
                 </div>
             )}
-            <div className={`w-full bg-gray-200 rounded-full overflow-hidden ${sizes[size]}`}>
+            <div className={`w-full glass rounded-full overflow-hidden ${sizes[size]} shadow-inner`}>
                 <div
-                    className={`h-full rounded-full transition-all duration-500 ease-out ${colors[color]}`}
+                    className={`h-full rounded-full transition-all duration-500 ease-out shadow-lg ${colors[color]}`}
                     style={{ width: `${percentage}%` }}
                 />
             </div>
@@ -55,8 +55,8 @@ export function CircularProgress({
     max = 100,
     size = 100,
     strokeWidth = 8,
-    color = '#4F46E5',
-    bgColor = '#E5E7EB',
+    color = '#6366f1',
+    bgColor = '#e2e8f0',
     showValue = true,
     valueLabel = '',
     subtitle = '',
@@ -72,7 +72,7 @@ export function CircularProgress({
             <svg
                 width={size}
                 height={size}
-                className="progress-ring"
+                className="progress-ring transform -rotate-90"
             >
                 {/* Background circle */}
                 <circle
@@ -82,19 +82,26 @@ export function CircularProgress({
                     fill="none"
                     stroke={bgColor}
                     strokeWidth={strokeWidth}
+                    opacity="0.3"
                 />
-                {/* Progress circle */}
+                {/* Progress circle with gradient */}
+                <defs>
+                    <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#6366f1" />
+                        <stop offset="100%" stopColor="#8b5cf6" />
+                    </linearGradient>
+                </defs>
                 <circle
                     cx={size / 2}
                     cy={size / 2}
                     r={radius}
                     fill="none"
-                    stroke={color}
+                    stroke="url(#progressGradient)"
                     strokeWidth={strokeWidth}
                     strokeDasharray={circumference}
                     strokeDashoffset={strokeDashoffset}
                     strokeLinecap="round"
-                    className="transition-all duration-500 ease-out"
+                    className="transition-all duration-700 ease-out drop-shadow-lg"
                 />
             </svg>
             {showValue && (

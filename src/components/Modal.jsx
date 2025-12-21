@@ -96,43 +96,38 @@ export default function Modal({
     const sizes = {
         sm: 'max-w-sm',
         md: 'max-w-md',
-        lg: 'max-w-lg',
-        xl: 'max-w-xl',
-        '2xl': 'max-w-2xl',
-        full: 'max-w-full mx-4',
+        lg: 'max-w-2xl',
+        xl: 'max-w-4xl',
+        full: 'max-w-6xl',
     };
 
     return (
-        <div 
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+        <div
+            className="fixed inset-0 z-[130] flex items-center justify-center p-4"
+            onClick={handleOverlayClick}
             role="dialog"
             aria-modal="true"
             aria-labelledby={id ? `${id}-title` : undefined}
-            aria-describedby={id ? `${id}-description` : undefined}
         >
-            {/* Overlay */}
-            <div
-                className="absolute inset-0 bg-black/50 backdrop-blur-sm animate-fadeIn"
-                onClick={handleOverlayClick}
-                aria-hidden="true"
-            />
+            {/* Backdrop with glassmorphism */}
+            <div className="absolute inset-0 bg-black/40 backdrop-blur-md animate-fadeIn" aria-hidden="true" />
 
-            {/* Modal Content */}
+            {/* Modal */}
             <div
                 ref={modalRef}
                 className={`
-          relative w-full ${sizes[size]} bg-white dark:bg-[#27272a] rounded-2xl shadow-2xl
-          animate-slideUp
+          relative w-full ${sizes[size]} glass-strong rounded-3xl shadow-2xl
+          animate-slideUp max-h-[90vh] overflow-y-auto border border-white/20 dark:border-slate-700/50
           ${className}
         `}
             >
                 {/* Header */}
                 {(title || showCloseButton) && (
-                    <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-100 dark:border-[#333]">
+                    <div className="flex items-center justify-between p-6 border-b border-gray-200/50 dark:border-slate-700/50 sticky top-0 glass-strong backdrop-blur-xl z-10 rounded-t-3xl">
                         {title && (
-                            <h2 
+                            <h2
                                 id={id ? `${id}-title` : undefined}
-                                className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white"
+                                className="text-xl font-bold text-gray-900 dark:text-white"
                             >
                                 {title}
                             </h2>
@@ -140,20 +135,17 @@ export default function Modal({
                         {showCloseButton && (
                             <button
                                 onClick={onClose}
-                                aria-label="Modalı kapat"
-                                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition-colors text-gray-500 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+                                className="ml-auto size-10 flex items-center justify-center rounded-xl glass hover:bg-red-500/10 transition-all hover:scale-110"
+                                aria-label="Kapat"
                             >
-                                <X className="w-5 h-5" aria-hidden="true" />
+                                <X className="size-5 text-gray-700 dark:text-gray-300" />
                             </button>
                         )}
                     </div>
                 )}
 
                 {/* Body */}
-                <div 
-                    id={id ? `${id}-description` : undefined}
-                    className="p-4 sm:p-6"
-                >
+                <div className="p-6">
                     {children}
                 </div>
             </div>
