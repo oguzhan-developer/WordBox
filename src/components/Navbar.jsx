@@ -12,18 +12,11 @@ const navItems = [
     { path: '/library', label: 'Kütüphane' },
 ];
 
-const notificationsMock = [
-    { id: 1, title: 'Günlük hedef tamamlandı', time: '2 dk önce', type: 'success', icon: 'check_circle' },
-    { id: 2, title: 'Yeni kelime önerisi: "serendipity"', time: '15 dk önce', type: 'info', icon: 'lightbulb' },
-    { id: 3, title: 'Okuma serin 7 güne ulaştı!', time: '1 saat önce', type: 'streak', icon: 'local_fire_department' },
-];
-
 export default function Navbar() {
     const location = useLocation();
     const { user, isLoggedIn, logout } = useUser();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [profileMenuOpen, setProfileMenuOpen] = useState(false);
-    const [notificationsOpen, setNotificationsOpen] = useState(false);
     const { isOnline } = useNetworkStatus();
 
     const isActive = (path) => location.pathname === path;
@@ -106,60 +99,10 @@ export default function Navbar() {
                             {/* Theme Toggle */}
                             <ThemeToggle variant="icon" />
 
-                            {/* Notifications */}
-                            <div className="relative">
-                                <button
-                                    aria-label="Bildirimler"
-                                    onClick={() => { setNotificationsOpen((prev) => !prev); setProfileMenuOpen(false); setMobileMenuOpen(false); }}
-                                    aria-expanded={notificationsOpen}
-                                    aria-haspopup="menu"
-                                    className="size-11 flex items-center justify-center rounded-xl glass hover:shadow-lg transition-all relative focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500/50 dark:focus:ring-offset-slate-900 hover:-translate-y-0.5"
-                                >
-                                    <span className="material-symbols-outlined text-gray-700 dark:text-gray-300" aria-hidden="true">notifications</span>
-                                    <span className="absolute top-2 right-2 inline-flex items-center justify-center">
-                                        <span className="size-2 bg-gradient-to-r from-red-500 to-rose-500 rounded-full border-2 border-white dark:border-slate-800 shadow-lg" />
-                                        <span className="absolute inline-flex size-3 rounded-full bg-red-500/60 animate-ping" aria-hidden="true" />
-                                    </span>
-                                </button>
-
-                                {notificationsOpen && (
-                                    <div className="absolute right-0 mt-3 w-80 glass-strong rounded-2xl shadow-2xl backdrop-blur-xl z-[95] border border-white/20 dark:border-slate-700/50">
-                                        <div className="px-5 py-4 flex items-center justify-between border-b border-gray-200/50 dark:border-slate-700/50">
-                                            <div className="flex items-center gap-2">
-                                                <span className="material-symbols-outlined text-[20px] text-indigo-600 dark:text-indigo-400">notifications_active</span>
-                                                <p className="text-sm font-bold text-gray-900 dark:text-white">Bildirimler</p>
-                                            </div>
-                                            <span className="text-[11px] font-bold uppercase text-indigo-500 dark:text-indigo-400">Canlı</span>
-                                        </div>
-                                        <ul className="divide-y divide-gray-200/50 dark:divide-slate-700/50">
-                                            {notificationsMock.map((item) => (
-                                                <li key={item.id} className="p-4 flex gap-3 hover:bg-white/30 dark:hover:bg-slate-800/30 transition-colors cursor-pointer">
-                                                    <div className="size-11 rounded-xl glass flex items-center justify-center shadow-lg text-indigo-600 dark:text-indigo-400">
-                                                        <span className="material-symbols-outlined text-[20px]">{item.icon}</span>
-                                                    </div>
-                                                    <div className="flex-1">
-                                                        <p className="text-sm font-semibold text-gray-900 dark:text-white leading-tight">{item.title}</p>
-                                                        <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{item.time}</p>
-                                                    </div>
-                                                    <span className="size-2 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 self-center shadow-lg" aria-hidden="true" />
-                                                </li>
-                                            ))}
-                                        </ul>
-                                        <div className="px-5 py-4 text-center border-t border-gray-200/50 dark:border-slate-700/50">
-                                            <button className="text-sm font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors">Tümünü gör</button>
-                                        </div>
-                                    </div>
-                                )}
-
-                                {notificationsOpen && (
-                                    <div className="fixed inset-0 z-40" onClick={() => setNotificationsOpen(false)} aria-hidden="true" />
-                                )}
-                            </div>
-
                             {/* Profile */}
                             <div className="relative">
                                 <button
-                                    onClick={() => { setProfileMenuOpen(!profileMenuOpen); setNotificationsOpen(false); setMobileMenuOpen(false); }}
+                                    onClick={() => { setProfileMenuOpen(!profileMenuOpen); setMobileMenuOpen(false); }}
                                     aria-expanded={profileMenuOpen}
                                     aria-haspopup="menu"
                                     className="size-12 rounded-full bg-gray-200 overflow-hidden cursor-pointer border-2 border-white shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/70 dark:focus:ring-offset-gray-900"

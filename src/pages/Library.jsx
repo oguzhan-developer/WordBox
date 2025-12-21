@@ -15,7 +15,7 @@ export default function Library() {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedLevel, setSelectedLevel] = useState(user.level);
     const [selectedCategory, setSelectedCategory] = useState('all');
-    const [selectedType, setSelectedType] = useState('all');
+    const [selectedType, setSelectedType] = useState('news');
     const [showBookmarksOnly, setShowBookmarksOnly] = useState(false);
     const [viewMode, setViewMode] = useState('grid');
     const [showFilters, setShowFilters] = useState(false);
@@ -26,7 +26,6 @@ export default function Library() {
     const levels = ['A1', 'A2', 'B1', 'B2', 'C1'];
     const categories = ['all', 'Teknoloji', 'Çevre', 'Bilim', 'Spor', 'Sağlık', 'Macera', 'Gizem'];
     const types = [
-        { value: 'all', label: 'Tümü', icon: '📚' },
         { value: 'news', label: 'Haberler', icon: '📰' },
         { value: 'story', label: 'Hikayeler', icon: '😄' },
     ];
@@ -44,12 +43,12 @@ export default function Library() {
             try {
                 let allContent = [];
 
-                if (selectedType === 'all' || selectedType === 'news') {
+                if (selectedType === 'news') {
                     const news = await supabaseService.getContentByLevel('news', selectedLevel);
                     allContent = [...allContent, ...news];
                 }
 
-                if (selectedType === 'all' || selectedType === 'story') {
+                if (selectedType === 'story') {
                     const stories = await supabaseService.getContentByLevel('story', selectedLevel);
                     allContent = [...allContent, ...stories];
                 }
@@ -95,11 +94,11 @@ export default function Library() {
         setSearchQuery('');
         setSelectedLevel(user.level);
         setSelectedCategory('all');
-        setSelectedType('all');
+        setSelectedType('news');
         setShowBookmarksOnly(false);
     };
 
-    const hasActiveFilters = searchQuery || selectedLevel !== user.level || selectedCategory !== 'all' || selectedType !== 'all' || showBookmarksOnly;
+    const hasActiveFilters = searchQuery || selectedLevel !== user.level || selectedCategory !== 'all' || selectedType !== 'news' || showBookmarksOnly;
 
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-[#18181b] pt-20 pb-12">

@@ -28,20 +28,8 @@ export const validatePassword = (password) => {
         return { isValid: false, errors };
     }
     
-    if (password.length < 8) {
-        errors.push('Şifre en az 8 karakter olmalıdır');
-    }
-    
-    if (!/[a-z]/.test(password)) {
-        errors.push('Şifre en az bir küçük harf içermelidir');
-    }
-    
-    if (!/[A-Z]/.test(password)) {
-        errors.push('Şifre en az bir büyük harf içermelidir');
-    }
-    
-    if (!/[0-9]/.test(password)) {
-        errors.push('Şifre en az bir rakam içermelidir');
+    if (password.length < 6) {
+        errors.push('Şifre en az 6 karakter olmalıdır');
     }
     
     if (password.length > 128) {

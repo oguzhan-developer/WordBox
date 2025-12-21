@@ -27,6 +27,7 @@ const TranslationMode = lazy(() => import('./pages/practice/TranslationMode'));
 const ListeningMode = lazy(() => import('./pages/practice/ListeningMode'));
 const ProfilePage = lazy(() => import('./pages/ProfilePage'));
 const SettingsPage = lazy(() => import('./pages/SettingsPage'));
+const AdminPage = lazy(() => import('./pages/AdminPage'));
 
 // Loading component
 function PageLoader() {
@@ -277,6 +278,14 @@ function AppRoutes() {
                 <SettingsPage />
               </Layout>
             </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <Layout>
+              <AdminPage />
+            </Layout>
           }
         />
 

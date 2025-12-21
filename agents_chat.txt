@@ -1,3 +1,69 @@
+[ITERASYON | 2025-12-22 00:15]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/AdminPage.jsx
+
+Yapılan Geliştirme:
+- Admin paneli hata düzeltmeleri:
+  * Yeni kelimeler ve anlama soruları input alanları düzeltildi
+  * Değerler artık string olarak tutulup düzenlenebiliyor
+  * Kaydetme sırasında string'ler JSON'a parse ediliyor
+  * key_phrases virgülle ayrılmış string olarak çalışıyor
+  * read_time_minutes parseInt ile integer'a çevriliyor
+  * Form reset fonksiyonu güncellendi (string başlangıç değerleri)
+- RLS (Row Level Security) hatası için çözüm dokümante edildi
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- JSON input alanları düzenleme sorunu çözüldü
+- String/Array parse mantığı iyileştirildi
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-21 23:45]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/AdminPage.jsx (YENİ)
+- /Users/oguz/Documents/EnglishLearnApp/src/App.jsx
+
+Yapılan Geliştirme:
+- Admin Paneli (AdminPage) oluşturuldu
+- Haber (news) ve Hikaye (stories) ekleme/düzenleme/silme özellikleri
+- Veritabanındaki tüm sütunlar form alanları olarak eklendi:
+  * Ana tablo: slug, image, published_at, read_time_minutes, is_published, category_id
+  * Seviye tabloları (A1-C1): title, subtitle, summary, content_text, new_words, key_phrases, comprehension_questions, word_count
+- Kategori yönetimi: name, name_en, slug, icon, color
+- Yayın durumu toggle özelliği
+- Arama ve filtreleme (yayında/taslak)
+- Admin e-posta kontrolü ile güvenlik
+- /admin route'u App.jsx'e eklendi
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
 [ITERASYON | 2025-12-21 17:28]
 
 Değiştirilen Dosyalar:
@@ -2232,6 +2298,118 @@ Yapılan Geliştirme:
 
 Build Sonucu:
 - BAŞARILI
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+[ITERASYON | 2025-12-21 20:45]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/Library.jsx
+
+Yapılan Geliştirme:
+- İçerik tipi filtresinden "Tümü" seçeneği kaldırıldı
+- Artık sadece "Haberler" veya "Hikayeler" olarak ayrı ayrı seçilebiliyor
+- Default seçim "Haberler" (news) olarak ayarlandı
+- types dizisinden 'all' seçeneği kaldırıldı
+- selectedType default değeri 'all' yerine 'news' yapıldı
+- Fetch data fonksiyonu güncellendi: Artık sadece seçili tipi getiriyor
+- clearFilters fonksiyonu güncellendi: 'all' yerine 'news' yapıyor
+- hasActiveFilters kontrolü güncellendi: 'all' yerine 'news' varsayılanı kullanıyor
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+  - 1809 modül transformed
+  - Bundle boyutu: 463.76 kB (gzip: 136.17 kB)
+  - Build süresi: 2.27s
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+
+[ITERASYON | 2025-12-21 22:00]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/services/supabaseService.js
+
+Yapılan Geliştirme:
+- Veritabanı mimarisi tamamen ayrıldı (news ve stories için ayrı tablolar)
+- supabaseService.js yeni DB şemasına göre güncellendi:
+  * getNewsByLevel() - Haberler için seviyeye göre getirme
+  * getNewsBySlug() - Haberi slug'a göre getirme
+  * getStoriesByLevel() - Hikayeleri seviyeye göre getirme
+  * getStoryBySlug() - Hikayeyi slug'a göre getirme
+  * Legacy uyumluluk için getContentByLevel() ve getContentBySlug() korundu
+- Gereksiz alanlar kaldırıldı: author, source, source_url, difficulty_score, audio_url, audio_duration, avg_sentence_length, sentence_count, frequency_rank, is_key_word
+- Yeni alanlar eklendi: subtitle, summary, keyPhrases, comprehensionQuestions
+- Kategori bilgileri artık ilişkisel tablolardan (news_categories, story_categories) çekiliyor
+- Tüm içerik metadata'sı korundu: views, likes, bookmarks, published_at, read_time_minutes
+
+Veritabanı Yapısı:
+✓ Haberler: news + news_levels + news_categories
+✓ Hikayeler: stories + story_levels + story_categories
+✓ Her içerik tipi için ayrı ilerleme tabloları
+✓ Her içerik tipi için ayrı etkileşim tabloları
+✓ Performans için optimize edilmiş indeksler
+✓ RLS politikaları aktif
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+  * 1809 modül transformed
+  * Bundle boyutu: 463.76 kB (gzip: 136.18 kB)
+  * Build süresi: 2.03s
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-22 00:15]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/utils/validation.js
+
+Yapılan Geliştirme:
+- Şifre validasyonu basitleştirildi
+- Büyük harf zorunluluğu kaldırıldı
+- Küçük harf zorunluluğu kaldırıldı
+- Rakam zorunluluğu kaldırıldı
+- Minimum şifre uzunluğu 8'den 6'ya düşürüldü (Supabase varsayılanıyla uyumlu)
+- Sadece minimum 6 karakter ve maksimum 128 karakter kontrolü kaldı
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+  * 1810 modül transformed
+  * Build süresi: 2.16s
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
 
 Son Build Durumu:
 - BAŞARILI

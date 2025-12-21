@@ -95,8 +95,8 @@ export default function Dashboard() {
             <main className="flex-1 w-full max-w-[1200px] mx-auto px-4 md:px-8 py-8 md:py-12">
                 {/* Hero Section */}
                 <section className="flex flex-col lg:flex-row gap-8 mb-12 items-start lg:items-center">
-                    <div className="flex-1">
-                        <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                    <div className="flex-1 min-w-0">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent break-words leading-tight pb-2">
                             Hoş geldin, {user.name?.split(' ')[0] || 'Öğrenci'}! <span className="inline-block animate-bounce">👋</span>
                         </h2>
                         <p className="text-gray-600 dark:text-gray-400 text-lg max-w-lg">Bugünkü hedefine ulaşmak için harika bir gün. Sadece 15 dakika daha pratik yap.</p>

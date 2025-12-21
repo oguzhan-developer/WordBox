@@ -2,102 +2,309 @@ import { supabase } from '../lib/supabaseClient';
 
 /**
  * Service to handle data fetching from Supabase tables (news, stories, words)
+ * Updated for separate news and stories tables
  */
 export const supabaseService = {
-    // --- News & Stories ---
+    // --- NEWS ---
 
-    async getContentByLevel(type, level) {
+    async getNewsByLevel(level) {
         try {
             const { data, error } = await supabase
-                .from('contents')
+                .from('news')
                 .select(`
                     *,
-                    content_levels!inner (
+                    news_levels!inner (
                         level,
                         title,
+                        subtitle,
+                        summary,
                         content_text,
-                        new_words
+                        new_words,
+                        key_phrases,
+                        comprehension_questions,
+                        word_count
+                    ),
+                    news_categories (
+                        name,
+                        name_en,
+                        slug,
+                        icon,
+                        color
                     )
                 `)
-                .eq('type', type)
-                .eq('content_levels.level', level)
+                .eq('news_levels.level', level)
+                .eq('is_published', true)
                 .order('published_at', { ascending: false });
 
             if (error) {
+                console.error('Error fetching news:', error);
                 return [];
             }
 
             return data.map(item => {
-                const levelData = item.content_levels[0]; // content_levels is an array due to join
+                const levelData = item.news_levels[0];
                 if (!levelData) return null;
+
+                const category = item.news_categories;
 
                 return {
                     id: item.id,
                     slug: item.slug,
-                    category: item.category,
-                    categoryEn: item.category_en,
+                    category: category?.name || '',
+                    categoryEn: category?.name_en || '',
+                    categorySlug: category?.slug || '',
+                    categoryIcon: category?.icon || '',
+                    categoryColor: category?.color || '',
                     image: item.image,
                     publishedAt: item.published_at,
                     readTime: item.read_time_minutes,
                     views: item.views,
                     likes: item.likes,
+                    bookmarks: item.bookmarks,
                     title: levelData.title,
+                    subtitle: levelData.subtitle,
+                    summary: levelData.summary,
                     content: levelData.content_text,
                     newWords: levelData.new_words || [],
+                    keyPhrases: levelData.key_phrases || [],
+                    comprehensionQuestions: levelData.comprehension_questions || [],
+                    wordCount: levelData.word_count || 0,
                     level: levelData.level,
-                    type: item.type
+                    type: 'news'
                 };
             }).filter(Boolean);
         } catch (err) {
+            console.error('Error in getNewsByLevel:', err);
             return [];
         }
     },
 
-    async getContentBySlug(type, slug, level) {
+    async getNewsBySlug(slug, level) {
         if (!slug) return null;
 
         try {
-            // First get the content metadata
-            const { data: content, error: contentError } = await supabase
-                .from('contents')
-                .select('*')
+            // Get the news metadata
+            const { data: news, error: newsError } = await supabase
+                .from('news')
+                .select(`
+                    *,
+                    news_categories (
+                        name,
+                        name_en,
+                        slug,
+                        icon,
+                        color
+                    )
+                `)
                 .eq('slug', slug)
-                .eq('type', type)
+                .eq('is_published', true)
                 .maybeSingle();
 
-            if (contentError || !content) return null;
+            if (newsError || !news) return null;
 
-            // Then get the specific level data
-            // We'll also fetch all available levels to show the switcher
+            // Get all available levels for this news
             const { data: levels, error: levelsError } = await supabase
-                .from('content_levels')
+                .from('news_levels')
                 .select('*')
-                .eq('content_id', content.id);
+                .eq('news_id', news.id);
 
             if (levelsError || !levels || levels.length === 0) return null;
 
             // Find requested level or fallback
             const levelData = levels.find(l => l.level === level) || levels[0];
+            const category = news.news_categories;
 
             return {
-                id: content.id,
-                slug: content.slug,
-                category: content.category,
-                categoryEn: content.category_en,
-                image: content.image,
-                publishedAt: content.published_at,
-                readTime: content.read_time_minutes,
-                views: content.views,
-                likes: content.likes,
+                id: news.id,
+                slug: news.slug,
+                category: category?.name || '',
+                categoryEn: category?.name_en || '',
+                categorySlug: category?.slug || '',
+                categoryIcon: category?.icon || '',
+                categoryColor: category?.color || '',
+                image: news.image,
+                publishedAt: news.published_at,
+                readTime: news.read_time_minutes,
+                views: news.views,
+                likes: news.likes,
+                bookmarks: news.bookmarks,
                 title: levelData.title,
+                subtitle: levelData.subtitle,
+                summary: levelData.summary,
                 content: levelData.content_text,
                 newWords: levelData.new_words || [],
+                keyPhrases: levelData.key_phrases || [],
+                comprehensionQuestions: levelData.comprehension_questions || [],
+                wordCount: levelData.word_count || 0,
                 level: levelData.level,
-                availableLevels: levels.map(l => l.level)
+                availableLevels: levels.map(l => l.level),
+                type: 'news'
             };
         } catch (err) {
+            console.error('Error in getNewsBySlug:', err);
             return null;
         }
+    },
+
+    // --- STORIES ---
+
+    async getStoriesByLevel(level) {
+        try {
+            const { data, error } = await supabase
+                .from('stories')
+                .select(`
+                    *,
+                    story_levels!inner (
+                        level,
+                        title,
+                        subtitle,
+                        summary,
+                        content_text,
+                        new_words,
+                        key_phrases,
+                        comprehension_questions,
+                        word_count
+                    ),
+                    story_categories (
+                        name,
+                        name_en,
+                        slug,
+                        icon,
+                        color
+                    )
+                `)
+                .eq('story_levels.level', level)
+                .eq('is_published', true)
+                .order('published_at', { ascending: false });
+
+            if (error) {
+                console.error('Error fetching stories:', error);
+                return [];
+            }
+
+            return data.map(item => {
+                const levelData = item.story_levels[0];
+                if (!levelData) return null;
+
+                const category = item.story_categories;
+
+                return {
+                    id: item.id,
+                    slug: item.slug,
+                    category: category?.name || '',
+                    categoryEn: category?.name_en || '',
+                    categorySlug: category?.slug || '',
+                    categoryIcon: category?.icon || '',
+                    categoryColor: category?.color || '',
+                    image: item.image,
+                    publishedAt: item.published_at,
+                    readTime: item.read_time_minutes,
+                    views: item.views,
+                    likes: item.likes,
+                    bookmarks: item.bookmarks,
+                    title: levelData.title,
+                    subtitle: levelData.subtitle,
+                    summary: levelData.summary,
+                    content: levelData.content_text,
+                    newWords: levelData.new_words || [],
+                    keyPhrases: levelData.key_phrases || [],
+                    comprehensionQuestions: levelData.comprehension_questions || [],
+                    wordCount: levelData.word_count || 0,
+                    level: levelData.level,
+                    type: 'story'
+                };
+            }).filter(Boolean);
+        } catch (err) {
+            console.error('Error in getStoriesByLevel:', err);
+            return [];
+        }
+    },
+
+    async getStoryBySlug(slug, level) {
+        if (!slug) return null;
+
+        try {
+            // Get the story metadata
+            const { data: story, error: storyError } = await supabase
+                .from('stories')
+                .select(`
+                    *,
+                    story_categories (
+                        name,
+                        name_en,
+                        slug,
+                        icon,
+                        color
+                    )
+                `)
+                .eq('slug', slug)
+                .eq('is_published', true)
+                .maybeSingle();
+
+            if (storyError || !story) return null;
+
+            // Get all available levels for this story
+            const { data: levels, error: levelsError } = await supabase
+                .from('story_levels')
+                .select('*')
+                .eq('story_id', story.id);
+
+            if (levelsError || !levels || levels.length === 0) return null;
+
+            // Find requested level or fallback
+            const levelData = levels.find(l => l.level === level) || levels[0];
+            const category = story.story_categories;
+
+            return {
+                id: story.id,
+                slug: story.slug,
+                category: category?.name || '',
+                categoryEn: category?.name_en || '',
+                categorySlug: category?.slug || '',
+                categoryIcon: category?.icon || '',
+                categoryColor: category?.color || '',
+                image: story.image,
+                publishedAt: story.published_at,
+                readTime: story.read_time_minutes,
+                views: story.views,
+                likes: story.likes,
+                bookmarks: story.bookmarks,
+                title: levelData.title,
+                subtitle: levelData.subtitle,
+                summary: levelData.summary,
+                content: levelData.content_text,
+                newWords: levelData.new_words || [],
+                keyPhrases: levelData.key_phrases || [],
+                comprehensionQuestions: levelData.comprehension_questions || [],
+                wordCount: levelData.word_count || 0,
+                level: levelData.level,
+                availableLevels: levels.map(l => l.level),
+                type: 'story'
+            };
+        } catch (err) {
+            console.error('Error in getStoryBySlug:', err);
+            return null;
+        }
+    },
+
+    // --- LEGACY COMPATIBILITY ---
+    // Keep old function names for backwards compatibility
+    async getContentByLevel(type, level) {
+        if (type === 'news') {
+            return this.getNewsByLevel(level);
+        } else if (type === 'story') {
+            return this.getStoriesByLevel(level);
+        }
+        return [];
+    },
+
+    async getContentBySlug(type, slug, level) {
+        if (type === 'news') {
+            return this.getNewsBySlug(slug, level);
+        } else if (type === 'story') {
+            return this.getStoryBySlug(slug, level);
+        }
+        return null;
     },
 
     // --- Words ---
