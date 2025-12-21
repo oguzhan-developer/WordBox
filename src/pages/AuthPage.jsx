@@ -159,7 +159,7 @@ export default function AuthPage() {
                     </div>
                     <div className="relative z-10 flex flex-col items-center">
                         <div className="size-16 bg-white rounded-full flex items-center justify-center text-brand-blue mb-6 shadow-lg">
-                            <span className="material-symbols-outlined text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>lightbulb</span>
+                            <span className="material-symbols-outlined text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>inventory_2</span>
                         </div>
                         <h2 className="text-4xl font-bold mb-4">Hızlı ve Etkili Öğrenme</h2>
                         <p className="text-lg font-light mb-8 max-w-md">Kanıtlanmış Başarı.</p>

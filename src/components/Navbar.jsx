@@ -15,9 +15,9 @@ export default function Navbar() {
                     <div className="flex items-center justify-between">
                         <Link to="/" className="flex items-center gap-3">
                             <div className="size-10 bg-primary rounded-lg flex items-center justify-center text-black">
-                                <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>school</span>
+                                <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>inventory_2</span>
                             </div>
-                            <h1 className="text-xl font-bold tracking-tight hidden sm:block">EnglishApp</h1>
+                            <h1 className="text-xl font-bold tracking-tight hidden sm:block">WordBox</h1>
                         </Link>
                         <Link
                             to="/auth"
@@ -40,9 +40,9 @@ export default function Navbar() {
                     {/* Logo */}
                     <div className="flex items-center gap-3">
                         <Link to="/dashboard" className="size-10 bg-primary rounded-lg flex items-center justify-center text-black">
-                            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>school</span>
+                            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>inventory_2</span>
                         </Link>
-                        <h1 className="text-xl font-bold tracking-tight hidden sm:block">EnglishApp</h1>
+                        <h1 className="text-xl font-bold tracking-tight hidden sm:block">WordBox</h1>
                     </div>
 
                     {/* Center Links (Desktop) */}
