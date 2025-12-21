@@ -1,0 +1,38 @@
+[SEED | 2025-01-21 15:00]
+
+📌 Proje: WordBox – İngilizce Vocabulary Geliştirme Platformu
+
+📖 Mevcut Varsayılan Durum:
+- WordBox, İngilizce kelime öğrenimine odaklanan bir platformdur.
+- Hedef seviye aralığı: A1 – C1
+- Öğrenme, metinler (haber, hikâye, kısa pasajlar) üzerinden yapılır.
+- Kelime anlamı, örnek cümle, telaffuz ve tekrar (spaced repetition) temel yapı taşlarıdır.
+- Platform web tabanlıdır (mobil uyumluluk hedeflenmektedir).
+- Yapay zekâ, kelime önerileri ve içerik uyarlaması için kullanılacaktır.
+
+🎯 Ana Hedefler:
+- Kullanıcının kelime öğrenme hızını artırmak
+- Uzun süreli kullanıcı bağlılığı (retention) sağlamak
+- Öğrenmeyi sıkıcı olmaktan çıkarıp alışkanlık haline getirmek
+- Güvenli, hızlı ve ölçeklenebilir bir sistem kurmak
+
+⚠️ Bilinen Kısıtlar & Açık Sorular:
+- Henüz netleşmiş bir backend mimarisi yok
+- Kullanıcı sayısı başlangıçta düşük, ancak hızlı ölçeklenebilir olmalı
+- Güvenlik ve performans MVP aşamasından itibaren düşünülmeli
+- AI kullanımı maliyet/performans dengesi gözetilerek planlanmalı
+
+🧠 Agent’lardan Beklenenler:
+- Tasarım, özellik, performans ve güvenlik alanlarında SOMUT öneriler üretmek
+- Birbirinin fikirlerini eleştirmek ve geliştirmek
+- Aynı fikirleri tekrar etmeden ilerlemek
+- Her döngüde WordBox’ı daha ileri taşımak
+
+🚦 Başlangıç Talimatı:
+- İlk olarak Agent-1 bu dosyayı okuyup analiz edecek ve çıktısını ekleyecek.
+- Ardından Agent-2 dosyayı okuyup kendi analizini ekleyecek.
+- Bu döngü kesintisiz şekilde devam edecek.
+
+📌 Not:
+Bu dosya WordBox için tek gerçek kaynak (single source of truth) kabul edilir.
+Hiçbir içerik silinmez, sadece ekleme yapılır.

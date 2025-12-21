@@ -23,6 +23,7 @@ const defaultUser = {
     wordsLearned: 0,
     wordsToday: 0,
     articlesRead: 0,
+    readArticles: [],
     practiceCount: 0,
     perfectPractices: 0,
     vocabulary: [],
@@ -94,6 +95,7 @@ const mapProfileToUser = (profile, email) => {
         earnedBadges: profile.earned_badges || [], // JSONB
         preferences: profile.preferences || defaultUser.preferences, // JSONB
         completedLevels: profile.completed_levels || [], // JSONB
+        readArticles: profile.read_articles || [], // JSONB
     };
 };
 
@@ -279,6 +281,7 @@ export function UserProvider({ children }) {
         if (updates.preferences !== undefined) localUpdates.preferences = updates.preferences;
         if (updates.preferences !== undefined) localUpdates.preferences = updates.preferences;
         if (updates.completed_levels !== undefined) localUpdates.completedLevels = updates.completed_levels;
+        if (updates.read_articles !== undefined) localUpdates.readArticles = updates.read_articles;
         if (updates.level !== undefined) localUpdates.level = updates.level;
         if (updates.avatar_url !== undefined) localUpdates.avatar = updates.avatar_url;
 
@@ -456,12 +459,20 @@ export function UserProvider({ children }) {
     };
 
     const readArticle = (articleId) => {
-        if (!user.id) return;
+        if (!user.id || !articleId) return;
 
-        updateProfile({
-            articles_read: user.articlesRead + 1,
-            xp: user.xp + xpRewards.readArticle
-        });
+        // Check if already read
+        const isAlreadyRead = user.readArticles?.includes(articleId);
+
+        if (!isAlreadyRead) {
+            const updatedReadArticles = [...(user.readArticles || []), articleId];
+
+            updateProfile({
+                read_articles: updatedReadArticles,
+                articles_read: user.articlesRead + 1,
+                xp: user.xp + xpRewards.readArticle
+            });
+        }
     };
 
     const updatePreferences = (newPreferences) => {

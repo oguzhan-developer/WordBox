@@ -1,13 +1,30 @@
 import { Link } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
-import { getNewsByLevel } from '../data/news';
+import { useState, useEffect } from 'react';
+import { supabaseService } from '../services/supabaseService';
 
 export default function Dashboard() {
     const { user } = useUser();
 
-    // Get news for user's level
-    const news = getNewsByLevel(user.level || 'B1');
-    const featuredNews = news[0] || { title: 'Haber Bulunamadı', newWords: [] };
+    const [featuredNews, setFeaturedNews] = useState({ title: 'Yükleniyor...', newWords: [] });
+    const [isLoadingNews, setIsLoadingNews] = useState(true);
+
+    // Fetch featured news from Supabase
+    useEffect(() => {
+        const fetchFeatured = async () => {
+            setIsLoadingNews(true);
+            const news = await supabaseService.getContentByLevel('news', user.level || 'B1');
+            if (news && news.length > 0) {
+                setFeaturedNews(news[0]);
+            } else {
+                setFeaturedNews({ title: 'İçerik Bulunamadı', newWords: [] });
+            }
+            setIsLoadingNews(false);
+        };
+        if (user.level) {
+            fetchFeatured();
+        }
+    }, [user.level]);
 
     // Calculate stats
     const dailyGoal = user.preferences?.dailyGoal || 20;

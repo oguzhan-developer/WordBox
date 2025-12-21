@@ -1,9 +1,10 @@
 import { useState, useMemo } from 'react';
 import { Search, Filter, Grid, List, X } from 'lucide-react';
 import { useUser } from '../context/UserContext';
-import ContentCard from '../components/ContentCard';
 import { LevelBadge } from '../components/Badge';
-import { getNewsByLevel, newsData } from '../data/news';
+import { supabaseService } from '../services/supabaseService';
+import { useEffect } from 'react';
+import ContentCard from '../components/ContentCard';
 
 export default function Library() {
     const { user } = useUser();
@@ -15,36 +16,64 @@ export default function Library() {
     const [selectedType, setSelectedType] = useState('all');
     const [viewMode, setViewMode] = useState('grid');
     const [showFilters, setShowFilters] = useState(false);
+    const [content, setContent] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     const levels = ['A1', 'A2', 'B1', 'B2', 'C1'];
-    const categories = ['all', 'Teknoloji', 'Çevre', 'Bilim', 'Spor', 'Sağlık'];
+    const categories = ['all', 'Teknoloji', 'Çevre', 'Bilim', 'Spor', 'Sağlık', 'Macera', 'Gizem'];
     const types = [
         { value: 'all', label: 'Tümü', icon: '📚' },
         { value: 'news', label: 'Haberler', icon: '📰' },
         { value: 'story', label: 'Hikayeler', icon: '😄' },
-        { value: 'novel', label: 'Romanlar', icon: '📖' },
     ];
 
-    // Get filtered content
-    const content = useMemo(() => {
-        let items = getNewsByLevel(selectedLevel);
+    // Fetch data from Supabase
+    useEffect(() => {
+        const fetchData = async () => {
+            setIsLoading(true);
+            try {
+                let allContent = [];
 
-        // Filter by search
-        if (searchQuery) {
-            const query = searchQuery.toLowerCase();
-            items = items.filter(item =>
-                item.title.toLowerCase().includes(query) ||
-                item.category.toLowerCase().includes(query)
-            );
-        }
+                if (selectedType === 'all' || selectedType === 'news') {
+                    const news = await supabaseService.getContentByLevel('news', selectedLevel);
+                    allContent = [...allContent, ...news];
+                }
 
-        // Filter by category
-        if (selectedCategory !== 'all') {
-            items = items.filter(item => item.category === selectedCategory);
-        }
+                if (selectedType === 'all' || selectedType === 'story') {
+                    const stories = await supabaseService.getContentByLevel('story', selectedLevel);
+                    allContent = [...allContent, ...stories];
+                }
 
-        return items;
-    }, [selectedLevel, searchQuery, selectedCategory]);
+                // Filter by category
+                if (selectedCategory !== 'all') {
+                    allContent = allContent.filter(item => item.category === selectedCategory);
+                }
+
+                // Filter by search
+                if (searchQuery) {
+                    const query = searchQuery.toLowerCase();
+                    allContent = allContent.filter(item =>
+                        item.title.toLowerCase().includes(query) ||
+                        item.category.toLowerCase().includes(query)
+                    );
+                }
+
+                setContent(allContent);
+            } catch (error) {
+                console.error("Failed to fetch content:", error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [selectedLevel, selectedCategory, selectedType, searchQuery]);
+
+    // Get counts (placeholder for stats, could be optimized)
+    const stats = {
+        news: content.filter(i => i.type === 'news').length,
+        stories: content.filter(i => i.type === 'story').length
+    };
 
     // Clear all filters
     const clearFilters = () => {
@@ -64,19 +93,16 @@ export default function Library() {
                 <div className="mb-8">
                     <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Kütüphane 📚</h1>
                     <p className="text-gray-600 dark:text-gray-400">
-                        {newsData.length * 5}+ içerik ile vocabulary pratiği yap
+                        Seviyene uygun yüzlerce içerik ile vocabulary pratiği yap
                     </p>
 
                     {/* Stats */}
                     <div className="flex flex-wrap gap-4 mt-4">
                         <span className="px-3 py-1.5 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
-                            📰 {newsData.length * 5} Haber
+                            📰 Haberler
                         </span>
                         <span className="px-3 py-1.5 bg-yellow-100 text-yellow-700 rounded-full text-sm font-medium">
-                            😄 45 Hikaye (Yakında)
-                        </span>
-                        <span className="px-3 py-1.5 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">
-                            📖 12 Roman (Yakında)
+                            😄 Hikayeler
                         </span>
                     </div>
                 </div>
@@ -245,17 +271,22 @@ export default function Library() {
                 </div>
 
                 {/* Content Grid */}
-                {content.length > 0 ? (
+                {isLoading ? (
+                    <div className="flex justify-center py-20">
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+                    </div>
+                ) : content.length > 0 ? (
                     <div className={`grid gap-6 ${viewMode === 'grid'
                         ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
                         : 'grid-cols-1'
                         }`}>
                         {content.map((item, index) => (
-                            <div key={item.id} className="animate-fadeIn" style={{ animationDelay: `${index * 50}ms` }}>
+                            <div key={`${item.type}-${item.id}`} className="animate-fadeIn" style={{ animationDelay: `${index * 50}ms` }}>
                                 <ContentCard
                                     {...item}
                                     wordCount={item.newWords?.length || 0}
                                     isNew={index < 2}
+                                    isRead={user.readArticles?.includes(item.id)}
                                 />
                             </div>
                         ))}

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { X, Clock, Zap, Target, TrendingUp, Trophy, ChevronRight } from 'lucide-react';
 import { useUser } from '../../context/UserContext';
 import { useToast } from '../../components/Toast';
-import { wordsData } from '../../data/words';
+import { supabaseService } from '../../services/supabaseService';
 
 export default function SprintMode() {
     const navigate = useNavigate();
@@ -24,6 +24,7 @@ export default function SprintMode() {
     const [stats, setStats] = useState({ correct: 0, wrong: 0 });
     const [lastResult, setLastResult] = useState(null); // 'correct', 'wrong', null
     const [showCorrection, setShowCorrection] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const timerRef = useRef(null);
     const lastWordId = useRef(null);
@@ -39,33 +40,42 @@ export default function SprintMode() {
     };
 
     // Generate a new question
-    const generateQuestion = useCallback(() => {
-        // Filter pool by level
-        let pool = wordsData.filter(w => w.level === selectedLevel);
+    const generateQuestion = useCallback(async () => {
+        setIsLoading(true);
+        try {
+            const pool = await supabaseService.getWordsByLevel(selectedLevel);
 
-        // If pool is empty (shouldn't happen with our data), fallback to all
-        if (pool.length === 0) pool = wordsData;
+            if (pool.length === 0) {
+                console.warn("No words found for level:", selectedLevel);
+                generateQuestion(); // Simple retry or use a different level
+                return;
+            }
 
-        let word;
-        do {
-            word = pool[Math.floor(Math.random() * pool.length)];
-        } while (word.id === lastWordId.current && pool.length > 1);
+            let word;
+            do {
+                word = pool[Math.floor(Math.random() * pool.length)];
+            } while (word.id === lastWordId.current && pool.length > 1);
 
-        lastWordId.current = word.id;
-        setCurrentWord(word);
+            lastWordId.current = word.id;
+            setCurrentWord(word);
 
-        // Generate 3 wrong options
-        const otherWords = pool.filter(w => w.id !== word.id);
-        const wrongChoices = [...otherWords]
-            .sort(() => Math.random() - 0.5)
-            .slice(0, 3)
-            .map(w => w.turkish);
+            // Generate 3 wrong options
+            const otherWords = pool.filter(w => w.id !== word.id);
+            const wrongChoices = [...otherWords]
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 3)
+                .map(w => w.turkish);
 
-        // Mix correct answer
-        const allChoices = [...wrongChoices, word.turkish].sort(() => Math.random() - 0.5);
-        setOptions(allChoices);
-        setLastResult(null);
-        setShowCorrection(false);
+            // Mix correct answer
+            const allChoices = [...wrongChoices, word.turkish].sort(() => Math.random() - 0.5);
+            setOptions(allChoices);
+            setLastResult(null);
+            setShowCorrection(false);
+        } catch (error) {
+            console.error("Failed to generate question:", error);
+        } finally {
+            setIsLoading(false);
+        }
     }, [selectedLevel]);
 
     // Start Game

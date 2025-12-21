@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { X, Volume2, RotateCcw, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useUser } from '../../context/UserContext';
 import { useToast } from '../../components/Toast';
-import { wordsData, getRandomWords } from '../../data/words';
+import { supabaseService } from '../../services/supabaseService';
 import Card from '../../components/Card';
 import Button from '../../components/Button';
 import { CircularProgress } from '../../components/ProgressBar';
@@ -32,26 +32,29 @@ export default function FlashcardMode() {
 
     // Load words
     useEffect(() => {
-        // Get words from user's vocabulary or random words
-        let practiceWords = [];
+        const loadWords = async () => {
+            let practiceWords = [];
 
-        if (user.vocabulary.length >= wordCount) {
-            // Use user's vocabulary
-            practiceWords = [...user.vocabulary]
-                .sort(() => Math.random() - 0.5)
-                .slice(0, wordCount);
-        } else if (user.vocabulary.length > 0) {
-            // Mix user vocabulary with random words
-            practiceWords = [...user.vocabulary];
-            const remaining = wordCount - practiceWords.length;
-            const randomWords = getRandomWords(remaining);
-            practiceWords = [...practiceWords, ...randomWords].sort(() => Math.random() - 0.5);
-        } else {
-            // Use random words
-            practiceWords = getRandomWords(wordCount);
-        }
+            if (user.vocabulary.length >= wordCount) {
+                // Use user's vocabulary
+                practiceWords = [...user.vocabulary]
+                    .sort(() => Math.random() - 0.5)
+                    .slice(0, wordCount);
+            } else if (user.vocabulary.length > 0) {
+                // Mix user vocabulary with random words
+                practiceWords = [...user.vocabulary];
+                const remaining = wordCount - practiceWords.length;
+                const randomWords = await supabaseService.getRandomWords(remaining);
+                practiceWords = [...practiceWords, ...randomWords].sort(() => Math.random() - 0.5);
+            } else {
+                // Use random words
+                practiceWords = await supabaseService.getRandomWords(wordCount);
+            }
 
-        setWords(practiceWords);
+            setWords(practiceWords);
+        };
+
+        loadWords();
     }, [wordCount, user.vocabulary]);
 
     const currentWord = words[currentIndex];

@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { X, Clock, Lightbulb, RotateCcw } from 'lucide-react';
 import { useUser } from '../../context/UserContext';
 import { useToast } from '../../components/Toast';
-import { wordsData, getRandomWords } from '../../data/words';
+import { supabaseService } from '../../services/supabaseService';
 import Card from '../../components/Card';
 import Button from '../../components/Button';
 import { SuccessModal } from '../../components/Modal';
@@ -33,24 +33,28 @@ export default function MatchingMode() {
 
     // Load words
     useEffect(() => {
-        let practiceWords = [];
+        const loadWords = async () => {
+            let practiceWords = [];
 
-        if (user.vocabulary.length >= wordCount) {
-            practiceWords = [...user.vocabulary]
-                .sort(() => Math.random() - 0.5)
-                .slice(0, wordCount);
-        } else if (user.vocabulary.length > 0) {
-            practiceWords = [...user.vocabulary];
-            const remaining = wordCount - practiceWords.length;
-            const randomWords = getRandomWords(remaining);
-            practiceWords = [...practiceWords, ...randomWords].slice(0, wordCount);
-        } else {
-            practiceWords = getRandomWords(wordCount);
-        }
+            if (user.vocabulary.length >= wordCount) {
+                practiceWords = [...user.vocabulary]
+                    .sort(() => Math.random() - 0.5)
+                    .slice(0, wordCount);
+            } else if (user.vocabulary.length > 0) {
+                practiceWords = [...user.vocabulary];
+                const remaining = wordCount - practiceWords.length;
+                const randomWords = await supabaseService.getRandomWords(remaining);
+                practiceWords = [...practiceWords, ...randomWords].slice(0, wordCount);
+            } else {
+                practiceWords = await supabaseService.getRandomWords(wordCount);
+            }
 
-        setWords(practiceWords);
-        // Shuffle Turkish meanings
-        setShuffledTurkish([...practiceWords].sort(() => Math.random() - 0.5));
+            setWords(practiceWords);
+            // Shuffle Turkish meanings
+            setShuffledTurkish([...practiceWords].sort(() => Math.random() - 0.5));
+        };
+
+        loadWords();
     }, [wordCount, user.vocabulary]);
 
     // Timer

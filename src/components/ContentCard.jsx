@@ -17,6 +17,7 @@ export default function ContentCard({
     publishedAt,
     progress = 0,
     isNew = false,
+    isRead = false,
     type = 'news', // news, story, novel
 }) {
     const typeIcons = {
@@ -44,8 +45,16 @@ export default function ContentCard({
                     </div>
 
                     <div className="absolute top-3 right-3 flex items-center gap-2">
+                        {isRead && (
+                            <span className="px-2 py-1 bg-green-500 text-white text-[10px] sm:text-xs font-bold rounded-lg flex items-center gap-1 shadow-lg border border-white/20">
+                                <span>OKUNDU</span>
+                                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                </svg>
+                            </span>
+                        )}
                         {isNew && (
-                            <span className="px-2 py-1 bg-red-500 text-white text-xs font-bold rounded-full animate-pulse">
+                            <span className="px-2 py-1 bg-red-500 text-white text-[10px] sm:text-xs font-bold rounded-full animate-pulse shadow-lg border border-white/20">
                                 YENİ
                             </span>
                         )}
@@ -64,33 +73,37 @@ export default function ContentCard({
                 </div>
 
                 {/* Content */}
-                <div className="space-y-3">
+                <div className="space-y-4 flex-1 flex flex-col">
                     {/* Title */}
-                    <h3 className="font-semibold text-gray-900 dark:text-white line-clamp-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                    <h3 className="font-bold text-gray-900 dark:text-white line-clamp-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors text-lg leading-tight">
                         {typeIcons[type]} {title}
                     </h3>
 
                     {/* Meta info */}
-                    <div className="flex items-center gap-4 text-sm text-gray-500">
+                    <div className="flex items-center gap-4 text-xs text-gray-500 font-medium">
                         <div className="flex items-center gap-1">
-                            <Clock className="w-4 h-4" />
+                            <Clock className="w-3.5 h-3.5" />
                             <span>{readTime} dk</span>
                         </div>
                         <div className="flex items-center gap-1">
-                            <BookOpen className="w-4 h-4" />
+                            <BookOpen className="w-3.5 h-3.5" />
                             <span>{wordCount} kelime</span>
                         </div>
                         <div className="flex items-center gap-1">
-                            <Eye className="w-4 h-4" />
+                            <Eye className="w-3.5 h-3.5" />
                             <span>{views >= 1000 ? `${(views / 1000).toFixed(1)}k` : views}</span>
                         </div>
                     </div>
 
-                    {/* Action */}
-                    <div className="pt-2">
-                        <span className="inline-flex items-center text-sm font-medium text-indigo-600 dark:text-indigo-400 group-hover:underline">
-                            {progress > 0 ? 'Okumaya Devam Et →' : 'Okumaya Başla →'}
-                        </span>
+                    {/* Action Button */}
+                    <div className="pt-2 mt-auto">
+                        <div className={`w-full py-2.5 rounded-xl font-bold text-sm text-center transition-all duration-300 flex items-center justify-center gap-2 shadow-sm ${isRead
+                            ? 'bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/10 group-hover:bg-indigo-50 dark:group-hover:bg-indigo-900/20 group-hover:text-indigo-600 group-hover:border-indigo-200'
+                            : 'bg-white dark:bg-[#18181b] text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-900 group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-600 group-hover:shadow-indigo-200 dark:group-hover:shadow-none'
+                            }`}>
+                            {isRead ? 'Tekrar Oku' : (progress > 0 ? 'Okumaya Devam Et' : 'Okumaya Başla')}
+                            <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+                        </div>
                     </div>
                 </div>
             </Card>
