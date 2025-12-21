@@ -122,6 +122,18 @@ body {
   }
 }
 
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
 @keyframes pulse {
 
   0%,
@@ -219,6 +231,10 @@ body {
 
 .animate-slideDown {
   animation: slideDown 0.4s ease-out;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.3s ease-in forwards;
 }
 
 .animate-pulse {

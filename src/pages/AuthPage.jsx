@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
+import { isValidEmail, validatePassword, validateUsername, RateLimiter } from '../utils/validation';
+
+// Rate limiter for auth attempts
+const authLimiter = new RateLimiter(5, 300000); // 5 attempts per 5 minutes
 
 export default function AuthPage() {
     const navigate = useNavigate();
@@ -54,22 +58,32 @@ export default function AuthPage() {
     const validateForm = () => {
         const newErrors = {};
 
-        if (!isLogin && !formData.name.trim()) {
-            newErrors.name = 'İsim gerekli';
+        // Validate name for registration
+        if (!isLogin) {
+            const nameValidation = validateUsername(formData.name);
+            if (!nameValidation.isValid) {
+                newErrors.name = nameValidation.error;
+            }
         }
 
+        // Validate email
         if (!formData.email.trim()) {
             newErrors.email = 'E-posta gerekli';
-        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-            newErrors.email = 'Geçerli bir e-posta girin';
+        } else if (!isValidEmail(formData.email)) {
+            newErrors.email = 'Geçerli bir e-posta adresi girin';
         }
 
+        // Validate password
         if (!formData.password) {
             newErrors.password = 'Parola gerekli';
-        } else if (formData.password.length < 6) {
-            newErrors.password = 'Parola en az 6 karakter olmalı';
+        } else {
+            const passwordValidation = validatePassword(formData.password);
+            if (!passwordValidation.isValid) {
+                newErrors.password = passwordValidation.errors[0]; // Show first error
+            }
         }
 
+        // Validate level for registration
         if (!isLogin && !formData.level) {
             newErrors.level = 'Seviye seçimi gerekli';
         }
@@ -82,6 +96,15 @@ export default function AuthPage() {
         e.preventDefault();
 
         if (!validateForm()) return;
+
+        // Check rate limiting
+        const attemptKey = formData.email.toLowerCase();
+        if (!authLimiter.canAttempt(attemptKey)) {
+            setErrors({
+                main: 'Çok fazla deneme yaptınız. Lütfen 5 dakika sonra tekrar deneyin.'
+            });
+            return;
+        }
 
         setLoading(true);
         setErrors({});
@@ -97,14 +120,22 @@ export default function AuthPage() {
             console.log("Starting auth process...");
             const authPromise = isLogin
                 ? login({
-                    email: formData.email,
+                    email: formData.email.trim().toLowerCase(),
                     password: formData.password
                 })
-                : register(formData.name, formData.email, formData.password, formData.level);
+                : register(
+                    formData.name.trim(),
+                    formData.email.trim().toLowerCase(),
+                    formData.password,
+                    formData.level
+                );
 
             // Race the auth request against the timeout
             await Promise.race([authPromise, timeoutPromise]);
             console.log("Auth process completed (promise resolved). Waiting for effect to navigate...");
+            
+            // Reset rate limiter on success
+            authLimiter.reset(attemptKey);
 
             // Note: We rely on the useEffect hook to navigate when isLoggedIn becomes true.
             // If we stop loading here, the form might flash before redirect.

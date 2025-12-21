@@ -1,0 +1,50 @@
+{
+  "name": "WordBox - İngilizce Vocabulary Geliştirme",
+  "short_name": "WordBox",
+  "description": "İngilizce vocabulary gelişimi için interaktif öğrenme platformu",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4f46e5",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": [
+    "education",
+    "productivity"
+  ],
+  "lang": "tr",
+  "dir": "ltr",
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Pratik Yap",
+      "short_name": "Pratik",
+      "description": "Vocabulary pratiği yapmaya başla",
+      "url": "/practice",
+      "icons": []
+    },
+    {
+      "name": "Kütüphane",
+      "short_name": "Kütüphane",
+      "description": "İçeriklere göz at",
+      "url": "/library",
+      "icons": []
+    },
+    {
+      "name": "Kelimelerim",
+      "short_name": "Kelimeler",
+      "description": "Kelime listem",
+      "url": "/vocabulary",
+      "icons": []
+    }
+  ],
+  "prefer_related_applications": false
+}

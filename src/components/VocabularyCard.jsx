@@ -1,10 +1,32 @@
-import { useState } from 'react';
+import { useState, useCallback, memo } from 'react';
 import { Volume2, Star, Trash2, BarChart2 } from 'lucide-react';
 import Card from './Card';
 import { LevelBadge, StatusBadge } from './Badge';
 
+// Speech synthesis helper with error handling
+const speakWord = (text) => {
+    try {
+        if (!window.speechSynthesis) {
+            console.warn('Speech synthesis not supported');
+            return;
+        }
+        // Cancel any ongoing speech
+        window.speechSynthesis.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.8;
+        utterance.onerror = (event) => {
+            console.error('Speech synthesis error:', event.error);
+        };
+        window.speechSynthesis.speak(utterance);
+    } catch (error) {
+        console.error('Error playing audio:', error);
+    }
+};
+
 // Vocabulary Card for word list
-export default function VocabularyCard({
+const VocabularyCard = memo(function VocabularyCard({
     word,
     onRemove,
     onPractice,
@@ -14,30 +36,30 @@ export default function VocabularyCard({
     const [isFlipped, setIsFlipped] = useState(false);
     const [isFavorite, setIsFavorite] = useState(word.isFavorite || false);
 
-    const handlePlayAudio = (e) => {
+    const handlePlayAudio = useCallback((e) => {
         e.stopPropagation();
-        // Use Web Speech API for pronunciation
-        const utterance = new SpeechSynthesisUtterance(word.word);
-        utterance.lang = 'en-US';
-        utterance.rate = 0.8;
-        speechSynthesis.speak(utterance);
-    };
+        speakWord(word.word);
+    }, [word.word]);
 
-    const handleFavorite = (e) => {
+    const handleFavorite = useCallback((e) => {
         e.stopPropagation();
         setIsFavorite(!isFavorite);
         onToggleFavorite?.(word.id);
-    };
+    }, [isFavorite, onToggleFavorite, word.id]);
 
-    const handleRemove = (e) => {
+    const handleRemove = useCallback((e) => {
         e.stopPropagation();
         onRemove?.(word.id);
-    };
+    }, [onRemove, word.id]);
+
+    const handleFlip = useCallback(() => {
+        setIsFlipped(!isFlipped);
+    }, [isFlipped]);
 
     return (
         <div
             className="card-flip h-48 cursor-pointer"
-            onClick={() => setIsFlipped(!isFlipped)}
+            onClick={handleFlip}
         >
             <div className={`card-flip-inner relative w-full h-full ${isFlipped ? 'flipped' : ''}`}>
                 {/* Front Side */}
@@ -114,22 +136,21 @@ export default function VocabularyCard({
             </div>
         </div>
     );
-}
+});
+
+export default VocabularyCard;
 
 // Vocabulary List Item (for list view)
-export function VocabularyListItem({
+export const VocabularyListItem = memo(function VocabularyListItem({
     word,
     onRemove,
     onSelect,
     isSelected = false,
 }) {
-    const handlePlayAudio = (e) => {
+    const handlePlayAudio = useCallback((e) => {
         e.stopPropagation();
-        const utterance = new SpeechSynthesisUtterance(word.word);
-        utterance.lang = 'en-US';
-        utterance.rate = 0.8;
-        speechSynthesis.speak(utterance);
-    };
+        speakWord(word.word);
+    }, [word.word]);
 
     return (
         <div
@@ -189,16 +210,13 @@ export function VocabularyListItem({
             </button>
         </div>
     );
-}
+});
 
 // Word Preview Card (for sidebar details)
-export function WordDetailCard({ word, onClose, onPractice, onRemove }) {
-    const handlePlayAudio = () => {
-        const utterance = new SpeechSynthesisUtterance(word.word);
-        utterance.lang = 'en-US';
-        utterance.rate = 0.8;
-        speechSynthesis.speak(utterance);
-    };
+export const WordDetailCard = memo(function WordDetailCard({ word, onClose, onPractice, onRemove }) {
+    const handlePlayAudio = useCallback(() => {
+        speakWord(word.word);
+    }, [word.word]);
 
     return (
         <Card className="sticky top-24 dark:bg-gray-800 dark:border-gray-700">
@@ -295,4 +313,4 @@ export function WordDetailCard({ word, onClose, onPractice, onRemove }) {
             </div>
         </Card>
     );
-}
+});

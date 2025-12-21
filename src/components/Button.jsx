@@ -9,18 +9,19 @@ export default function Button({
     icon: Icon,
     iconPosition = 'left',
     fullWidth = false,
+    ariaLabel,
     ...props
 }) {
-    const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
+    const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900 disabled:opacity-50 disabled:cursor-not-allowed';
 
     const variants = {
-        primary: 'gradient-primary text-white hover:opacity-90 focus:ring-indigo-500 shadow-md hover:shadow-lg hover:-translate-y-0.5',
-        secondary: 'bg-white text-indigo-600 border-2 border-indigo-600 hover:bg-indigo-50 focus:ring-indigo-500',
-        ghost: 'text-gray-600 hover:bg-gray-100 focus:ring-gray-500',
-        danger: 'bg-red-500 text-white hover:bg-red-600 focus:ring-red-500 shadow-md',
-        success: 'bg-green-500 text-white hover:bg-green-600 focus:ring-green-500 shadow-md',
-        warning: 'bg-orange-500 text-white hover:bg-orange-600 focus:ring-orange-500 shadow-md',
-        outline: 'bg-transparent border border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-gray-500',
+        primary: 'gradient-primary text-white hover:opacity-90 focus:ring-indigo-500 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:scale-95',
+        secondary: 'bg-white dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 border-2 border-indigo-600 dark:border-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 focus:ring-indigo-500',
+        ghost: 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:ring-gray-500',
+        danger: 'bg-red-500 text-white hover:bg-red-600 focus:ring-red-500 shadow-md active:scale-95',
+        success: 'bg-green-500 text-white hover:bg-green-600 focus:ring-green-500 shadow-md active:scale-95',
+        warning: 'bg-orange-500 text-white hover:bg-orange-600 focus:ring-orange-500 shadow-md active:scale-95',
+        outline: 'bg-transparent border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 focus:ring-gray-500',
     };
 
     const sizes = {
@@ -49,6 +50,9 @@ export default function Button({
         ${className}
       `}
             disabled={disabled || loading}
+            aria-label={ariaLabel || (typeof children === 'string' ? children : undefined)}
+            aria-busy={loading}
+            aria-disabled={disabled}
             {...props}
         >
             {loading ? (
@@ -91,6 +95,7 @@ export function IconButton({
     variant = 'ghost',
     size = 'md',
     className = '',
+    ariaLabel,
     ...props
 }) {
     const sizes = {
@@ -110,23 +115,24 @@ export function IconButton({
     };
 
     const variants = {
-        primary: 'bg-indigo-600 text-white hover:bg-indigo-700',
-        secondary: 'bg-white text-indigo-600 border border-indigo-600 hover:bg-indigo-50',
-        ghost: 'text-gray-600 hover:bg-gray-100',
-        danger: 'text-red-600 hover:bg-red-50',
+        primary: 'bg-indigo-600 text-white hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600',
+        secondary: 'bg-white dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 border border-indigo-600 dark:border-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-900/20',
+        ghost: 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800',
+        danger: 'text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20',
     };
 
     return (
         <button
             className={`
-        rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+        rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-900 active:scale-95
         ${variants[variant]}
         ${sizes[size]}
         ${className}
       `}
+            aria-label={ariaLabel}
             {...props}
         >
-            <Icon className={iconSizes[size]} />
+            <Icon className={iconSizes[size]} aria-hidden="true" />
         </button>
     );
 }

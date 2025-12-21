@@ -16,6 +16,7 @@ import { useToast } from '../components/Toast';
 import Card, { StatCard } from '../components/Card';
 import VocabularyCard, { VocabularyListItem, WordDetailCard } from '../components/VocabularyCard';
 import { LevelBadge } from '../components/Badge';
+import { SkeletonVocabularyCard, SkeletonListItem } from '../components/Skeleton';
 
 export default function VocabularyList() {
     const { user, removeWord } = useUser();

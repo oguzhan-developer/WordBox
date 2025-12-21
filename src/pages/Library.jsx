@@ -5,6 +5,7 @@ import { LevelBadge } from '../components/Badge';
 import { supabaseService } from '../services/supabaseService';
 import { useEffect } from 'react';
 import ContentCard from '../components/ContentCard';
+import { SkeletonContentCard } from '../components/Skeleton';
 
 export default function Library() {
     const { user } = useUser();
@@ -272,8 +273,13 @@ export default function Library() {
 
                 {/* Content Grid */}
                 {isLoading ? (
-                    <div className="flex justify-center py-20">
-                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+                    <div className={`grid gap-6 ${viewMode === 'grid'
+                        ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+                        : 'grid-cols-1'
+                        }`}>
+                        {Array.from({ length: 6 }).map((_, i) => (
+                            <SkeletonContentCard key={i} />
+                        ))}
                     </div>
                 ) : content.length > 0 ? (
                     <div className={`grid gap-6 ${viewMode === 'grid'

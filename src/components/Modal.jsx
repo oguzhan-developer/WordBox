@@ -1,5 +1,42 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import { X } from 'lucide-react';
+
+// Focus trap utility
+const useFocusTrap = (isOpen, modalRef) => {
+    useEffect(() => {
+        if (!isOpen || !modalRef.current) return;
+
+        const modal = modalRef.current;
+        const focusableElements = modal.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        const handleTab = (e) => {
+            if (e.key !== 'Tab') return;
+
+            if (e.shiftKey) {
+                if (document.activeElement === firstElement) {
+                    lastElement?.focus();
+                    e.preventDefault();
+                }
+            } else {
+                if (document.activeElement === lastElement) {
+                    firstElement?.focus();
+                    e.preventDefault();
+                }
+            }
+        };
+
+        modal.addEventListener('keydown', handleTab);
+        firstElement?.focus();
+
+        return () => {
+            modal.removeEventListener('keydown', handleTab);
+        };
+    }, [isOpen, modalRef]);
+};
 
 // Modal component with overlay
 export default function Modal({
@@ -11,7 +48,14 @@ export default function Modal({
     showCloseButton = true,
     closeOnOverlay = true,
     className = '',
+    id,
 }) {
+    const modalRef = useRef(null);
+    const previousActiveElement = useRef(null);
+
+    // Focus trap
+    useFocusTrap(isOpen, modalRef);
+
     // Close on Escape key
     useEffect(() => {
         const handleEscape = (e) => {
@@ -24,17 +68,28 @@ export default function Modal({
         return () => document.removeEventListener('keydown', handleEscape);
     }, [isOpen, onClose]);
 
-    // Prevent body scroll when modal is open
+    // Prevent body scroll when modal is open & restore focus
     useEffect(() => {
         if (isOpen) {
+            previousActiveElement.current = document.activeElement;
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = 'unset';
+            // Restore focus to element that opened modal
+            if (previousActiveElement.current && previousActiveElement.current.focus) {
+                previousActiveElement.current.focus();
+            }
         }
         return () => {
             document.body.style.overflow = 'unset';
         };
     }, [isOpen]);
+
+    const handleOverlayClick = useCallback((e) => {
+        if (closeOnOverlay && e.target === e.currentTarget) {
+            onClose();
+        }
+    }, [closeOnOverlay, onClose]);
 
     if (!isOpen) return null;
 
@@ -48,15 +103,23 @@ export default function Modal({
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div 
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={id ? `${id}-title` : undefined}
+            aria-describedby={id ? `${id}-description` : undefined}
+        >
             {/* Overlay */}
             <div
                 className="absolute inset-0 bg-black/50 backdrop-blur-sm animate-fadeIn"
-                onClick={closeOnOverlay ? onClose : undefined}
+                onClick={handleOverlayClick}
+                aria-hidden="true"
             />
 
             {/* Modal Content */}
             <div
+                ref={modalRef}
                 className={`
           relative w-full ${sizes[size]} bg-white dark:bg-[#27272a] rounded-2xl shadow-2xl
           animate-slideUp
@@ -67,23 +130,30 @@ export default function Modal({
                 {(title || showCloseButton) && (
                     <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-100 dark:border-[#333]">
                         {title && (
-                            <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
+                            <h2 
+                                id={id ? `${id}-title` : undefined}
+                                className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white"
+                            >
                                 {title}
                             </h2>
                         )}
                         {showCloseButton && (
                             <button
                                 onClick={onClose}
-                                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition-colors text-gray-500 dark:text-gray-400"
+                                aria-label="Modalı kapat"
+                                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition-colors text-gray-500 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
                             >
-                                <X className="w-5 h-5" />
+                                <X className="w-5 h-5" aria-hidden="true" />
                             </button>
                         )}
                     </div>
                 )}
 
                 {/* Body */}
-                <div className="p-4 sm:p-6">
+                <div 
+                    id={id ? `${id}-description` : undefined}
+                    className="p-4 sm:p-6"
+                >
                     {children}
                 </div>
             </div>

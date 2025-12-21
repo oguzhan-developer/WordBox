@@ -1,21 +1,35 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 import { UserProvider, useUser } from './context/UserContext';
 import { ToastProvider } from './components/Toast';
 import Navbar from './components/Navbar';
+import ErrorBoundary from './components/ErrorBoundary';
 
-// Pages
-import AuthPage from './pages/AuthPage';
-import Dashboard from './pages/Dashboard';
-import Library from './pages/Library';
-import ReadingPage from './pages/ReadingPage';
-import VocabularyList from './pages/VocabularyList';
-import PracticePage from './pages/PracticePage';
-import ProgressPage from './pages/ProgressPage';
-import FlashcardMode from './pages/practice/FlashcardMode';
-import MatchingMode from './pages/practice/MatchingMode';
-import SprintMode from './pages/practice/SprintMode';
-import ProfilePage from './pages/ProfilePage';
-import SettingsPage from './pages/SettingsPage';
+// Pages - Lazy loaded for code splitting
+const AuthPage = lazy(() => import('./pages/AuthPage'));
+const Dashboard = lazy(() => import('./pages/Dashboard'));
+const Library = lazy(() => import('./pages/Library'));
+const ReadingPage = lazy(() => import('./pages/ReadingPage'));
+const VocabularyList = lazy(() => import('./pages/VocabularyList'));
+const PracticePage = lazy(() => import('./pages/PracticePage'));
+const ProgressPage = lazy(() => import('./pages/ProgressPage'));
+const FlashcardMode = lazy(() => import('./pages/practice/FlashcardMode'));
+const MatchingMode = lazy(() => import('./pages/practice/MatchingMode'));
+const SprintMode = lazy(() => import('./pages/practice/SprintMode'));
+const ProfilePage = lazy(() => import('./pages/ProfilePage'));
+const SettingsPage = lazy(() => import('./pages/SettingsPage'));
+
+// Loading component
+function PageLoader() {
+  return (
+    <div className="min-h-screen bg-gray-50 dark:bg-[#18181b] flex items-center justify-center">
+      <div className="text-center">
+        <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
+        <p className="mt-4 text-gray-600 dark:text-gray-400">Yükleniyor...</p>
+      </div>
+    </div>
+  );
+}
 
 // Protected Route component
 function ProtectedRoute({ children }) {
@@ -51,170 +65,174 @@ function Layout({ children, showNavbar = true }) {
 
 function AppRoutes() {
   return (
-    <Routes>
-      {/* Public Routes */}
-      <Route
-        path="/"
-        element={
-          <PublicRoute>
-            <Navigate to="/auth" replace />
-          </PublicRoute>
-        }
-      />
-      <Route
-        path="/auth"
-        element={
-          <PublicRoute>
-            <AuthPage />
-          </PublicRoute>
-        }
-      />
+    <Suspense fallback={<PageLoader />}>
+      <Routes>
+        {/* Public Routes */}
+        <Route
+          path="/"
+          element={
+            <PublicRoute>
+              <Navigate to="/auth" replace />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/auth"
+          element={
+            <PublicRoute>
+              <AuthPage />
+            </PublicRoute>
+          }
+        />
 
-      {/* Protected Routes */}
-      <Route
-        path="/dashboard"
-        element={
-          <ProtectedRoute>
-            <Layout>
-              <Dashboard />
-            </Layout>
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/library"
-        element={
-          <ProtectedRoute>
-            <Layout>
-              <Library />
-            </Layout>
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/read/:id"
-        element={
-          <ProtectedRoute>
-            <Layout>
-              <ReadingPage />
-            </Layout>
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/vocabulary"
-        element={
-          <ProtectedRoute>
-            <Layout>
-              <VocabularyList />
-            </Layout>
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/practice"
-        element={
-          <ProtectedRoute>
-            <Layout>
-              <PracticePage />
-            </Layout>
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/practice/flashcard"
-        element={
-          <ProtectedRoute>
-            <Layout showNavbar={false}>
-              <FlashcardMode />
-            </Layout>
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/practice/sprint"
-        element={
-          <ProtectedRoute>
-            <Layout showNavbar={false}>
-              <SprintMode />
-            </Layout>
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/practice/matching"
-        element={
-          <ProtectedRoute>
-            <Layout showNavbar={false}>
-              <MatchingMode />
-            </Layout>
-          </ProtectedRoute>
-        }
-      />
+        {/* Protected Routes */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <Dashboard />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/library"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <Library />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/read/:id"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <ReadingPage />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/vocabulary"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <VocabularyList />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/practice"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <PracticePage />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/practice/flashcard"
+          element={
+            <ProtectedRoute>
+              <Layout showNavbar={false}>
+                <FlashcardMode />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/practice/sprint"
+          element={
+            <ProtectedRoute>
+              <Layout showNavbar={false}>
+                <SprintMode />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/practice/matching"
+          element={
+            <ProtectedRoute>
+              <Layout showNavbar={false}>
+                <MatchingMode />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
 
-      {/* Progress & Profile (placeholders) */}
-      <Route
-        path="/progress"
-        element={
-          <ProtectedRoute>
-            <Layout>
-              <ProgressPage />
-            </Layout>
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/profile"
-        element={
-          <ProtectedRoute>
-            <Layout>
-              <ProfilePage />
-            </Layout>
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/settings"
-        element={
-          <ProtectedRoute>
-            <Layout>
-              <SettingsPage />
-            </Layout>
-          </ProtectedRoute>
-        }
-      />
+        {/* Progress & Profile (placeholders) */}
+        <Route
+          path="/progress"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <ProgressPage />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <ProfilePage />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/settings"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <SettingsPage />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
 
-      {/* 404 */}
-      <Route
-        path="*"
-        element={
-          <Layout>
-            <div className="min-h-screen bg-gray-50 pt-20 flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-6xl mb-4">🤔</div>
-                <h1 className="text-2xl font-bold text-gray-900 mb-2">Sayfa Bulunamadı</h1>
-                <p className="text-gray-600 mb-6">Aradığınız sayfa mevcut değil.</p>
-                <a href="/dashboard" className="px-6 py-3 rounded-xl gradient-primary text-white font-medium">
-                  Ana Sayfaya Dön
-                </a>
+        {/* 404 */}
+        <Route
+          path="*"
+          element={
+            <Layout>
+              <div className="min-h-screen bg-gray-50 pt-20 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="text-6xl mb-4">🤔</div>
+                  <h1 className="text-2xl font-bold text-gray-900 mb-2">Sayfa Bulunamadı</h1>
+                  <p className="text-gray-600 mb-6">Aradığınız sayfa mevcut değil.</p>
+                  <a href="/dashboard" className="px-6 py-3 rounded-xl gradient-primary text-white font-medium">
+                    Ana Sayfaya Dön
+                  </a>
+                </div>
               </div>
-            </div>
-          </Layout>
-        }
-      />
-    </Routes>
+            </Layout>
+          }
+        />
+      </Routes>
+    </Suspense>
   );
 }
 
 function App() {
   return (
-    <Router>
-      <UserProvider>
-        <ToastProvider>
-          <AppRoutes />
-        </ToastProvider>
-      </UserProvider>
-    </Router>
+    <ErrorBoundary>
+      <Router>
+        <UserProvider>
+          <ToastProvider>
+            <AppRoutes />
+          </ToastProvider>
+        </UserProvider>
+      </Router>
+    </ErrorBoundary>
   );
 }
 

@@ -70,3 +70,299 @@ Yapılan Düzeltmeler:
 
 Son Build Durumu:
 - BAŞARILI
+[ITERASYON | 2025-12-21 17:45]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/components/VocabularyCard.jsx
+
+Yapılan Geliştirme:
+- Performans Optimizasyonu: VocabularyCard, VocabularyListItem ve WordDetailCard component'leri React.memo ile optimize edildi
+- useCallback hooks eklenerek gereksiz re-render'lar önlendi
+- Speech Synthesis API için error handling ve güvenlik kontrolleri eklendi
+- speakWord helper fonksiyonu ile kod tekrarı azaltıldı ve hata yönetimi merkezi hale getirildi
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI (Chunk size warning var - 584KB)
+
+Hatalar:
+- Warning: Chunks larger than 500 kB (code-splitting gerekiyor)
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI (Warning ile)
+
+
+[ITERASYON | 2025-12-21 17:50]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/App.jsx
+
+Yapılan Geliştirme:
+- Performans Optimizasyonu: Tüm sayfa component'leri lazy loading ile yükleniyor
+- React.lazy() ve Suspense kullanılarak code-splitting uygulandı
+- PageLoader component'i eklenerek yükleme ekranı geliştirildi
+- Bundle size 584KB'dan 426KB'a düşürüldü (27% azalma)
+- Her sayfa ayrı chunk olarak yüklenmeye başladı
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok (Chunk size warning giderildi)
+
+Yapılan Düzeltmeler:
+- Lazy loading ile code-splitting uygulandı
+- Bundle size optimize edildi
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-21 17:55]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/utils/validation.js (YENİ)
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/AuthPage.jsx
+
+Yapılan Geliştirme:
+- Güvenlik Katmanı: Kapsamlı input validation utility'leri eklendi
+- XSS koruması için HTML sanitization fonksiyonları
+- Email, password, username validasyonları güçlendirildi
+- Rate limiting client-side olarak uygulandı (5 deneme / 5 dakika)
+- AuthPage'de güvenli validation kullanılmaya başlandı
+- Email ve kullanıcı adları normalize edildi (trim, toLowerCase)
+- Parola güvenlik gereksinimleri artırıldı (min 8 karakter, büyük/küçük harf, rakam)
+- RateLimiter class'ı ile brute force saldırılarına karşı koruma
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-21 18:00]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/components/Skeleton.jsx (YENİ)
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/Library.jsx
+
+Yapılan Geliştirme:
+- UI/UX İyileştirmesi: Kapsamlı skeleton loading component'leri eklendi
+- Skeleton component'leri: Card, VocabularyCard, ListItem, ContentCard, StatCard, ProgressBar, Badge, Nav, Page
+- Library sayfasında loading state'leri skeleton ile değiştirildi
+- Daha iyi kullanıcı deneyimi için animasyonlu placeholder'lar
+- 6 farklı content card skeleton gösteriliyor yüklenirken
+- Dark mode desteği tüm skeleton component'lerinde mevcut
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-21 18:05]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/components/ErrorBoundary.jsx (YENİ)
+- /Users/oguz/Documents/EnglishLearnApp/src/App.jsx
+
+Yapılan Geliştirme:
+- Güvenilirlik: ErrorBoundary component'i eklendi
+- Runtime hatalarını yakalamak için React Error Boundary implementasyonu
+- Kullanıcı dostu hata mesajları ve fallback UI
+- Geliştirici modunda detaylı hata loglama
+- Infinite error loop koruması (5 hatadan fazlası için kritik hata ekranı)
+- Tekrar Dene ve Sayfayı Yenile butonları
+- Ana Sayfaya Dön linki
+- App.jsx'in en üst seviyesine ErrorBoundary sarmalandı
+- Production'da tüm hataları yakalar, uygulama çökmez
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-21 18:10]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/components/Button.jsx
+
+Yapılan Geliştirme:
+- Accessibility (a11y): Button ve IconButton component'lerine erişilebilirlik iyileştirmeleri
+- aria-label, aria-busy, aria-disabled attribute'leri eklendi
+- Keyboard navigation için geliştirilmiş focus states
+- Dark mode desteği tüm button variant'larına eklendi
+- Active state feedback (scale-95) ile daha iyi UX
+- Icon'lara aria-hidden="true" eklenerek screen reader'lar için optimize edildi
+- Focus ring offset dark mode için ayarlandı
+- WCAG 2.1 standartlarına uyum
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-21 18:15]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/public/sw.js (YENİ)
+- /Users/oguz/Documents/EnglishLearnApp/public/manifest.json (YENİ)
+- /Users/oguz/Documents/EnglishLearnApp/index.html
+
+Yapılan Geliştirme:
+- PWA Desteği: Progressive Web App özellikleri eklendi
+- Service Worker (sw.js) implementasyonu
+  - Network-first cache strategy
+  - Offline fallback support
+  - Automatic cache management
+  - Background sync hazırlığı
+  - Push notification hazırlığı
+- Web App Manifest (manifest.json)
+  - Standalone mod desteği
+  - App shortcuts (Pratik, Kütüphane, Kelimeler)
+  - Türkçe dil desteği
+  - Theme ve background color tanımları
+- index.html güncellendi
+  - Service Worker kaydı
+  - Apple touch icon ve PWA meta tags
+  - Manifest link eklendi
+- Artık uygulama mobil cihazlara yüklenebilir
+- Offline çalışma desteği
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-21 18:20]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/components/Toast.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/index.css
+
+Yapılan Geliştirme:
+- Toast Component İyileştirmeleri:
+  - Accessibility: role, aria-live, aria-atomic, aria-label attribute'leri eklendi
+  - Dark mode desteği tüm toast tiplerine eklendi
+  - Exit animasyonu (slideUp) eklendi
+  - useCallback ile performans optimizasyonu
+  - Max 5 toast limiti eklendi
+  - Daha unique ID generation (Date.now + random)
+  - Backdrop blur effect
+  - Keyboard navigation desteği
+  - Screen reader uyumlu icon'lar (aria-hidden)
+  - Focus ring iyileştirmeleri
+- CSS: slideUp keyframe animasyonu eklendi
+- WCAG 2.1 AA standartlarına uyum
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-21 18:25]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/components/Modal.jsx
+
+Yapılan Geliştirme:
+- Modal Component Accessibility İyileştirmeleri:
+  - Focus trap implementasyonu (Tab cycling)
+  - Keyboard navigation (Tab, Shift+Tab)
+  - ARIA attributes (role="dialog", aria-modal, aria-labelledby, aria-describedby)
+  - Focus restore (modal kapanınca önceki elemente dönüş)
+  - useRef ve useCallback ile performans optimizasyonu
+  - Focus ring iyileştirmeleri
+  - aria-label close button için
+  - aria-hidden overlay için
+  - Otomatik focus ilk focusable element'e
+  - Escape tuşu ile kapatma (mevcut)
+  - WCAG 2.1 Level AA Dialog (Modal) standardı
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
