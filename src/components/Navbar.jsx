@@ -122,6 +122,7 @@ export default function Navbar() {
                                             <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{user.email}</p>
                                         </div>
                                         <Link to="/profile" className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10" onClick={() => setProfileMenuOpen(false)}>Profil</Link>
+                                        <Link to="/progress" className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10" onClick={() => setProfileMenuOpen(false)}>İlerleme</Link>
                                         <Link to="/settings" className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10" onClick={() => setProfileMenuOpen(false)}>Ayarlar</Link>
                                         <button
                                             onClick={() => { logout(); setProfileMenuOpen(false); }}
