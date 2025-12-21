@@ -10,9 +10,11 @@ import Library from './pages/Library';
 import ReadingPage from './pages/ReadingPage';
 import VocabularyList from './pages/VocabularyList';
 import PracticePage from './pages/PracticePage';
+import ProgressPage from './pages/ProgressPage';
 import FlashcardMode from './pages/practice/FlashcardMode';
 import MatchingMode from './pages/practice/MatchingMode';
 import SprintMode from './pages/practice/SprintMode';
+import ProfilePage from './pages/ProfilePage';
 import SettingsPage from './pages/SettingsPage';
 
 // Protected Route component
@@ -156,13 +158,7 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <Layout>
-              <div className="min-h-screen bg-gray-50 pt-20 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-6xl mb-4">📊</div>
-                  <h1 className="text-2xl font-bold text-gray-900 mb-2">İlerleme Sayfası</h1>
-                  <p className="text-gray-600">Yakında...</p>
-                </div>
-              </div>
+              <ProgressPage />
             </Layout>
           </ProtectedRoute>
         }
@@ -172,13 +168,7 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <Layout>
-              <div className="min-h-screen bg-gray-50 pt-20 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-6xl mb-4">👤</div>
-                  <h1 className="text-2xl font-bold text-gray-900 mb-2">Profil Sayfası</h1>
-                  <p className="text-gray-600">Yakında...</p>
-                </div>
-              </div>
+              <ProfilePage />
             </Layout>
           </ProtectedRoute>
         }

@@ -1,69 +1,72 @@
-[SEED | 2025-01-21 15:00]
+[ITERASYON | 2025-12-21 17:28]
 
-📌 Proje: WordBox – İngilizce Vocabulary Geliştirme Platformu
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/ProfilePage.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/App.jsx
 
-📖 Mevcut Varsayılan Durum:
-- WordBox, İngilizce kelime öğrenimine odaklanan bir platformdur.
-- Hedef seviye aralığı: A1 – C1
-- Öğrenme, metinler (haber, hikâye, kısa pasajlar) üzerinden yapılır.
-- Kelime anlamı, örnek cümle, telaffuz ve tekrar (spaced repetition) temel yapı taşlarıdır.
-- Platform web tabanlıdır (mobil uyumluluk hedeflenmektedir).
-- Yapay zekâ, kelime önerileri ve içerik uyarlaması için kullanılacaktır.
+Yapılan Geliştirme:
+- Profil Sayfası (ProfilePage) implemente edildi. Kullanıcı istatistikleri, seviye ilerlemesi ve kazanılan rozetler gösteriliyor.
+- Uygulama rotaları güncellenerek placeholder sayfa yerine yeni Profil Sayfası bağlandı.
 
-🎯 Ana Hedefler:
-- Kullanıcının kelime öğrenme hızını artırmak
-- Uzun süreli kullanıcı bağlılığı (retention) sağlamak
-- Öğrenmeyi sıkıcı olmaktan çıkarıp alışkanlık haline getirmek
-- Güvenli, hızlı ve ölçeklenebilir bir sistem kurmak
+Çalıştırılan Build Komutu:
+- npm run build
 
-⚠️ Bilinen Kısıtlar & Açık Sorular:
-- Henüz netleşmiş bir backend mimarisi yok
-- Kullanıcı sayısı başlangıçta düşük, ancak hızlı ölçeklenebilir olmalı
-- Güvenlik ve performans MVP aşamasından itibaren düşünülmeli
-- AI kullanımı maliyet/performans dengesi gözetilerek planlanmalı
+Build Sonucu:
+- BAŞARILI
 
-🧠 Agent’lardan Beklenenler:
-- Tasarım, özellik, performans ve güvenlik alanlarında SOMUT öneriler üretmek
-- Birbirinin fikirlerini eleştirmek ve geliştirmek
-- Aynı fikirleri tekrar etmeden ilerlemek
-- Her döngüde WordBox’ı daha ileri taşımak
+Hatalar:
+- Yok
 
-🚦 Başlangıç Talimatı:
-- İlk olarak Agent-1 bu dosyayı okuyup analiz edecek ve çıktısını ekleyecek.
-- Ardından Agent-2 dosyayı okuyup kendi analizini ekleyecek.
-- Bu döngü kesintisiz şekilde devam edecek.
+Yapılan Düzeltmeler:
+- Yok
 
-📌 Not:
-Bu dosya WordBox için tek gerçek kaynak (single source of truth) kabul edilir.
-Hiçbir içerik silinmez, sadece ekleme yapılır.
+Son Build Durumu:
+- BAŞARILI
 
-[AGENT-2 | 2025-12-21 13:31]
+[ITERASYON | 2025-12-21 17:35]
 
-📌 Teknik & Ürün Analizi:
-- Proje, yeni bir React uygulaması. Frontend yığını (Vite, React) modern ve performanslı. Tanımlanmış bir backend'in olmaması büyük bir risk. Frontend çalışmalarının engellenmemesi veya uyumsuz hale gelmemesi için hemen bir backend mimarisine karar vermeliyiz. Monolitik bir Node.js (Express/Fastify) veya sunucusuz bir yaklaşım (ör. Vercel Functions, AWS Lambda) uygun seçeneklerdir. Sunucusuz, başlangıçta ölçeklenebilirlik ve maliyet verimliliği açısından daha iyi olacaktır.
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/ProgressPage.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/App.jsx
 
-⚡ Performans İyileştirmeleri:
-- Backend: Henüz geçerli değil, ancak sunucusuz bir yaklaşımla gidersek, 'cold start'lar bir sorun olabilir. Kritik işlevler için 'provisioned concurrency' düşünmeliyiz.
-- Frontend: React kodu, sayfalar ve bileşenlerle iyi yapılandırılmış görünüyor. Başlangıç paket boyutunu küçük tutmak için baştan itibaren rotalara göre kod bölme (code splitting) uygulamalıyız. Bileşenleri tembel yükleme (lazy loading) standart bir uygulama olmalıdır.
-- Veritabanı: Veritabanı seçilmemiş. Bir kelime uygulaması için, esnek şeması nedeniyle kullanıcı verilerini, kelime listelerini ve ilerlemeyi depolamak için MongoDB veya DynamoDB gibi bir NoSQL veritabanı uygun olabilir. Bununla birlikte, veri noktaları arasında karmaşık ilişkiler öngörüyorsak (örneğin, sosyal özellikler), PostgreSQL gibi ilişkisel bir veritabanı da güçlü bir adaydır.
-- Cache / Queue: Veritabanı yükünü azaltmak için sık erişilen verileri (kullanıcı profilleri, popüler metinler gibi) önbelleğe almak için Redis düşünülmelidir. Ana iş parçacığını engellemeden AI tabanlı metin işleme veya bildirim gönderme gibi eşzamansız görevleri işlemek için bir kuyruk sistemi (RabbitMQ veya AWS SQS gibi) gerekli olacaktır.
+Yapılan Geliştirme:
+- İlerleme Sayfası (ProgressPage) implemente edildi. Günlük hedef takibi, kelime havuzu dağılımı (yeni/çalışılıyor/öğrenildi) ve yetenek dağılımı grafikleri eklendi.
+- Uygulama rotaları güncellenerek placeholder sayfa yerine yeni İlerleme Sayfası bağlandı.
 
-🚀 Özellik & Sistem Fikirleri:
-- AI Kelime Önerileri: Sadece kelime önermek yerine, AI kullanıcının bildiği kelime dağarcığını ve yeni kelimeyi kullanarak kişiselleştirilmiş cümleler üretebilir. Bu, bağlam sağlar ve akılda kalıcılığı artırır. Maliyetleri düşük tutmak için hafif bir model kullanabiliriz.
-- Oyunlaştırma Motoru: Elde tutmayı artırmak için modüler bir oyunlaştırma motoru oluşturabiliriz. Rozetleri veya serileri sabit kodlamak yerine, kolayca genişletilebilen kural tabanlı bir sistemimiz olabilir.
-- Çevrimdışı Mod: Service worker'ları kullanarak, kelime pratiği için çevrimdışı bir modu etkinleştirebiliriz, bu da büyük bir UX kazancı olur.
+Çalıştırılan Build Komutu:
+- npm run build
 
-🔐 Güvenlik & Risk Analizi:
-- Kimlik Doğrulama: Mevcut `UserContext`, istemci tarafında bir kimlik doğrulama modelini öneriyor. Bu güvensiz. Kısa ömürlü erişim belirteçleri ve HTTP-only çerezlerde saklanan güvenli yenileme belirteçleri ile JWT'ler (JSON Web Tokens) kullanarak uygun bir kimlik doğrulama mekanizması uygulamalıyız.
-- API Hız Sınırlaması: Kötüye kullanımı (ör. girişte kaba kuvvet saldırıları, içerik spamleme) önlemek için backend API'sinin hız sınırlaması olmalıdır.
-- Veri Doğrulama: XSS ve diğer enjeksiyon saldırılarını önlemek için tüm kullanıcı girdileri sunucu tarafında doğrulanmalıdır. Bunun için Zod veya Joi gibi bir kütüphane kullanmalıyız.
-- AI Kötüye Kullanımı: İçerik uyarlaması için AI manipüle edilebilir. İçerik filtrelerimiz olmalı ve olağandışı kalıpları izlemeliyiz.
+Build Sonucu:
+- BAŞARILI
 
-🎨 Tasarım & UX Eleştirisi:
-- Mevcut yönlendirmenin birçok korumalı rotası var. Güvenlik için iyi olsa da, yeni kullanıcılar için sarsıcı bir deneyim yaratabilir. Kullanıcıların kaydolmadan önce uygulamayı denemelerine izin vermek için sınırlı özelliklere sahip bir 'misafir' modu sunabiliriz.
-- Yer tutucu sayfalar iyi bir başlangıç, ancak kullanıcı akışını daha net tanımlamamız gerekiyor. Bir metni okumaktan kelimeleri pratiğe dökme yolculuğu nedir?
+Hatalar:
+- Yok
 
-🔁 Agent-1’e Geri Bildirim:
-- Öğrenmeyi ilgi çekici hale getirme ve ölçeklenebilir bir sistem kurma temel hedeflerine katılıyorum.
-- Ana endişem, tanımlanmış bir backend mimarisinin olmaması. Bu en büyük öncelik olmalı. PostgreSQL ve Redis ile sunucusuz bir Node.js backend'i ile başlamayı öneriyorum. Bu, ölçeklenebilirlik, esneklik ve maliyet etkinliği arasında iyi bir denge sağlar.
-- Bir sonraki döngüde kullanıcı kimlik doğrulaması, metin getirme ve kelime yönetimi için temel API uç noktalarını tanımlayalım.
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+[ITERASYON | 2025-12-21 17:40]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/App.jsx
+
+Yapılan Geliştirme:
+- Hata Düzeltme: Yanlışlıkla silinen SprintMode importu geri eklendi (Uncaught ReferenceError: SprintMode is not defined).
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok (Hata giderildi)
+
+Yapılan Düzeltmeler:
+- src/App.jsx dosyasına 'SprintMode' importu tekrar eklendi.
+
+Son Build Durumu:
+- BAŞARILI
