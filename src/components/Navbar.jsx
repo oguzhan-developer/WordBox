@@ -69,14 +69,14 @@ export default function Navbar() {
                         <Logo to="/dashboard" size="md" />
 
                         {/* Center Links (Desktop) */}
-                        <div className="hidden md:flex items-center gap-2 glass rounded-2xl px-3 py-1.5 shadow-lg">
+                        <div className="hidden md:flex items-center gap-1.5 glass rounded-2xl px-2 py-1.5 shadow-lg">
                             {navItems.map((item) => {
                                 const active = isActive(item.path);
                                 return (
                                     <Link
                                         key={item.path}
                                         to={item.path}
-                                        className={`relative text-sm font-semibold px-4 py-2 rounded-xl transition-all ${
+                                        className={`relative text-sm font-semibold px-3 py-2 rounded-xl transition-all ${
                                             active
                                                 ? 'text-white bg-gradient-to-r from-indigo-500 to-purple-600 shadow-lg shadow-indigo-500/30'
                                                 : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-slate-800/50'
@@ -89,11 +89,11 @@ export default function Navbar() {
                         </div>
 
                         {/* Right Actions */}
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-2 sm:gap-3">
                             {/* Level Badge */}
-                            <div className="hidden sm:flex items-center gap-2 px-4 py-2 glass rounded-full shadow-lg">
-                                <span className="material-symbols-outlined text-[18px] text-indigo-600 dark:text-indigo-400">verified</span>
-                                <span className="text-xs font-bold text-gray-900 dark:text-white">Level {user.level || 'B1'}</span>
+                            <div className="hidden md:flex items-center gap-1.5 px-3 py-2 glass rounded-full shadow-lg">
+                                <span className="material-symbols-outlined text-[16px] text-indigo-600 dark:text-indigo-400 leading-none">verified</span>
+                                <span className="text-xs font-bold text-gray-900 dark:text-white whitespace-nowrap">Level {user.level || 'B1'}</span>
                             </div>
 
                             {/* Theme Toggle */}

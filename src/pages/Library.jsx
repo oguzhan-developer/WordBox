@@ -324,7 +324,8 @@ export default function Library() {
                             <div key={`${item.type}-${item.id}`} className="animate-fadeIn" style={{ animationDelay: `${index * 50}ms` }}>
                                 <ContentCard
                                     {...item}
-                                    wordCount={item.newWords?.length || 0}
+                                    wordCount={item.wordCount || item.word_count || 0}
+                                    readTime={item.readTime || item.read_time || Math.ceil((item.wordCount || item.word_count || 0) / 200)}
                                     isNew={index < 2}
                                     isRead={user.readArticles?.includes(item.id)}
                                 />

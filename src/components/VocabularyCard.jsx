@@ -50,14 +50,14 @@ const VocabularyCard = memo(function VocabularyCard({
 
     return (
         <div
-            className="card-flip h-52 cursor-pointer"
+            className={`card-flip h-64 cursor-pointer ${isFlipped ? 'flipped' : ''}`}
             onClick={handleFlip}
         >
-            <div className={`card-flip-inner relative w-full h-full ${isFlipped ? 'flipped' : ''}`}>
+            <div className="card-flip-inner relative w-full h-full">
                 {/* Front Side */}
-                <Card glass className="card-flip-front absolute inset-0 flex flex-col shadow-xl hover:shadow-2xl transition-all">
+                <Card glass className="card-flip-front absolute inset-0 flex flex-col !p-5 shadow-xl hover:shadow-2xl transition-all">
                     {/* Top bar */}
-                    <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center justify-between flex-shrink-0 mb-3">
                         <LevelBadge level={word.level} size="sm" />
                         <div className="flex items-center gap-2">
                             <button
@@ -76,14 +76,14 @@ const VocabularyCard = memo(function VocabularyCard({
                     </div>
 
                     {/* Word */}
-                    <div className="flex-1 flex flex-col items-center justify-center">
-                        <h3 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2">{word.word}</h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-400 font-medium">{word.phonetic}</p>
-                        <span className="mt-2 px-3 py-1 text-xs glass rounded-full text-gray-700 dark:text-gray-300">{word.partOfSpeech}</span>
+                    <div className="flex-1 flex flex-col items-center justify-center min-h-0 py-4">
+                        <h3 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2 truncate max-w-full px-2">{word.word}</h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 font-medium truncate max-w-full">{word.phonetic}</p>
+                        <span className="mt-2 px-3 py-1 text-xs glass rounded-full text-gray-700 dark:text-gray-300 truncate max-w-full">{word.partOfSpeech}</span>
                     </div>
 
                     {/* Status */}
-                    <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-200/50 dark:border-slate-700/50">
+                    <div className="flex items-center justify-between flex-shrink-0 pt-4 border-t border-gray-200/50 dark:border-slate-700/50">
                         <div className="flex items-center gap-2">
                             <StatusBadge status={word.status || 'new'} />
                             <WordDifficultyBadge wordId={word.id || word.word} size="xs" showLabel={false} />
@@ -93,7 +93,7 @@ const VocabularyCard = memo(function VocabularyCard({
                 </Card>
 
                 {/* Back Side */}
-                <Card glass className="card-flip-back absolute inset-0 flex flex-col bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 shadow-xl">
+                <Card glass className="card-flip-back absolute inset-0 flex flex-col !p-5 bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 shadow-xl">
                     {/* Turkish meaning */}
                     <div className="flex-1 flex flex-col items-center justify-center text-center px-4">
                         <p className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-3">{word.turkish}</p>

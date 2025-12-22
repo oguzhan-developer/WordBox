@@ -1,3 +1,256 @@
+[ITERASYON | 2025-12-22 03:15]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/database/schema_clean.sql (YENİ)
+
+Yapılan Geliştirme:
+- VERİTABANI TABLO ANALİZİ VE TEMİZLEME:
+  
+  📊 KULLANILAN TABLOLAR (10 adet):
+  1. words - Tüm kelimeler (TEK KAYNAK)
+  2. news - Haber meta verileri
+  3. news_levels - Seviye içerikleri
+  4. news_categories - Haber kategorileri
+  5. news_words - Haber-Kelime junction
+  6. stories - Hikaye meta verileri
+  7. story_levels - Seviye içerikleri
+  8. story_categories - Hikaye kategorileri
+  9. story_words - Hikaye-Kelime junction
+  10. profiles - Kullanıcı profilleri
+
+  ❌ SİLİNECEK TABLOLAR (8 adet - LEGACY):
+  - content_levels (eski yapı)
+  - contents (eski yapı)
+  - news_reading_sessions (localStorage kullanılıyor)
+  - story_reading_sessions (localStorage kullanılıyor)
+  - user_news_interactions (kullanılmıyor)
+  - user_news_progress (kullanılmıyor)
+  - user_story_interactions (kullanılmıyor)
+  - user_story_progress (kullanılmıyor)
+
+  ⚠️ OPSİYONEL:
+  - user_words (ileride localStorage'dan migration için)
+
+  📝 Temiz SQL şeması oluşturuldu:
+  - database/schema_clean.sql
+  - Tüm RLS politikaları
+  - Tüm triggerlar
+  - Tüm indeksler
+  - Örnek kategoriler ve kelimeler
+
+Çalıştırılan Build Komutu:
+- Yok (analiz işlemi)
+
+Build Sonucu:
+- N/A
+
+Hatalar:
+- Yok
+
+Son Build Durumu:
+- N/A (veritabanı analizi)
+
+
+[ITERASYON | 2025-12-22 02:30]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/database/schema.sql (YENİ)
+- /Users/oguz/Documents/EnglishLearnApp/src/services/supabaseService.js
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/AdminPage.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/ReadingPage.jsx
+
+Yapılan Geliştirme:
+- VERİTABANI MİMARİSİ YENİDEN TASARLANDI:
+  
+  📊 Yeni Veritabanı Şeması (database/schema.sql):
+  * words: Tüm kelimeler için TEK KAYNAK (Single Source of Truth)
+    - word, phonetic, part_of_speech, level
+    - meanings_tr (JSONB - birden fazla Türkçe anlam)
+    - definitions_en (JSONB - birden fazla İngilizce tanım)
+    - examples_en, examples_tr (JSONB - örnek cümleler)
+    - synonyms, antonyms, related_words
+    - usage_notes, common_mistakes
+    - image_url, audio_url, frequency_rank, tags
+  
+  * news_words: Haber-Kelime ilişki tablosu (junction)
+    - news_level_id → word_id referansları
+    - display_order, is_highlighted, context_sentence
+  
+  * story_words: Hikaye-Kelime ilişki tablosu (junction)
+    - story_level_id → word_id referansları
+    - Aynı yapı news_words ile
+
+  🔧 supabaseService güncellemeleri:
+  * getAllWords, getWordById, searchWords, getWordsByLevel fonksiyonları
+  * createWord, updateWord, deleteWord CRUD işlemleri
+  * normalizeWord: snake_case → camelCase dönüşümü
+  * getWordsForNewsLevel, getWordsForStoryLevel: Junction tablodan kelime çekme
+  * addWordToNewsLevel, removeWordFromNewsLevel: Kelime ekleme/çıkarma
+  * News/Stories getirme fonksiyonları junction tablodan kelime çekecek şekilde güncellendi
+
+  🛠️ AdminPage yenilikleri:
+  * "Kelimeler" sekmesi eklendi (TAM CRUD işlemleri)
+  * WordSelector bileşeni: Var olan kelimeler arasında arama yapıp ekleme
+  * Haber/Hikaye eklerken kelime seçimi elle yazmak yerine aramadan yapılıyor
+  * Kelime ekleme modal'ı: Tüm yeni şema alanları ile form
+  * Pagination ve seviye filtreleme
+  * Junction table mantığı ile kaydetme
+
+  📖 ReadingPage güncellemeleri:
+  * Kelime tıklandığında önce article.newWords'te ara (junction'dan gelen)
+  * Bulamazsa veritabanında ara
+  * Yeni şema alanlarını destekleyecek şekilde normalize
+
+Mimari Kuralları:
+- Kelimeler SADECE words tablosunda tutulur
+- Haberler SADECE news tablosunda
+- Hikayeler SADECE stories tablosunda
+- İlişkiler junction tablolarıyla (news_words, story_words)
+- Veri tekrarı YOK - her veri tek kaynakta
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-22 00:58]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/components/Navbar.jsx
+
+Yapılan Geliştirme:
+- Level Badge layout ve hizalama düzeltmesi:
+  * Icon ve text arası gap 2 → 1.5 azaltıldı
+  * Icon boyutu 18px → 16px küçültüldü
+  * Icon'a leading-none eklendi (vertical hizalama için)
+  * Text'e whitespace-nowrap eklendi (satır kırılmayı önlemek için)
+  * Daha dengeli ve kompakt görünüm sağlandı
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Icon ve text hizalaması optimize edildi
+- Sol boşluk dengelendi
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-22 00:55]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/components/Navbar.jsx
+
+Yapılan Geliştirme:
+- Navbar responsive breakpoint düzeltmesi:
+  * Orta menü lg:flex → md:flex (768px+)
+  * Level Badge lg:flex → md:flex (768px+)
+  * Orta menü padding ve gap azaltıldı (px-3→px-2, gap-2→gap-1.5, px-4→px-3)
+  * Level Badge padding azaltıldı (px-4→px-3)
+  * 768px+ ekranlarda hem orta menü hem level badge görünüyor
+  * Daha kompakt tasarım sayesinde çakışma önlendi
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Breakpoint'ler md seviyesine geri döndürüldü
+- Padding ve gap değerleri optimize edildi
+- Çakışma sorunu padding azaltılarak çözüldü
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-22 00:52]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/components/Navbar.jsx
+
+Yapılan Geliştirme:
+- Navbar responsive tasarım çakışması düzeltildi (genişlik 900px altında):
+  * Center menü (Dersler, Kelimelerim, Kütüphane) md:flex → lg:flex değiştirildi
+  * Level Badge sm:flex → lg:flex değiştirildi
+  * Right Actions gap-3 → gap-2 sm:gap-3 yapıldı
+  * 640px-1024px arası ekranlarda orta menü ve level badge gizleniyor
+  * 1024px+ ekranlarda tüm elemanlar görünüyor
+  * Mobil menüde tüm linkler erişilebilir
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Orta menü ve Level Badge breakpoint'leri eşitlendi (lg)
+- Çakışma problemi responsive tasarım kuralları ile çözüldü
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-22 00:48]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/PracticePage.jsx
+
+Yapılan Geliştirme:
+- Practice sayfası Akıllı Tekrar Sistemi grafiklerinde taşma sorunu düzeltildi:
+  * Grid layout mobil responsive yapıldı (3 sütun mobil, 6 sütun desktop)
+  * Bar container'lara overflow-hidden ve padding eklendi
+  * Bar yükseklikleri min-max ile sınırlandı (15%-95%)
+  * Label'lar için break-words ve text-center eklendi
+  * Grafik yükseklikleri ayarlandı (mobil 24, desktop 20)
+  * Smooth transition animasyonu eklendi (duration-500 ease-out)
+  * Text renkleri dark mode uyumlu yapıldı
+  * Sayı font boyutları responsive yapıldı
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Grafik taşma sorunu responsive layout ile çözüldü
+- Bar boyutlandırma mantığı iyileştirildi
+- Mobil ekranlarda daha iyi görünüm sağlandı
+
+Son Build Durumu:
+- BAŞARILI
+
+
 [ITERASYON | 2025-12-22 00:15]
 
 Değiştirilen Dosyalar:
@@ -2410,6 +2663,278 @@ Hatalar:
 
 Yapılan Düzeltmeler:
 - Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-22 $(date +"%H:%M")]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/components/ContentCard.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/Library.jsx
+
+Yapılan Geliştirme:
+- Library sayfasındaki içerik kartlarından seviye badge'leri (A1, B1, vb.) kaldırıldı:
+  * ContentCard bileşeninden LevelBadge import'u kaldırıldı
+  * Ana ContentCard'dan üst sağdaki LevelBadge kaldırıldı
+  * ContentCardCompact'tan LevelBadge kaldırıldı
+  * ContentCardFeatured'dan LevelBadge kaldırıldı
+- Library sayfasında kelime sayısı ve okuma süresi problemi düzeltildi:
+  * wordCount değeri item.newWords?.length yerine item.word_count || item.wordCount kullanacak şekilde düzeltildi
+  * readTime prop'u eklendi (item.read_time || item.readTime || hesaplanmış değer)
+  * Kartlarda artık doğru kelime sayısı ve okuma süresi gösteriliyor
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Badge componentlerinden seviye göstergeleri kaldırıldı
+- Veritabanından gelen doğru word_count ve read_time değerleri kullanıldı
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-22 $(date +"%H:%M")]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/Library.jsx
+
+Yapılan Geliştirme:
+- Admin sayfasından eklenen içeriklerdeki kelime sayısı düzeltildi:
+  * Library.jsx'te wordCount ve readTime prop mapping'i optimize edildi
+  * supabaseService.js'den camelCase (wordCount, readTime) formatında dönen veri öncelikli kullanılıyor
+  * Fallback olarak snake_case (word_count, read_time) desteği korundu
+  * Sıralama düzeltildi: item.wordCount || item.word_count (camelCase önce)
+  * Artık admin'den eklenen içerikler de doğru kelime sayısı gösteriyor
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Prop isimlerinin sırası değiştirildi (camelCase öncelikli)
+- supabaseService'den dönen standart format kullanılmaya başlandı
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-22 $(date +"%H:%M")]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/components/ContentCard.jsx
+- /Users/oguz/Documents/EnglishLearnApp/src/services/supabaseService.js
+
+Yapılan Geliştirme:
+- Library kartlarında okuma süresi ve kelime sayısı sorunları düzeltildi:
+
+1. ContentCard - Okuma Süresi Düzeltmesi:
+   * Admin panelinden girilen readTime varsa onu kullan
+   * Yoksa wordCount üzerinden hesapla
+   * displayMinutes ve displayFormatted ile doğru süre gösterimi
+   * timeEmoji doğru dakika değerine göre hesaplanıyor
+
+2. supabaseService - WordCount Fallback Eklendi:
+   * getNewsByLevel: content_text'ten kelime sayısı hesaplama eklendi
+   * getStoriesByLevel: content_text'ten kelime sayısı hesaplama eklendi
+   * getNewsBySlug: content_text fallback eklendi
+   * getStoryBySlug: content_text fallback eklendi
+   * levelData.word_count yoksa content_text.split ile hesaplanıyor
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Admin'den girilen 5dk okuma süresi artık doğru gösterilecek
+- wordCount veritabanında 0 olsa bile content_text'ten hesaplanacak
+- newWords array boşsa yine 0 gösterilir (admin'den JSON formatında girilmeli)
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-22 $(date +"%H:%M")]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/ReadingPage.jsx
+
+Yapılan Geliştirme:
+- ReadingPage newWords desteği güncellendi (hem string hem object formatı):
+
+1. Kelime listesi gösterimi düzeltildi:
+   * article.newWords array'i artık hem string hem object formatını destekliyor
+   * wordItem.word ile kelime metni, wordItem.turkish ile Türkçe anlamı alınıyor
+   * Kelime kartlarında Türkçe anlamı da gösteriliyor
+
+2. İçerikte kelime vurgulama düzeltildi:
+   * renderContent() içindeki forEach artık object formatını destekliyor
+   * wordText değişkeni ile doğru kelime metni alınıyor
+   * Regex ile vurgulama düzgün çalışıyor
+
+3. "Hepsini Kelime Listeme Ekle" butonu düzeltildi:
+   * Object formatındaki kelimeler için turkish ve definition bilgisi kullanılıyor
+   * String formatı için veritabanı araması yapılıyor
+   * Kelime ekleme artık düzgün çalışıyor
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Admin panelinden girilen JSON formatındaki yeni kelimeler artık ReadingPage'de görüntüleniyor
+- Kelime sayısı doğru gösteriliyor
+- Kelimeler Türkçe anlamlarıyla birlikte listeleniyor
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-22 $(date +"%H:%M")]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/AdminPage.jsx
+
+Yapılan Geliştirme:
+- Admin paneline kullanıcı dostu Yeni Kelime Listesi Editörü eklendi:
+
+1. WordListEditor Bileşeni Oluşturuldu:
+   * Tek tek kelime ekleme arayüzü
+   * 3 input alanı: Kelime (İngilizce), Türkçe Anlamı, Tanım (İngilizce)
+   * Eklenen kelimeler tablo görünümünde listeleniyor
+   * Her kelime için düzenleme (edit) ve silme (delete) butonları
+   * Düzenleme modu ile mevcut kelimeleri güncelleme
+   * Toplam kelime sayısı gösterimi
+   * Scroll ile 64px max yükseklikte liste görünümü
+
+2. JSON Array Manuel Girişi Kaldırıldı:
+   * Eski textarea tabanlı JSON input kaldırıldı
+   * Yeni WordListEditor bileşeni entegre edildi
+   * Kaydederken otomatik JSON array'e dönüştürme
+
+3. UX İyileştirmeleri:
+   * Grid tabanlı responsive form tasarımı
+   * Hover efektleri ile etkileşim geri bildirimi
+   * Disabled state ile boş kelime engelleme
+   * İptal butonu ile düzenleme modundan çıkış
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- GripVertical icon import eklendi
+- WordListEditor bileşeni AdminPage.jsx dosyasına eklendi
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-22 $(date +"%H:%M")]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/AdminPage.jsx
+
+Yapılan Geliştirme:
+- Admin paneli kaydetme fonksiyonu array desteği ile güncellendi:
+
+1. levelsToInsert Mapping Düzeltildi:
+   * new_words için Array.isArray kontrolü eklendi
+   * key_phrases için Array.isArray kontrolü eklendi
+   * comprehension_questions için Array.isArray kontrolü eklendi
+   * Hem string hem array formatı artık doğru işleniyor
+   * WordListEditor'dan gelen array verileri doğrudan kaydediliyor
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Array tipinde gelen veriler için özel işleme eklendi
+- String ve array formatları ayrı ayrı ele alınıyor
+
+Not: Mevcut içeriklerde new_words alanı veritabanında boş.
+İçeriği admin panelinden düzenleyip kelimeler ekleyip
+tekrar kaydetmeniz gerekiyor.
+
+Son Build Durumu:
+- BAŞARILI
+
+
+[ITERASYON | 2025-12-22 $(date +"%H:%M")]
+
+Değiştirilen Dosyalar:
+- /Users/oguz/Documents/EnglishLearnApp/src/pages/AdminPage.jsx
+
+Yapılan Geliştirme:
+- "Yeni Kelimeler" bölümünde kelimeye tıklandığında "Bu kelime veritabanında bulunamadı" hatası düzeltildi:
+
+1. saveWordsToDatabase() Fonksiyonu Eklendi:
+   * news_levels/story_levels'daki new_words array'inden kelimeleri alır
+   * Her kelime için words tablosunda kontrol yapar
+   * Eğer kelime yoksa words tablosuna ekler
+   * word, turkish, definition, level gibi alanları kaydeder
+   * Duplicate kayıt önlendi (word bazlı unique check)
+
+2. handleSave() Fonksiyonu Güncellendi:
+   * Level verileri kaydedildikten sonra saveWordsToDatabase() çağrılıyor
+   * Böylece new_words içindeki kelimeler otomatik olarak words tablosuna ekleniyor
+
+3. Çalışma Mantığı:
+   * Admin panelinden içerik kaydedilirken
+   * new_words array'indeki her kelime
+   * words tablosuna da ekleniyor
+   * ReadingPage'de kelimeye tıklandığında artık bulunamadı hatası çıkmıyor
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Kelime veritabanı entegrasyonu tamamlandı
+- words tablosuna otomatik kelime ekleme sistemi kuruldu
+
+Not: Mevcut içeriklerin kelimelerini görmek için
+admin panelinden içeriği bir kez düzenleyip kaydetmeniz gerekiyor.
+Yeni eklenen içeriklerde sorun yaşanmayacak.
 
 Son Build Durumu:
 - BAŞARILI

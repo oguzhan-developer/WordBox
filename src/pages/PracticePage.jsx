@@ -169,17 +169,19 @@ export default function PracticePage() {
                         </div>
                         
                         {/* Box Distribution */}
-                        <div className="grid grid-cols-6 gap-2">
+                        <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3">
                             {[1, 2, 3, 4, 5, 6].map((box) => (
-                                <div key={box} className="text-center">
-                                    <div className={`h-16 rounded-lg ${BOX_COLORS[box]} bg-opacity-20 flex items-end justify-center pb-1`}>
+                                <div key={box} className="flex flex-col items-center">
+                                    <div className={`w-full h-24 sm:h-20 rounded-lg ${BOX_COLORS[box]} bg-opacity-20 flex items-end justify-center p-1 overflow-hidden`}>
                                         <div 
-                                            className={`w-full mx-1 ${BOX_COLORS[box]} rounded-t-md transition-all`}
-                                            style={{ height: `${Math.max(10, (srsStats.boxes[box] / Math.max(1, srsStats.total)) * 100)}%` }}
+                                            className={`w-full ${BOX_COLORS[box]} rounded-t-md transition-all duration-500 ease-out`}
+                                            style={{ 
+                                                height: `${Math.max(15, Math.min(95, (srsStats.boxes[box] / Math.max(1, srsStats.total)) * 100))}%` 
+                                            }}
                                         />
                                     </div>
-                                    <div className="text-xs font-bold mt-1">{srsStats.boxes[box]}</div>
-                                    <div className="text-[10px] text-gray-500">{BOX_LABELS[box]}</div>
+                                    <div className="text-xs sm:text-sm font-bold mt-2 text-gray-900 dark:text-white">{srsStats.boxes[box]}</div>
+                                    <div className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 text-center break-words w-full px-1">{BOX_LABELS[box]}</div>
                                 </div>
                             ))}
                         </div>

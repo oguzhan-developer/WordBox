@@ -176,7 +176,7 @@ export default function ReadingPage() {
     // Normalize helper for word ids
     const normalizeWord = (text) => text?.trim().toLowerCase();
 
-    // Handle word click
+    // Handle word click - önce article'daki newWords'te ara, sonra veritabanında
     const handleWordClick = useCallback(async (word, e) => {
         e.stopPropagation();
 
@@ -184,8 +184,17 @@ export default function ReadingPage() {
         const fallbackId = normalized ? `local-${normalized}` : `local-${Date.now()}`;
 
         try {
-            const results = await supabaseService.searchWords(word);
-            const wordInfo = results.find(w => normalizeWord(w.word) === normalized);
+            // Önce article'ın newWords listesinde ara (junction tablodan gelmiş)
+            let wordInfo = null;
+            if (article?.newWords && Array.isArray(article.newWords)) {
+                wordInfo = article.newWords.find(w => normalizeWord(w.word) === normalized);
+            }
+
+            // Bulamazsa veritabanında ara
+            if (!wordInfo) {
+                const results = await supabaseService.searchWords(word);
+                wordInfo = results.find(w => normalizeWord(w.word) === normalized);
+            }
 
             const base = wordInfo || {
                 id: fallbackId,
@@ -198,18 +207,32 @@ export default function ReadingPage() {
                 level: selectedLevel,
             };
 
-            const derivedId = base.id || fallbackId;
+            // Normalize edilmiş kelime bilgisi - yeni şema uyumlu
+            const normalizedWordInfo = {
+                id: base.id || fallbackId,
+                word: base.word || word,
+                turkish: base.meaningsTr?.[0] || base.turkish || '-',
+                definition: base.definitionsEn?.[0] || base.definition || '',
+                phonetic: base.phonetic || '',
+                partOfSpeech: base.partOfSpeech || '',
+                examples: base.examplesEn || base.examples || [],
+                examplesTr: base.examplesTr || [],
+                level: base.level || selectedLevel,
+                meaningsTr: base.meaningsTr || [],
+                definitionsEn: base.definitionsEn || [],
+            };
+
+            const derivedId = normalizedWordInfo.id;
             const alreadyAdded = user.vocabulary.some(v => normalizeWord(v.word) === normalized || v.id === derivedId) || addedWords.has(derivedId);
 
             setSelectedWord({
-                ...base,
-                id: derivedId,
+                ...normalizedWordInfo,
                 isAdded: alreadyAdded,
             });
         } catch (error) {
             console.error("Word search error:", error);
         }
-    }, [user.vocabulary, addedWords, selectedLevel]);
+    }, [user.vocabulary, addedWords, selectedLevel, article]);
 
     // Add word to vocabulary
     const handleAddWord = () => {
@@ -221,13 +244,18 @@ export default function ReadingPage() {
         const payload = {
             id: fallbackId,
             word: selectedWord.word,
-            turkish: selectedWord.turkish || '-',
-            definition: selectedWord.definition || '',
+            turkish: selectedWord.turkish || selectedWord.meaningsTr?.[0] || '-',
+            definition: selectedWord.definition || selectedWord.definitionsEn?.[0] || '',
             phonetic: selectedWord.phonetic || '',
             partOfSpeech: selectedWord.partOfSpeech || '',
-            examples: selectedWord.examples || [],
+            examples: selectedWord.examples || selectedWord.examplesEn || [],
             level: selectedWord.level || selectedLevel,
             source: 'reading',
+            // Yeni şema alanları
+            meaningsTr: selectedWord.meaningsTr || [selectedWord.turkish],
+            definitionsEn: selectedWord.definitionsEn || [selectedWord.definition],
+            examplesEn: selectedWord.examples || [],
+            examplesTr: selectedWord.examplesTr || [],
         };
 
         addWord(payload);
@@ -287,12 +315,16 @@ export default function ReadingPage() {
 
             // Highlight new words - check if already in user's vocabulary
             let content = paragraph;
-            article.newWords?.forEach(word => {
-                const normalized = normalizeWord(word);
+            article.newWords?.forEach(wordItem => {
+                // Support both string and object formats
+                const wordText = typeof wordItem === 'string' ? wordItem : wordItem?.word;
+                if (!wordText) return;
+                
+                const normalized = normalizeWord(wordText);
                 const isInVocabulary = userWordSet.has(normalized) || addedWordSet.has(normalized);
                 const highlightClass = isInVocabulary ? 'word-highlight-added' : 'word-highlight-new';
                 
-                const regex = new RegExp(`\\b(${word})\\b`, 'gi');
+                const regex = new RegExp(`\\b(${wordText})\\b`, 'gi');
                 content = content.replace(regex, `<span class="${highlightClass}" data-word="$1" data-added="${isInVocabulary}">$1</span>`);
             });
 
@@ -620,21 +652,30 @@ export default function ReadingPage() {
                                         </div>
 
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                            {article.newWords?.map((word, index) => {
-                                                // Ideally we'd have pre-fetched these or use a cached lookup
-                                                const isAdded = user.vocabulary.some(v => v.word.toLowerCase() === word.toLowerCase());
+                                            {article.newWords?.map((wordItem, index) => {
+                                                // Support both string and object formats
+                                                const wordText = typeof wordItem === 'string' ? wordItem : wordItem?.word;
+                                                const wordTurkish = typeof wordItem === 'object' ? wordItem?.turkish : null;
+                                                const wordDefinition = typeof wordItem === 'object' ? wordItem?.definition : null;
+                                                
+                                                if (!wordText) return null;
+                                                
+                                                const isAdded = user.vocabulary.some(v => v.word?.toLowerCase() === wordText.toLowerCase());
 
                                                 return (
                                                     <div
                                                         key={index}
-                                                        onClick={(e) => handleWordClick(word, e)}
+                                                        onClick={(e) => handleWordClick(wordText, e)}
                                                         className={`flex items-center justify-between p-4 rounded-xl cursor-pointer transition-all border ${isAdded
                                                             ? 'bg-green-50 dark:bg-green-900/10 border-green-200 dark:border-green-800/50'
                                                             : 'bg-white dark:bg-white/5 border-gray-100 dark:border-[#333] hover:border-indigo-200 dark:hover:border-indigo-900 shadow-sm hover:shadow-md'
                                                             }`}
                                                     >
-                                                        <div className="flex items-center gap-3">
-                                                            <span className="font-bold text-gray-900 dark:text-white">{word}</span>
+                                                        <div className="flex flex-col gap-0.5">
+                                                            <span className="font-bold text-gray-900 dark:text-white">{wordText}</span>
+                                                            {wordTurkish && (
+                                                                <span className="text-xs text-gray-500 dark:text-gray-400">{wordTurkish}</span>
+                                                            )}
                                                         </div>
                                                         {isAdded ? (
                                                             <div className="size-6 bg-green-500 rounded-full flex items-center justify-center">
@@ -652,13 +693,31 @@ export default function ReadingPage() {
 
                                         <button
                                             onClick={async () => {
-                                                for (const word of article.newWords || []) {
-                                                    if (!user.vocabulary.some(v => v.word.toLowerCase() === word.toLowerCase())) {
-                                                        const results = await supabaseService.searchWords(word);
-                                                        const wordInfo = results.find(w => w.word.toLowerCase() === word.toLowerCase());
-                                                        if (wordInfo) {
-                                                            addWord(wordInfo);
-                                                            setAddedWords(prev => new Set([...prev, wordInfo.id]));
+                                                for (const wordItem of article.newWords || []) {
+                                                    const wordText = typeof wordItem === 'string' ? wordItem : wordItem?.word;
+                                                    if (!wordText) continue;
+                                                    
+                                                    if (!user.vocabulary.some(v => v.word?.toLowerCase() === wordText.toLowerCase())) {
+                                                        // First check if we have word info from the article itself
+                                                        if (typeof wordItem === 'object' && wordItem.word) {
+                                                            const payload = {
+                                                                id: `article-${wordItem.word.toLowerCase().replace(/\s+/g, '-')}`,
+                                                                word: wordItem.word,
+                                                                turkish: wordItem.turkish || '-',
+                                                                definition: wordItem.definition || '',
+                                                                level: selectedLevel,
+                                                                source: 'reading',
+                                                            };
+                                                            addWord(payload);
+                                                            setAddedWords(prev => new Set([...prev, payload.id]));
+                                                        } else {
+                                                            // Fallback to searching in database
+                                                            const results = await supabaseService.searchWords(wordText);
+                                                            const wordInfo = results.find(w => w.word?.toLowerCase() === wordText.toLowerCase());
+                                                            if (wordInfo) {
+                                                                addWord(wordInfo);
+                                                                setAddedWords(prev => new Set([...prev, wordInfo.id]));
+                                                            }
                                                         }
                                                     }
                                                 }

@@ -108,3 +108,11 @@ Hata varsa → durma, düzelt
 Hata yoksa → üretmeye devam et
 
 Kendini durdurma, iterasyon bittikten sonra bir sonraki iterasyona başla.
+
+
+Dikkat et:
+Tüm değişkenler camelCase olmalı.
+Değişkenleri doğru şekilde kullanmalısın.
+Örneğin veritabanına kaydederken readTime ise.
+Başka bir sayfada veritabanından çekilirken totalReadTime ya da readingTime olmamalı.
+Consistency'e özen göstermelisin.

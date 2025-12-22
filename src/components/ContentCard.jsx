@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Clock, BookOpen, Eye, Bookmark } from 'lucide-react';
 import Card from './Card';
-import { LevelBadge, CategoryBadge } from './Badge';
+import { CategoryBadge } from './Badge';
 import { isBookmarked, toggleBookmark } from '../utils/bookmarks';
 import { getReadingTimeInfo, getReadingTimeEmoji } from '../utils/readingTime';
 import { useUser } from '../context/UserContext';
@@ -27,9 +27,14 @@ export default function ContentCard({
     const { user } = useUser();
     const [bookmarked, setBookmarked] = useState(false);
     
-    // Calculate personalized reading time
-    const readingInfo = getReadingTimeInfo(wordCount, user?.level || 'B1', level);
-    const timeEmoji = getReadingTimeEmoji(readingInfo.minutes);
+    // Use admin-provided readTime if available, otherwise calculate
+    const calculatedReadingInfo = getReadingTimeInfo(wordCount, user?.level || 'B1', level);
+    const displayMinutes = readTime && readTime > 0 ? readTime : calculatedReadingInfo.minutes;
+    const displayFormatted = displayMinutes > 0 ? `${displayMinutes} dk` : '< 1 dk';
+    const timeEmoji = getReadingTimeEmoji(displayMinutes);
+    
+    // Keep difficulty info from calculated
+    const readingInfo = { ...calculatedReadingInfo, minutes: displayMinutes, formatted: displayFormatted };
     
     // Check bookmark status on mount
     useEffect(() => {
@@ -98,7 +103,6 @@ export default function ContentCard({
                                 YENİ
                             </span>
                         )}
-                        <LevelBadge level={level} />
                     </div>
 
                     {/* Progress bar if started */}
@@ -175,9 +179,6 @@ export function ContentCardCompact({
                         alt={title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <div className="absolute top-2 right-2">
-                        <LevelBadge level={level} size="xs" />
-                    </div>
                 </div>
                 <h4 className="font-medium text-gray-900 dark:text-white text-sm line-clamp-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                     {title}
@@ -215,7 +216,6 @@ export function ContentCardFeatured({
                             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                             <div className="absolute bottom-4 left-4 flex items-center gap-2">
                                 <CategoryBadge category={category} />
-                                <LevelBadge level={level} />
                             </div>
                         </div>
                     </div>
