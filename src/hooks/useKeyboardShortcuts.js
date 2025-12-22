@@ -106,7 +106,11 @@ export default function useKeyboardShortcuts(handlers = {}, options = {}) {
   } = options;
   
   const handlersRef = useRef(handlers);
-  handlersRef.current = handlers;
+  
+  // Update ref in effect to avoid accessing refs during render
+  useEffect(() => {
+    handlersRef.current = handlers;
+  });
   
   const handleKeyDown = useCallback((event) => {
     if (!enabled) return;

@@ -287,8 +287,9 @@ export class PronunciationAnalyzer {
    * Callback'leri ayarla
    */
   on(event, callback) {
-    if (this.callbacks.hasOwnProperty(`on${event.charAt(0).toUpperCase() + event.slice(1)}`)) {
-      this.callbacks[`on${event.charAt(0).toUpperCase() + event.slice(1)}`] = callback;
+    const key = `on${event.charAt(0).toUpperCase() + event.slice(1)}`;
+    if (Object.prototype.hasOwnProperty.call(this.callbacks, key)) {
+      this.callbacks[key] = callback;
     }
     return this;
   }
@@ -322,7 +323,7 @@ export const evaluatePronunciationOnce = (targetWord, timeout = 5000) => {
         clearTimeout(timeoutId);
         resolve(result);
       })
-      .on('error', (message, error) => {
+      .on('error', (message, _error) => {
         clearTimeout(timeoutId);
         reject(new Error(message));
       });

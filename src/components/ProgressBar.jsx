@@ -55,7 +55,7 @@ export function CircularProgress({
     max = 100,
     size = 100,
     strokeWidth = 8,
-    color = '#6366f1',
+    color: _color = '#6366f1', // Reserved for future custom color support
     bgColor = '#e2e8f0',
     showValue = true,
     valueLabel = '',

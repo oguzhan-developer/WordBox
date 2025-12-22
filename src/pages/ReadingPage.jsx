@@ -656,7 +656,7 @@ export default function ReadingPage() {
                                                 // Support both string and object formats
                                                 const wordText = typeof wordItem === 'string' ? wordItem : wordItem?.word;
                                                 const wordTurkish = typeof wordItem === 'object' ? wordItem?.turkish : null;
-                                                const wordDefinition = typeof wordItem === 'object' ? wordItem?.definition : null;
+                                                const _wordDefinition = typeof wordItem === 'object' ? wordItem?.definition : null;
                                                 
                                                 if (!wordText) return null;
                                                 

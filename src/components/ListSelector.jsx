@@ -126,7 +126,7 @@ const CreateListForm = ({ onSubmit, onCancel }) => {
 /**
  * Liste seçici dropdown
  */
-export const ListSelectorDropdown = ({ wordId, onClose }) => {
+export const ListSelectorDropdown = ({ wordId, onClose: _onClose }) => {
   const { lists, addWord, removeWord, isWordInList, create } = useWordLists();
   const [showCreate, setShowCreate] = useState(false);
 
@@ -215,9 +215,9 @@ export const ListSelectorModal = ({ isOpen, onClose, wordId, wordName }) => {
  * Liste yönetici paneli
  */
 export const ListManagerPanel = () => {
-  const { lists, create, remove, update, stats } = useWordLists();
+  const { lists, create, remove, update: _update, stats } = useWordLists();
   const [showCreate, setShowCreate] = useState(false);
-  const [editingList, setEditingList] = useState(null);
+  const [_editingList, _setEditingList] = useState(null);
 
   const customLists = useMemo(() => 
     lists.filter(l => !l.isSystem), 

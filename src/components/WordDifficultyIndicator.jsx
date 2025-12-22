@@ -144,10 +144,10 @@ export function WordStatsMini({ wordId }) {
 /**
  * Full Word Difficulty Card
  */
-export function WordDifficultyCard({ wordId, word }) {
+export function WordDifficultyCard({ wordId, word: _word }) {
     const srsData = useMemo(() => getSrsData(), []);
-    const srsEntry = srsData[wordId] || { box: 1, reviewCount: 0, correctCount: 0, streak: 0 };
-    const difficulty = useMemo(() => calculateDifficulty(srsEntry), [srsEntry]);
+    const srsEntry = useMemo(() => srsData[wordId] || { box: 1, reviewCount: 0, correctCount: 0, streak: 0 }, [srsData, wordId]);
+    const _difficulty = useMemo(() => calculateDifficulty(srsEntry), [srsEntry]);
     const accuracy = srsEntry.reviewCount > 0 
         ? Math.round((srsEntry.correctCount / srsEntry.reviewCount) * 100) 
         : 0;

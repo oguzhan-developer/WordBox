@@ -9,6 +9,27 @@ import { calculatePracticeXp } from '../../utils/gamification';
 import { speak } from '../../utils/speechSynthesis';
 import { recordReview } from '../../utils/spacedRepetition';
 
+// Levenshtein distance for typo tolerance
+const levenshteinDistance = (str1, str2) => {
+    const m = str1.length;
+    const n = str2.length;
+    const dp = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0));
+
+    for (let i = 0; i <= m; i++) dp[i][0] = i;
+    for (let j = 0; j <= n; j++) dp[0][j] = j;
+
+    for (let i = 1; i <= m; i++) {
+        for (let j = 1; j <= n; j++) {
+            if (str1[i - 1] === str2[j - 1]) {
+                dp[i][j] = dp[i - 1][j - 1];
+            } else {
+                dp[i][j] = Math.min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]) + 1;
+            }
+        }
+    }
+    return dp[m][n];
+};
+
 export default function TranslationMode() {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
@@ -18,6 +39,8 @@ export default function TranslationMode() {
 
     // Settings from URL
     const wordCount = parseInt(searchParams.get('count')) || 20;
+    const wordSource = searchParams.get('source') || 'all';
+    const dbLevel = searchParams.get('level') || user.level || 'B1';
 
     // State
     const [questions, setQuestions] = useState([]);
@@ -27,12 +50,20 @@ export default function TranslationMode() {
     const [isCorrect, setIsCorrect] = useState(false);
     const [results, setResults] = useState({ correct: 0, wrong: 0 });
     const [isComplete, setIsComplete] = useState(false);
+    const [endTime, setEndTime] = useState(null);
+    const [startTime, setStartTime] = useState(null);
     const [showExitConfirm, setShowExitConfirm] = useState(false);
     const [combo, setCombo] = useState(0);
     const [maxCombo, setMaxCombo] = useState(0);
-    const [startTime] = useState(Date.now());
-    const [questionStartTime, setQuestionStartTime] = useState(Date.now());
+    const questionStartTimeRef = useRef(null);
     const [questionTimes, setQuestionTimes] = useState([]);
+
+    // Initialize time on mount
+    useEffect(() => {
+        const now = Date.now();
+        setStartTime(now);
+        questionStartTimeRef.current = now;
+    }, []);
 
     // Generate translation questions (alternating EN→TR and TR→EN)
     const generateQuestions = useCallback((words) => {
@@ -59,18 +90,17 @@ export default function TranslationMode() {
         const loadWords = async () => {
             let practiceWords = [];
 
+            // Use user's vocabulary only
             if (user.vocabulary.length >= wordCount) {
                 practiceWords = [...user.vocabulary]
+                    .map(w => ({ ...w, translation: w.turkish || '' }))
                     .sort(() => Math.random() - 0.5)
                     .slice(0, wordCount);
             } else if (user.vocabulary.length > 0) {
-                practiceWords = [...user.vocabulary];
-                const remaining = wordCount - practiceWords.length;
-                const randomWords = await supabaseService.getRandomWords(remaining);
-                practiceWords = [...practiceWords, ...randomWords].sort(() => Math.random() - 0.5);
-            } else {
-                const randomWords = await supabaseService.getRandomWords(wordCount);
-                practiceWords = randomWords;
+                // If not enough words, use what's available
+                practiceWords = [...user.vocabulary]
+                    .map(w => ({ ...w, translation: w.turkish || '' }))
+                    .sort(() => Math.random() - 0.5);
             }
 
             const generatedQuestions = generateQuestions(practiceWords);
@@ -117,13 +147,13 @@ export default function TranslationMode() {
     const checkAnswer = useCallback(() => {
         if (isAnswered || !userAnswer.trim()) return;
 
-        const timeTaken = Date.now() - questionStartTime;
+        const timeTaken = Date.now() - questionStartTimeRef.current;
         setQuestionTimes(prev => [...prev, timeTaken]);
 
         // Normalize answers for comparison
         const normalizedUserAnswer = normalizeTurkish(userAnswer);
-        const normalizedCorrectAnswer = normalizeTurkish(currentQuestion.answer);
-
+        // Note: normalizedCorrectAnswer not used directly - we check all possible answers
+        
         // Check if correct (also accept alternative translations separated by comma or semicolon)
         const possibleAnswers = currentQuestion.answer.split(/[,;]/).map(a => normalizeTurkish(a.trim()));
         
@@ -173,28 +203,7 @@ export default function TranslationMode() {
         if (currentQuestion.id) {
             recordReview(currentQuestion.id, correct);
         }
-    }, [isAnswered, userAnswer, currentQuestion, combo, maxCombo, toast, updateWordPractice, user.vocabulary, questionStartTime]);
-
-    // Levenshtein distance for typo tolerance
-    const levenshteinDistance = (str1, str2) => {
-        const m = str1.length;
-        const n = str2.length;
-        const dp = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0));
-
-        for (let i = 0; i <= m; i++) dp[i][0] = i;
-        for (let j = 0; j <= n; j++) dp[0][j] = j;
-
-        for (let i = 1; i <= m; i++) {
-            for (let j = 1; j <= n; j++) {
-                if (str1[i - 1] === str2[j - 1]) {
-                    dp[i][j] = dp[i - 1][j - 1];
-                } else {
-                    dp[i][j] = Math.min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]) + 1;
-                }
-            }
-        }
-        return dp[m][n];
-    };
+    }, [isAnswered, userAnswer, currentQuestion, combo, maxCombo, toast, updateWordPractice, user.vocabulary]);
 
     // Go to next question
     const handleNext = useCallback(() => {
@@ -203,9 +212,10 @@ export default function TranslationMode() {
             setUserAnswer('');
             setIsAnswered(false);
             setIsCorrect(false);
-            setQuestionStartTime(Date.now());
+            questionStartTimeRef.current = Date.now();
         } else {
             completePractice(results.correct + (isCorrect ? 1 : 0), results.wrong + (isCorrect ? 0 : 1));
+            setEndTime(Date.now());
             setIsComplete(true);
         }
     }, [currentIndex, questions.length, results, isCorrect, completePractice]);
@@ -265,7 +275,7 @@ export default function TranslationMode() {
 
     // Complete screen
     if (isComplete) {
-        const totalTime = Math.floor((Date.now() - startTime) / 1000);
+        const totalTime = startTime && endTime ? Math.floor((endTime - startTime) / 1000) : 0;
         const minutes = Math.floor(totalTime / 60);
         const seconds = totalTime % 60;
 

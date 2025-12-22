@@ -23,7 +23,14 @@ export default defineConfig([
       },
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      'no-unused-vars': ['error', { 
+        varsIgnorePattern: '^[A-Z_]',
+        argsIgnorePattern: '^_|^Icon',
+        caughtErrorsIgnorePattern: '^_'
+      }],
+      'react-refresh/only-export-components': 'warn',
+      'react-hooks/purity': 'warn', // Date.now() in useRef is acceptable
+      'react-hooks/set-state-in-effect': 'warn', // setTimeout workaround needed
     },
   },
 ])

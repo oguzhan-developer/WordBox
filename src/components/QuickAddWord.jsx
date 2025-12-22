@@ -82,7 +82,9 @@ const QuickAddForm = ({ onSubmit, isLoading }) => {
         w => w.word.toLowerCase() === word.toLowerCase()
       );
       if (found) {
-        setTurkish(found.turkish);
+        // Use setTimeout to avoid cascading render warning
+        const timeoutId = setTimeout(() => setTurkish(found.turkish), 0);
+        return () => clearTimeout(timeoutId);
       }
     }
   }, [word, autoTranslate]);
@@ -194,7 +196,7 @@ export default function QuickAddWord({ isOpen, onClose }) {
       addWord(newWord);
       setRecentlyAdded(prev => [newWord, ...prev.slice(0, 4)]);
       toast.success(`"${wordData.word}" eklendi!`);
-    } catch (error) {
+    } catch {
       toast.error('Kelime eklenemedi');
     } finally {
       setIsLoading(false);

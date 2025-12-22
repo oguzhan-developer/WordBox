@@ -8,7 +8,7 @@ import { supabaseService } from '../../services/supabaseService';
 export default function SprintMode() {
     const navigate = useNavigate();
     const { user, addXp, recordActivity } = useUser();
-    const toast = useToast();
+    const _toast = useToast();
 
     // Game Settings
     const MAX_TIME = 15;
@@ -24,7 +24,7 @@ export default function SprintMode() {
     const [stats, setStats] = useState({ correct: 0, wrong: 0 });
     const [lastResult, setLastResult] = useState(null); // 'correct', 'wrong', null
     const [showCorrection, setShowCorrection] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+    const [_isLoading, setIsLoading] = useState(false);
 
     const timerRef = useRef(null);
     const lastWordId = useRef(null);

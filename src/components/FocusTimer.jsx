@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { X, Play, Pause, RotateCcw, Volume2, VolumeX, Settings } from 'lucide-react';
 
 /**
@@ -28,13 +28,15 @@ export default function FocusTimer({ isOpen, onClose }) {
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [showSettings, setShowSettings] = useState(false);
   
-  const audioRef = useRef(null);
   const intervalRef = useRef(null);
   
-  // Get current preset values
-  const currentPreset = preset === 'custom' 
-    ? { work: customWork, break: customBreak } 
-    : PRESETS[preset];
+  // Get current preset values - memoized to prevent effect dependency changes
+  const currentPreset = useMemo(() => 
+    preset === 'custom' 
+      ? { work: customWork, break: customBreak } 
+      : PRESETS[preset],
+    [preset, customWork, customBreak]
+  );
   
   // Play notification sound
   const playSound = useCallback(() => {
@@ -56,10 +58,27 @@ export default function FocusTimer({ isOpen, onClose }) {
       
       oscillator.start(audioContext.currentTime);
       oscillator.stop(audioContext.currentTime + 0.5);
-    } catch (e) {
+    } catch {
       console.log('Audio not available');
     }
   }, [soundEnabled, isBreak]);
+  
+  // Handle timer completion
+  const handleTimerComplete = useCallback(() => {
+    playSound();
+    
+    if (isBreak) {
+      // Break ended, start new work session
+      setIsBreak(false);
+      setTimeLeft(currentPreset.work * 60);
+      setSessions(prev => prev + 1);
+    } else {
+      // Work ended, start break
+      setIsBreak(true);
+      setTimeLeft(currentPreset.break * 60);
+    }
+    setIsRunning(false);
+  }, [isBreak, currentPreset, playSound]);
   
   // Timer logic
   useEffect(() => {
@@ -67,21 +86,10 @@ export default function FocusTimer({ isOpen, onClose }) {
       intervalRef.current = setInterval(() => {
         setTimeLeft(prev => prev - 1);
       }, 1000);
-    } else if (timeLeft === 0) {
-      // Timer completed
-      playSound();
-      
-      if (isBreak) {
-        // Break ended, start new work session
-        setIsBreak(false);
-        setTimeLeft(currentPreset.work * 60);
-        setSessions(prev => prev + 1);
-      } else {
-        // Work ended, start break
-        setIsBreak(true);
-        setTimeLeft(currentPreset.break * 60);
-      }
-      setIsRunning(false);
+    } else if (timeLeft === 0 && isRunning) {
+      // Timer completed - handle in next tick to avoid setState in effect
+      const timer = setTimeout(handleTimerComplete, 0);
+      return () => clearTimeout(timer);
     }
     
     return () => {
@@ -89,7 +97,7 @@ export default function FocusTimer({ isOpen, onClose }) {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isRunning, timeLeft, isBreak, currentPreset, playSound]);
+  }, [isRunning, timeLeft, handleTimerComplete]);
   
   // Reset timer
   const reset = useCallback(() => {

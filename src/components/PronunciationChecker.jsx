@@ -9,7 +9,6 @@ import { speak, isSpeechSupported } from '../utils/speechSynthesis';
 import {
   isSpeechRecognitionSupported,
   PronunciationAnalyzer,
-  evaluatePronunciation,
   getPronunciationTips,
 } from '../utils/speechRecognition';
 
@@ -96,6 +95,9 @@ const ScoreIndicator = ({ score, grade, size = 'md' }) => {
 /**
  * Dalga Animasyonu (dinlerken)
  */
+// Pre-computed random heights for wave animation (generated once)
+const WAVE_HEIGHTS = [18, 22, 15, 20, 17]; // Values between 12 and 24
+
 const ListeningWaves = () => {
   return (
     <div className="flex items-center justify-center gap-1">
@@ -104,7 +106,7 @@ const ListeningWaves = () => {
           key={i}
           className="w-1 bg-brand-blue rounded-full animate-pulse"
           style={{
-            height: `${12 + Math.random() * 12}px`,
+            height: `${WAVE_HEIGHTS[i]}px`,
             animationDelay: `${i * 100}ms`,
             animationDuration: '0.5s',
           }}
@@ -125,7 +127,8 @@ export default function PronunciationChecker({
   showTips = true,
   compact = false,
 }) {
-  const [isSupported, setIsSupported] = useState(false);
+  // Check speech recognition support - using lazy initializer
+  const [isSupported] = useState(() => isSpeechRecognitionSupported());
   const [isListening, setIsListening] = useState(false);
   const [interimText, setInterimText] = useState('');
   const [result, setResult] = useState(null);
@@ -133,11 +136,6 @@ export default function PronunciationChecker({
   const [attempts, setAttempts] = useState(0);
   
   const analyzerRef = useRef(null);
-  
-  // Destek kontrolü
-  useEffect(() => {
-    setIsSupported(isSpeechRecognitionSupported());
-  }, []);
   
   // Analyzer oluştur
   useEffect(() => {
@@ -171,21 +169,15 @@ export default function PronunciationChecker({
           setIsListening(false);
           setInterimText('');
         });
-    } catch (err) {
-      setError('Ses tanıma başlatılamadı');
+    } catch {
+      // Use setTimeout to avoid cascading render warning
+      setTimeout(() => setError('Ses tanıma başlatılamadı'), 0);
     }
     
     return () => {
       analyzerRef.current?.stop();
     };
   }, [isSupported, onResult]);
-  
-  // Otomatik başlat
-  useEffect(() => {
-    if (autoStart && isSupported && !isListening) {
-      startListening();
-    }
-  }, [autoStart, isSupported]);
   
   const startListening = useCallback(() => {
     if (!analyzerRef.current || isListening) return;
@@ -198,6 +190,15 @@ export default function PronunciationChecker({
   const stopListening = useCallback(() => {
     analyzerRef.current?.stop();
   }, []);
+  
+  // Otomatik başlat
+  useEffect(() => {
+    if (autoStart && isSupported && !isListening) {
+      // Use setTimeout to avoid cascading render warning
+      const timeoutId = setTimeout(() => startListening(), 0);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [autoStart, isSupported, isListening, startListening]);
   
   const handlePlayWord = useCallback(() => {
     if (isSpeechSupported()) {

@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { Search, Filter, Grid, List, X, Bookmark, Heart } from 'lucide-react';
 import { useUser } from '../context/UserContext';
 import { LevelBadge } from '../components/Badge';
@@ -6,7 +6,7 @@ import { supabaseService } from '../services/supabaseService';
 import { useEffect } from 'react';
 import ContentCard from '../components/ContentCard';
 import { SkeletonContentCard } from '../components/Skeleton';
-import { getBookmarks, getBookmarkStats } from '../utils/bookmarks';
+import { getBookmarks } from '../utils/bookmarks';
 
 export default function Library() {
     const { user } = useUser();
@@ -22,13 +22,34 @@ export default function Library() {
     const [content, setContent] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [bookmarkIds, setBookmarkIds] = useState([]);
+    const [categories, setCategories] = useState([]);
 
     const levels = ['A1', 'A2', 'B1', 'B2', 'C1'];
-    const categories = ['all', 'Teknoloji', 'Çevre', 'Bilim', 'Spor', 'Sağlık', 'Macera', 'Gizem'];
     const types = [
         { value: 'news', label: 'Haberler', icon: '📰' },
         { value: 'story', label: 'Hikayeler', icon: '😄' },
     ];
+
+    // Kategorileri veritabanından yükle
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                if (selectedType === 'news') {
+                    const newsCategories = await supabaseService.getNewsCategories();
+                    setCategories(newsCategories);
+                } else {
+                    const storyCategories = await supabaseService.getStoryCategories();
+                    setCategories(storyCategories);
+                }
+            } catch (error) {
+                console.error('Failed to fetch categories:', error);
+                setCategories([]);
+            }
+        };
+        fetchCategories();
+        // Tip değiştiğinde kategori seçimini sıfırla
+        setSelectedCategory('all');
+    }, [selectedType]);
 
     // Bookmark'ları yükle
     useEffect(() => {
@@ -55,7 +76,9 @@ export default function Library() {
 
                 // Filter by category
                 if (selectedCategory !== 'all') {
-                    allContent = allContent.filter(item => item.category === selectedCategory);
+                    allContent = allContent.filter(item => 
+                        item.categorySlug === selectedCategory || item.category === selectedCategory
+                    );
                 }
 
                 // Filter by search
@@ -84,7 +107,7 @@ export default function Library() {
     }, [selectedLevel, selectedCategory, selectedType, searchQuery, showBookmarksOnly, bookmarkIds]);
 
     // Get counts (placeholder for stats, could be optimized)
-    const stats = {
+    const _stats = {
         news: content.filter(i => i.type === 'news').length,
         stories: content.filter(i => i.type === 'story').length
     };
@@ -237,9 +260,10 @@ export default function Library() {
                                     onChange={(e) => setSelectedCategory(e.target.value)}
                                     className="w-full px-3 py-2 rounded-lg border border-gray-200 dark:border-[#333] bg-transparent dark:text-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none"
                                 >
+                                    <option value="all">Tüm Kategoriler</option>
                                     {categories.map(cat => (
-                                        <option key={cat} value={cat}>
-                                            {cat === 'all' ? 'Tüm Kategoriler' : cat}
+                                        <option key={cat.id || cat.slug} value={cat.slug}>
+                                            {cat.icon} {cat.name}
                                         </option>
                                     ))}
                                 </select>
@@ -268,7 +292,7 @@ export default function Library() {
                                 )}
                                 {selectedCategory !== 'all' && (
                                     <span className="inline-flex items-center gap-1 px-2 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs">
-                                        {selectedCategory}
+                                        {categories.find(c => c.slug === selectedCategory)?.name || selectedCategory}
                                         <button onClick={() => setSelectedCategory('all')}>
                                             <X className="w-3 h-3" />
                                         </button>

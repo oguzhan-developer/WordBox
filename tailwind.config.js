@@ -8,13 +8,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        "primary": "#f9f506",
+        "brand-primary": "#f9f506",
         "background-light": "#f8f8f5",
         "background-dark": "#23220f",
         "brand-blue": "#4F46E5",
         "brand-green": "#10B981",
         "brand-orange": "#F59E0B",
-        // Keeping original colors as potential fallbacks or if used elsewhere
+        // CSS variable based colors
         primary: {
           DEFAULT: 'var(--color-primary)',
           dark: 'var(--color-primary-dark)',

@@ -28,7 +28,7 @@ export default function PracticeSummary({
     wrong = 0,
     totalQuestions = 0,
     maxCombo = 0,
-    startTime = Date.now(),
+    startTime = null,
     totalXp = 0,
     comboBonus = 0,
     quickAnswerBonus = 0,
@@ -36,10 +36,11 @@ export default function PracticeSummary({
     onComplete,
     onRetry,
     missedWords = [],
-    isPerfect = false
+    isPerfect = false,
+    endTime = null // Pass end time from parent to avoid impure Date.now() call
 }) {
-    // Calculate time
-    const totalTime = Math.floor((Date.now() - startTime) / 1000);
+    // Calculate time - use provided endTime or fallback to 0
+    const totalTime = (startTime && endTime) ? Math.floor((endTime - startTime) / 1000) : 0;
     const minutes = Math.floor(totalTime / 60);
     const seconds = totalTime % 60;
     

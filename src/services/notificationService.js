@@ -159,7 +159,7 @@ const addToNotificationHistory = (title, options) => {
 export const getNotificationHistory = () => {
   try {
     return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-  } catch (e) {
+  } catch {
     return [];
   }
 };

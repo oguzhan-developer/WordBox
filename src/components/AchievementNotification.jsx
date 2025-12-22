@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { X, Star } from 'lucide-react';
-import { getNextNotification, getPendingNotificationCount } from '../utils/achievements';
+import { getNextNotification } from '../utils/achievements';
 
 /**
  * Achievement Notification Component
@@ -10,6 +10,16 @@ export default function AchievementNotification() {
   const [notification, setNotification] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
+
+  // Handle close function - defined first so it can be used in useEffect
+  const handleClose = useCallback(() => {
+    setIsExiting(true);
+    setTimeout(() => {
+      setIsVisible(false);
+      setNotification(null);
+      setIsExiting(false);
+    }, 300);
+  }, []);
 
   // Bildirim kontrolü
   const checkForNotifications = useCallback(() => {
@@ -48,18 +58,7 @@ export default function AchievementNotification() {
       
       return () => clearTimeout(timer);
     }
-  }, [isVisible, notification]);
-
-  const handleClose = () => {
-    setIsExiting(true);
-    setTimeout(() => {
-      setIsVisible(false);
-      setNotification(null);
-      setIsExiting(false);
-      // Sonraki bildirimi kontrol et
-      setTimeout(checkForNotifications, 500);
-    }, 300);
-  };
+  }, [isVisible, notification, handleClose]);
 
   if (!isVisible || !notification) return null;
 

@@ -23,7 +23,7 @@ const VocabularyCard = memo(function VocabularyCard({
     onRemove,
     onPractice,
     onToggleFavorite,
-    showDetails = false,
+    showDetails: _showDetails = false,
 }) {
     const [isFlipped, setIsFlipped] = useState(false);
     const [isFavorite, setIsFavorite] = useState(word.isFavorite || false);
@@ -213,7 +213,7 @@ export const VocabularyListItem = memo(function VocabularyListItem({
 });
 
 // Word Preview Card (for sidebar details)
-export const WordDetailCard = memo(function WordDetailCard({ word, onClose, onPractice, onRemove }) {
+export const WordDetailCard = memo(function WordDetailCard({ word, onClose: _onClose, onPractice, onRemove }) {
     const handlePlayAudio = useCallback(() => {
         speakWord(word.word);
     }, [word.word]);

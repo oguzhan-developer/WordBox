@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
-import { lazy, Suspense, useState, useCallback } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { UserProvider, useUser } from './context/UserContext';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { ToastProvider } from './components/Toast';
@@ -28,6 +28,7 @@ const ListeningMode = lazy(() => import('./pages/practice/ListeningMode'));
 const ProfilePage = lazy(() => import('./pages/ProfilePage'));
 const SettingsPage = lazy(() => import('./pages/SettingsPage'));
 const AdminPage = lazy(() => import('./pages/AdminPage'));
+const LearnNewWordsPage = lazy(() => import('./pages/LearnNewWordsPage'));
 
 // Loading component
 function PageLoader() {
@@ -78,7 +79,7 @@ function Layout({ children, showNavbar = true }) {
 // Global Keyboard Shortcuts Handler
 function GlobalShortcuts({ children }) {
   const navigate = useNavigate();
-  const { isLoggedIn, updateProfile, profile } = useUser();
+  const { isLoggedIn } = useUser();
   const { toggleTheme } = useTheme();
   const [showShortcutsModal, setShowShortcutsModal] = useState(false);
   
@@ -164,6 +165,16 @@ function AppRoutes() {
             <ProtectedRoute>
               <Layout>
                 <VocabularyList />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/vocabulary/learn"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <LearnNewWordsPage />
               </Layout>
             </ProtectedRoute>
           }

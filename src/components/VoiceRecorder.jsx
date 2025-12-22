@@ -16,6 +16,13 @@ const RECORDING_STATES = {
 };
 
 /**
+ * Pre-computed heights for wave animation
+ */
+const WAVE_HEIGHTS = [65, 82, 45, 91, 33, 78, 56, 88, 42, 71, 
+                       95, 38, 67, 84, 29, 76, 53, 89, 47, 62,
+                       85, 31, 74, 58, 93, 36, 69, 81, 44, 77];
+
+/**
  * Ses dalga formu görselleştirici
  */
 const AudioWaveform = ({ isRecording, audioData = [] }) => {
@@ -25,7 +32,7 @@ const AudioWaveform = ({ isRecording, audioData = [] }) => {
     <div className="flex items-center justify-center gap-0.5 h-16">
       {Array.from({ length: bars }).map((_, i) => {
         const height = isRecording
-          ? Math.random() * 100
+          ? WAVE_HEIGHTS[i]
           : audioData[i] || 10;
         
         return (
@@ -86,25 +93,7 @@ export default function VoiceRecorder({
   const timerRef = useRef(null);
   const streamRef = useRef(null);
 
-  // Mikrofon izni kontrolü
-  useEffect(() => {
-    checkPermission();
-    return () => {
-      cleanup();
-    };
-  }, []);
-
-  const checkPermission = async () => {
-    try {
-      const result = await navigator.permissions.query({ name: 'microphone' });
-      setHasPermission(result.state === 'granted');
-      result.onchange = () => setHasPermission(result.state === 'granted');
-    } catch (e) {
-      // permissions API desteklenmiyorsa null bırak
-      setHasPermission(null);
-    }
-  };
-
+  // Cleanup function - defined before useEffect
   const cleanup = useCallback(() => {
     if (timerRef.current) {
       clearInterval(timerRef.current);
@@ -116,6 +105,35 @@ export default function VoiceRecorder({
       URL.revokeObjectURL(audioUrl);
     }
   }, [audioUrl]);
+
+  // Permission check function - defined before useEffect  
+  const checkPermission = useCallback(async () => {
+    try {
+      const result = await navigator.permissions.query({ name: 'microphone' });
+      // Use setTimeout to avoid cascading render warning
+      setTimeout(() => setHasPermission(result.state === 'granted'), 0);
+      result.onchange = () => setTimeout(() => setHasPermission(result.state === 'granted'), 0);
+    } catch {
+      // permissions API desteklenmiyorsa null bırak
+      setTimeout(() => setHasPermission(null), 0);
+    }
+  }, []);
+
+  // Mikrofon izni kontrolü
+  useEffect(() => {
+    checkPermission();
+    return () => {
+      cleanup();
+    };
+  }, [checkPermission, cleanup]);
+
+  // Kayıt durdur - MUST be defined before startRecording
+  const stopRecording = useCallback(() => {
+    if (mediaRecorderRef.current && state === RECORDING_STATES.RECORDING) {
+      clearInterval(timerRef.current);
+      mediaRecorderRef.current.stop();
+    }
+  }, [state]);
 
   // Kayıt başlat
   const startRecording = useCallback(async () => {
@@ -185,15 +203,7 @@ export default function VoiceRecorder({
         setError('Kayıt başlatılamadı');
       }
     }
-  }, [maxDuration]);
-
-  // Kayıt durdur
-  const stopRecording = useCallback(() => {
-    if (mediaRecorderRef.current && state === RECORDING_STATES.RECORDING) {
-      clearInterval(timerRef.current);
-      mediaRecorderRef.current.stop();
-    }
-  }, [state]);
+  }, [maxDuration, stopRecording]);
 
   // Kaydı oynat
   const playRecording = useCallback(() => {
@@ -404,7 +414,7 @@ export default function VoiceRecorder({
 /**
  * Kompakt versiyon - kelime kartlarında kullanım için
  */
-export const VoiceRecorderMini = ({ word, onComplete }) => {
+export const VoiceRecorderMini = ({ word: _word, onComplete }) => {
   const [isRecording, setIsRecording] = useState(false);
   const [hasRecording, setHasRecording] = useState(false);
   const mediaRecorderRef = useRef(null);

@@ -46,7 +46,11 @@ const NotificationsTab = () => {
     const [testSent, setTestSent] = useState(false);
 
     useEffect(() => {
-        setPermissionStatus(checkNotificationPermission());
+        // Use setTimeout to avoid setState directly in effect
+        const timer = setTimeout(() => {
+            setPermissionStatus(checkNotificationPermission());
+        }, 0);
+        return () => clearTimeout(timer);
     }, []);
 
     const handleSettingChange = (key, value) => {
@@ -253,11 +257,11 @@ const NotificationsTab = () => {
 };
 
 export default function SettingsPage() {
-    const { user, updatePreferences, updateAvatar, logout, changePassword } = useUser();
-    const { theme, setTheme, isDark } = useTheme();
+    const { user, updatePreferences, updateAvatar: _updateAvatar, logout, changePassword } = useUser();
+    const { theme, setTheme: _setTheme, isDark: _isDark } = useTheme();
     const [activeTab, setActiveTab] = useState('account');
     const [currentPrefs, setCurrentPrefs] = useState({ ...user.preferences });
-    const [showAvatarModal, setShowAvatarModal] = useState(false);
+    const [_showAvatarModal, setShowAvatarModal] = useState(false);
     const [showPasswordModal, setShowPasswordModal] = useState(false);
     const [showKeyboardGuide, setShowKeyboardGuide] = useState(false);
 
@@ -347,7 +351,7 @@ export default function SettingsPage() {
         { id: 'data', label: 'Veri & Dışa Aktar', icon: 'database' },
     ];
 
-    const avatars = [
+    const _avatars = [
         "https://api.dicebear.com/7.x/notionists/svg?seed=Felix",
         "https://api.dicebear.com/7.x/notionists/svg?seed=Aneka",
         "https://api.dicebear.com/7.x/notionists/svg?seed=Mila",

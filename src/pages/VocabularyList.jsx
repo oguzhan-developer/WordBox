@@ -1,4 +1,5 @@
-import { useState, useMemo, useRef } from 'react';
+import { useState, useMemo, useRef, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
     Search,
     Grid,
@@ -10,7 +11,8 @@ import {
     BookOpen,
     Clock,
     CheckCircle,
-    X
+    X,
+    Trash2
 } from 'lucide-react';
 import { useUser } from '../context/UserContext';
 import { useToast } from '../components/Toast';
@@ -19,6 +21,7 @@ import VocabularyCard, { VocabularyListItem, WordDetailCard } from '../component
 import { LevelBadge } from '../components/Badge';
 import { SkeletonVocabularyCard, SkeletonListItem } from '../components/Skeleton';
 import Modal from '../components/Modal';
+import QuickAddWord from '../components/QuickAddWord';
 import { 
     exportToJSON, 
     exportToCSV, 
@@ -31,12 +34,14 @@ import {
 } from '../utils/vocabularyExport';
 
 export default function VocabularyList() {
+    const navigate = useNavigate();
     const { user, removeWord, addWord } = useUser();
     const toast = useToast();
     const fileInputRef = useRef(null);
 
     // State
     const [searchQuery, setSearchQuery] = useState('');
+    const [debouncedSearch, setDebouncedSearch] = useState('');
     const [selectedLevel, setSelectedLevel] = useState('all');
     const [selectedStatus, setSelectedStatus] = useState('all');
     const [viewMode, setViewMode] = useState('grid');
@@ -45,6 +50,9 @@ export default function VocabularyList() {
     const [showExportModal, setShowExportModal] = useState(false);
     const [showImportModal, setShowImportModal] = useState(false);
     const [importResult, setImportResult] = useState(null);
+    const [showBulkActions, setShowBulkActions] = useState(false);
+    const [displayCount, setDisplayCount] = useState(50); // Pagination
+    const [showQuickAdd, setShowQuickAdd] = useState(false);
 
     const levels = ['all', 'A1', 'A2', 'B1', 'B2', 'C1'];
     const statuses = [
@@ -54,16 +62,25 @@ export default function VocabularyList() {
         { value: 'learned', label: 'Öğrenildi', icon: '✅' },
     ];
 
-    // Filter vocabulary
+    // Debounced search with useEffect alternative
+    useMemo(() => {
+        const handler = setTimeout(() => {
+            setDebouncedSearch(searchQuery);
+        }, 300);
+        return () => clearTimeout(handler);
+    }, [searchQuery]);
+
+    // Filter vocabulary - memoized properly with debounced search
     const filteredVocabulary = useMemo(() => {
         let words = [...user.vocabulary];
 
-        // Search filter
-        if (searchQuery) {
-            const query = searchQuery.toLowerCase();
+        // Search filter (debounced)
+        if (debouncedSearch) {
+            const query = debouncedSearch.toLowerCase();
             words = words.filter(word =>
                 word.word.toLowerCase().includes(query) ||
-                word.turkish.toLowerCase().includes(query)
+                word.turkish.toLowerCase().includes(query) ||
+                word.definition?.toLowerCase().includes(query)
             );
         }
 
@@ -81,9 +98,9 @@ export default function VocabularyList() {
         words.sort((a, b) => new Date(b.addedAt) - new Date(a.addedAt));
 
         return words;
-    }, [user.vocabulary, searchQuery, selectedLevel, selectedStatus]);
+    }, [user.vocabulary, debouncedSearch, selectedLevel, selectedStatus]);
 
-    // Stats
+    // Stats - memoized
     const stats = useMemo(() => {
         const vocab = user.vocabulary;
         return {
@@ -93,18 +110,36 @@ export default function VocabularyList() {
             learned: vocab.filter(w => w.status === 'learned').length,
         };
     }, [user.vocabulary]);
+    
+    // Paginated vocabulary - only render displayCount items
+    const paginatedVocabulary = useMemo(() => {
+        return filteredVocabulary.slice(0, displayCount);
+    }, [filteredVocabulary, displayCount]);
+    
+    const hasMore = filteredVocabulary.length > displayCount;
+    
+    // Load more handler
+    const loadMore = useCallback(() => {
+        setDisplayCount(prev => prev + 50);
+    }, []);
 
-    // Handle word removal
-    const handleRemoveWord = (wordId) => {
+    // Handle word removal - useCallback
+    const handleRemoveWord = useCallback((wordId) => {
         removeWord(wordId);
         toast.success('Kelime silindi');
         if (selectedWord?.id === wordId) {
             setSelectedWord(null);
         }
-    };
+        // Remove from selection if exists
+        setSelectedWords(prev => {
+            const newSet = new Set(prev);
+            newSet.delete(wordId);
+            return newSet;
+        });
+    }, [removeWord, toast, selectedWord]);
 
     // Handle word selection for bulk actions
-    const toggleWordSelection = (word) => {
+    const toggleWordSelection = useCallback((word) => {
         setSelectedWords(prev => {
             const newSet = new Set(prev);
             if (newSet.has(word.id)) {
@@ -114,10 +149,38 @@ export default function VocabularyList() {
             }
             return newSet;
         });
-    };
+    }, []);
 
-    // Export vocabulary
-    const handleExport = (format) => {
+    // Select all filtered words
+    const handleSelectAll = useCallback(() => {
+        const allIds = new Set(filteredVocabulary.map(w => w.id));
+        setSelectedWords(allIds);
+    }, [filteredVocabulary]);
+
+    // Clear selection
+    const handleClearSelection = useCallback(() => {
+        setSelectedWords(new Set());
+    }, []);
+
+    // Bulk delete selected words
+    const handleBulkDelete = useCallback(() => {
+        if (selectedWords.size === 0) {
+            toast.error('Silmek için kelime seçin');
+            return;
+        }
+
+        if (!confirm(`${selectedWords.size} kelime silinecek. Emin misiniz?`)) {
+            return;
+        }
+
+        selectedWords.forEach(wordId => removeWord(wordId));
+        toast.success(`${selectedWords.size} kelime silindi`);
+        setSelectedWords(new Set());
+        setShowBulkActions(false);
+    }, [selectedWords, removeWord, toast]);
+
+    // Export vocabulary - useCallback
+    const handleExport = useCallback((format) => {
         if (user.vocabulary.length === 0) {
             toast.error('Dışa aktarılacak kelime yok');
             return;
@@ -155,10 +218,10 @@ export default function VocabularyList() {
             toast.success(message);
             setShowExportModal(false);
         }
-    };
+    }, [user.vocabulary, toast]);
     
     // Import vocabulary
-    const handleFileSelect = async (e) => {
+    const handleFileSelect = useCallback(async (e) => {
         const file = e.target.files?.[0];
         if (!file) return;
         
@@ -180,10 +243,10 @@ export default function VocabularyList() {
         
         // Reset file input
         e.target.value = '';
-    };
+    }, [toast]);
     
     // Confirm import
-    const handleConfirmImport = () => {
+    const handleConfirmImport = useCallback(() => {
         if (!importResult?.words) return;
         
         // Filter out duplicates
@@ -200,7 +263,7 @@ export default function VocabularyList() {
         
         setImportResult(null);
         setShowImportModal(false);
-    };
+    }, [importResult, user.vocabulary, addWord, toast]);
 
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-[#18181b] pt-20 pb-12">
@@ -215,6 +278,13 @@ export default function VocabularyList() {
                         </p>
                     </div>
                     <div className="flex gap-2">
+                        <button
+                            onClick={() => setShowQuickAdd(true)}
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white transition-colors"
+                        >
+                            <Plus className="w-4 h-4" />
+                            Kelime Ekle
+                        </button>
                         <button
                             onClick={() => setShowImportModal(true)}
                             className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 dark:border-[#333] text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
@@ -285,6 +355,11 @@ export default function VocabularyList() {
                                     <X className="w-4 h-4 text-gray-400" />
                                 </button>
                             )}
+                            {debouncedSearch && debouncedSearch !== searchQuery && (
+                                <div className="absolute right-10 top-1/2 -translate-y-1/2">
+                                    <div className="animate-spin h-4 w-4 border-2 border-indigo-600 border-t-transparent rounded-full"></div>
+                                </div>
+                            )}
                         </div>
 
                         {/* Level Filter */}
@@ -345,22 +420,42 @@ export default function VocabularyList() {
                     </div>
                 </Card>
 
-                {/* Results Info */}
-                <div className="flex items-center justify-between mb-4">
+                {/* Results Info & Bulk Actions */}
+                <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
                     <p className="text-gray-600 dark:text-gray-400">
                         <span className="font-medium text-gray-900 dark:text-white">{filteredVocabulary.length}</span> kelime gösteriliyor
+                        {debouncedSearch && debouncedSearch !== searchQuery && (
+                            <span className="ml-2 text-sm text-gray-500">(Aranıyor...)</span>
+                        )}
                     </p>
-                    {selectedWords.size > 0 && (
-                        <div className="flex items-center gap-2">
-                            <span className="text-sm text-gray-500">{selectedWords.size} seçili</span>
+                    <div className="flex items-center gap-2">
+                        {selectedWords.size > 0 && (
+                            <>
+                                <span className="text-sm text-gray-500">{selectedWords.size} seçili</span>
+                                <button
+                                    onClick={handleClearSelection}
+                                    className="text-sm text-indigo-600 hover:underline"
+                                >
+                                    Temizle
+                                </button>
+                                <button
+                                    onClick={handleBulkDelete}
+                                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition-colors text-sm font-medium"
+                                >
+                                    <Trash2 className="w-4 h-4" />
+                                    Sil
+                                </button>
+                            </>
+                        )}
+                        {!selectedWords.size && filteredVocabulary.length > 0 && (
                             <button
-                                onClick={() => setSelectedWords(new Set())}
+                                onClick={handleSelectAll}
                                 className="text-sm text-indigo-600 hover:underline"
                             >
-                                Seçimi temizle
+                                Tümünü seç
                             </button>
-                        </div>
-                    )}
+                        )}
+                    </div>
                 </div>
 
                 {/* Content */}
@@ -370,12 +465,21 @@ export default function VocabularyList() {
                         {filteredVocabulary.length > 0 ? (
                             viewMode === 'grid' ? (
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                                    {filteredVocabulary.map((word, index) => (
+                                    {paginatedVocabulary.map((word, index) => (
                                         <div
                                             key={word.id}
-                                            className="animate-fadeIn"
+                                            className="animate-fadeIn relative"
                                             style={{ animationDelay: `${index * 30}ms` }}
                                         >
+                                            {/* Selection checkbox */}
+                                            <div className="absolute top-2 left-2 z-10">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={selectedWords.has(word.id)}
+                                                    onChange={() => toggleWordSelection(word)}
+                                                    className="w-5 h-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 focus:ring-offset-0 cursor-pointer"
+                                                />
+                                            </div>
                                             <VocabularyCard
                                                 word={word}
                                                 onRemove={handleRemoveWord}
@@ -387,18 +491,27 @@ export default function VocabularyList() {
                                 </div>
                             ) : (
                                 <div className="space-y-2">
-                                    {filteredVocabulary.map((word, index) => (
+                                    {paginatedVocabulary.map((word, index) => (
                                         <div
                                             key={word.id}
-                                            className="animate-fadeIn"
+                                            className="animate-fadeIn relative flex items-center gap-3"
                                             style={{ animationDelay: `${index * 20}ms` }}
                                         >
-                                            <VocabularyListItem
-                                                word={word}
-                                                onRemove={handleRemoveWord}
-                                                onSelect={setSelectedWord}
-                                                isSelected={selectedWords.has(word.id)}
+                                            {/* Selection checkbox */}
+                                            <input
+                                                type="checkbox"
+                                                checked={selectedWords.has(word.id)}
+                                                onChange={() => toggleWordSelection(word)}
+                                                className="w-5 h-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 focus:ring-offset-0 cursor-pointer flex-shrink-0"
                                             />
+                                            <div className="flex-1">
+                                                <VocabularyListItem
+                                                    word={word}
+                                                    onRemove={handleRemoveWord}
+                                                    onSelect={setSelectedWord}
+                                                    isSelected={selectedWords.has(word.id)}
+                                                />
+                                            </div>
                                         </div>
                                     ))}
                                 </div>
@@ -424,7 +537,8 @@ export default function VocabularyList() {
                                         href="/library"
                                         className="inline-flex items-center gap-2 px-6 py-3 rounded-xl gradient-primary text-white font-medium hover:opacity-90 transition-opacity"
                                     >
-                                        📚 Kütüphaneye Git
+                                        <BookOpen className="w-4 h-4" />
+                                        Kütüphaneye Git
                                     </a>
                                 ) : (
                                     <button
@@ -433,11 +547,23 @@ export default function VocabularyList() {
                                             setSelectedLevel('all');
                                             setSelectedStatus('all');
                                         }}
-                                        className="px-6 py-3 rounded-xl border-2 border-indigo-600 text-indigo-600 dark:text-indigo-400 dark:border-indigo-400 font-medium hover:bg-indigo-50 dark:hover:bg-indigo-900/20"
+                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl gradient-primary text-white font-medium hover:opacity-90 transition-opacity"
                                     >
                                         Filtreleri Temizle
                                     </button>
                                 )}
+                            </div>
+                        )}
+                        
+                        {/* Load More Button */}
+                        {hasMore && filteredVocabulary.length > 0 && (
+                            <div className="text-center mt-8">
+                                <button
+                                    onClick={loadMore}
+                                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-medium transition-colors"
+                                >
+                                    Daha Fazla Yükle ({filteredVocabulary.length - displayCount} kelime kaldı)
+                                </button>
                             </div>
                         )}
                     </div>
@@ -554,6 +680,18 @@ export default function VocabularyList() {
                     )}
                 </div>
             </Modal>
+
+            {/* Quick Add Word Modal */}
+            {showQuickAdd && (
+                <QuickAddWord
+                    onClose={() => setShowQuickAdd(false)}
+                    onAdd={(word) => {
+                        addWord(word);
+                        toast.success('Kelime eklendi!');
+                        setShowQuickAdd(false);
+                    }}
+                />
+            )}
         </div>
     );
 }

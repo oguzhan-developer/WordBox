@@ -181,7 +181,7 @@ export const stopSpeaking = () => {
 export const isSpeaking = () => {
     try {
         return window.speechSynthesis?.speaking || false;
-    } catch (error) {
+    } catch {
         return false;
     }
 };

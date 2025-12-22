@@ -11,7 +11,7 @@ import { LevelBadge } from '../../components/Badge';
 import { SuccessModal } from '../../components/Modal';
 import { calculatePracticeXp } from '../../utils/gamification';
 import { speak } from '../../utils/speechSynthesis';
-import { recordReview, getWordSrsInfo } from '../../utils/spacedRepetition';
+import { recordReview } from '../../utils/spacedRepetition';
 
 export default function FlashcardMode() {
     const navigate = useNavigate();
@@ -21,6 +21,8 @@ export default function FlashcardMode() {
 
     // Settings from URL
     const wordCount = parseInt(searchParams.get('count')) || 20;
+    const wordSource = searchParams.get('source') || 'all';
+    const dbLevel = searchParams.get('level') || user.level || 'B1';
 
     // State
     const [words, setWords] = useState([]);
@@ -37,20 +39,14 @@ export default function FlashcardMode() {
         const loadWords = async () => {
             let practiceWords = [];
 
+            // Use user's vocabulary only
             if (user.vocabulary.length >= wordCount) {
-                // Use user's vocabulary
                 practiceWords = [...user.vocabulary]
                     .sort(() => Math.random() - 0.5)
                     .slice(0, wordCount);
             } else if (user.vocabulary.length > 0) {
-                // Mix user vocabulary with random words
-                practiceWords = [...user.vocabulary];
-                const remaining = wordCount - practiceWords.length;
-                const randomWords = await supabaseService.getRandomWords(remaining);
-                practiceWords = [...practiceWords, ...randomWords].sort(() => Math.random() - 0.5);
-            } else {
-                // Use random words
-                practiceWords = await supabaseService.getRandomWords(wordCount);
+                // If not enough words, use what's available
+                practiceWords = [...user.vocabulary].sort(() => Math.random() - 0.5);
             }
 
             setWords(practiceWords);
@@ -158,7 +154,7 @@ export default function FlashcardMode() {
     }
 
     const xpEarned = calculatePracticeXp(results.correct, results.wrong);
-    const accuracy = answeredCards.size > 0
+    const _accuracy = answeredCards.size > 0
         ? Math.round((results.correct / answeredCards.size) * 100)
         : 0;
 
@@ -208,10 +204,10 @@ export default function FlashcardMode() {
 
                 {/* Flashcard */}
                 <div
-                    className="card-flip h-96 cursor-pointer mb-8"
+                    className={`card-flip h-96 cursor-pointer mb-8 ${isFlipped ? 'flipped' : ''}`}
                     onClick={() => setIsFlipped(!isFlipped)}
                 >
-                    <div className={`card-flip-inner relative w-full h-full ${isFlipped ? 'flipped' : ''}`}>
+                    <div className="card-flip-inner relative w-full h-full">
                         {/* Front Side */}
                         <div className="card-flip-front absolute inset-0">
                             <Card className="h-full flex flex-col items-center justify-center bg-gradient-to-br from-white to-gray-50 shadow-xl">

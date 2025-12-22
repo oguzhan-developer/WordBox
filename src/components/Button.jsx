@@ -91,7 +91,7 @@ export default function Button({
 
 // Icon Button variant
 export function IconButton({
-    icon: Icon,
+    icon: IconComponent,
     variant = 'ghost',
     size = 'md',
     className = '',
@@ -132,7 +132,7 @@ export function IconButton({
             aria-label={ariaLabel}
             {...props}
         >
-            <Icon className={iconSizes[size]} aria-hidden="true" />
+            <IconComponent className={iconSizes[size]} aria-hidden="true" />
         </button>
     );
 }

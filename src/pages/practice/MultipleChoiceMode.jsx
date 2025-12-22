@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { X, Volume2, CheckCircle, XCircle, ArrowRight, Trophy, Target, Zap } from 'lucide-react';
 import { useUser } from '../../context/UserContext';
@@ -18,22 +18,32 @@ export default function MultipleChoiceMode() {
 
     // Settings from URL
     const wordCount = parseInt(searchParams.get('count')) || 20;
+    const wordSource = searchParams.get('source') || 'all';
+    const dbLevel = searchParams.get('level') || user.level || 'B1';
 
     // State
-    const [allWords, setAllWords] = useState([]);
+    const [_allWords, setAllWords] = useState([]);
     const [questions, setQuestions] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [isAnswered, setIsAnswered] = useState(false);
     const [results, setResults] = useState({ correct: 0, wrong: 0 });
     const [isComplete, setIsComplete] = useState(false);
+    const [endTime, setEndTime] = useState(null);
+    const [startTime, setStartTime] = useState(null);
     const [showExitConfirm, setShowExitConfirm] = useState(false);
     const [combo, setCombo] = useState(0);
     const [maxCombo, setMaxCombo] = useState(0);
-    const [startTime] = useState(Date.now());
     const [questionTimes, setQuestionTimes] = useState([]);
-    const [questionStartTime, setQuestionStartTime] = useState(Date.now());
+    const questionStartTimeRef = useRef(null);
     const [missedWords, setMissedWords] = useState([]);
+
+    // Initialize time on mount
+    useEffect(() => {
+        const now = Date.now();
+        setStartTime(now);
+        questionStartTimeRef.current = now;
+    }, []);
 
     // Generate questions from words
     const generateQuestions = useCallback((words, practiceWords) => {
@@ -75,24 +85,19 @@ export default function MultipleChoiceMode() {
             let practiceWords = [];
             let allAvailableWords = [];
 
-            // First, get all available words for wrong answers
-            const randomWords = await supabaseService.getRandomWords(100);
-            allAvailableWords = [...randomWords];
-
+            // Use user's vocabulary only
             if (user.vocabulary.length >= wordCount) {
                 practiceWords = [...user.vocabulary]
+                    .map(w => ({ ...w, translation: w.turkish || w.meaningsTr?.[0] || '' }))
                     .sort(() => Math.random() - 0.5)
                     .slice(0, wordCount);
-                allAvailableWords = [...allAvailableWords, ...user.vocabulary];
+                allAvailableWords = [...user.vocabulary.map(w => ({ ...w, translation: w.turkish || '' }))];
             } else if (user.vocabulary.length > 0) {
-                practiceWords = [...user.vocabulary];
-                const remaining = wordCount - practiceWords.length;
-                const additionalWords = randomWords
-                    .filter(w => !user.vocabulary.some(v => v.id === w.id))
-                    .slice(0, remaining);
-                practiceWords = [...practiceWords, ...additionalWords].sort(() => Math.random() - 0.5);
-            } else {
-                practiceWords = randomWords.slice(0, wordCount);
+                // If not enough words, use what's available
+                practiceWords = [...user.vocabulary]
+                    .map(w => ({ ...w, translation: w.turkish || '' }))
+                    .sort(() => Math.random() - 0.5);
+                allAvailableWords = [...user.vocabulary.map(w => ({ ...w, translation: w.turkish || '' }))];
             }
 
             // Remove duplicates from allAvailableWords
@@ -104,7 +109,7 @@ export default function MultipleChoiceMode() {
         };
 
         loadWords();
-    }, [wordCount, user.vocabulary, generateQuestions]);
+    }, [wordCount, wordSource, dbLevel, user.vocabulary, generateQuestions]);
 
     const currentQuestion = questions[currentIndex];
     const progress = ((currentIndex) / questions.length) * 100;
@@ -126,7 +131,7 @@ export default function MultipleChoiceMode() {
         setSelectedAnswer(option);
         setIsAnswered(true);
 
-        const timeTaken = Date.now() - questionStartTime;
+        const timeTaken = Date.now() - questionStartTimeRef.current;
         setQuestionTimes(prev => [...prev, timeTaken]);
         
         // Record SRS review
@@ -164,7 +169,7 @@ export default function MultipleChoiceMode() {
         if (currentQuestion.id && user.vocabulary.some(v => v.id === currentQuestion.id)) {
             updateWordPractice(currentQuestion.id, option.isCorrect);
         }
-    }, [isAnswered, currentQuestion, combo, maxCombo, toast, updateWordPractice, user.vocabulary, questionStartTime]);
+    }, [isAnswered, currentQuestion, combo, maxCombo, toast, updateWordPractice, user.vocabulary]);
 
     // Go to next question
     const handleNext = useCallback(() => {
@@ -172,10 +177,11 @@ export default function MultipleChoiceMode() {
             setCurrentIndex(prev => prev + 1);
             setSelectedAnswer(null);
             setIsAnswered(false);
-            setQuestionStartTime(Date.now());
+            questionStartTimeRef.current = Date.now();
         } else {
             // Practice complete
             completePractice(results.correct + (selectedAnswer?.isCorrect ? 1 : 0), results.wrong + (selectedAnswer?.isCorrect ? 0 : 1));
+            setEndTime(Date.now());
             setIsComplete(true);
         }
     }, [currentIndex, questions.length, results, selectedAnswer, completePractice]);
@@ -237,6 +243,7 @@ export default function MultipleChoiceMode() {
                 totalQuestions={questions.length}
                 maxCombo={maxCombo}
                 startTime={startTime}
+                endTime={endTime}
                 totalXp={totalXp}
                 comboBonus={comboBonus}
                 quickAnswerBonus={quickAnswerBonus}

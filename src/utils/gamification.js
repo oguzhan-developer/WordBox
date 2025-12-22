@@ -79,7 +79,7 @@ export const xpRewards = {
 };
 
 // Calculate XP for a practice session
-export const calculatePracticeXp = (correctCount, wrongCount, isComplete = true) => {
+export const calculatePracticeXp = (correctCount, wrongCount, _isComplete = true) => {
     let xp = 0;
 
     // XP for correct answers

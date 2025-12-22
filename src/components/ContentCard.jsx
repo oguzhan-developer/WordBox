@@ -17,8 +17,6 @@ export default function ContentCard({
     level,
     readTime,
     wordCount,
-    views,
-    publishedAt,
     progress = 0,
     isNew = false,
     isRead = false,

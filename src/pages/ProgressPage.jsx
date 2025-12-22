@@ -19,12 +19,12 @@ export default function ProgressPage() {
     
     // Reading stats
     const readingStats = useMemo(() => getReadingStats(), []);
-    const weeklyReading = useMemo(() => getWeeklyReadingSummary(), []);
+    const _weeklyReading = useMemo(() => getWeeklyReadingSummary(), []);
 
     if (!user) return null;
 
-    const currentLevel = calculateLevel(user.xp);
-    const progress = getLevelProgress(user.xp);
+    const _currentLevel = calculateLevel(user.xp);
+    const _progress = getLevelProgress(user.xp);
     const dailyProgress = calculateDailyProgress(user.wordsToday, user.preferences?.dailyGoal);
 
     // Vocabulary distribution

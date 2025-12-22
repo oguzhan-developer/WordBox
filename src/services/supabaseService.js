@@ -810,4 +810,448 @@ export const supabaseService = {
             return [];
         }
     },
+
+    // --- KATEGORİLER ---
+
+    /**
+     * Haber kategorilerini getir
+     */
+    async getNewsCategories() {
+        try {
+            const { data, error } = await supabase
+                .from('news_categories')
+                .select('*')
+                .order('name', { ascending: true });
+
+            if (error) {
+                console.error('Error fetching news categories:', error);
+                return [];
+            }
+
+            return data.map(cat => ({
+                id: cat.id,
+                name: cat.name,
+                nameEn: cat.name_en,
+                slug: cat.slug,
+                icon: cat.icon,
+                color: cat.color
+            }));
+        } catch (err) {
+            console.error('Error in getNewsCategories:', err);
+            return [];
+        }
+    },
+
+    /**
+     * Hikaye kategorilerini getir
+     */
+    async getStoryCategories() {
+        try {
+            const { data, error } = await supabase
+                .from('story_categories')
+                .select('*')
+                .order('name', { ascending: true });
+
+            if (error) {
+                console.error('Error fetching story categories:', error);
+                return [];
+            }
+
+            return data.map(cat => ({
+                id: cat.id,
+                name: cat.name,
+                nameEn: cat.name_en,
+                slug: cat.slug,
+                icon: cat.icon,
+                color: cat.color
+            }));
+        } catch (err) {
+            console.error('Error in getStoryCategories:', err);
+            return [];
+        }
+    },
+
+    // --- İSTATİSTİKLER ---
+
+    /**
+     * Dashboard için genel istatistikleri getir
+     */
+    async getDashboardStats() {
+        try {
+            const [wordsResult, newsResult, storiesResult] = await Promise.all([
+                supabase.from('words').select('id', { count: 'exact', head: true }),
+                supabase.from('news').select('id', { count: 'exact', head: true }).eq('is_published', true),
+                supabase.from('stories').select('id', { count: 'exact', head: true }).eq('is_published', true)
+            ]);
+
+            return {
+                totalWords: wordsResult.count || 0,
+                totalNews: newsResult.count || 0,
+                totalStories: storiesResult.count || 0
+            };
+        } catch (err) {
+            console.error('Error in getDashboardStats:', err);
+            return { totalWords: 0, totalNews: 0, totalStories: 0 };
+        }
+    },
+
+    /**
+     * Seviyeye göre kelime sayılarını getir
+     */
+    async getWordCountsByLevel() {
+        try {
+            const levels = ['A1', 'A2', 'B1', 'B2', 'C1'];
+            const counts = {};
+
+            await Promise.all(levels.map(async (level) => {
+                const { count } = await supabase
+                    .from('words')
+                    .select('id', { count: 'exact', head: true })
+                    .eq('level', level);
+                counts[level] = count || 0;
+            }));
+
+            return counts;
+        } catch (err) {
+            console.error('Error in getWordCountsByLevel:', err);
+            return { A1: 0, A2: 0, B1: 0, B2: 0, C1: 0 };
+        }
+    },
+
+    /**
+     * Haber görüntüleme sayısını artır
+     */
+    async incrementNewsViews(newsId) {
+        try {
+            const { error } = await supabase.rpc('increment_views', { 
+                table_name: 'news', 
+                row_id: newsId 
+            });
+            
+            if (error) {
+                // RPC yoksa manuel güncelle
+                await supabase
+                    .from('news')
+                    .update({ views: supabase.sql`views + 1` })
+                    .eq('id', newsId);
+            }
+        } catch (err) {
+            console.error('Error incrementing views:', err);
+        }
+    },
+
+    /**
+     * Hikaye görüntüleme sayısını artır
+     */
+    async incrementStoryViews(storyId) {
+        try {
+            const { error } = await supabase.rpc('increment_views', { 
+                table_name: 'stories', 
+                row_id: storyId 
+            });
+            
+            if (error) {
+                // RPC yoksa manuel güncelle
+                await supabase
+                    .from('stories')
+                    .update({ views: supabase.sql`views + 1` })
+                    .eq('id', storyId);
+            }
+        } catch (err) {
+            console.error('Error incrementing views:', err);
+        }
+    },
+
+    /**
+     * Günün Kelimesini Veritabanından Çek
+     * Tarihe göre deterministik - aynı gün aynı kelime
+     * @param {string} level - Kullanıcı seviyesi (opsiyonel, default: rastgele)
+     * @returns {Promise<Object|null>} Kelime objesi
+     */
+    async getWordOfTheDay(level = null) {
+        try {
+            // Bugünün tarihini al - yılın günü olarak
+            const today = new Date();
+            const startOfYear = new Date(today.getFullYear(), 0, 0);
+            const diff = today - startOfYear;
+            const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+            // Kelimeleri çek
+            let query = supabase
+                .from('words')
+                .select('*')
+                .order('word', { ascending: true });
+
+            if (level) {
+                query = query.eq('level', level);
+            }
+
+            const { data, error } = await query;
+
+            if (error) throw error;
+            if (!data || data.length === 0) return null;
+
+            // Deterministik index hesapla (aynı gün aynı kelime)
+            const index = dayOfYear % data.length;
+            const word = data[index];
+
+            return {
+                word: word.word,
+                phonetic: word.pronunciation || '',
+                turkish: word.meanings_tr ? word.meanings_tr[0] : '',
+                partOfSpeech: word.part_of_speech || 'noun',
+                definition: word.meanings_en ? word.meanings_en[0] : '',
+                example: word.example_sentence || '',
+                level: word.level,
+                category: word.category || 'general',
+                id: word.id
+            };
+        } catch (err) {
+            console.error('Error in getWordOfTheDay:', err);
+            return null;
+        }
+    },
+
+    // ============================================
+    // USER WORDS - Kullanıcı Kelime Listesi
+    // ============================================
+
+    /**
+     * Kullanıcının tüm kelimelerini getir
+     */
+    async getUserWords(userId) {
+        try {
+            console.log('[getUserWords] Fetching words for user:', userId);
+            
+            const { data, error } = await supabase
+                .from('user_words')
+                .select(`
+                    *,
+                    words (*)
+                `)
+                .eq('user_id', userId)
+                .order('created_at', { ascending: false });
+
+            if (error) {
+                console.error('[getUserWords] Error fetching user words:', error);
+                return [];
+            }
+
+            console.log('[getUserWords] Raw data from DB:', data);
+            console.log('[getUserWords] Found', data?.length || 0, 'words');
+
+            if (!data || data.length === 0) {
+                console.log('[getUserWords] No words found, returning empty array');
+                return [];
+            }
+
+            // Normalize data
+            const normalized = data.map(uw => {
+                const word = uw.words;
+                if (!word) {
+                    console.warn('[getUserWords] Word data missing for user_word:', uw);
+                    return null;
+                }
+                return {
+                    id: word.id,
+                    word: word.word,
+                    phonetic: word.phonetic || '',
+                    partOfSpeech: word.part_of_speech || '',
+                    turkish: word.meanings_tr?.[0] || '',
+                    definition: word.definitions_en?.[0] || '',
+                    examples: word.examples_en || [],
+                    synonyms: word.synonyms || [],
+                    antonyms: word.antonyms || [],
+                    level: word.level,
+                    // User-specific data
+                    status: uw.status || 'new',
+                    masteryLevel: uw.mastery_level || 0,
+                    practiceCount: uw.times_seen || 0,
+                    correctCount: uw.times_correct || 0,
+                    incorrectCount: uw.times_incorrect || 0,
+                    lastPractice: uw.last_seen_at,
+                    nextReview: uw.next_review_at,
+                    addedAt: uw.created_at,
+                    notes: uw.notes,
+                    source: uw.source,
+                    // SRS data
+                    easeFactor: uw.ease_factor || 2.5,
+                    intervalDays: uw.interval_days || 1,
+                    repetitions: uw.repetitions || 0,
+                };
+            }).filter(Boolean);
+            
+            console.log('[getUserWords] Normalized', normalized.length, 'words');
+            return normalized;
+        } catch (err) {
+            console.error('[getUserWords] Exception:', err);
+            return [];
+        }
+    },
+
+    /**
+     * Kullanıcıya kelime ekle
+     */
+    async addUserWord(userId, wordId, source = 'manual') {
+        try {
+            console.log('[addUserWord] Adding word:', { userId, wordId, source });
+            
+            const { data, error } = await supabase
+                .from('user_words')
+                .insert({
+                    user_id: userId,
+                    word_id: wordId,
+                    status: 'new',
+                    mastery_level: 0,
+                    times_seen: 0,
+                    times_correct: 0,
+                    times_incorrect: 0,
+                    source: source,
+                    next_review_at: new Date().toISOString(),
+                })
+                .select(`
+                    *,
+                    words (*)
+                `)
+                .single();
+
+            if (error) {
+                // Duplicate entry is ok
+                if (error.code === '23505') {
+                    console.log('[addUserWord] Word already added by user (duplicate)');
+                    return null;
+                }
+                console.error('[addUserWord] Error:', error);
+                throw error;
+            }
+
+            console.log('[addUserWord] Successfully added, raw data:', data);
+
+            // Normalize
+            const word = data.words;
+            const normalized = {
+                id: word.id,
+                word: word.word,
+                phonetic: word.phonetic || '',
+                partOfSpeech: word.part_of_speech || '',
+                turkish: word.meanings_tr?.[0] || '',
+                definition: word.definitions_en?.[0] || '',
+                examples: word.examples_en || [],
+                synonyms: word.synonyms || [],
+                antonyms: word.antonyms || [],
+                level: word.level,
+                status: data.status,
+                masteryLevel: data.mastery_level,
+                practiceCount: data.times_seen,
+                correctCount: data.times_correct,
+                addedAt: data.created_at,
+                source: data.source,
+            };
+            
+            console.log('[addUserWord] Returning normalized:', normalized);
+            return normalized;
+        } catch (err) {
+            console.error('[addUserWord] Exception:', err);
+            throw err;
+        }
+    },
+
+    /**
+     * Kullanıcıdan kelime sil
+     */
+    async removeUserWord(userId, wordId) {
+        try {
+            const { error } = await supabase
+                .from('user_words')
+                .delete()
+                .eq('user_id', userId)
+                .eq('word_id', wordId);
+
+            if (error) throw error;
+            return true;
+        } catch (err) {
+            console.error('Error in removeUserWord:', err);
+            return false;
+        }
+    },
+
+    /**
+     * Kelime pratiği güncelle
+     */
+    async updateUserWordPractice(userId, wordId, isCorrect) {
+        try {
+            // Önce mevcut veriyi al
+            const { data: current } = await supabase
+                .from('user_words')
+                .select('*')
+                .eq('user_id', userId)
+                .eq('word_id', wordId)
+                .single();
+
+            if (!current) return false;
+
+            // Yeni değerleri hesapla
+            const timesSeen = (current.times_seen || 0) + 1;
+            const timesCorrect = (current.times_correct || 0) + (isCorrect ? 1 : 0);
+            const timesIncorrect = (current.times_incorrect || 0) + (isCorrect ? 0 : 1);
+            
+            // Status güncelle
+            let newStatus = current.status;
+            if (timesCorrect >= 5) {
+                newStatus = 'learned';
+            } else if (timesSeen >= 1) {
+                newStatus = 'learning';
+            }
+
+            // Mastery level hesapla (0-100)
+            const masteryLevel = Math.min(100, Math.floor((timesCorrect / Math.max(1, timesSeen)) * 100));
+
+            // SRS hesaplama (basit)
+            let easeFactor = current.ease_factor || 2.5;
+            let intervalDays = current.interval_days || 1;
+            let repetitions = current.repetitions || 0;
+
+            if (isCorrect) {
+                repetitions += 1;
+                if (repetitions === 1) {
+                    intervalDays = 1;
+                } else if (repetitions === 2) {
+                    intervalDays = 6;
+                } else {
+                    intervalDays = Math.round(intervalDays * easeFactor);
+                }
+            } else {
+                repetitions = 0;
+                intervalDays = 1;
+                easeFactor = Math.max(1.3, easeFactor - 0.2);
+            }
+
+            const nextReviewAt = new Date();
+            nextReviewAt.setDate(nextReviewAt.getDate() + intervalDays);
+
+            // Güncelle
+            const { error } = await supabase
+                .from('user_words')
+                .update({
+                    times_seen: timesSeen,
+                    times_correct: timesCorrect,
+                    times_incorrect: timesIncorrect,
+                    last_seen_at: new Date().toISOString(),
+                    status: newStatus,
+                    mastery_level: masteryLevel,
+                    ease_factor: easeFactor,
+                    interval_days: intervalDays,
+                    repetitions: repetitions,
+                    next_review_at: nextReviewAt.toISOString(),
+                })
+                .eq('user_id', userId)
+                .eq('word_id', wordId);
+
+            if (error) throw error;
+            return true;
+        } catch (err) {
+            console.error('Error in updateUserWordPractice:', err);
+            return false;
+        }
+    },
 };

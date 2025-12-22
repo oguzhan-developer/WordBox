@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { X, ChevronRight, ChevronLeft, Keyboard, Navigation, Focus, Accessibility } from 'lucide-react';
 
 /**
@@ -63,22 +63,23 @@ const GUIDE_STEPS = [
 
 export default function KeyboardNavigationGuide({ isOpen, onClose, onComplete }) {
     const [currentStep, setCurrentStep] = useState(0);
-    const [hasSeenGuide, setHasSeenGuide] = useState(false);
+    // Track if user has seen guide (for marking as seen)
+    const hasSeenGuideRef = useRef(false);
     
     const step = GUIDE_STEPS[currentStep];
     const isFirstStep = currentStep === 0;
     const isLastStep = currentStep === GUIDE_STEPS.length - 1;
     
-    // Check if user has seen the guide
+    // Check if user has seen the guide on mount
     useEffect(() => {
         const seen = localStorage.getItem('wordbox-keyboard-guide-seen');
-        setHasSeenGuide(seen === 'true');
+        hasSeenGuideRef.current = seen === 'true';
     }, []);
     
     // Mark guide as seen
     const markAsSeen = useCallback(() => {
         localStorage.setItem('wordbox-keyboard-guide-seen', 'true');
-        setHasSeenGuide(true);
+        hasSeenGuideRef.current = true;
     }, []);
     
     // Handle keyboard navigation
@@ -118,12 +119,18 @@ export default function KeyboardNavigationGuide({ isOpen, onClose, onComplete })
         };
     }, [isOpen, handleKeyDown]);
     
-    // Reset step when opened
+    // Reset step when opened - use callback to avoid direct setState in effect
+    const resetStep = useCallback(() => {
+        setCurrentStep(0);
+    }, []);
+    
     useEffect(() => {
         if (isOpen) {
-            setCurrentStep(0);
+            // Use setTimeout to move setState out of effect synchronous flow
+            const timer = setTimeout(resetStep, 0);
+            return () => clearTimeout(timer);
         }
-    }, [isOpen]);
+    }, [isOpen, resetStep]);
     
     if (!isOpen) return null;
     

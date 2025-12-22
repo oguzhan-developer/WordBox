@@ -13,10 +13,12 @@ export default function MatchingMode() {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const { user, addXp, recordActivity, completePractice } = useUser();
-    const toast = useToast();
+    const _toast = useToast();
 
     // Settings
     const wordCount = Math.min(parseInt(searchParams.get('count')) || 10, 10); // Max 10 for matching
+    const wordSource = searchParams.get('source') || 'all';
+    const dbLevel = searchParams.get('level') || user.level || 'B1';
 
     // State
     const [words, setWords] = useState([]);
@@ -36,17 +38,14 @@ export default function MatchingMode() {
         const loadWords = async () => {
             let practiceWords = [];
 
+            // Use user's vocabulary only
             if (user.vocabulary.length >= wordCount) {
                 practiceWords = [...user.vocabulary]
                     .sort(() => Math.random() - 0.5)
                     .slice(0, wordCount);
             } else if (user.vocabulary.length > 0) {
-                practiceWords = [...user.vocabulary];
-                const remaining = wordCount - practiceWords.length;
-                const randomWords = await supabaseService.getRandomWords(remaining);
-                practiceWords = [...practiceWords, ...randomWords].slice(0, wordCount);
-            } else {
-                practiceWords = await supabaseService.getRandomWords(wordCount);
+                // If not enough words, use what's available
+                practiceWords = [...user.vocabulary].sort(() => Math.random() - 0.5);
             }
 
             setWords(practiceWords);

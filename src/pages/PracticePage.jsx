@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useCallback } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
     Layers,
@@ -9,9 +9,13 @@ import {
     Headphones,
     Clock,
     Zap,
-    Lock
+    Lock,
+    BookOpen,
+    TrendingUp,
+    Plus
 } from 'lucide-react';
 import { useUser } from '../context/UserContext';
+import { supabaseService } from '../services/supabaseService';
 import Card from '../components/Card';
 import Button from '../components/Button';
 import { LevelBadge } from '../components/Badge';
@@ -26,9 +30,18 @@ export default function PracticePage() {
     const [wordCount, setWordCount] = useState(20);
     const [wordSource, setWordSource] = useState('all');
     
-    // SRS Statistics
+    // SRS Statistics - memoized
     const srsStats = useMemo(() => getSrsStats(user.vocabulary || []), [user.vocabulary]);
     const dueWords = useMemo(() => getDueWords(user.vocabulary || []), [user.vocabulary]);
+
+    // Word source counts - memoized
+    const wordSourceCounts = useMemo(() => ({
+        all: user.vocabulary.length,
+        new: user.vocabulary.filter(w => !w.status || w.status === 'new').length,
+        learning: user.vocabulary.filter(w => w.status === 'learning').length,
+        learned: user.vocabulary.filter(w => w.status === 'learned').length,
+        review: dueWords.length,
+    }), [user.vocabulary, dueWords.length]);
 
     const practiceModes = [
         {
@@ -96,21 +109,143 @@ export default function PracticePage() {
         },
     ];
 
-    const wordSources = [
-        { value: 'all', label: 'Tüm Kelimeler', count: user.vocabulary.length },
-        { value: 'new', label: 'Yeni Kelimeler', count: user.vocabulary.filter(w => w.status === 'new').length },
-        { value: 'learning', label: 'Öğreniliyor', count: user.vocabulary.filter(w => w.status === 'learning').length },
-        { value: 'review', label: 'Tekrar Zamanı', count: Math.min(user.vocabulary.length, 15) },
-    ];
+    const wordSources = useMemo(() => [
+        { 
+            value: 'all', 
+            label: 'Tüm Kelimeler', 
+            icon: BookOpen,
+            count: wordSourceCounts.all,
+            description: 'Tüm kelime listenden'
+        },
+        { 
+            value: 'new', 
+            label: 'Yeni Kelimeler', 
+            icon: Plus,
+            count: wordSourceCounts.new,
+            description: 'Henüz çalışmadığın kelimeler',
+            disabled: wordSourceCounts.new === 0
+        },
+        { 
+            value: 'learning', 
+            label: 'Öğreniliyor', 
+            icon: TrendingUp,
+            count: wordSourceCounts.learning,
+            description: 'Öğrenme aşamasındaki kelimeler',
+            disabled: wordSourceCounts.learning === 0
+        },
+        { 
+            value: 'review', 
+            label: 'Tekrar Zamanı', 
+            icon: Clock,
+            count: wordSourceCounts.review,
+            description: 'SRS algoritması ile tekrar edilecekler',
+            disabled: wordSourceCounts.review === 0
+        },
+    ], [wordSourceCounts]);
 
-    const wordCounts = [10, 20, 30, 50];
+    // If no words in vocabulary, show motivational empty state
+    if (user.vocabulary.length === 0) {
+        return (
+            <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 pt-20 pb-12 flex items-center justify-center">
+                <div className="max-w-2xl mx-auto px-4 text-center">
+                    <div className="animate-bounce text-8xl mb-6">📚</div>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                        Kelime Listeniz Boş!
+                    </h2>
+                    <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-lg mx-auto">
+                        Pratik yapabilmek için önce kelime eklemelisiniz. Kütüphanedeki içerikleri okuyarak veya manuel olarak kelime ekleyebilirsiniz.
+                    </p>
+                    
+                    {/* Action Cards */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                        <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border-2 border-indigo-200 dark:border-indigo-700/50 hover:border-indigo-400 dark:hover:border-indigo-600 transition-all cursor-pointer group" onClick={() => navigate('/library')}>
+                            <div className="text-4xl mb-3">📰</div>
+                            <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-lg">Kütüphaneden Oku</h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">Haberler ve hikayeler okuyarak kelime öğrenin</p>
+                        </div>
+                        <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-700/50 hover:border-purple-400 dark:hover:border-purple-600 transition-all cursor-pointer group" onClick={() => navigate('/vocabulary')}>
+                            <div className="text-4xl mb-3">➕</div>
+                            <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-lg">Manuel Ekle</h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">Kendi kelimelerinizi listeye ekleyin</p>
+                        </div>
+                    </div>
+                    
+                    <Button
+                        variant="primary"
+                        size="lg"
+                        onClick={() => navigate('/library')}
+                        className="px-8 py-4 text-lg"
+                    >
+                        <BookOpen className="w-5 h-5 mr-2" />
+                        Kütüphaneye Git
+                    </Button>
+                    
+                    <p className="text-sm text-gray-500 dark:text-gray-500 mt-6">
+                        💡 İpucu: En az 10 kelime eklediğinizde pratik yapabilirsiniz
+                    </p>
+                </div>
+            </div>
+        );
+    }
 
-    const startPractice = () => {
+    // Start practice - useCallback
+    const startPractice = useCallback(() => {
         if (!selectedMode) return;
-        navigate(`/practice/${selectedMode}?count=${wordCount}&source=${wordSource}`);
-    };
+        
+        const params = new URLSearchParams({
+            count: wordCount,
+            source: wordSource
+        });
+        
+        navigate(`/practice/${selectedMode}?${params.toString()}`);
+    }, [selectedMode, wordCount, wordSource, navigate]);
 
-    // If no words, show empty state
+    // If no words in vocabulary, show motivational empty state
+    if (user.vocabulary.length === 0) {
+        return (
+            <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 pt-20 pb-12 flex items-center justify-center">
+                <div className="max-w-2xl mx-auto px-4 text-center">
+                    <div className="animate-bounce text-8xl mb-6">📚</div>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                        Kelime Listeniz Boş!
+                    </h2>
+                    <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-lg mx-auto">
+                        Pratik yapabilmek için önce kelime eklemelisiniz. Kütüphanedeki içerikleri okuyarak veya manuel olarak kelime ekleyebilirsiniz.
+                    </p>
+                    
+                    {/* Action Cards */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                        <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border-2 border-indigo-200 dark:border-indigo-700/50 hover:border-indigo-400 dark:hover:border-indigo-600 transition-all cursor-pointer group" onClick={() => navigate('/library')}>
+                            <div className="text-4xl mb-3">📰</div>
+                            <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-lg">Kütüphaneden Oku</h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">Haberler ve hikayeler okuyarak kelime öğrenin</p>
+                        </div>
+                        <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-700/50 hover:border-purple-400 dark:hover:border-purple-600 transition-all cursor-pointer group" onClick={() => navigate('/vocabulary')}>
+                            <div className="text-4xl mb-3">➕</div>
+                            <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-lg">Manuel Ekle</h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">Kendi kelimelerinizi listeye ekleyin</p>
+                        </div>
+                    </div>
+                    
+                    <Button
+                        variant="primary"
+                        size="lg"
+                        onClick={() => navigate('/library')}
+                        className="px-8 py-4 text-lg"
+                    >
+                        <BookOpen className="w-5 h-5 mr-2" />
+                        Kütüphaneye Git
+                    </Button>
+                    
+                    <p className="text-sm text-gray-500 dark:text-gray-500 mt-6">
+                        💡 İpucu: En az 10 kelime eklediğinizde pratik yapabilirsiniz
+                    </p>
+                </div>
+            </div>
+        );
+    }
+
+    // If no words anywhere, show empty state
     if (user.vocabulary.length === 0) {
         return (
             <div className="min-h-screen bg-gray-50 dark:bg-[#18181b] pt-20 pb-12 flex items-center justify-center">
@@ -264,31 +399,57 @@ export default function PracticePage() {
                                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                                         Kelime Kaynağı
                                     </label>
-                                    <div className="space-y-3">
-                                        {wordSources.map((source) => (
-                                            <button
-                                                key={source.value}
-                                                onClick={() => setWordSource(source.value)}
-                                                disabled={source.count === 0}
-                                                className={`w-full flex items-center justify-between p-4 rounded-2xl border-2 transition-all duration-300 group ${wordSource === source.value
-                                                    ? 'border-indigo-500 dark:border-indigo-400 glass-strong shadow-lg shadow-indigo-500/20 dark:shadow-indigo-500/30 scale-[1.02]'
-                                                    : source.count > 0
-                                                        ? 'border-gray-200/80 dark:border-slate-700/60 glass hover:glass-strong hover:border-indigo-300 dark:hover:border-indigo-500/50 hover:shadow-md hover:scale-[1.01]'
-                                                        : 'border-gray-100 dark:border-slate-800 glass opacity-40 cursor-not-allowed'
-                                                    }`}
-                                            >
-                                                <span className={`flex items-center gap-2 transition-all ${wordSource === source.value ? 'font-semibold text-indigo-700 dark:text-indigo-400' : 'text-gray-700 dark:text-gray-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400'}}`}>
-                                                    {wordSource === source.value && <span className="text-lg">✓</span>}
-                                                    {source.label}
-                                                </span>
-                                                <span className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${wordSource === source.value
-                                                    ? 'gradient-primary text-white shadow-md'
-                                                    : 'glass text-gray-600 dark:text-gray-400 group-hover:glass-strong'
-                                                    }`}>
-                                                    {source.count} kelime
-                                                </span>
-                                            </button>
-                                        ))}
+                                    <div className="space-y-2">
+                                        {wordSources.map((source) => {
+                                            const SourceIcon = source.icon;
+                                            const isSelected = wordSource === source.value;
+                                            const isDisabled = source.disabled || source.count === 0;
+                                            
+                                            return (
+                                                <button
+                                                    key={source.value}
+                                                    onClick={() => !isDisabled && setWordSource(source.value)}
+                                                    disabled={isDisabled}
+                                                    className={`w-full flex items-start gap-3 p-3 rounded-xl border-2 transition-all duration-200 ${
+                                                        isSelected
+                                                            ? 'border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20'
+                                                            : isDisabled
+                                                                ? 'border-gray-200 dark:border-gray-700 opacity-50 cursor-not-allowed'
+                                                                : 'border-gray-200 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-700'
+                                                    } ${source.highlight && !isSelected ? 'border-amber-300 dark:border-amber-700 bg-amber-50/50 dark:bg-amber-900/10' : ''}`}
+                                                >
+                                                    <div className={`mt-1 ${isSelected ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-500 dark:text-gray-400'}`}>
+                                                        <SourceIcon className="w-5 h-5" />
+                                                    </div>
+                                                    <div className="flex-1 text-left">
+                                                        <div className="flex items-center gap-2">
+                                                            <span className={`font-medium ${isSelected ? 'text-indigo-900 dark:text-indigo-200' : 'text-gray-900 dark:text-white'}`}>
+                                                                {source.label}
+                                                            </span>
+                                                            <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${
+                                                                isSelected 
+                                                                    ? 'bg-indigo-600 text-white' 
+                                                                    : source.highlight
+                                                                        ? 'bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300'
+                                                                        : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+                                                            }`}>
+                                                                {source.count}
+                                                            </span>
+                                                        </div>
+                                                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                                                            {source.description}
+                                                        </p>
+                                                    </div>
+                                                    {isSelected && (
+                                                        <div className="text-indigo-600 dark:text-indigo-400 mt-1">
+                                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                                            </svg>
+                                                        </div>
+                                                    )}
+                                                </button>
+                                            );
+                                        })}
                                     </div>
                                 </div>
 
@@ -321,7 +482,7 @@ export default function PracticePage() {
                                             Seviye (opsiyonel)
                                         </label>
                                         <div className="flex flex-wrap gap-2">
-                                            {['Tümü', 'A1', 'A2', 'B1', 'B2', 'C1'].map((level, index) => (
+                                            {['Tümü', 'A1', 'A2', 'B1', 'B2', 'C1'].map((level) => (
                                                 <button
                                                     key={level}
                                                     className="px-4 py-2.5 rounded-xl text-sm font-semibold glass text-gray-700 dark:text-gray-300 hover:glass-strong hover:scale-105 hover:shadow-md transition-all duration-300 border border-gray-200/50 dark:border-slate-700/50 hover:border-indigo-300 dark:hover:border-indigo-500/50"

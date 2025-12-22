@@ -142,7 +142,7 @@ export default function Navbar() {
                             {/* Mobile Menu Button */}
                             <button
                                 className="md:hidden size-10 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/70 dark:focus:ring-offset-gray-900"
-                                onClick={() => { setMobileMenuOpen(!mobileMenuOpen); setProfileMenuOpen(false); setNotificationsOpen(false); }}
+                                onClick={() => { setMobileMenuOpen(!mobileMenuOpen); setProfileMenuOpen(false); }}
                                 aria-expanded={mobileMenuOpen}
                                 aria-label="Menüyü aç/kapat"
                             >

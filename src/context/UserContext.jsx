@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { supabase } from '../lib/supabaseClient';
+import { supabaseService } from '../services/supabaseService';
 import {
-    calculateLevel,
     updateStreak,
     checkNewBadges,
     xpRewards
@@ -247,14 +247,28 @@ export function UserProvider({ children }) {
 
             if (error && error.code !== 'PGRST116') throw error; // Still throw if it's a real DB error, not just not found
 
+            // Fetch user's vocabulary from user_words table regardless of profile status
+            console.log("Fetching user vocabulary...");
+            const vocabulary = await supabaseService.getUserWords(auth_user.id);
+            console.log(`Loaded ${vocabulary.length} words from database`);
+
             if (data) {
                 console.log("Profile found, updating user state.");
-                setUser(mapProfileToUser(data, auth_user.email));
+                const profileUser = mapProfileToUser(data, auth_user.email);
+                
+                setUser({
+                    ...profileUser,
+                    vocabulary: vocabulary,
+                    wordsLearned: vocabulary.length,
+                });
             } else {
-                console.log("Profile missing/timeout. User stays on default/metadata state.");
-                // We already set the basic info in handleAuthSuccess, so strictly no need to do anything else 
-                // unless we want to persist the default profile to DB? 
-                // For now, just let the user function with in-memory state.
+                console.log("Profile missing/timeout. Using basic auth data + vocabulary.");
+                // Even without profile, set vocabulary
+                setUser(prev => ({
+                    ...prev,
+                    vocabulary: vocabulary,
+                    wordsLearned: vocabulary.length,
+                }));
             }
         } catch (error) {
             console.error('Error in fetchProfile wrapper:', error);
@@ -335,7 +349,7 @@ export function UserProvider({ children }) {
     };
 
 
-    const addXp = (amount, reason = '') => {
+    const addXp = (amount, _reason = '') => {
         if (!user.id) return;
 
         const newXp = user.xp + amount;
@@ -391,61 +405,109 @@ export function UserProvider({ children }) {
         updateProfile(dbUpdates);
     };
 
-    const addWord = (word) => {
+    const addWord = async (word) => {
         if (!user.id) return;
 
         // Check if exists
-        if (user.vocabulary.find(w => w.id === word.id)) return;
+        if (user.vocabulary.find(w => w.id === word.id)) {
+            console.log('Word already in vocabulary:', word.word);
+            return;
+        }
 
-        const newWord = {
-            ...word,
-            addedAt: new Date().toISOString(),
-            status: 'new',
-            practiceCount: 0,
-            correctCount: 0,
-            lastPractice: null,
-            nextReview: null,
-        };
+        try {
+            // Add to database
+            const addedWord = await supabaseService.addUserWord(user.id, word.id, 'manual');
+            
+            if (!addedWord) {
+                console.log('Word already added (duplicate)');
+                return;
+            }
 
-        const newVocab = [...user.vocabulary, newWord];
-
-        updateProfile({
-            vocabulary: newVocab,
-            words_learned: user.wordsLearned + 1,
-            words_today: user.wordsToday + 1,
-            xp: user.xp + xpRewards.addWord
-        });
-    };
-
-    const removeWord = (wordId) => {
-        if (!user.id) return;
-        const newVocab = user.vocabulary.filter(w => w.id !== wordId);
-        updateProfile({ vocabulary: newVocab });
-    };
-
-    const updateWordPractice = (wordId, isCorrect) => {
-        if (!user.id) return;
-
-        const updatedVocab = user.vocabulary.map(word => {
-            if (word.id !== wordId) return word;
-
-            const newCorrectCount = isCorrect ? word.correctCount + 1 : word.correctCount;
-            const newPracticeCount = word.practiceCount + 1;
-
-            let newStatus = word.status;
-            if (newCorrectCount >= 5) newStatus = 'learned';
-            else if (newPracticeCount >= 1) newStatus = 'learning';
-
-            return {
+            // Optimistically update UI
+            const newWord = {
                 ...word,
-                practiceCount: newPracticeCount,
-                correctCount: newCorrectCount,
-                lastPractice: new Date().toISOString(),
-                status: newStatus,
+                addedAt: new Date().toISOString(),
+                status: 'new',
+                practiceCount: 0,
+                correctCount: 0,
+                lastPractice: null,
+                nextReview: null,
             };
-        });
 
-        updateProfile({ vocabulary: updatedVocab });
+            const newVocab = [...user.vocabulary, newWord];
+            
+            setUser(prev => ({
+                ...prev,
+                vocabulary: newVocab,
+                wordsLearned: newVocab.length,
+                wordsToday: prev.wordsToday + 1,
+            }));
+
+            // Update profile stats
+            updateProfile({
+                words_today: user.wordsToday + 1,
+                xp: user.xp + xpRewards.addWord
+            });
+
+            console.log('Word added successfully:', word.word);
+        } catch (err) {
+            console.error('Error adding word:', err);
+        }
+    };
+
+    const removeWord = async (wordId) => {
+        if (!user.id) return;
+        
+        try {
+            // Remove from database
+            await supabaseService.removeUserWord(user.id, wordId);
+            
+            // Optimistically update UI
+            const newVocab = user.vocabulary.filter(w => w.id !== wordId);
+            setUser(prev => ({
+                ...prev,
+                vocabulary: newVocab,
+                wordsLearned: newVocab.length,
+            }));
+            
+            console.log('Word removed successfully');
+        } catch (err) {
+            console.error('Error removing word:', err);
+        }
+    };
+
+    const updateWordPractice = async (wordId, isCorrect) => {
+        if (!user.id) return;
+
+        try {
+            // Update in database
+            await supabaseService.updateUserWordPractice(user.id, wordId, isCorrect);
+            
+            // Optimistically update UI
+            const updatedVocab = user.vocabulary.map(word => {
+                if (word.id !== wordId) return word;
+
+                const newCorrectCount = isCorrect ? (word.correctCount || 0) + 1 : word.correctCount;
+                const newPracticeCount = (word.practiceCount || 0) + 1;
+
+                let newStatus = word.status;
+                if (newCorrectCount >= 5) newStatus = 'learned';
+                else if (newPracticeCount >= 1) newStatus = 'learning';
+
+                return {
+                    ...word,
+                    practiceCount: newPracticeCount,
+                    correctCount: newCorrectCount,
+                    lastPractice: new Date().toISOString(),
+                    status: newStatus,
+                };
+            });
+
+            setUser(prev => ({ ...prev, vocabulary: updatedVocab }));
+            console.log('Word practice updated');
+        } catch (err) {
+            console.error('Error updating word practice:', err);
+        }
     };
 
     const completePractice = (correctCount, wrongCount) => {

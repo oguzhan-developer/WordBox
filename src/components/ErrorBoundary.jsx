@@ -15,14 +15,14 @@ class ErrorBoundary extends Component {
         };
     }
 
-    static getDerivedStateFromError(error) {
+    static getDerivedStateFromError() {
         // Update state so the next render will show the fallback UI
         return { hasError: true };
     }
 
     componentDidCatch(error, errorInfo) {
         // Log error to console in development
-        if (process.env.NODE_ENV === 'development') {
+        if (import.meta.env.MODE === 'development') {
             console.error('Error Boundary caught an error:', error, errorInfo);
         }
 
@@ -95,7 +95,7 @@ class ErrorBoundary extends Component {
                             </div>
 
                             {/* Error details (development only) */}
-                            {process.env.NODE_ENV === 'development' && this.state.error && (
+                            {import.meta.env.MODE === 'development' && this.state.error && (
                                 <details className="mb-6">
                                     <summary className="cursor-pointer text-sm text-gray-500 dark:text-gray-400 mb-2">
                                         Hata Detayları (Geliştirici)

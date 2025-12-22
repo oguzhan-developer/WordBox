@@ -18,6 +18,8 @@ export default function ListeningMode() {
 
     // Settings from URL
     const wordCount = parseInt(searchParams.get('count')) || 20;
+    const wordSource = searchParams.get('source') || 'all';
+    const dbLevel = searchParams.get('level') || user.level || 'B1';
 
     // State
     const [questions, setQuestions] = useState([]);
@@ -27,12 +29,20 @@ export default function ListeningMode() {
     const [isCorrect, setIsCorrect] = useState(false);
     const [results, setResults] = useState({ correct: 0, wrong: 0 });
     const [isComplete, setIsComplete] = useState(false);
+    const [endTime, setEndTime] = useState(null);
+    const [startTime, setStartTime] = useState(null);
     const [showExitConfirm, setShowExitConfirm] = useState(false);
     const [combo, setCombo] = useState(0);
     const [maxCombo, setMaxCombo] = useState(0);
-    const [startTime] = useState(Date.now());
-    const [questionStartTime, setQuestionStartTime] = useState(Date.now());
+    const questionStartTimeRef = useRef(null);
     const [questionTimes, setQuestionTimes] = useState([]);
+
+    // Initialize time on mount
+    useEffect(() => {
+        const now = Date.now();
+        setStartTime(now);
+        questionStartTimeRef.current = now;
+    }, []);
     const [playCount, setPlayCount] = useState(0);
     const [isSpeaking, setIsSpeaking] = useState(false);
     const [hasAutoPlayed, setHasAutoPlayed] = useState(false);
@@ -42,18 +52,14 @@ export default function ListeningMode() {
         const loadWords = async () => {
             let practiceWords = [];
 
+            // Use user's vocabulary only
             if (user.vocabulary.length >= wordCount) {
                 practiceWords = [...user.vocabulary]
                     .sort(() => Math.random() - 0.5)
                     .slice(0, wordCount);
             } else if (user.vocabulary.length > 0) {
-                practiceWords = [...user.vocabulary];
-                const remaining = wordCount - practiceWords.length;
-                const randomWords = await supabaseService.getRandomWords(remaining);
-                practiceWords = [...practiceWords, ...randomWords].sort(() => Math.random() - 0.5);
-            } else {
-                const randomWords = await supabaseService.getRandomWords(wordCount);
-                practiceWords = randomWords;
+                // If not enough words, use what's available
+                practiceWords = [...user.vocabulary].sort(() => Math.random() - 0.5);
             }
 
             setQuestions(practiceWords);
@@ -65,25 +71,7 @@ export default function ListeningMode() {
     const currentQuestion = questions[currentIndex];
     const progress = (currentIndex / questions.length) * 100;
 
-    // Focus input on new question
-    useEffect(() => {
-        if (inputRef.current && !isAnswered) {
-            inputRef.current.focus();
-        }
-    }, [currentIndex, isAnswered]);
-
-    // Auto-play word on new question
-    useEffect(() => {
-        if (currentQuestion && !hasAutoPlayed && !isAnswered) {
-            const timer = setTimeout(() => {
-                playWord();
-                setHasAutoPlayed(true);
-            }, 500);
-            return () => clearTimeout(timer);
-        }
-    }, [currentQuestion, hasAutoPlayed, isAnswered]);
-
-    // Play word with TTS
+    // Play word with TTS - must be defined before effects that use it
     const playWord = useCallback(() => {
         if (!currentQuestion || isSpeaking) return;
 
@@ -101,6 +89,24 @@ export default function ListeningMode() {
         // Fallback to reset speaking state
         setTimeout(() => setIsSpeaking(false), 3000);
     }, [currentQuestion, isSpeaking, playCount]);
+
+    // Focus input on new question
+    useEffect(() => {
+        if (inputRef.current && !isAnswered) {
+            inputRef.current.focus();
+        }
+    }, [currentIndex, isAnswered]);
+
+    // Auto-play word on new question
+    useEffect(() => {
+        if (currentQuestion && !hasAutoPlayed && !isAnswered) {
+            const timer = setTimeout(() => {
+                playWord();
+                setHasAutoPlayed(true);
+            }, 500);
+            return () => clearTimeout(timer);
+        }
+    }, [currentQuestion, hasAutoPlayed, isAnswered, playWord]);
 
     // Levenshtein distance for typo tolerance
     const levenshteinDistance = (str1, str2) => {
@@ -127,7 +133,7 @@ export default function ListeningMode() {
     const checkAnswer = useCallback(() => {
         if (isAnswered || !userAnswer.trim()) return;
 
-        const timeTaken = Date.now() - questionStartTime;
+        const timeTaken = Date.now() - questionStartTimeRef.current;
         setQuestionTimes(prev => [...prev, timeTaken]);
 
         // Normalize answers
@@ -183,7 +189,7 @@ export default function ListeningMode() {
         if (currentQuestion.id) {
             recordReview(currentQuestion.id, correct);
         }
-    }, [isAnswered, userAnswer, currentQuestion, combo, maxCombo, toast, updateWordPractice, user.vocabulary, questionStartTime, playCount]);
+    }, [isAnswered, userAnswer, currentQuestion, combo, maxCombo, toast, updateWordPractice, user.vocabulary, playCount]);
 
     // Go to next question
     const handleNext = useCallback(() => {
@@ -192,11 +198,12 @@ export default function ListeningMode() {
             setUserAnswer('');
             setIsAnswered(false);
             setIsCorrect(false);
-            setQuestionStartTime(Date.now());
+            questionStartTimeRef.current = Date.now();
             setPlayCount(0);
             setHasAutoPlayed(false);
         } else {
             completePractice(results.correct + (isCorrect ? 1 : 0), results.wrong + (isCorrect ? 0 : 1));
+            setEndTime(Date.now());
             setIsComplete(true);
         }
     }, [currentIndex, questions.length, results, isCorrect, completePractice]);
@@ -257,7 +264,7 @@ export default function ListeningMode() {
 
     // Complete screen
     if (isComplete) {
-        const totalTime = Math.floor((Date.now() - startTime) / 1000);
+        const totalTime = startTime && endTime ? Math.floor((endTime - startTime) / 1000) : 0;
         const minutes = Math.floor(totalTime / 60);
         const seconds = totalTime % 60;
 

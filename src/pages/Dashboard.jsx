@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { supabaseService } from '../services/supabaseService';
 import { getWeeklyActivity, setTodayWords, getBestDayThisWeek } from '../utils/weeklyActivity';
 import { getWordOfTheDay, isWordLearnedToday, markWordAsLearned, updateWotdStreak } from '../utils/wordOfTheDay';
@@ -8,32 +8,90 @@ import { getDailyGoalStatus, getMotivationMessage } from '../utils/studyGoals';
 import { speak } from '../utils/speechSynthesis';
 import FocusTimer from '../components/FocusTimer';
 import PracticeStreakWidget from '../components/PracticeStreakWidget';
+import { WifiOff } from 'lucide-react';
+import { useNetworkStatus } from '../hooks/useNetworkStatus';
 
 export default function Dashboard() {
     const { user, addWord, addXp } = useUser();
+    const navigate = useNavigate();
+    const { isOnline } = useNetworkStatus();
     const [showFocusTimer, setShowFocusTimer] = useState(false);
-    const [wotdLearned, setWotdLearned] = useState(false);
-
+    const [wotdLearned, setWotdLearned] = useState(() => isWordLearnedToday());
+    const [wordOfTheDay, setWordOfTheDay] = useState(null);
+    const [isLoadingWotd, setIsLoadingWotd] = useState(true);
     const [featuredNews, setFeaturedNews] = useState({ title: 'Yükleniyor...', newWords: [] });
-    const [isLoadingNews, setIsLoadingNews] = useState(true);
+    const [_isLoadingNews, setIsLoadingNews] = useState(true);
     
-    // Word of the Day
-    const wordOfTheDay = useMemo(() => getWordOfTheDay(), []);
+    const wordsNeedingReview = useMemo(() => 
+        user.vocabulary?.filter(w => w.status !== 'learned').length || 0,
+        [user.vocabulary]
+    );
     
-    // Study Goals
-    const dailyGoalStatus = useMemo(() => getDailyGoalStatus(), [user.wordsToday]);
-    const motivation = useMemo(() => getMotivationMessage(), [user.wordsToday]);
+    const dailyGoal = useMemo(() => 
+        user.preferences?.dailyGoal || 20,
+        [user.preferences?.dailyGoal]
+    );
     
-    // Check if WOTD was already learned
+    const wordsToday = user.wordsToday || 0;
+    const nextLevelXp = 2000; // Mock value for next level threshold
+    
+    const progressPercent = useMemo(() => 
+        Math.min(100, Math.round((wordsToday / dailyGoal) * 100)),
+        [wordsToday, dailyGoal]
+    );
+    
+    const xpProgress = useMemo(() => 
+        Math.min(100, Math.round((user.xp / nextLevelXp) * 100)),
+        [user.xp, nextLevelXp]
+    );
+    
+    // Fetch WOTD and Featured News in parallel
     useEffect(() => {
-        setWotdLearned(isWordLearnedToday());
-    }, []);
-    
-    // Handle learning WOTD
-    const handleLearnWotd = () => {
-        if (wotdLearned) return;
+        if (!user.level) return;
         
-        // Add word to vocabulary
+        let cancelled = false;
+        
+        const fetchData = async () => {
+            setIsLoadingWotd(true);
+            setIsLoadingNews(true);
+            
+            try {
+                // Fetch both in parallel
+                const [dbWord, news] = await Promise.all([
+                    supabaseService.getWordOfTheDay(user.level || 'B1').catch(() => null),
+                    supabaseService.getContentByLevel('news', user.level).catch(() => null)
+                ]);
+                
+                if (!cancelled) {
+                    setWordOfTheDay(dbWord || getWordOfTheDay());
+                    setFeaturedNews(news?.[0] || { title: 'İçerik Bulunamadı', newWords: [] });
+                }
+            } catch (err) {
+                console.error('Error fetching dashboard data:', err);
+                if (!cancelled) {
+                    setWordOfTheDay(getWordOfTheDay());
+                    setFeaturedNews({ title: 'İçerik Bulunamadı', newWords: [] });
+                }
+            } finally {
+                if (!cancelled) {
+                    setIsLoadingWotd(false);
+                    setIsLoadingNews(false);
+                }
+            }
+        };
+        
+        fetchData();
+        return () => { cancelled = true; };
+    }, [user.level]);
+    
+    // Study Goals - memoize properly
+    const dailyGoalStatus = useMemo(() => getDailyGoalStatus(), [wordsToday]);
+    const motivation = useMemo(() => getMotivationMessage(), [wordsToday]);
+    
+    // Handle learning WOTD - useCallback to prevent recreating function
+    const handleLearnWotd = useCallback(() => {
+        if (wotdLearned || !wordOfTheDay) return;
+        
         addWord({
             word: wordOfTheDay.word,
             turkish: wordOfTheDay.turkish,
@@ -45,53 +103,36 @@ export default function Dashboard() {
             status: 'new',
         });
         
-        // Mark as learned
         markWordAsLearned();
         const streak = updateWotdStreak();
         setWotdLearned(true);
         
-        // Award XP
         addXp(25, `Günün Kelimesi öğrenildi (${streak} gün seri)`);
-    };
+    }, [wotdLearned, wordOfTheDay, addWord, addXp]);
 
-    // Fetch featured news from Supabase
+    // Sync wordsToday to weekly activity (debounced)
     useEffect(() => {
-        const fetchFeatured = async () => {
-            setIsLoadingNews(true);
-            const news = await supabaseService.getContentByLevel('news', user.level || 'B1');
-            if (news && news.length > 0) {
-                setFeaturedNews(news[0]);
-            } else {
-                setFeaturedNews({ title: 'İçerik Bulunamadı', newWords: [] });
-            }
-            setIsLoadingNews(false);
-        };
-        if (user.level) {
-            fetchFeatured();
+        if (wordsToday > 0) {
+            const timer = setTimeout(() => setTodayWords(wordsToday), 500);
+            return () => clearTimeout(timer);
         }
-    }, [user.level]);
+    }, [wordsToday]);
 
-    // Sync wordsToday to weekly activity
-    useEffect(() => {
-        if (user.wordsToday > 0) {
-            setTodayWords(user.wordsToday);
-        }
-    }, [user.wordsToday]);
-
-    // Get weekly activity data
-    const weeklyActivity = useMemo(() => getWeeklyActivity(), [user.wordsToday]);
-    const bestDay = useMemo(() => getBestDayThisWeek(), [user.wordsToday]);
-    const weeklyMax = bestDay > 0 ? bestDay : 20; // Minimum scale of 20
-
-    // Calculate stats
-    const dailyGoal = user.preferences?.dailyGoal || 20;
-    const wordsToday = user.wordsToday || 0;
-    const progressPercent = Math.min(100, Math.round((wordsToday / dailyGoal) * 100));
-    const nextLevelXp = 2000; // Mock value for next level threshold
-    const xpProgress = Math.min(100, Math.round((user.xp / nextLevelXp) * 100));
+    // Get weekly activity data - memoize properly
+    const weeklyActivity = useMemo(() => getWeeklyActivity(), [wordsToday]);
+    const bestDay = useMemo(() => getBestDayThisWeek(), [wordsToday]);
+    const weeklyMax = useMemo(() => Math.max(bestDay, 20), [bestDay]);
 
     return (
         <div className="bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 font-display text-slate-900 dark:text-white min-h-screen flex flex-col overflow-x-hidden">
+            {/* Offline Banner */}
+            {!isOnline && (
+                <div className="bg-amber-500 text-white px-4 py-2 flex items-center justify-center gap-2 text-sm font-medium">
+                    <WifiOff className="w-4 h-4" />
+                    <span>Çevrimdışı moddasın. Bazı özellikler kullanılamayabilir.</span>
+                </div>
+            )}
+            
             <main className="flex-1 w-full max-w-[1200px] mx-auto px-4 md:px-8 py-8 md:py-12">
                 {/* Hero Section */}
                 <section className="flex flex-col lg:flex-row gap-8 mb-12 items-start lg:items-center">
@@ -184,7 +225,7 @@ export default function Dashboard() {
                         </div>
                         <div className="flex-1 flex flex-col items-center justify-center py-4">
                             <div className="text-7xl font-black bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 bg-clip-text text-transparent mb-2 tracking-tighter">
-                                {user.vocabulary?.filter(w => w.status !== 'learned').length || 0}
+                                {wordsNeedingReview}
                             </div>
                             <p className="text-gray-600 dark:text-gray-400 text-sm mb-8 text-center">Bugün tekrar etmen gereken kelime var.</p>
                             <div className="flex gap-4 w-full justify-center mb-8">
@@ -232,9 +273,9 @@ export default function Dashboard() {
                             </div>
                         </div>
                         <div className="flex-1 flex flex-col justify-end">
-                            {/* Weekly Chart - Real Data */}
+                            {/* Weekly Chart - Real Data - Memoized */}
                             <div className="flex items-end justify-between gap-2 h-32 mb-6 px-2">
-                                {weeklyActivity.map((day, index) => {
+                                {weeklyActivity.map((day) => {
                                     const heightPercent = weeklyMax > 0 ? Math.max(5, (day.words / weeklyMax) * 100) : 5;
                                     const isActive = day.words > 0;
                                     const isToday = day.isToday;
@@ -301,45 +342,58 @@ export default function Dashboard() {
                                     <span className="material-symbols-outlined text-lg">auto_awesome</span>
                                     Günün Kelimesi
                                 </h4>
-                                <span className="px-2 py-0.5 bg-brand-purple/10 text-brand-purple text-xs font-bold rounded-full">
-                                    {wordOfTheDay.level}
-                                </span>
-                            </div>
-                            <div className="flex items-center gap-3 mb-2">
-                                <h3 className="text-2xl font-black text-gray-900 dark:text-white">{wordOfTheDay.word}</h3>
-                                <button 
-                                    onClick={() => speak(wordOfTheDay.word)}
-                                    className="p-1.5 rounded-lg hover:bg-white/50 dark:hover:bg-white/10 transition-colors"
-                                    aria-label="Kelimeyi seslendir"
-                                >
-                                    <span className="material-symbols-outlined text-brand-purple text-lg">volume_up</span>
-                                </button>
-                            </div>
-                            <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">{wordOfTheDay.phonetic}</p>
-                            <p className="text-sm text-brand-purple font-bold mb-2">{wordOfTheDay.turkish}</p>
-                            <p className="text-xs text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">{wordOfTheDay.definition}</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-500 italic mb-4">"{wordOfTheDay.example}"</p>
-                            <button
-                                onClick={handleLearnWotd}
-                                disabled={wotdLearned}
-                                className={`w-full py-2.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all ${
-                                    wotdLearned
-                                        ? 'bg-brand-green/20 text-brand-green cursor-default'
-                                        : 'bg-gradient-to-r from-brand-purple to-brand-blue text-white hover:shadow-lg hover:shadow-brand-purple/30 hover:-translate-y-0.5'
-                                }`}
-                            >
-                                {wotdLearned ? (
-                                    <>
-                                        <span className="material-symbols-outlined text-lg">check_circle</span>
-                                        Öğrenildi
-                                    </>
-                                ) : (
-                                    <>
-                                        <span className="material-symbols-outlined text-lg">add</span>
-                                        Listeme Ekle (+25 XP)
-                                    </>
+                                {wordOfTheDay && (
+                                    <span className="px-2 py-0.5 bg-brand-purple/10 text-brand-purple text-xs font-bold rounded-full">
+                                        {wordOfTheDay.level}
+                                    </span>
                                 )}
-                            </button>
+                            </div>
+                            {isLoadingWotd || !wordOfTheDay ? (
+                                <div className="animate-pulse space-y-3">
+                                    <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-32"></div>
+                                    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-24"></div>
+                                    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-20"></div>
+                                    <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded w-full mt-4"></div>
+                                </div>
+                            ) : (
+                                <>
+                                    <div className="flex items-center gap-3 mb-2">
+                                        <h3 className="text-2xl font-black text-gray-900 dark:text-white">{wordOfTheDay.word}</h3>
+                                        <button 
+                                            onClick={() => speak(wordOfTheDay.word)}
+                                            className="p-1.5 rounded-lg hover:bg-white/50 dark:hover:bg-white/10 transition-colors"
+                                            aria-label="Kelimeyi seslendir"
+                                        >
+                                            <span className="material-symbols-outlined text-brand-purple text-lg">volume_up</span>
+                                        </button>
+                                    </div>
+                                    <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">{wordOfTheDay.phonetic}</p>
+                                    <p className="text-sm text-brand-purple font-bold mb-2">{wordOfTheDay.turkish}</p>
+                                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">{wordOfTheDay.definition}</p>
+                                    <p className="text-xs text-gray-500 dark:text-gray-500 italic mb-4">"{wordOfTheDay.example}"</p>
+                                    <button
+                                        onClick={handleLearnWotd}
+                                        disabled={wotdLearned}
+                                        className={`w-full py-2.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all ${
+                                            wotdLearned
+                                                ? 'bg-brand-green/20 text-brand-green cursor-default'
+                                                : 'bg-gradient-to-r from-brand-purple to-brand-blue text-white hover:shadow-lg hover:shadow-brand-purple/30 hover:-translate-y-0.5'
+                                        }`}
+                                    >
+                                        {wotdLearned ? (
+                                            <>
+                                                <span className="material-symbols-outlined text-lg">check_circle</span>
+                                                Öğrenildi
+                                            </>
+                                        ) : (
+                                            <>
+                                                <span className="material-symbols-outlined text-lg">add</span>
+                                                Listeme Ekle (+25 XP)
+                                            </>
+                                        )}
+                                    </button>
+                                </>
+                            )}
                         </div>
                     </div>
 

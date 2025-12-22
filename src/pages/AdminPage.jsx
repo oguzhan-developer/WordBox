@@ -835,7 +835,7 @@ export default function AdminPage() {
     };
 
     // Category CRUD
-    const handleAddCategory = () => {
+    const _handleAddCategory = () => {
         setCategoryForm({ name: '', name_en: '', slug: '', icon: '', color: '#3B82F6' });
         setSelectedItem(null);
     };
@@ -923,7 +923,7 @@ export default function AdminPage() {
     };
 
     // Parse JSON array input
-    const parseArrayInput = (value) => {
+    const _parseArrayInput = (value) => {
         try {
             if (Array.isArray(value)) return value;
             if (typeof value === 'string') {
