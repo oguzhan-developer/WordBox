@@ -11,7 +11,8 @@ import {
     Zap,
     BookOpen,
     TrendingUp,
-    Plus
+    Plus,
+    Lock
 } from 'lucide-react';
 import { useUser } from '../context/UserContext';
 import Card from '../components/Card';

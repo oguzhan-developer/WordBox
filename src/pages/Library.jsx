@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Search, Filter, Grid, List, X, Bookmark, Heart } from 'lucide-react';
+import { useState, useMemo } from 'react';
+import { Search, Filter, Grid, List, X, Bookmark, Heart, Clock, TrendingUp } from 'lucide-react';
 import { useUser } from '../context/UserContext';
 import { LevelBadge } from '../components/Badge';
 import { supabaseService } from '../services/supabaseService';
@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import ContentCard from '../components/ContentCard';
 import { SkeletonContentCard } from '../components/Skeleton';
 import { getBookmarks } from '../utils/bookmarks';
+import { getReadingStats } from '../utils/readingStats';
 
 export default function Library() {
     const { user } = useUser();
@@ -106,11 +107,21 @@ export default function Library() {
         fetchData();
     }, [selectedLevel, selectedCategory, selectedType, searchQuery, showBookmarksOnly, bookmarkIds]);
 
-    // Get counts (placeholder for stats, could be optimized)
+    // Get counts and reading stats
     const _stats = {
         news: content.filter(i => i.type === 'news').length,
         stories: content.filter(i => i.type === 'story').length
     };
+
+    const readingStats = useMemo(() => {
+        const stats = getReadingStats();
+        return {
+            totalArticles: stats.totalArticlesRead || 0,
+            totalWords: stats.totalWordsRead || 0,
+            totalTime: stats.totalReadTime || 0,
+            weeklyWords: stats.weeklySummary?.totalWords || 0
+        };
+    }, []);
 
     // Clear all filters
     const clearFilters = () => {
@@ -134,7 +145,45 @@ export default function Library() {
                         Seviyene uygun yüzlerce içerik ile vocabulary pratiği yap
                     </p>
 
-                    {/* Stats */}
+                    {/* Reading Stats Widget */}
+                    <div className="mt-4 p-4 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-xl border border-indigo-100 dark:border-indigo-800">
+                        <div className="flex items-center justify-between mb-3">
+                            <div className="flex items-center gap-2">
+                                <TrendingUp className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                                <span className="font-bold text-gray-900 dark:text-white">Okuma İstatistikleri</span>
+                            </div>
+                            <span className="text-xs text-gray-500 dark:text-gray-400">Bu hafta</span>
+                        </div>
+                        <div className="flex flex-wrap gap-6">
+                            <div className="flex items-center gap-2">
+                                <Clock className="w-4 h-4 text-gray-500" />
+                                <span className="text-sm text-gray-600 dark:text-gray-400">
+                                    <span className="font-bold text-gray-900 dark:text-white">{readingStats.totalArticles}</span> makale
+                                </span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <span className="material-symbols-outlined text-sm text-gray-500">menu_book</span>
+                                <span className="text-sm text-gray-600 dark:text-gray-400">
+                                    <span className="font-bold text-gray-900 dark:text-white">{readingStats.totalWords.toLocaleString()}</span> kelime
+                                </span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <span className="material-symbols-outlined text-sm text-gray-500">schedule</span>
+                                <span className="text-sm text-gray-600 dark:text-gray-400">
+                                    <span className="font-bold text-gray-900 dark:text-white">{Math.floor(readingStats.totalTime / 60)}</span> dk okuma
+                                </span>
+                            </div>
+                            {readingStats.weeklyWords > 0 && (
+                                <div className="flex items-center gap-2 px-2 py-1 bg-green-100 dark:bg-green-900/30 rounded-full">
+                                    <span className="text-xs font-bold text-green-700 dark:text-green-400">
+                                        +{readingStats.weeklyWords} kelime bu hafta
+                                    </span>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Content Stats */}
                     <div className="flex flex-wrap gap-4 mt-4">
                         <span className="px-3 py-1.5 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
                             📰 Haberler

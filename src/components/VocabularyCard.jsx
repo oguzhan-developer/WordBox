@@ -1,5 +1,5 @@
 import { useState, useCallback, memo } from 'react';
-import { Volume2, Star, Trash2, BarChart2 } from 'lucide-react';
+import { Volume2, Star, Trash2, BarChart2, Copy, Check } from 'lucide-react';
 import Card from './Card';
 import { LevelBadge, StatusBadge } from './Badge';
 import { speak } from '../utils/speechSynthesis';
@@ -17,6 +17,16 @@ const speakWord = (text) => {
     });
 };
 
+// Copy to clipboard utility
+const copyToClipboard = async (text, onSuccess) => {
+    try {
+        await navigator.clipboard.writeText(text);
+        onSuccess?.();
+    } catch (err) {
+        console.error('Failed to copy:', err);
+    }
+};
+
 // Vocabulary Card for word list
 const VocabularyCard = memo(function VocabularyCard({
     word,
@@ -27,11 +37,21 @@ const VocabularyCard = memo(function VocabularyCard({
 }) {
     const [isFlipped, setIsFlipped] = useState(false);
     const [isFavorite, setIsFavorite] = useState(word.isFavorite || false);
+    const [copied, setCopied] = useState(false);
 
     const handlePlayAudio = useCallback((e) => {
         e.stopPropagation();
         speakWord(word.word);
     }, [word.word]);
+
+    const handleCopy = useCallback((e) => {
+        e.stopPropagation();
+        const textToCopy = `${word.word} - ${word.turkish}`;
+        copyToClipboard(textToCopy, () => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        });
+    }, [word]);
 
     const handleFavorite = useCallback((e) => {
         e.stopPropagation();
@@ -69,6 +89,18 @@ const VocabularyCard = memo(function VocabularyCard({
                     <div className="flex items-center justify-between flex-shrink-0 mb-3">
                         <LevelBadge level={word.level} size="sm" />
                         <div className="flex items-center gap-2">
+                            <button
+                                onClick={handleCopy}
+                                aria-label={`${word.word} kelimesini kopyala`}
+                                className="size-9 rounded-xl glass hover:bg-green-500/20 transition-all duration-300 hover:scale-110 hover:rotate-12 flex items-center justify-center focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                                title="Kopyala"
+                            >
+                                {copied ? (
+                                    <Check className="w-4 h-4 text-green-600 dark:text-green-400 transition-transform duration-300" />
+                                ) : (
+                                    <Copy className="w-4 h-4 text-gray-500 dark:text-gray-400 transition-transform duration-300 group-hover:scale-110" />
+                                )}
+                            </button>
                             <button
                                 onClick={handlePlayAudio}
                                 aria-label={`${word.word} kelimesini seslendir`}
@@ -160,10 +192,21 @@ export const VocabularyListItem = memo(function VocabularyListItem({
     onSelect,
     isSelected = false,
 }) {
+    const [copied, setCopied] = useState(false);
+
     const handlePlayAudio = useCallback((e) => {
         e.stopPropagation();
         speakWord(word.word);
     }, [word.word]);
+
+    const handleCopy = useCallback((e) => {
+        e.stopPropagation();
+        const textToCopy = `${word.word} - ${word.turkish}`;
+        copyToClipboard(textToCopy, () => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        });
+    }, [word]);
 
     return (
         <div
@@ -189,6 +232,17 @@ export const VocabularyListItem = memo(function VocabularyListItem({
             <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
                     <span className="font-semibold text-gray-900 dark:text-white">{word.word}</span>
+                    <button
+                        onClick={handleCopy}
+                        className="p-1 rounded hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
+                        title="Kopyala"
+                    >
+                        {copied ? (
+                            <Check className="w-3.5 h-3.5 text-green-600 dark:text-green-400" />
+                        ) : (
+                            <Copy className="w-3.5 h-3.5 text-gray-400 dark:text-gray-500" />
+                        )}
+                    </button>
                     <button
                         onClick={handlePlayAudio}
                         className="p-1 rounded hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
@@ -227,9 +281,19 @@ export const VocabularyListItem = memo(function VocabularyListItem({
 
 // Word Preview Card (for sidebar details)
 export const WordDetailCard = memo(function WordDetailCard({ word, onClose: _onClose, onPractice, onRemove }) {
+    const [copied, setCopied] = useState(false);
+
     const handlePlayAudio = useCallback(() => {
         speakWord(word.word);
     }, [word.word]);
+
+    const handleCopy = useCallback(() => {
+        const textToCopy = `${word.word} - ${word.turkish}`;
+        copyToClipboard(textToCopy, () => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        });
+    }, [word]);
 
     return (
         <Card className="sticky top-24 dark:bg-gray-800 dark:border-gray-700">
@@ -239,6 +303,17 @@ export const WordDetailCard = memo(function WordDetailCard({ word, onClose: _onC
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{word.word}</h2>
                     <div className="flex items-center gap-2 mt-1">
                         <span className="text-gray-500 dark:text-gray-400">{word.phonetic}</span>
+                        <button
+                            onClick={handleCopy}
+                            className="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
+                            title="Kopyala"
+                        >
+                            {copied ? (
+                                <Check className="w-4 h-4 text-green-600 dark:text-green-400" />
+                            ) : (
+                                <Copy className="w-4 h-4 text-gray-400 dark:text-gray-500" />
+                            )}
+                        </button>
                         <button
                             onClick={handlePlayAudio}
                             className="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"

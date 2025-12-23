@@ -556,9 +556,13 @@ export function UserProvider({ children }) {
         updateProfile({ level: newLevel });
     };
 
-    const updateAvatar = (url) => {
+    const updateAvatar = (avatarData) => {
         if (!user.id) return;
-        updateProfile({ avatar_url: url });
+        // avatarData can be: string (emoji) or object (gradient avatar with {value, color})
+        const avatarValue = typeof avatarData === 'object' ? JSON.stringify(avatarData) : avatarData;
+        updateProfile({ avatar_url: avatarValue });
+        // Update local state immediately for responsiveness
+        setUser(prev => ({ ...prev, avatar: avatarValue }));
     };
 
     const clearNewBadges = () => {

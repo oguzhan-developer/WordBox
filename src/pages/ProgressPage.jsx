@@ -1,4 +1,5 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
+import { Award, Trophy, Flame, Target, BookOpen, Zap, Star } from 'lucide-react';
 import { useUser } from '../context/UserContext';
 import {
     calculateLevel,
@@ -10,6 +11,7 @@ import { getReadingStats, getWeeklyReadingSummary, formatReadingTime } from '../
 
 export default function ProgressPage() {
     const { user } = useUser();
+    const [selectedBadge, setSelectedBadge] = useState(null);
 
     // Weekly activity data (these read from localStorage)
     const weeklyActivity = useMemo(() => getWeeklyActivity(), []);
@@ -35,6 +37,18 @@ export default function ProgressPage() {
         learned: vocab.filter(w => w.status === 'learned').length,
     };
     const totalVocab = vocab.length || 1; // Avoid division by zero
+
+    // Badges definition
+    const badges = useMemo(() => [
+        { id: 'streak7', name: 'Haftalık Seri', icon: Flame, color: 'from-orange-500 to-red-500', bgColor: 'bg-orange-100 dark:bg-orange-900/30', textColor: 'text-orange-600 dark:text-orange-400', description: '7 gün üst üste pratik yap', unlocked: user.streak >= 7, progress: Math.min(100, (user.streak / 7) * 100) },
+        { id: 'streak30', name: 'Aylık Seri', icon: Trophy, color: 'from-purple-500 to-pink-500', bgColor: 'bg-purple-100 dark:bg-purple-900/30', textColor: 'text-purple-600 dark:text-purple-400', description: '30 gün üst üste pratik yap', unlocked: user.streak >= 30, progress: Math.min(100, (user.streak / 30) * 100) },
+        { id: 'words50', name: 'Kelime Ustası', icon: BookOpen, color: 'from-blue-500 to-cyan-500', bgColor: 'bg-blue-100 dark:bg-blue-900/30', textColor: 'text-blue-600 dark:text-blue-400', description: '50 kelime öğren', unlocked: user.wordsLearned >= 50, progress: Math.min(100, (user.wordsLearned / 50) * 100) },
+        { id: 'words100', name: 'Kelime Efendisi', icon: BookOpen, color: 'from-indigo-500 to-purple-500', bgColor: 'bg-indigo-100 dark:bg-indigo-900/30', textColor: 'text-indigo-600 dark:text-indigo-400', description: '100 kelime öğren', unlocked: user.wordsLearned >= 100, progress: Math.min(100, (user.wordsLearned / 100) * 100) },
+        { id: 'practice50', name: 'Pratik Canavarı', icon: Target, color: 'from-green-500 to-emerald-500', bgColor: 'bg-green-100 dark:bg-green-900/30', textColor: 'text-green-600 dark:text-green-400', description: '50 pratik yap', unlocked: (user.practiceCount || 0) >= 50, progress: Math.min(100, ((user.practiceCount || 0) / 50) * 100) },
+        { id: 'xp1000', name: 'Bin XP Kulübü', icon: Star, color: 'from-amber-500 to-yellow-500', bgColor: 'bg-amber-100 dark:bg-amber-900/30', textColor: 'text-amber-600 dark:text-amber-400', description: '1000 XP kazan', unlocked: user.xp >= 1000, progress: Math.min(100, (user.xp / 1000) * 100) },
+        { id: 'xp5000', name: 'XP Şampiyonu', icon: Zap, color: 'from-yellow-500 to-orange-500', bgColor: 'bg-yellow-100 dark:bg-yellow-900/30', textColor: 'text-yellow-600 dark:text-yellow-400', description: '5000 XP kazan', unlocked: user.xp >= 5000, progress: Math.min(100, (user.xp / 5000) * 100) },
+        { id: 'perfect10', name: 'Mükemmel 10', icon: Award, color: 'from-teal-500 to-cyan-500', bgColor: 'bg-teal-100 dark:bg-teal-900/30', textColor: 'text-teal-600 dark:text-teal-400', description: '10 hatasız pratik yap', unlocked: (user.perfectPractices || 0) >= 10, progress: Math.min(100, ((user.perfectPractices || 0) / 10) * 100) },
+    ], [user.streak, user.wordsLearned, user.practiceCount, user.xp, user.perfectPractices]);
 
     const skillStats = [
         { label: 'Okuma', value: Math.min(100, (user.articlesRead || 0) * 5), icon: 'menu_book', color: 'bg-brand-blue' },
@@ -318,6 +332,109 @@ export default function ProgressPage() {
                         </div>
                     </div>
                 </div>
+
+                {/* Badges Section */}
+                <div id="badges" className="mt-8">
+                    <div className="bg-white dark:bg-[#2a2a24] p-8 rounded-2xl border border-gray-100 dark:border-[#333] shadow-sm">
+                        <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
+                            <Award className="w-6 h-6 text-amber-500" />
+                            Rozetler
+                        </h2>
+                        <p className="text-gray-500 dark:text-gray-400 mb-6 text-sm">
+                            Başarılarını kazanarak öğrenme yolculuğunda daha fazla ilerle!
+                        </p>
+
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            {badges.map((badge) => {
+                                const Icon = badge.icon;
+                                return (
+                                    <div
+                                        key={badge.id}
+                                        onClick={() => setSelectedBadge(badge)}
+                                        className={`relative p-4 rounded-xl border-2 transition-all cursor-pointer ${
+                                            badge.unlocked
+                                                ? 'bg-gradient-to-br ' + badge.color + ' border-transparent text-white'
+                                                : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700'
+                                        } hover:scale-105 hover:shadow-lg`}
+                                    >
+                                        <div className="flex flex-col items-center text-center">
+                                            <div className={`size-12 rounded-full flex items-center justify-center mb-2 ${
+                                                badge.unlocked ? 'bg-white/20' : badge.bgColor
+                                            }`}>
+                                                <Icon className={`w-6 h-6 ${badge.unlocked ? 'text-white' : badge.textColor}`} />
+                                            </div>
+                                            <h3 className={`font-bold text-sm ${badge.unlocked ? 'text-white' : 'text-gray-900 dark:text-white'}`}>
+                                                {badge.name}
+                                            </h3>
+                                            {badge.unlocked && (
+                                                <div className="mt-1">
+                                                    <Award className="w-4 h-4 text-white/80" />
+                                                </div>
+                                            )}
+                                            {!badge.unlocked && (
+                                                <div className="w-full h-1.5 bg-gray-100 dark:bg-white/10 rounded-full mt-2 overflow-hidden">
+                                                    <div
+                                                        className="h-full bg-gradient-to-r from-amber-500 to-orange-500 rounded-full"
+                                                        style={{ width: `${badge.progress}%` }}
+                                                    />
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+
+                        {/* Stats Row */}
+                        <div className="mt-6 pt-6 border-t border-gray-100 dark:border-white/5">
+                            <div className="flex justify-center gap-8 text-center">
+                                <div>
+                                    <div className="text-2xl font-black text-amber-500">{badges.filter(b => b.unlocked).length}</div>
+                                    <div className="text-xs text-gray-500 font-bold uppercase">Kazanılan</div>
+                                </div>
+                                <div>
+                                    <div className="text-2xl font-black text-gray-400">{badges.length - badges.filter(b => b.unlocked).length}</div>
+                                    <div className="text-xs text-gray-500 font-bold uppercase">Kalan</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Badge Detail Modal */}
+                {selectedBadge && (
+                    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setSelectedBadge(null)}>
+                        <div className="bg-white dark:bg-[#2a2a24] rounded-2xl p-6 max-w-sm w-full shadow-2xl" onClick={(e) => e.stopPropagation()}>
+                            <div className="flex items-center justify-between mb-4">
+                                <h3 className="text-lg font-bold">{selectedBadge.name}</h3>
+                                <button
+                                    onClick={() => setSelectedBadge(null)}
+                                    className="p-1 hover:bg-gray-100 dark:hover:bg-white/10 rounded-lg"
+                                >
+                                    <Award className="w-5 h-5 text-gray-400" />
+                                </button>
+                            </div>
+                            <div className={`size-16 rounded-full bg-gradient-to-br ${selectedBadge.color} flex items-center justify-center mx-auto mb-4`}>
+                                <selectedBadge.icon className="w-8 h-8 text-white" />
+                            </div>
+                            <p className="text-center text-gray-600 dark:text-gray-400 mb-4">{selectedBadge.description}</p>
+                            {selectedBadge.unlocked ? (
+                                <div className="text-center text-green-600 dark:text-green-400 font-bold">🎉 Kazanıldı!</div>
+                            ) : (
+                                <div className="text-center">
+                                    <div className="text-sm text-gray-500 mb-2">İlerleme</div>
+                                    <div className="w-full h-2 bg-gray-100 dark:bg-white/10 rounded-full overflow-hidden">
+                                        <div
+                                            className="h-full bg-gradient-to-r from-amber-500 to-orange-500 rounded-full"
+                                            style={{ width: `${selectedBadge.progress}%` }}
+                                        />
+                                    </div>
+                                    <div className="text-xs text-gray-500 mt-1">{Math.round(selectedBadge.progress)}%</div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                )}
             </main>
         </div>
     );

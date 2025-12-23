@@ -26,10 +26,15 @@ const LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1'];
 const MAX_WORDS = 20;
 
 // Kelime kartı bileşeni
-function WordCard({ word, isAdded, isSelected, onAdd, onToggleSelect, onSpeak }) {
+function WordCard({ word, isAdded, isSelected, isFavorite, onAdd, onToggleSelect, onSpeak, onToggleFavorite }) {
     const handleSpeak = (e) => {
         e.stopPropagation();
         onSpeak(word.word);
+    };
+
+    const handleFavorite = (e) => {
+        e.stopPropagation();
+        onToggleFavorite(word);
     };
 
     return (
@@ -47,7 +52,7 @@ function WordCard({ word, isAdded, isSelected, onAdd, onToggleSelect, onSpeak })
                         type="checkbox"
                         checked={isSelected}
                         onChange={() => onToggleSelect(word)}
-                        className="w-5 h-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 
+                        className="w-5 h-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500
                                    dark:border-gray-600 dark:bg-gray-700 cursor-pointer"
                         onClick={(e) => e.stopPropagation()}
                     />
@@ -56,12 +61,27 @@ function WordCard({ word, isAdded, isSelected, onAdd, onToggleSelect, onSpeak })
 
             {/* Added badge */}
             {isAdded && (
-                <div className="absolute top-3 left-3 flex items-center gap-1 px-2 py-1 bg-green-100 dark:bg-green-800 
+                <div className="absolute top-3 left-3 flex items-center gap-1 px-2 py-1 bg-green-100 dark:bg-green-800
                                 text-green-700 dark:text-green-300 rounded-full text-xs font-medium">
                     <Check className="w-3 h-3" />
                     Eklendi
                 </div>
             )}
+
+            {/* Favorite button */}
+            <div className="absolute top-3 right-12 flex items-center gap-1">
+                <button
+                    onClick={handleFavorite}
+                    className={`p-1.5 rounded-full transition-colors ${
+                        isFavorite
+                            ? 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400'
+                            : 'bg-gray-100 dark:bg-gray-700 text-gray-400 hover:text-yellow-500 dark:hover:text-yellow-400'
+                    }`}
+                    title={isFavorite ? 'Favorilerden çıkar' : 'Favorilere ekle'}
+                >
+                    <Star className={`w-4 h-4 ${isFavorite ? 'fill-current' : ''}`} />
+                </button>
+            </div>
 
             {/* Level badge */}
             <div className="absolute top-3 right-3">
@@ -166,6 +186,7 @@ export default function LearnNewWordsPage() {
     const [selectedWords, setSelectedWords] = useState(new Set());
     const [addedWords, setAddedWords] = useState(new Set());
     const [addedCount, setAddedCount] = useState(0);
+    const [favoriteWords, setFavoriteWords] = useState(new Set());
 
     // Kullanıcının mevcut kelimelerinin ID'leri
     const userWordIds = useMemo(() => {
@@ -376,6 +397,19 @@ export default function LearnNewWordsPage() {
         return { available, added, selected };
     }, [words, addedWords, selectedWords]);
 
+    // Favori toggle
+    const handleToggleFavorite = useCallback((word) => {
+        setFavoriteWords(prev => {
+            const newSet = new Set(prev);
+            if (newSet.has(word.id)) {
+                newSet.delete(word.id);
+            } else {
+                newSet.add(word.id);
+            }
+            return newSet;
+        });
+    }, []);
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 
                         dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 pt-20 pb-12">
@@ -544,9 +578,11 @@ export default function LearnNewWordsPage() {
                                 word={word}
                                 isAdded={addedWords.has(word.id)}
                                 isSelected={selectedWords.has(word.id)}
+                                isFavorite={favoriteWords.has(word.id)}
                                 onAdd={handleAddWord}
                                 onToggleSelect={handleToggleSelect}
                                 onSpeak={handleSpeak}
+                                onToggleFavorite={handleToggleFavorite}
                             />
                         ))}
                     </div>

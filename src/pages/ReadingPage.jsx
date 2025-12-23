@@ -11,7 +11,9 @@ import {
     Check,
     X,
     BookOpen,
-    Target
+    Target,
+    Clock,
+    FileText
 } from 'lucide-react';
 import { useUser } from '../context/UserContext';
 import { useToast } from '../components/Toast';
@@ -370,6 +372,33 @@ export default function ReadingPage() {
                     className="h-full bg-indigo-600 transition-all duration-300 shadow-[0_0_10px_rgba(79,70,229,0.5)]"
                     style={{ width: `${isCompleted ? 100 : readProgress}%` }}
                 />
+            </div>
+
+            {/* Reading Stats Widget */}
+            <div className="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 border-b border-indigo-100 dark:border-indigo-800">
+                <div className="max-w-7xl mx-auto px-4 py-2">
+                    <div className="flex items-center justify-center gap-6 text-sm">
+                        <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                            <Clock className="w-4 h-4" />
+                            <span>{article.estimatedReadTime || Math.ceil((article.content?.length || 1000) / 200)} dk okuma</span>
+                        </div>
+                        <div className="w-px h-4 bg-gray-300 dark:bg-gray-600"></div>
+                        <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                            <FileText className="w-4 h-4" />
+                            <span>{article.wordCount || article.content?.split(' ').length || 0} kelime</span>
+                        </div>
+                        <div className="w-px h-4 bg-gray-300 dark:bg-gray-600"></div>
+                        <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                            <Target className="w-4 h-4" />
+                            <span>{selectedLevel} seviyesi</span>
+                        </div>
+                        <div className="w-px h-4 bg-gray-300 dark:bg-gray-600"></div>
+                        <div className="flex items-center gap-2">
+                            <span className="text-gray-500 dark:text-gray-400">İlerleme:</span>
+                            <span className="font-bold text-indigo-600 dark:text-indigo-400">{Math.round(readProgress)}%</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             {/* Top Control Bar (Scrollable) */}

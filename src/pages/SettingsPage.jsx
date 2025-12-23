@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import { useTheme, THEMES } from '../context/ThemeContext';
 import { speak } from '../utils/speechSynthesis';
@@ -257,11 +258,10 @@ const NotificationsTab = () => {
 };
 
 export default function SettingsPage() {
-    const { user, updatePreferences, updateAvatar: _updateAvatar, logout, changePassword } = useUser();
+    const { user, updatePreferences, logout, changePassword } = useUser();
     const { theme, setTheme: _setTheme, isDark: _isDark } = useTheme();
     const [activeTab, setActiveTab] = useState('account');
     const [currentPrefs, setCurrentPrefs] = useState({ ...user.preferences });
-    const [_showAvatarModal, setShowAvatarModal] = useState(false);
     const [showPasswordModal, setShowPasswordModal] = useState(false);
     const [showKeyboardGuide, setShowKeyboardGuide] = useState(false);
 
@@ -351,32 +351,6 @@ export default function SettingsPage() {
         { id: 'data', label: 'Veri & Dışa Aktar', icon: 'database' },
     ];
 
-    const _avatars = [
-        "https://api.dicebear.com/7.x/notionists/svg?seed=Felix",
-        "https://api.dicebear.com/7.x/notionists/svg?seed=Aneka",
-        "https://api.dicebear.com/7.x/notionists/svg?seed=Mila",
-        "https://api.dicebear.com/7.x/notionists/svg?seed=Robert",
-        "https://api.dicebear.com/7.x/avataaars/svg?seed=Felix",
-        "https://api.dicebear.com/7.x/avataaars/svg?seed=Aneka",
-        "https://api.dicebear.com/7.x/avataaars/svg?seed=Precious",
-        "https://api.dicebear.com/7.x/avataaars/svg?seed=Jude",
-        "https://api.dicebear.com/7.x/bottts/svg?seed=1",
-        "https://api.dicebear.com/7.x/bottts/svg?seed=2",
-        "https://api.dicebear.com/7.x/bottts/svg?seed=3",
-        "https://api.dicebear.com/7.x/bottts/svg?seed=4",
-        "https://api.dicebear.com/7.x/adventurer/svg?seed=Buddy",
-        "https://api.dicebear.com/7.x/adventurer/svg?seed=Ginger",
-        "https://api.dicebear.com/7.x/adventurer/svg?seed=Chloe",
-        "https://api.dicebear.com/7.x/adventurer/svg?seed=Caleb",
-        "https://api.dicebear.com/7.x/micah/svg?seed=1",
-        "https://api.dicebear.com/7.x/micah/svg?seed=2",
-        "https://api.dicebear.com/7.x/micah/svg?seed=3",
-        "https://api.dicebear.com/7.x/micah/svg?seed=4",
-        "https://api.dicebear.com/7.x/lorelei/svg?seed=1",
-        "https://api.dicebear.com/7.x/lorelei/svg?seed=2",
-        "https://api.dicebear.com/7.x/lorelei/svg?seed=3",
-        "https://api.dicebear.com/7.x/lorelei/svg?seed=4"
-    ];
 
     const renderContent = () => {
         switch (activeTab) {
@@ -386,19 +360,39 @@ export default function SettingsPage() {
                         <SettingsCard title="Profil Bilgileri" icon="person">
                             <div className="flex flex-col md:flex-row items-center gap-8">
                                 <div className="relative">
-                                    <div className="w-32 h-32 rounded-full bg-gray-100 dark:bg-[#333] overflow-hidden border-4 border-white dark:border-[#27272a] shadow-md">
-                                        <img
-                                            src={user.avatar || `https://ui-avatars.com/api/?name=${user.name}&background=random`}
-                                            alt="Profile"
-                                            className="w-full h-full object-cover"
-                                        />
+                                    <div className="w-32 h-32 rounded-2xl bg-gradient-to-br from-indigo-500 via-purple-500 to-amber-500 overflow-hidden border-4 border-white dark:border-[#27272a] shadow-md flex items-center justify-center">
+                                        {(() => {
+                                            const avatar = user.avatar;
+                                            if (!avatar) {
+                                                return <span className="text-4xl font-bold text-white">{(user.name || 'A')[0].toUpperCase()}</span>;
+                                            }
+                                            // JSON gradient avatar
+                                            if (avatar.startsWith('{')) {
+                                                try {
+                                                    const parsed = JSON.parse(avatar);
+                                                    return (
+                                                        <>
+                                                            <div className={`absolute inset-0 bg-gradient-to-br ${parsed.color}`}></div>
+                                                            <span className="relative z-10 text-4xl font-bold text-white">{parsed.value || (user.name || 'A')[0].toUpperCase()}</span>
+                                                        </>
+                                                    );
+                                                } catch { /* fallback */ }
+                                            }
+                                            // Emoji avatar
+                                            if (/^[\p{Emoji}\p{Emoji_Component}]+$/u.test(avatar) && avatar.length < 10) {
+                                                return <span className="text-5xl">{avatar}</span>;
+                                            }
+                                            // URL avatar
+                                            return <img src={avatar} alt="Profile" className="w-full h-full object-cover" />;
+                                        })()}
                                     </div>
-                                    <button
-                                        onClick={() => setShowAvatarModal(true)}
+                                    <Link
+                                        to="/profile"
                                         className="absolute bottom-1 right-1 p-2.5 bg-brand-blue text-white rounded-full shadow-lg hover:bg-blue-600 transition-all border-2 border-white dark:border-[#27272a]"
+                                        title="Avatarını değiştirmek için profil sayfasına git"
                                     >
                                         <Icon name="edit" className="text-sm" />
-                                    </button>
+                                    </Link>
                                 </div>
 
                                 <div className="flex-1 w-full space-y-4 max-w-md">
@@ -720,6 +714,157 @@ export default function SettingsPage() {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                );
+
+            case 'privacy':
+                return (
+                    <div className="space-y-6 animate-fadeIn">
+                        <SettingsCard title="Gizlilik & Güvenlik" icon="lock" description="Hesap güvenliğinizi ve gizlilik ayarlarınızı yönetin.">
+                            <div className="space-y-6">
+                                {/* Profile Visibility */}
+                                <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-white/5 rounded-xl">
+                                    <div>
+                                        <p className="font-bold text-gray-900 dark:text-white">Profil Görünürlüğü</p>
+                                        <p className="text-sm text-gray-500">Profilinizi diğer kullanıcılar görebilir</p>
+                                    </div>
+                                    <label className="relative inline-flex items-center cursor-pointer">
+                                        <input
+                                            type="checkbox"
+                                            className="sr-only peer"
+                                            defaultChecked={true}
+                                        />
+                                        <div className="w-11 h-6 bg-gray-200 dark:bg-[#444] peer-focus:outline-none ring-offset-2 peer-focus:ring-2 peer-focus:ring-brand-blue/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-blue"></div>
+                                    </label>
+                                </div>
+
+                                {/* Activity Status */}
+                                <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-white/5 rounded-xl">
+                                    <div>
+                                        <p className="font-bold text-gray-900 dark:text-white">Aktivite Durumu</p>
+                                        <p className="text-sm text-gray-500">Arkadaşlarınız ne zaman aktif olduğunuzu görebilir</p>
+                                    </div>
+                                    <label className="relative inline-flex items-center cursor-pointer">
+                                        <input
+                                            type="checkbox"
+                                            className="sr-only peer"
+                                            defaultChecked={true}
+                                        />
+                                        <div className="w-11 h-6 bg-gray-200 dark:bg-[#444] peer-focus:outline-none ring-offset-2 peer-focus:ring-2 peer-focus:ring-brand-blue/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-blue"></div>
+                                    </label>
+                                </div>
+
+                                <hr className="border-gray-100 dark:border-white/5" />
+
+                                {/* Two-Factor Authentication */}
+                                <div className="flex items-center justify-between p-4 bg-green-50 dark:bg-green-900/20 rounded-xl border border-green-100 dark:border-green-900/30">
+                                    <div className="flex items-center gap-4">
+                                        <div className="size-10 rounded-full bg-green-100 dark:bg-green-900/40 flex items-center justify-center">
+                                            <Icon name="verified_user" className="text-green-600" />
+                                        </div>
+                                        <div>
+                                            <p className="font-bold text-green-900 dark:text-green-400">İki Faktörlü Doğrulama</p>
+                                            <p className="text-sm text-green-700 dark:text-green-500">Hesabınız ekstra koruma altında</p>
+                                        </div>
+                                    </div>
+                                    <span className="px-3 py-1 bg-green-600 text-white text-xs font-bold rounded-full">AKTİF</span>
+                                </div>
+
+                                <hr className="border-gray-100 dark:border-white/5" />
+
+                                {/* Data Collection */}
+                                <div>
+                                    <p className="font-bold text-gray-900 dark:text-white mb-3">Veri Toplama</p>
+                                    <div className="space-y-3">
+                                        {[
+                                            { key: 'analytics', label: 'Analitik Verileri', desc: 'Uygulama kullanımını iyileştirmek için anonim veri topla' },
+                                            { key: 'personalization', label: 'Kişiselleştirme', desc: 'Size özel içerik önerileri için veri kullan' },
+                                        ].map((item) => (
+                                            <div key={item.key} className="flex items-center justify-between p-3 hover:bg-gray-50 dark:hover:bg-white/5 rounded-xl transition-colors">
+                                                <div>
+                                                    <p className="font-medium text-gray-900 dark:text-white">{item.label}</p>
+                                                    <p className="text-xs text-gray-500">{item.desc}</p>
+                                                </div>
+                                                <label className="relative inline-flex items-center cursor-pointer">
+                                                    <input
+                                                        type="checkbox"
+                                                        className="sr-only peer"
+                                                        defaultChecked={true}
+                                                    />
+                                                    <div className="w-11 h-6 bg-gray-200 dark:bg-[#444] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-blue"></div>
+                                                </label>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </SettingsCard>
+                    </div>
+                );
+
+            case 'subscription':
+                return (
+                    <div className="space-y-6 animate-fadeIn">
+                        <SettingsCard title="Abonelik" icon="credit_card" description="Mevcut abonelik planınızı yönetin.">
+                            {/* Current Plan */}
+                            <div className="p-6 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl text-white">
+                                <div className="flex items-center justify-between mb-4">
+                                    <div>
+                                        <p className="text-indigo-100 text-sm font-medium mb-1">Mevcut Plan</p>
+                                        <h3 className="text-2xl font-black">Ücretsiz Plan</h3>
+                                    </div>
+                                    <div className="p-3 bg-white/20 rounded-xl">
+                                        <Icon name="stars" className="text-2xl" />
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-2 gap-4 mt-6">
+                                    <div className="bg-white/10 rounded-xl p-3">
+                                        <p className="text-3xl font-black">{user.wordsLearned || 0}</p>
+                                        <p className="text-xs text-indigo-100">Öğrenilen Kelime</p>
+                                    </div>
+                                    <div className="bg-white/10 rounded-xl p-3">
+                                        <p className="text-3xl font-black">{user.xp || 0}</p>
+                                        <p className="text-xs text-indigo-100">Kazanılan XP</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Upgrade Options */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                                {[
+                                    {
+                                        name: 'Pro',
+                                        price: '₺49/ay',
+                                        features: ['Sınırsız kelime', 'Çevrimdışı mod', 'İleri düzey analiz', 'Öncelikli destek'],
+                                        color: 'from-blue-500 to-cyan-500',
+                                    },
+                                    {
+                                        name: 'Premium',
+                                        price: '₺99/ay',
+                                        features: ['Sınırsız her şey', 'AI konuşma pratiği', 'Kişisel koç', 'Erken erişim'],
+                                        color: 'from-amber-500 to-orange-500',
+                                    },
+                                ].map((plan) => (
+                                    <div key={plan.name} className={`bg-gradient-to-br ${plan.color} p-0.5 rounded-2xl`}>
+                                        <div className="bg-white dark:bg-[#27272a] rounded-xl p-5 h-full">
+                                            <h4 className="text-lg font-black text-gray-900 dark:text-white">{plan.name}</h4>
+                                            <p className="text-2xl font-bold text-gray-900 dark:text-white mt-1">{plan.price}</p>
+                                            <ul className="mt-4 space-y-2">
+                                                {plan.features.map((feature, i) => (
+                                                    <li key={i} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                                                        <Icon name="check_circle" className="text-green-500 text-base" />
+                                                        {feature}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                            <button className="w-full mt-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold rounded-xl hover:opacity-90 transition-opacity">
+                                                Yükselt
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </SettingsCard>
                     </div>
                 );
 

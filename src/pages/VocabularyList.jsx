@@ -1,10 +1,7 @@
-import { useState, useMemo, useRef, useCallback } from 'react';
+import React, { useState, useMemo, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
     Search,
-    Grid,
-    List,
-    Filter,
     Download,
     Upload,
     Plus,
@@ -12,29 +9,32 @@ import {
     Clock,
     CheckCircle,
     X,
-    Trash2
+    Trash2,
+    ArrowUpDown,
+    Volume2,
+    Info,
+    AlertTriangle
 } from 'lucide-react';
 import { useUser } from '../context/UserContext';
 import { useToast } from '../components/Toast';
 import Card, { StatCard } from '../components/Card';
-import VocabularyCard, { VocabularyListItem, WordDetailCard } from '../components/VocabularyCard';
 import { LevelBadge } from '../components/Badge';
-import { SkeletonVocabularyCard, SkeletonListItem } from '../components/Skeleton';
 import Modal from '../components/Modal';
 import QuickAddWord from '../components/QuickAddWord';
-import { 
-    exportToJSON, 
-    exportToCSV, 
-    exportToAnki, 
+import { speak } from '../utils/speechSynthesis';
+import {
+    exportToJSON,
+    exportToCSV,
+    exportToAnki,
     exportToQuizlet,
     exportToPrint,
     importFromJSON,
     importFromCSV,
-    SUPPORTED_FORMATS 
+    SUPPORTED_FORMATS
 } from '../utils/vocabularyExport';
 
 export default function VocabularyList() {
-    const _navigate = useNavigate();
+    const navigate = useNavigate();
     const { user, removeWord, addWord } = useUser();
     const toast = useToast();
     const fileInputRef = useRef(null);
@@ -44,15 +44,19 @@ export default function VocabularyList() {
     const [debouncedSearch, setDebouncedSearch] = useState('');
     const [selectedLevel, setSelectedLevel] = useState('all');
     const [selectedStatus, setSelectedStatus] = useState('all');
-    const [viewMode, setViewMode] = useState('grid');
-    const [selectedWord, setSelectedWord] = useState(null);
-    const [selectedWords, setSelectedWords] = useState(new Set());
     const [showExportModal, setShowExportModal] = useState(false);
     const [showImportModal, setShowImportModal] = useState(false);
     const [importResult, setImportResult] = useState(null);
-    const [_showBulkActions, setShowBulkActions] = useState(false);
-    const [displayCount, setDisplayCount] = useState(50); // Pagination
+    const [displayCount, setDisplayCount] = useState(30);
     const [showQuickAdd, setShowQuickAdd] = useState(false);
+    const [sortBy, setSortBy] = useState('alphabetical');
+    const [sortOrder, setSortOrder] = useState('asc');
+
+    const sortOptions = [
+        { id: 'alphabetical', label: 'Alfabetik' },
+        { id: 'level', label: 'Seviye' },
+        { id: 'date', label: 'Eklenme Tarihi' },
+    ];
 
     const levels = ['all', 'A1', 'A2', 'B1', 'B2', 'C1'];
     const statuses = [
@@ -62,7 +66,7 @@ export default function VocabularyList() {
         { value: 'learned', label: 'Öğrenildi', icon: '✅' },
     ];
 
-    // Debounced search with useEffect alternative
+    // Debounced search
     useMemo(() => {
         const handler = setTimeout(() => {
             setDebouncedSearch(searchQuery);
@@ -70,11 +74,11 @@ export default function VocabularyList() {
         return () => clearTimeout(handler);
     }, [searchQuery]);
 
-    // Filter vocabulary - memoized properly with debounced search
+    // Filter and sort vocabulary
     const filteredVocabulary = useMemo(() => {
         let words = [...user.vocabulary];
 
-        // Search filter (debounced)
+        // Search filter
         if (debouncedSearch) {
             const query = debouncedSearch.toLowerCase();
             words = words.filter(word =>
@@ -94,13 +98,31 @@ export default function VocabularyList() {
             words = words.filter(word => (word.status || 'new') === selectedStatus);
         }
 
-        // Sort by added date (newest first)
-        words.sort((a, b) => new Date(b.addedAt) - new Date(a.addedAt));
+        // Sort words
+        words.sort((a, b) => {
+            let comparison = 0;
+
+            switch (sortBy) {
+                case 'alphabetical':
+                    comparison = a.word.localeCompare(b.word);
+                    break;
+                case 'level':
+                    const levelOrder = { 'A1': 1, 'A2': 2, 'B1': 3, 'B2': 4, 'C1': 5 };
+                    comparison = (levelOrder[a.level] || 0) - (levelOrder[b.level] || 0);
+                    break;
+                case 'date':
+                default:
+                    comparison = new Date(a.addedAt) - new Date(b.addedAt);
+                    break;
+            }
+
+            return sortOrder === 'asc' ? comparison : -comparison;
+        });
 
         return words;
-    }, [user.vocabulary, debouncedSearch, selectedLevel, selectedStatus]);
+    }, [user.vocabulary, debouncedSearch, selectedLevel, selectedStatus, sortBy, sortOrder]);
 
-    // Stats - memoized
+    // Stats
     const stats = useMemo(() => {
         const vocab = user.vocabulary;
         return {
@@ -110,82 +132,36 @@ export default function VocabularyList() {
             learned: vocab.filter(w => w.status === 'learned').length,
         };
     }, [user.vocabulary]);
-    
-    // Paginated vocabulary - only render displayCount items
+
+    // Paginated vocabulary
     const paginatedVocabulary = useMemo(() => {
         return filteredVocabulary.slice(0, displayCount);
     }, [filteredVocabulary, displayCount]);
-    
+
     const hasMore = filteredVocabulary.length > displayCount;
-    
-    // Load more handler
+
     const loadMore = useCallback(() => {
-        setDisplayCount(prev => prev + 50);
+        setDisplayCount(prev => prev + 30);
     }, []);
 
-    // Handle word removal - useCallback
     const handleRemoveWord = useCallback((wordId) => {
-        removeWord(wordId);
-        toast.success('Kelime silindi');
-        if (selectedWord?.id === wordId) {
-            setSelectedWord(null);
+        if (confirm('Bu kelimeyi silmek istediğine emin misin?')) {
+            removeWord(wordId);
+            toast.success('Kelime silindi');
         }
-        // Remove from selection if exists
-        setSelectedWords(prev => {
-            const newSet = new Set(prev);
-            newSet.delete(wordId);
-            return newSet;
-        });
-    }, [removeWord, toast, selectedWord]);
+    }, [removeWord, toast]);
 
-    // Handle word selection for bulk actions
-    const toggleWordSelection = useCallback((word) => {
-        setSelectedWords(prev => {
-            const newSet = new Set(prev);
-            if (newSet.has(word.id)) {
-                newSet.delete(word.id);
-            } else {
-                newSet.add(word.id);
-            }
-            return newSet;
-        });
+    const handleSpeak = useCallback((word) => {
+        speak(word, { rate: 0.85, pitch: 1.0 });
     }, []);
 
-    // Select all filtered words
-    const handleSelectAll = useCallback(() => {
-        const allIds = new Set(filteredVocabulary.map(w => w.id));
-        setSelectedWords(allIds);
-    }, [filteredVocabulary]);
-
-    // Clear selection
-    const handleClearSelection = useCallback(() => {
-        setSelectedWords(new Set());
-    }, []);
-
-    // Bulk delete selected words
-    const handleBulkDelete = useCallback(() => {
-        if (selectedWords.size === 0) {
-            toast.error('Silmek için kelime seçin');
-            return;
-        }
-
-        if (!confirm(`${selectedWords.size} kelime silinecek. Emin misiniz?`)) {
-            return;
-        }
-
-        selectedWords.forEach(wordId => removeWord(wordId));
-        toast.success(`${selectedWords.size} kelime silindi`);
-        setSelectedWords(new Set());
-        setShowBulkActions(false);
-    }, [selectedWords, removeWord, toast]);
-
-    // Export vocabulary - useCallback
+    // Export
     const handleExport = useCallback((format) => {
         if (user.vocabulary.length === 0) {
             toast.error('Dışa aktarılacak kelime yok');
             return;
         }
-        
+
         let result;
         switch (format) {
             case 'json':
@@ -201,30 +177,30 @@ export default function VocabularyList() {
                 result = exportToQuizlet(user.vocabulary);
                 break;
             case 'print':
-                result = exportToPrint(user.vocabulary, { 
-                    title: 'Kelime Listem', 
+                result = exportToPrint(user.vocabulary, {
+                    title: 'Kelime Listem',
                     columns: 2,
-                    groupByLevel: true 
+                    groupByLevel: true
                 });
                 break;
             default:
                 result = exportToJSON(user.vocabulary);
         }
-        
+
         if (result.success) {
-            const message = format === 'print' 
-                ? 'Yazdırma penceresi açıldı!' 
+            const message = format === 'print'
+                ? 'Yazdırma penceresi açıldı!'
                 : `${result.wordCount} kelime dışa aktarıldı!`;
             toast.success(message);
             setShowExportModal(false);
         }
     }, [user.vocabulary, toast]);
-    
-    // Import vocabulary
+
+    // Import
     const handleFileSelect = useCallback(async (e) => {
         const file = e.target.files?.[0];
         if (!file) return;
-        
+
         try {
             let result;
             if (file.name.endsWith('.json')) {
@@ -235,39 +211,145 @@ export default function VocabularyList() {
                 toast.error('Desteklenmeyen dosya formatı. JSON veya CSV kullanın.');
                 return;
             }
-            
+
             setImportResult(result);
         } catch (error) {
             toast.error(error.message);
         }
-        
-        // Reset file input
+
         e.target.value = '';
     }, [toast]);
-    
-    // Confirm import
+
     const handleConfirmImport = useCallback(() => {
         if (!importResult?.words) return;
-        
-        // Filter out duplicates
+
         const existingWords = new Set(user.vocabulary.map(w => w.word.toLowerCase()));
         const newWords = importResult.words.filter(w => !existingWords.has(w.word.toLowerCase()));
-        
-        // Add new words
+
         newWords.forEach(word => addWord(word));
-        
+
         toast.success(`${newWords.length} yeni kelime eklendi!`);
         if (newWords.length < importResult.words.length) {
             toast.info(`${importResult.words.length - newWords.length} kelime zaten listede vardı.`);
         }
-        
+
         setImportResult(null);
         setShowImportModal(false);
     }, [importResult, user.vocabulary, addWord, toast]);
 
+    // Word detail card component
+    const WordDetailCard = ({ word }) => {
+        const [expandedExample, setExpandedExample] = useState(null);
+
+        // Parse usage notes
+        const usageNotes = word.usageNotes
+            ? (typeof word.usageNotes === 'string'
+                ? word.usageNotes.split('\n').filter(n => n.trim())
+                : word.usageNotes)
+            : [];
+
+        // Parse common mistakes
+        const commonMistakes = word.commonMistakes
+            ? (typeof word.commonMistakes === 'string'
+                ? word.commonMistakes.split('\n').filter(m => m.trim())
+                : word.commonMistakes)
+            : [];
+
+        const toggleExample = (index) => {
+            setExpandedExample(expandedExample === index ? null : index);
+        };
+
+        return (
+            <div className="bg-white dark:bg-[#2a2a24] rounded-xl border border-gray-100 dark:border-[#333] p-4">
+                <div className="flex items-start gap-3">
+                    {/* Audio Button - Left */}
+                    <button
+                        onClick={() => handleSpeak(word.word)}
+                        className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-amber-500 flex items-center justify-center text-white hover:opacity-80 transition-opacity"
+                        title="Sesli oku"
+                    >
+                        <Volume2 className="w-5 h-5" />
+                    </button>
+
+                    {/* Main Content */}
+                    <div className="flex-1 min-w-0">
+                        {/* Word Header */}
+                        <div className="flex items-center gap-2 mb-1">
+                            <h3 className="text-xl font-bold text-gray-900 dark:text-white">{word.word}</h3>
+                            {word.phonetic && (
+                                <span className="text-gray-400 text-xs">/{word.phonetic}/</span>
+                            )}
+                            <LevelBadge level={word.level} size="sm" />
+                            <span className="text-gray-400 text-xs">{word.partOfSpeech || 'noun'}</span>
+                        </div>
+
+                        {/* Turkish Meaning */}
+                        <p className="text-indigo-600 dark:text-indigo-400 font-medium mb-2">{word.turkish}</p>
+
+                        {/* Definition */}
+                        {word.definition && (
+                            <p className="text-gray-600 dark:text-gray-400 text-sm mb-2">{word.definition}</p>
+                        )}
+
+                        {/* Examples */}
+                        {word.examples && word.examples.length > 0 && (
+                            <div className="space-y-1 mb-3">
+                                {word.examples.slice(0, 2).map((example, i) => {
+                                    const enText = typeof example === 'string' ? example : example.en || example;
+                                    const trText = word.examplesTr?.[i] || null;
+
+                                    return (
+                                        <div key={i}>
+                                            <p
+                                                onClick={() => toggleExample(i)}
+                                                className="text-gray-600 dark:text-gray-400 text-xs italic cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                                            >
+                                                "{enText}"
+                                            </p>
+                                            {expandedExample === i && trText && (
+                                                <p className="text-brand-blue dark:text-blue-400 text-xs mt-0.5">
+                                                    "{trText}"
+                                                </p>
+                                            )}
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        )}
+
+                        {/* Usage Notes & Common Mistakes */}
+                        <div className="flex flex-wrap gap-2">
+                            {usageNotes.length > 0 && (
+                                <span className="inline-flex items-center gap-1 px-2 py-1 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded text-xs">
+                                    <Info className="w-3 h-3" />
+                                    {usageNotes[0]}
+                                </span>
+                            )}
+                            {commonMistakes.length > 0 && (
+                                <span className="inline-flex items-center gap-1 px-2 py-1 bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 rounded text-xs">
+                                    <AlertTriangle className="w-3 h-3" />
+                                    {typeof commonMistakes[0] === 'string' ? commonMistakes[0] : commonMistakes[0]?.incorrect + ' → ' + commonMistakes[0]?.correct}
+                                </span>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Delete Button */}
+                    <button
+                        onClick={() => handleRemoveWord(word.id)}
+                        className="flex-shrink-0 p-2 text-gray-400 hover:text-red-500 transition-colors"
+                        title="Sil"
+                    >
+                        <Trash2 className="w-4 h-4" />
+                    </button>
+                </div>
+            </div>
+        );
+    };
+
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-[#18181b] pt-20 pb-12">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 {/* Header */}
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
@@ -280,7 +362,7 @@ export default function VocabularyList() {
                     <div className="flex gap-2">
                         <button
                             onClick={() => setShowQuickAdd(true)}
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white transition-colors"
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-amber-500 text-white hover:opacity-90 transition-opacity shadow-lg"
                         >
                             <Plus className="w-4 h-4" />
                             Kelime Ekle
@@ -294,7 +376,7 @@ export default function VocabularyList() {
                         </button>
                         <button
                             onClick={() => setShowExportModal(true)}
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl gradient-primary text-white hover:opacity-90 transition-opacity"
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 dark:border-[#333] text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
                         >
                             <Download className="w-4 h-4" />
                             Dışa Aktar
@@ -303,7 +385,7 @@ export default function VocabularyList() {
                 </div>
 
                 {/* Stats */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                     <StatCard
                         icon={BookOpen}
                         title="Toplam"
@@ -335,7 +417,7 @@ export default function VocabularyList() {
                 </div>
 
                 {/* Filters */}
-                <Card className="mb-6 bg-white dark:bg-[#27272a] border-gray-100 dark:border-[#333]">
+                <Card className="mb-6 bg-white dark:bg-[#2a2a24] border-gray-100 dark:border-[#333]">
                     <div className="flex flex-col sm:flex-row gap-4">
                         {/* Search */}
                         <div className="relative flex-1">
@@ -355,11 +437,6 @@ export default function VocabularyList() {
                                     <X className="w-4 h-4 text-gray-400" />
                                 </button>
                             )}
-                            {debouncedSearch && debouncedSearch !== searchQuery && (
-                                <div className="absolute right-10 top-1/2 -translate-y-1/2">
-                                    <div className="animate-spin h-4 w-4 border-2 border-indigo-600 border-t-transparent rounded-full"></div>
-                                </div>
-                            )}
                         </div>
 
                         {/* Level Filter */}
@@ -369,7 +446,7 @@ export default function VocabularyList() {
                                     key={level}
                                     onClick={() => setSelectedLevel(level)}
                                     className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${selectedLevel === level
-                                        ? 'bg-indigo-600 text-white'
+                                        ? 'bg-gradient-to-r from-indigo-500 via-purple-500 to-amber-500 text-white'
                                         : 'bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/20'
                                         }`}
                                 >
@@ -378,33 +455,40 @@ export default function VocabularyList() {
                             ))}
                         </div>
 
-                        {/* View Toggle */}
-                        <div className="flex bg-gray-100 dark:bg-white/10 rounded-xl p-1">
-                            <button
-                                onClick={() => setViewMode('grid')}
-                                className={`p-2 rounded-lg transition-colors ${viewMode === 'grid' ? 'bg-white dark:bg-[#333] shadow text-indigo-600 dark:text-indigo-400' : 'text-gray-500 dark:text-gray-400'
-                                    }`}
+                        {/* Sort Dropdown */}
+                        <div className="relative">
+                            <select
+                                value={`${sortBy}-${sortOrder}`}
+                                onChange={(e) => {
+                                    const [sort, order] = e.target.value.split('-');
+                                    setSortBy(sort);
+                                    setSortOrder(order);
+                                }}
+                                className="appearance-none pl-10 pr-8 py-2.5 rounded-xl border border-gray-200 dark:border-[#333] bg-transparent dark:text-white text-sm font-medium focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none cursor-pointer"
                             >
-                                <Grid className="w-5 h-5" />
-                            </button>
-                            <button
-                                onClick={() => setViewMode('list')}
-                                className={`p-2 rounded-lg transition-colors ${viewMode === 'list' ? 'bg-white dark:bg-[#333] shadow text-indigo-600 dark:text-indigo-400' : 'text-gray-500 dark:text-gray-400'
-                                    }`}
-                            >
-                                <List className="w-5 h-5" />
-                            </button>
+                                {sortOptions.map(option => (
+                                    <React.Fragment key={option.id}>
+                                        <option value={`${option.id}-asc`}>
+                                            {option.label} (Artan)
+                                        </option>
+                                        <option value={`${option.id}-desc`}>
+                                            {option.label} (Azalan)
+                                        </option>
+                                    </React.Fragment>
+                                ))}
+                            </select>
+                            <ArrowUpDown className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                         </div>
                     </div>
 
                     {/* Status Filter */}
-                    <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-gray-100 dark:border-[#333]">
+                    <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-gray-100 dark:border-white/5">
                         {statuses.map(status => (
                             <button
                                 key={status.value}
                                 onClick={() => setSelectedStatus(status.value)}
                                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${selectedStatus === status.value
-                                    ? 'bg-indigo-600 text-white'
+                                    ? 'bg-gradient-to-r from-indigo-500 via-purple-500 to-amber-500 text-white'
                                     : 'bg-gray-100 dark:bg-white/10 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/20'
                                     }`}
                             >
@@ -420,168 +504,73 @@ export default function VocabularyList() {
                     </div>
                 </Card>
 
-                {/* Results Info & Bulk Actions */}
-                <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
+                {/* Results Info */}
+                <div className="mb-4">
                     <p className="text-gray-600 dark:text-gray-400">
                         <span className="font-medium text-gray-900 dark:text-white">{filteredVocabulary.length}</span> kelime gösteriliyor
-                        {debouncedSearch && debouncedSearch !== searchQuery && (
-                            <span className="ml-2 text-sm text-gray-500">(Aranıyor...)</span>
-                        )}
                     </p>
-                    <div className="flex items-center gap-2">
-                        {selectedWords.size > 0 && (
-                            <>
-                                <span className="text-sm text-gray-500">{selectedWords.size} seçili</span>
-                                <button
-                                    onClick={handleClearSelection}
-                                    className="text-sm text-indigo-600 hover:underline"
-                                >
-                                    Temizle
-                                </button>
-                                <button
-                                    onClick={handleBulkDelete}
-                                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition-colors text-sm font-medium"
-                                >
-                                    <Trash2 className="w-4 h-4" />
-                                    Sil
-                                </button>
-                            </>
-                        )}
-                        {!selectedWords.size && filteredVocabulary.length > 0 && (
-                            <button
-                                onClick={handleSelectAll}
-                                className="text-sm text-indigo-600 hover:underline"
-                            >
-                                Tümünü seç
-                            </button>
-                        )}
-                    </div>
                 </div>
 
-                {/* Content */}
-                <div className="flex gap-6">
-                    {/* Main Content */}
-                    <div className="flex-1">
-                        {filteredVocabulary.length > 0 ? (
-                            viewMode === 'grid' ? (
-                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                                    {paginatedVocabulary.map((word, index) => (
-                                        <div
-                                            key={word.id}
-                                            className="animate-fadeIn relative"
-                                            style={{ animationDelay: `${index * 30}ms` }}
-                                        >
-                                            {/* Selection checkbox */}
-                                            <div className="absolute top-2 left-2 z-10">
-                                                <input
-                                                    type="checkbox"
-                                                    checked={selectedWords.has(word.id)}
-                                                    onChange={() => toggleWordSelection(word)}
-                                                    className="w-5 h-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 focus:ring-offset-0 cursor-pointer"
-                                                />
-                                            </div>
-                                            <VocabularyCard
-                                                word={word}
-                                                onRemove={handleRemoveWord}
-                                                onPractice={() => { }}
-                                                onToggleFavorite={() => { }}
-                                            />
-                                        </div>
-                                    ))}
-                                </div>
-                            ) : (
-                                <div className="space-y-2">
-                                    {paginatedVocabulary.map((word, index) => (
-                                        <div
-                                            key={word.id}
-                                            className="animate-fadeIn relative flex items-center gap-3"
-                                            style={{ animationDelay: `${index * 20}ms` }}
-                                        >
-                                            {/* Selection checkbox */}
-                                            <input
-                                                type="checkbox"
-                                                checked={selectedWords.has(word.id)}
-                                                onChange={() => toggleWordSelection(word)}
-                                                className="w-5 h-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 focus:ring-offset-0 cursor-pointer flex-shrink-0"
-                                            />
-                                            <div className="flex-1">
-                                                <VocabularyListItem
-                                                    word={word}
-                                                    onRemove={handleRemoveWord}
-                                                    onSelect={setSelectedWord}
-                                                    isSelected={selectedWords.has(word.id)}
-                                                />
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            )
-                        ) : (
-                            /* Empty State */
-                            <div className="text-center py-16">
-                                <div className="text-6xl mb-4">📚</div>
-                                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                                    {user.vocabulary.length === 0
-                                        ? 'Henüz kelime eklemedin'
-                                        : 'Sonuç bulunamadı'
-                                    }
-                                </h3>
-                                <p className="text-gray-600 dark:text-gray-400 mb-6">
-                                    {user.vocabulary.length === 0
-                                        ? 'Kütüphaneden içerik okuyarak kelime eklemeye başla!'
-                                        : 'Farklı filtreler deneyebilirsin'
-                                    }
-                                </p>
-                                {user.vocabulary.length === 0 ? (
-                                    <a
-                                        href="/library"
-                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl gradient-primary text-white font-medium hover:opacity-90 transition-opacity"
-                                    >
-                                        <BookOpen className="w-4 h-4" />
-                                        Kütüphaneye Git
-                                    </a>
-                                ) : (
-                                    <button
-                                        onClick={() => {
-                                            setSearchQuery('');
-                                            setSelectedLevel('all');
-                                            setSelectedStatus('all');
-                                        }}
-                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl gradient-primary text-white font-medium hover:opacity-90 transition-opacity"
-                                    >
-                                        Filtreleri Temizle
-                                    </button>
-                                )}
-                            </div>
-                        )}
-                        
-                        {/* Load More Button */}
-                        {hasMore && filteredVocabulary.length > 0 && (
-                            <div className="text-center mt-8">
+                {/* Word List */}
+                {filteredVocabulary.length > 0 ? (
+                    <div className="space-y-4">
+                        {paginatedVocabulary.map((word) => (
+                            <WordDetailCard key={word.id} word={word} />
+                        ))}
+
+                        {/* Load More */}
+                        {hasMore && (
+                            <div className="text-center pt-8">
                                 <button
                                     onClick={loadMore}
-                                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-medium transition-colors"
+                                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-amber-500 text-white font-medium hover:opacity-90 transition-opacity shadow-lg"
                                 >
                                     Daha Fazla Yükle ({filteredVocabulary.length - displayCount} kelime kaldı)
                                 </button>
                             </div>
                         )}
                     </div>
+                ) : (
+                    /* Empty State */
+                    <div className="text-center py-16">
+                        <div className="text-6xl mb-4">📚</div>
+                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                            {user.vocabulary.length === 0
+                                ? 'Henüz kelime eklemedin'
+                                : 'Sonuç bulunamadı'
+                            }
+                        </h3>
+                        <p className="text-gray-600 dark:text-gray-400 mb-6">
+                            {user.vocabulary.length === 0
+                                ? 'Kütüphaneden içerik okuyarak kelime eklemeye başla!'
+                                : 'Farklı filtreler deneyebilirsin'
+                            }
+                        </p>
+                        {user.vocabulary.length === 0 ? (
+                            <button
+                                onClick={() => navigate('/library')}
+                                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-amber-500 text-white font-medium hover:opacity-90 transition-opacity shadow-lg"
+                            >
+                                <BookOpen className="w-4 h-4" />
+                                Kütüphaneye Git
+                            </button>
+                        ) : (
+                            <button
+                                onClick={() => {
+                                    setSearchQuery('');
+                                    setSelectedLevel('all');
+                                    setSelectedStatus('all');
+                                }}
+                                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-amber-500 text-white font-medium hover:opacity-90 transition-opacity shadow-lg"
+                            >
+                                Filtreleri Temizle
+                            </button>
+                        )}
+                    </div>
+                )}
 
-                    {/* Detail Sidebar */}
-                    {selectedWord && viewMode === 'list' && (
-                        <div className="hidden lg:block w-80">
-                            <WordDetailCard
-                                word={selectedWord}
-                                onClose={() => setSelectedWord(null)}
-                                onPractice={() => { }}
-                                onRemove={handleRemoveWord}
-                            />
-                        </div>
-                    )}
-                </div>
             </div>
-            
+
             {/* Export Modal */}
             <Modal
                 isOpen={showExportModal}
@@ -592,7 +581,7 @@ export default function VocabularyList() {
                     <p className="text-sm text-gray-600 dark:text-gray-400">
                         {user.vocabulary.length} kelimeyi dışa aktarmak için bir format seçin:
                     </p>
-                    
+
                     <div className="grid grid-cols-2 gap-3">
                         {SUPPORTED_FORMATS.export.map(format => (
                             <button
@@ -608,7 +597,7 @@ export default function VocabularyList() {
                     </div>
                 </div>
             </Modal>
-            
+
             {/* Import Modal */}
             <Modal
                 isOpen={showImportModal}
@@ -621,7 +610,7 @@ export default function VocabularyList() {
                             <p className="text-sm text-gray-600 dark:text-gray-400">
                                 JSON veya CSV formatında kelime dosyası yükleyin:
                             </p>
-                            
+
                             <div className="space-y-3">
                                 {SUPPORTED_FORMATS.import.map(format => (
                                     <div key={format.id} className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 dark:bg-white/5">
@@ -633,7 +622,7 @@ export default function VocabularyList() {
                                     </div>
                                 ))}
                             </div>
-                            
+
                             <input
                                 ref={fileInputRef}
                                 type="file"
@@ -641,10 +630,10 @@ export default function VocabularyList() {
                                 onChange={handleFileSelect}
                                 className="hidden"
                             />
-                            
+
                             <button
                                 onClick={() => fileInputRef.current?.click()}
-                                className="w-full py-3 rounded-xl gradient-primary text-white font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+                                className="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-amber-500 text-white font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
                             >
                                 <Upload className="w-5 h-5" />
                                 Dosya Seç
@@ -661,7 +650,7 @@ export default function VocabularyList() {
                                     )}
                                 </div>
                             </div>
-                            
+
                             <div className="flex gap-3">
                                 <button
                                     onClick={() => setImportResult(null)}
@@ -671,7 +660,7 @@ export default function VocabularyList() {
                                 </button>
                                 <button
                                     onClick={handleConfirmImport}
-                                    className="flex-1 py-3 rounded-xl gradient-primary text-white font-medium hover:opacity-90 transition-opacity"
+                                    className="flex-1 py-3 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-amber-500 text-white font-medium hover:opacity-90 transition-opacity"
                                 >
                                     İçe Aktar
                                 </button>

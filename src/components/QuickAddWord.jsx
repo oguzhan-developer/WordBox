@@ -12,47 +12,100 @@ import { speak } from '../utils/speechSynthesis';
 
 // Örnek kelime veritabanı (gerçek API ile değiştirilebilir)
 const SAMPLE_WORDS = [
-  { word: 'serendipity', turkish: 'beklenmedik güzel keşif', phonetic: '/ˌserənˈdɪpɪti/', level: 'C1', partOfSpeech: 'noun' },
-  { word: 'ephemeral', turkish: 'geçici, kısa ömürlü', phonetic: '/ɪˈfemərəl/', level: 'C1', partOfSpeech: 'adjective' },
-  { word: 'ubiquitous', turkish: 'her yerde bulunan', phonetic: '/juːˈbɪkwɪtəs/', level: 'C1', partOfSpeech: 'adjective' },
-  { word: 'eloquent', turkish: 'belagatli, etkileyici konuşan', phonetic: '/ˈeləkwənt/', level: 'B2', partOfSpeech: 'adjective' },
-  { word: 'resilient', turkish: 'dayanıklı, çabuk toparlanan', phonetic: '/rɪˈzɪliənt/', level: 'B2', partOfSpeech: 'adjective' },
+  // C1 Kelimeleri
+  { word: 'serendipity', turkish: 'beklenmedik güzel keşif', phonetic: '/ˌserənˈdɪpɪti/', level: 'C1', partOfSpeech: 'noun', definition: 'The occurrence of events by chance in a happy way', examples: ['Finding that book was pure serendipity.'] },
+  { word: 'ephemeral', turkish: 'geçici, kısa ömürlü', phonetic: '/ɪˈfemərəl/', level: 'C1', partOfSpeech: 'adjective', definition: 'Lasting for a very short time', examples: ['Fashion trends are often ephemeral.'] },
+  { word: 'ubiquitous', turkish: 'her yerde bulunan', phonetic: '/juːˈbɪkwɪtəs/', level: 'C1', partOfSpeech: 'adjective', definition: 'Present, appearing, or found everywhere', examples: ['Smartphones have become ubiquitous.'] },
+  { word: 'pragmatic', turkish: 'pragmatik, gerçekçi', phonetic: '/præɡˈmætɪk/', level: 'C1', partOfSpeech: 'adjective', definition: 'Dealing with things sensibly and realistically', examples: ['We need a pragmatic approach to this problem.'] },
+  { word: 'meticulous', turkish: 'titiz, ayrıntıcı', phonetic: '/məˈtɪkjələs/', level: 'C1', partOfSpeech: 'adjective', definition: 'Showing great attention to detail', examples: ['She was meticulous in her research.'] },
+  { word: 'alleviate', turkish: 'hafifletmek, azaltmak', phonetic: '/əˈliːvieɪt/', level: 'C1', partOfSpeech: 'verb', definition: 'To make suffering or a problem less severe', examples: ['The medicine helped alleviate the pain.'] },
+
+  // B2 Kelimeleri
+  { word: 'eloquent', turkish: 'belagatli, etkileyici konuşan', phonetic: '/ˈeləkwənt/', level: 'B2', partOfSpeech: 'adjective', definition: 'Fluent or persuasive in speaking or writing', examples: ['She gave an eloquent speech.'] },
+  { word: 'resilient', turkish: 'dayanıklı, çabuk toparlanan', phonetic: '/rɪˈzɪliənt/', level: 'B2', partOfSpeech: 'adjective', definition: 'Able to recover quickly from difficulties', examples: ['Children are remarkably resilient.'] },
+  { word: 'comprehend', turkish: 'kavramak, anlamak', phonetic: '/ˌkɒmprɪˈhend/', level: 'B2', partOfSpeech: 'verb', definition: 'To understand something completely', examples: ['I cannot comprehend why he did that.'] },
+  { word: 'diligent', turkish: 'çalışkan, azimli', phonetic: '/ˈdɪlɪdʒənt/', level: 'B2', partOfSpeech: 'adjective', definition: 'Having or showing care in one\'s work', examples: ['She is a diligent student.'] },
+  { word: 'innovative', turkish: 'yenilikçi', phonetic: '/ˈɪnəvətɪv/', level: 'B2', partOfSpeech: 'adjective', definition: 'Featuring new methods or advanced techniques', examples: ['The company is known for innovative products.'] },
+
+  // B1 Kelimeleri
+  { word: 'accomplish', turkish: 'başarmak, gerçekleştirmek', phonetic: '/əˈkʌmplɪʃ/', level: 'B1', partOfSpeech: 'verb', definition: 'To achieve or complete successfully', examples: ['She accomplished her goal.'] },
+  { word: 'appreciate', turkish: 'takdir etmek, değer vermek', phonetic: '/əˈpriːʃieɪt/', level: 'B1', partOfSpeech: 'verb', definition: 'To be grateful for something', examples: ['I appreciate your help.'] },
+  { word: 'concentrate', turkish: 'odaklanmak, konsantre olmak', phonetic: '/ˈkɒnsntreɪt/', level: 'B1', partOfSpeech: 'verb', definition: 'To direct attention toward something', examples: ['I need to concentrate on my work.'] },
+  { word: 'determine', turkish: 'belirlemek, karar vermek', phonetic: '/dɪˈtɜːmɪn/', level: 'B1', partOfSpeech: 'verb', definition: 'To cause something to occur in a particular way', examples: ['Factors that determine prices.'] },
+  { word: 'encourage', turkish: 'teşvik etmek', phonetic: '/ɪnˈkʌrɪdʒ/', level: 'B1', partOfSpeech: 'verb', definition: 'To give support or confidence', examples: ['Parents should encourage their children.'] },
+
+  // A2 Kelimeleri
+  { word: 'achieve', turkish: 'başarmak, elde etmek', phonetic: '/əˈtʃiːv/', level: 'A2', partOfSpeech: 'verb', definition: 'To succeed in doing something', examples: ['She achieved great success.'] },
+  { word: 'improve', turkish: 'iyileştirmek', phonetic: '/ɪmˈpruːv/', level: 'A2', partOfSpeech: 'verb', definition: 'To make something better', examples: ['I want to improve my English.'] },
+  { word: 'realize', turkish: 'fark etmek, anlamak', phonetic: '/ˈriːəlaɪz/', level: 'A2', partOfSpeech: 'verb', definition: 'To become aware of something', examples: ['I realized my mistake.'] },
+  { word: 'develop', turkish: 'geliştirmek', phonetic: '/dɪˈveləp/', level: 'A2', partOfSpeech: 'verb', definition: 'To grow or change into something more advanced', examples: ['Children develop quickly.'] },
+  { word: 'consider', turkish: 'düşünmek, göz önünde bulundurmak', phonetic: '/kənˈsɪdə/', level: 'A2', partOfSpeech: 'verb', definition: 'To think carefully about something', examples: ['Please consider my offer.'] },
 ];
 
 /**
  * Kelime öneri kartı
  */
 const WordSuggestionCard = ({ word, onAdd }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
-    <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-white/5 rounded-xl hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">
-      <div className="flex-1">
-        <div className="flex items-center gap-2">
-          <span className="font-bold text-gray-900 dark:text-white">{word.word}</span>
-          <span className="text-xs text-gray-400">{word.phonetic}</span>
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              speak(word.word);
-            }}
-            className="p-1 rounded hover:bg-gray-200 dark:hover:bg-white/10"
-          >
-            <Volume2 className="size-3 text-gray-400" />
-          </button>
+    <div
+      className={`flex flex-col p-3 bg-gray-50 dark:bg-white/5 rounded-xl hover:bg-gray-100 dark:hover:bg-white/10 transition-colors cursor-pointer`}
+      onClick={() => setIsExpanded(!isExpanded)}
+    >
+      <div className="flex items-center justify-between">
+        <div className="flex-1">
+          <div className="flex items-center gap-2">
+            <span className="font-bold text-gray-900 dark:text-white">{word.word}</span>
+            <span className="text-xs text-gray-400">{word.phonetic}</span>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                speak(word.word);
+              }}
+              className="p-1 rounded hover:bg-gray-200 dark:hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1 transition-colors"
+              aria-label={`"${word.word}" kelimesini seslendir`}
+              title={`"${word.word}" kelimesini seslendir`}
+            >
+              <Volume2 className="size-3 text-gray-400" aria-hidden="true" />
+            </button>
+          </div>
+          <p className="text-sm text-brand-blue">{word.turkish}</p>
+          <div className="flex gap-2 mt-1">
+            <span className="text-xs px-1.5 py-0.5 bg-brand-blue/10 text-brand-blue rounded">
+              {word.level}
+            </span>
+            <span className="text-xs text-gray-400">{word.partOfSpeech}</span>
+          </div>
         </div>
-        <p className="text-sm text-brand-blue">{word.turkish}</p>
-        <div className="flex gap-2 mt-1">
-          <span className="text-xs px-1.5 py-0.5 bg-brand-blue/10 text-brand-blue rounded">
-            {word.level}
-          </span>
-          <span className="text-xs text-gray-400">{word.partOfSpeech}</span>
-        </div>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onAdd(word);
+          }}
+          className="p-2 bg-brand-blue text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors"
+          aria-label={`"${word.word}" kelimesini listeye ekle`}
+          title={`"${word.word}" kelimesini ekle`}
+        >
+          <Plus className="size-4" aria-hidden="true" />
+        </button>
       </div>
-      <button
-        onClick={() => onAdd(word)}
-        className="p-2 bg-brand-blue text-white rounded-lg hover:bg-blue-700 transition-colors"
-      >
-        <Plus className="size-4" />
-      </button>
+
+      {/* Expanded content */}
+      {isExpanded && (word.definition || word.examples) && (
+        <div className="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
+          {word.definition && (
+            <p className="text-xs text-gray-600 dark:text-gray-400 mb-2 italic">
+              "{word.definition}"
+            </p>
+          )}
+          {word.examples?.[0] && (
+            <p className="text-xs text-indigo-600 dark:text-indigo-400">
+              Ex: {word.examples[0]}
+            </p>
+          )}
+        </div>
+      )}
     </div>
   );
 };

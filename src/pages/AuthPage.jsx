@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
+import { useTheme } from '../context/ThemeContext';
 import { isValidEmail, validatePassword, validateUsername, RateLimiter } from '../utils/validation';
 
 // Rate limiter for auth attempts
@@ -9,6 +10,7 @@ const authLimiter = new RateLimiter(5, 300000); // 5 attempts per 5 minutes
 export default function AuthPage() {
     const navigate = useNavigate();
     const { register, login, isLoggedIn } = useUser();
+    const { isDark } = useTheme();
 
     const [isLogin, setIsLogin] = useState(true);
     const [showPassword, setShowPassword] = useState(false);
@@ -173,8 +175,14 @@ export default function AuthPage() {
     const passwordStrength = getPasswordStrength(formData.password);
 
     return (
-        <div className="font-display text-[#181811] min-h-screen flex items-center justify-center bg-gradient-to-br from-[#d8b4fe] to-[#ffffff] p-4 sm:p-6 lg:p-8">
-            <div className="flex flex-col lg:flex-row w-full max-w-6xl bg-white rounded-2xl shadow-xl overflow-hidden min-h-[700px]">
+        <div className={`font-display min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8 ${
+            isDark
+                ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white'
+                : 'bg-gradient-to-br from-[#d8b4fe] to-[#ffffff] text-[#181811]'
+        }`}>
+            <div className={`flex flex-col lg:flex-row w-full max-w-6xl rounded-2xl shadow-xl overflow-hidden min-h-[700px] ${
+                isDark ? 'bg-gray-800' : 'bg-white'
+            }`}>
                 {/* Left Side */}
                 <div className="lg:w-1/2 p-8 md:p-12 flex flex-col justify-center items-center text-center bg-gradient-to-br from-brand-blue to-purple-600 text-white relative overflow-hidden">
                     <div className="absolute inset-0 opacity-10">
@@ -227,26 +235,46 @@ export default function AuthPage() {
                 </div>
 
                 {/* Right Side - Forms */}
-                <div className="lg:w-1/2 p-8 md:p-12 flex flex-col justify-center items-center relative">
+                <div className={`lg:w-1/2 p-8 md:p-12 flex flex-col justify-center items-center relative ${isDark ? 'text-white' : ''}`}>
                     <div className="w-full max-w-md">
                         {/* Tabs */}
-                        <div className="flex justify-center mb-8 bg-gray-100 rounded-xl p-1">
+                        <div className={`flex justify-center mb-8 rounded-xl p-1 ${isDark ? 'bg-gray-700' : 'bg-gray-100'}`}>
                             <button
                                 onClick={() => setIsLogin(true)}
-                                className={`flex-1 py-2 text-center rounded-lg text-sm font-semibold transition-all duration-300 ease-in-out ${isLogin ? 'text-brand-blue bg-white shadow-sm' : 'text-gray-500 hover:text-brand-blue font-medium'}`}
+                                className={`flex-1 py-2 text-center rounded-lg text-sm font-semibold transition-all duration-300 ease-in-out ${
+                                    isLogin
+                                        ? isDark
+                                            ? 'text-brand-blue bg-gray-600 shadow-sm'
+                                            : 'text-brand-blue bg-white shadow-sm'
+                                        : isDark
+                                            ? 'text-gray-400 hover:text-brand-blue font-medium'
+                                            : 'text-gray-500 hover:text-brand-blue font-medium'
+                                }`}
                             >
                                 Giriş Yap
                             </button>
                             <button
                                 onClick={() => setIsLogin(false)}
-                                className={`flex-1 py-2 text-center rounded-lg text-sm font-semibold transition-all duration-300 ease-in-out ${!isLogin ? 'text-brand-blue bg-white shadow-sm' : 'text-gray-500 hover:text-brand-blue font-medium'}`}
+                                className={`flex-1 py-2 text-center rounded-lg text-sm font-semibold transition-all duration-300 ease-in-out ${
+                                    !isLogin
+                                        ? isDark
+                                            ? 'text-brand-blue bg-gray-600 shadow-sm'
+                                            : 'text-brand-blue bg-white shadow-sm'
+                                        : isDark
+                                            ? 'text-gray-400 hover:text-brand-blue font-medium'
+                                            : 'text-gray-500 hover:text-brand-blue font-medium'
+                                }`}
                             >
                                 Kayıt Ol
                             </button>
                         </div>
 
                         {errors.main && (
-                            <div className="mb-6 p-4 bg-red-50 text-red-600 rounded-xl text-sm font-medium border border-red-100">
+                            <div className={`mb-6 p-4 rounded-xl text-sm font-medium border ${
+                                isDark
+                                    ? 'bg-red-900/30 text-red-400 border-red-800'
+                                    : 'bg-red-50 text-red-600 border-red-100'
+                            }`}>
                                 {errors.main}
                             </div>
                         )}
@@ -254,11 +282,15 @@ export default function AuthPage() {
                         {/* Login Form */}
                         {isLogin && (
                             <form className="space-y-6" onSubmit={handleSubmit}>
-                                <h3 className="text-2xl font-bold text-center mb-6">Hesabına Giriş Yap</h3>
+                                <h3 className={`text-2xl font-bold text-center mb-6 ${isDark ? 'text-white' : ''}`}>Hesabına Giriş Yap</h3>
                                 <div className="relative">
-                                    <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">mail</span>
+                                    <span className={`material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 ${isDark ? 'text-gray-400' : 'text-gray-400'}`}>mail</span>
                                     <input
-                                        className="w-full p-3 pl-10 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-brand-blue transition-colors bg-gray-50"
+                                        className={`w-full p-3 pl-10 border-2 rounded-lg focus:outline-none focus:border-brand-blue transition-colors ${
+                                            isDark
+                                                ? 'border-gray-600 bg-gray-700 text-white placeholder-gray-400'
+                                                : 'border-gray-200 bg-gray-50 text-gray-900'
+                                        }`}
                                         placeholder="E-posta Adresin"
                                         type="email"
                                         name="email"
@@ -269,9 +301,13 @@ export default function AuthPage() {
                                     {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
                                 </div>
                                 <div className="relative">
-                                    <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">lock</span>
+                                    <span className={`material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 ${isDark ? 'text-gray-400' : 'text-gray-400'}`}>lock</span>
                                     <input
-                                        className="w-full p-3 pl-10 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-brand-blue transition-colors bg-gray-50"
+                                        className={`w-full p-3 pl-10 border-2 rounded-lg focus:outline-none focus:border-brand-blue transition-colors ${
+                                            isDark
+                                                ? 'border-gray-600 bg-gray-700 text-white placeholder-gray-400'
+                                                : 'border-gray-200 bg-gray-50 text-gray-900'
+                                        }`}
                                         placeholder="Parolanız"
                                         type={showPassword ? "text" : "password"}
                                         name="password"
@@ -280,7 +316,7 @@ export default function AuthPage() {
                                         required
                                     />
                                     <button
-                                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                                        className={`absolute right-3 top-1/2 -translate-y-1/2 ${isDark ? 'text-gray-400 hover:text-gray-200' : 'text-gray-400 hover:text-gray-600'}`}
                                         type="button"
                                         onClick={() => setShowPassword(!showPassword)}
                                     >
