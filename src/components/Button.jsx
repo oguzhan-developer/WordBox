@@ -1,5 +1,7 @@
+import { memo, useMemo } from 'react';
+
 // Reusable Button component with variants
-export default function Button({
+const Button = memo(function Button({
     children,
     variant = 'primary',
     size = 'md',
@@ -14,7 +16,7 @@ export default function Button({
 }) {
     const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group';
 
-    const variants = {
+    const variants = useMemo(() => ({
         primary: 'gradient-primary text-white hover:shadow-lg hover:shadow-indigo-500/50 focus:ring-indigo-500 hover:-translate-y-0.5 active:scale-95 font-semibold',
         secondary: 'glass text-indigo-600 dark:text-indigo-400 border-2 border-indigo-500/20 hover:border-indigo-500/40 hover:shadow-lg hover:shadow-indigo-500/20 focus:ring-indigo-500 hover:-translate-y-0.5',
         ghost: 'text-gray-700 dark:text-gray-300 hover:bg-gray-100/80 dark:hover:bg-slate-800/80 focus:ring-gray-500 backdrop-blur-sm',
@@ -22,33 +24,35 @@ export default function Button({
         success: 'bg-gradient-to-r from-green-500 to-emerald-500 text-white hover:shadow-lg hover:shadow-green-500/50 focus:ring-green-500 hover:-translate-y-0.5 active:scale-95',
         warning: 'bg-gradient-to-r from-orange-500 to-amber-500 text-white hover:shadow-lg hover:shadow-orange-500/50 focus:ring-orange-500 hover:-translate-y-0.5 active:scale-95',
         outline: 'bg-transparent border-2 border-gray-300 dark:border-slate-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50/50 dark:hover:bg-slate-800/50 focus:ring-gray-500 backdrop-blur-sm',
-    };
+    }), []);
 
-    const sizes = {
+    const sizes = useMemo(() => ({
         xs: 'px-3 py-1.5 text-xs gap-1.5',
         sm: 'px-4 py-2 text-sm gap-2',
         md: 'px-6 py-2.5 text-sm gap-2',
         lg: 'px-8 py-3 text-base gap-2.5',
         xl: 'px-10 py-4 text-lg gap-3',
-    };
+    }), []);
 
-    const iconSizes = {
+    const iconSizes = useMemo(() => ({
         xs: 'w-3 h-3',
         sm: 'w-4 h-4',
         md: 'w-4 h-4',
         lg: 'w-5 h-5',
         xl: 'w-6 h-6',
-    };
+    }), []);
 
-    return (
-        <button
-            className={`
+    const buttonClasses = useMemo(() => `
         ${baseStyles}
         ${variants[variant]}
         ${sizes[size]}
         ${fullWidth ? 'w-full' : ''}
         ${className}
-      `}
+    `.trim(), [variant, size, fullWidth, className, baseStyles, variants, sizes]);
+
+    return (
+        <button
+            className={buttonClasses}
             disabled={disabled || loading}
             aria-label={ariaLabel || (typeof children === 'string' ? children : undefined)}
             aria-busy={loading}
@@ -61,6 +65,7 @@ export default function Button({
                         className={`animate-spin ${iconSizes[size]}`}
                         fill="none"
                         viewBox="0 0 24 24"
+                        aria-hidden="true"
                     >
                         <circle
                             className="opacity-25"
@@ -80,17 +85,19 @@ export default function Button({
                 </>
             ) : (
                 <>
-                    {Icon && iconPosition === 'left' && <Icon className={iconSizes[size]} />}
+                    {Icon && iconPosition === 'left' && <Icon className={iconSizes[size]} aria-hidden="true" />}
                     {children}
-                    {Icon && iconPosition === 'right' && <Icon className={iconSizes[size]} />}
+                    {Icon && iconPosition === 'right' && <Icon className={iconSizes[size]} aria-hidden="true" />}
                 </>
             )}
         </button>
     );
-}
+});
+
+export default Button;
 
 // Icon Button variant
-export function IconButton({
+export const IconButton = memo(function IconButton({
     icon: IconComponent,
     variant = 'ghost',
     size = 'md',
@@ -98,41 +105,43 @@ export function IconButton({
     ariaLabel,
     ...props
 }) {
-    const sizes = {
+    const sizes = useMemo(() => ({
         xs: 'p-1',
         sm: 'p-1.5',
         md: 'p-2',
         lg: 'p-3',
         xl: 'p-4',
-    };
+    }), []);
 
-    const iconSizes = {
+    const iconSizes = useMemo(() => ({
         xs: 'w-3 h-3',
         sm: 'w-4 h-4',
         md: 'w-5 h-5',
         lg: 'w-6 h-6',
         xl: 'w-7 h-7',
-    };
+    }), []);
 
-    const variants = {
+    const variants = useMemo(() => ({
         primary: 'bg-indigo-600 text-white hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600',
         secondary: 'bg-white dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 border border-indigo-600 dark:border-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-900/20',
         ghost: 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800',
         danger: 'text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20',
-    };
+    }), []);
 
-    return (
-        <button
-            className={`
+    const buttonClasses = useMemo(() => `
         rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-900 active:scale-95
         ${variants[variant]}
         ${sizes[size]}
         ${className}
-      `}
+    `.trim(), [variant, size, className, variants, sizes]);
+
+    return (
+        <button
+            className={buttonClasses}
             aria-label={ariaLabel}
             {...props}
         >
             <IconComponent className={iconSizes[size]} aria-hidden="true" />
         </button>
     );
-}
+});

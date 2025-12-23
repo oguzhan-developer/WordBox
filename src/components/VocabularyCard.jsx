@@ -50,34 +50,46 @@ const VocabularyCard = memo(function VocabularyCard({
 
     return (
         <div
-            className={`card-flip h-64 cursor-pointer ${isFlipped ? 'flipped' : ''}`}
+            className={`card-flip h-64 cursor-pointer group ${isFlipped ? 'flipped' : ''}`}
             onClick={handleFlip}
+            role="button"
+            tabIndex={0}
+            aria-label={`${word.word} kelimesi kartı, çevirmek için tıklayın`}
+            onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleFlip();
+                }
+            }}
         >
-            <div className="card-flip-inner relative w-full h-full">
+            <div className="card-flip-inner relative w-full h-full transition-transform duration-500 ease-out">
                 {/* Front Side */}
-                <Card glass className="card-flip-front absolute inset-0 flex flex-col !p-5 shadow-xl hover:shadow-2xl transition-all">
+                <Card glass className="card-flip-front absolute inset-0 flex flex-col !p-5 shadow-xl hover:shadow-2xl transition-all duration-300 group-hover:scale-[1.02] group-hover:-translate-y-1">
                     {/* Top bar */}
                     <div className="flex items-center justify-between flex-shrink-0 mb-3">
                         <LevelBadge level={word.level} size="sm" />
                         <div className="flex items-center gap-2">
                             <button
                                 onClick={handlePlayAudio}
-                                className="size-9 rounded-xl glass hover:bg-indigo-500/20 transition-all hover:scale-110 flex items-center justify-center"
+                                aria-label={`${word.word} kelimesini seslendir`}
+                                className="size-9 rounded-xl glass hover:bg-indigo-500/20 transition-all duration-300 hover:scale-110 hover:rotate-12 flex items-center justify-center focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                             >
-                                <Volume2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                                <Volume2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400 transition-transform duration-300 group-hover:scale-110" />
                             </button>
                             <button
                                 onClick={handleFavorite}
-                                className="size-9 rounded-xl glass hover:bg-yellow-500/20 transition-all hover:scale-110 flex items-center justify-center"
+                                aria-label={isFavorite ? 'Favorilerden çıkar' : 'Favorilere ekle'}
+                                aria-pressed={isFavorite}
+                                className="size-9 rounded-xl glass hover:bg-yellow-500/20 transition-all duration-300 hover:scale-110 hover:rotate-12 flex items-center justify-center focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
                             >
-                                <Star className={`w-4 h-4 ${isFavorite ? 'text-yellow-500 fill-yellow-500' : 'text-gray-500 dark:text-gray-400'}`} />
+                                <Star className={`w-4 h-4 transition-all duration-300 ${isFavorite ? 'text-yellow-500 fill-yellow-500 scale-110' : 'text-gray-500 dark:text-gray-400'}`} />
                             </button>
                         </div>
                     </div>
 
                     {/* Word */}
                     <div className="flex-1 flex flex-col items-center justify-center min-h-0 py-4">
-                        <h3 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2 truncate max-w-full px-2">{word.word}</h3>
+                        <h3 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2 truncate max-w-full px-2 transition-all duration-300 group-hover:scale-110">{word.word}</h3>
                         <p className="text-sm text-gray-600 dark:text-gray-400 font-medium truncate max-w-full">{word.phonetic}</p>
                         <span className="mt-2 px-3 py-1 text-xs glass rounded-full text-gray-700 dark:text-gray-300 truncate max-w-full">{word.partOfSpeech}</span>
                     </div>
@@ -88,12 +100,12 @@ const VocabularyCard = memo(function VocabularyCard({
                             <StatusBadge status={word.status || 'new'} />
                             <WordDifficultyBadge wordId={word.id || word.word} size="xs" showLabel={false} />
                         </div>
-                        <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">Çevirmek için tıkla</span>
+                        <span className="text-xs text-gray-600 dark:text-gray-400 font-medium group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Çevirmek için tıkla</span>
                     </div>
                 </Card>
 
                 {/* Back Side */}
-                <Card glass className="card-flip-back absolute inset-0 flex flex-col !p-5 bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 shadow-xl">
+                <Card glass className="card-flip-back absolute inset-0 flex flex-col !p-5 bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 shadow-xl group-hover:shadow-2xl transition-all duration-300">
                     {/* Turkish meaning */}
                     <div className="flex-1 flex flex-col items-center justify-center text-center px-4">
                         <p className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-3">{word.turkish}</p>
@@ -121,13 +133,14 @@ const VocabularyCard = memo(function VocabularyCard({
                                 e.stopPropagation();
                                 onPractice?.(word);
                             }}
-                            className="px-4 py-2 gradient-primary text-white text-sm font-bold rounded-xl hover:shadow-lg hover:shadow-indigo-500/50 transition-all hover:-translate-y-0.5"
+                            className="px-4 py-2 gradient-primary text-white text-sm font-bold rounded-xl hover:shadow-lg hover:shadow-indigo-500/50 transition-all duration-300 hover:-translate-y-0.5 hover:scale-105 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
                             Pratik Yap
                         </button>
                         <button
                             onClick={handleRemove}
-                            className="size-10 rounded-xl glass hover:bg-red-500/20 transition-all hover:scale-110 flex items-center justify-center"
+                            aria-label="Kelimeyi sil"
+                            className="size-10 rounded-xl glass hover:bg-red-500/20 transition-all duration-300 hover:scale-110 hover:rotate-12 flex items-center justify-center focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                         >
                             <Trash2 className="w-4 h-4 text-red-500 dark:text-red-400" />
                         </button>

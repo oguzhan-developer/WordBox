@@ -682,16 +682,15 @@ export default function VocabularyList() {
             </Modal>
 
             {/* Quick Add Word Modal */}
-            {showQuickAdd && (
-                <QuickAddWord
-                    onClose={() => setShowQuickAdd(false)}
-                    onAdd={(word) => {
-                        addWord(word);
-                        toast.success('Kelime eklendi!');
-                        setShowQuickAdd(false);
-                    }}
-                />
-            )}
+            <QuickAddWord
+                isOpen={showQuickAdd}
+                onClose={() => setShowQuickAdd(false)}
+                onAdd={(word) => {
+                    addWord(word);
+                    toast.success('Kelime eklendi!');
+                    setShowQuickAdd(false);
+                }}
+            />
         </div>
     );
 }

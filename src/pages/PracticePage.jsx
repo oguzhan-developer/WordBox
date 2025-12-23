@@ -336,10 +336,15 @@ export default function PracticePage() {
                                     key={mode.id}
                                     onClick={() => mode.available && setSelectedMode(mode.id)}
                                     disabled={!mode.available}
-                                    className={`relative text-left p-5 rounded-2xl border-2 transition-all ${isSelected
+                                    aria-label={`${mode.name} pratik modu ${isSelected ? 'seçili' : ''} ${!mode.available ? 'kilitli' : ''}`}
+                                    aria-pressed={isSelected}
+                                    role="radio"
+                                    aria-checked={isSelected}
+                                    tabIndex={mode.available ? 0 : -1}
+                                    className={`relative text-left p-5 rounded-2xl border-2 transition-all duration-300 transform ${isSelected
                                         ? 'border-indigo-600 bg-indigo-50 dark:bg-indigo-900/20 shadow-lg scale-[1.02]'
                                         : mode.available
-                                            ? 'border-gray-200 dark:border-[#333] bg-white dark:bg-[#27272a] hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-md'
+                                            ? 'border-gray-200 dark:border-[#333] bg-white dark:bg-[#27272a] hover:border-indigo-300 dark:hover:border-indigo-600 hover:shadow-md hover:scale-[1.01] focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-[#18181b]'
                                             : 'border-gray-100 dark:border-[#333] bg-gray-50 dark:bg-[#27272a]/50 opacity-60 cursor-not-allowed'
                                         }`}
                                 >
@@ -360,8 +365,8 @@ export default function PracticePage() {
                                     )}
 
                                     {/* Icon */}
-                                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${mode.color} flex items-center justify-center mb-4`}>
-                                        <Icon className="w-6 h-6 text-white" />
+                                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${mode.color} flex items-center justify-center mb-4 transition-transform duration-300 ${isSelected ? 'scale-110' : mode.available ? 'group-hover:scale-110' : ''}`}>
+                                        <Icon className="w-6 h-6 text-white transition-transform duration-300" />
                                     </div>
 
                                     {/* Content */}
@@ -396,10 +401,10 @@ export default function PracticePage() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {/* Word Source */}
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                                    <label htmlFor="word-source-group" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                                         Kelime Kaynağı
                                     </label>
-                                    <div className="space-y-2">
+                                    <div className="space-y-2" role="radiogroup" id="word-source-group" aria-label="Kelime kaynağı seçimi">
                                         {wordSources.map((source) => {
                                             const SourceIcon = source.icon;
                                             const isSelected = wordSource === source.value;
@@ -410,15 +415,20 @@ export default function PracticePage() {
                                                     key={source.value}
                                                     onClick={() => !isDisabled && setWordSource(source.value)}
                                                     disabled={isDisabled}
+                                                    role="radio"
+                                                    aria-checked={isSelected}
+                                                    aria-label={`${source.label}, ${source.count} kelime`}
+                                                    aria-disabled={isDisabled}
+                                                    tabIndex={isDisabled ? -1 : 0}
                                                     className={`w-full flex items-start gap-3 p-3 rounded-xl border-2 transition-all duration-200 ${
                                                         isSelected
-                                                            ? 'border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20'
+                                                            ? 'border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20 ring-2 ring-indigo-200 dark:ring-indigo-800'
                                                             : isDisabled
                                                                 ? 'border-gray-200 dark:border-gray-700 opacity-50 cursor-not-allowed'
-                                                                : 'border-gray-200 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-700'
+                                                                : 'border-gray-200 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-[#18181b]'
                                                     } ${source.highlight && !isSelected ? 'border-amber-300 dark:border-amber-700 bg-amber-50/50 dark:bg-amber-900/10' : ''}`}
                                                 >
-                                                    <div className={`mt-1 ${isSelected ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-500 dark:text-gray-400'}`}>
+                                                    <div className={`mt-1 transition-colors ${isSelected ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-500 dark:text-gray-400'}`}>
                                                         <SourceIcon className="w-5 h-5" />
                                                     </div>
                                                     <div className="flex-1 text-left">
@@ -441,7 +451,7 @@ export default function PracticePage() {
                                                         </p>
                                                     </div>
                                                     {isSelected && (
-                                                        <div className="text-indigo-600 dark:text-indigo-400 mt-1">
+                                                        <div className="text-indigo-600 dark:text-indigo-400 mt-1" aria-hidden="true">
                                                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                                             </svg>
@@ -455,19 +465,24 @@ export default function PracticePage() {
 
                                 {/* Word Count */}
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                                    <label htmlFor="word-count-group" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                                         Kelime Sayısı
                                     </label>
-                                    <div className="grid grid-cols-4 gap-3">
+                                    <div className="grid grid-cols-4 gap-3" role="radiogroup" id="word-count-group" aria-label="Kelime sayısı seçimi">
                                         {wordCounts.map((count) => (
                                             <button
                                                 key={count}
                                                 onClick={() => setWordCount(count)}
                                                 disabled={count > user.vocabulary.length}
+                                                role="radio"
+                                                aria-checked={wordCount === count}
+                                                aria-label={`${count} kelime`}
+                                                aria-disabled={count > user.vocabulary.length}
+                                                tabIndex={count > user.vocabulary.length ? -1 : 0}
                                                 className={`py-4 rounded-2xl border-2 font-bold text-xl transition-all duration-300 ${wordCount === count
-                                                    ? 'border-indigo-500 gradient-primary text-white shadow-lg shadow-indigo-500/50 dark:shadow-indigo-500/30 scale-110'
+                                                    ? 'border-indigo-500 gradient-primary text-white shadow-lg shadow-indigo-500/50 dark:shadow-indigo-500/30 scale-110 ring-2 ring-indigo-300 dark:ring-indigo-700'
                                                     : count <= user.vocabulary.length
-                                                        ? 'border-gray-200/80 dark:border-slate-700/60 text-gray-700 dark:text-gray-300 glass hover:glass-strong hover:border-indigo-300 dark:hover:border-indigo-500/50 hover:shadow-md hover:scale-105'
+                                                        ? 'border-gray-200/80 dark:border-slate-700/60 text-gray-700 dark:text-gray-300 glass hover:glass-strong hover:border-indigo-300 dark:hover:border-indigo-500/50 hover:shadow-md hover:scale-105 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-[#18181b]'
                                                         : 'border-gray-100 dark:border-slate-800 text-gray-300 dark:text-gray-600 glass opacity-40 cursor-not-allowed'
                                                     }`}
                                             >
