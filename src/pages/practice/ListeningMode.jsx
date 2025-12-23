@@ -3,11 +3,11 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { X, Volume2, CheckCircle, XCircle, ArrowRight, Trophy, Target, Zap, Headphones, Play, RotateCcw, VolumeX } from 'lucide-react';
 import { useUser } from '../../context/UserContext';
 import { useToast } from '../../components/Toast';
-import { supabaseService } from '../../services/supabaseService';
 import Button from '../../components/Button';
 import { calculatePracticeXp } from '../../utils/gamification';
 import { speak } from '../../utils/speechSynthesis';
 import { recordReview } from '../../utils/spacedRepetition';
+import { levenshteinDistance } from '../../utils/stringUtils';
 
 export default function ListeningMode() {
     const navigate = useNavigate();
@@ -18,8 +18,8 @@ export default function ListeningMode() {
 
     // Settings from URL
     const wordCount = parseInt(searchParams.get('count')) || 20;
-    const wordSource = searchParams.get('source') || 'all';
-    const dbLevel = searchParams.get('level') || user.level || 'B1';
+    const _wordSource = searchParams.get('source') || 'all';
+    const _dbLevel = searchParams.get('level') || user.level || 'B1';
 
     // State
     const [questions, setQuestions] = useState([]);
@@ -30,22 +30,20 @@ export default function ListeningMode() {
     const [results, setResults] = useState({ correct: 0, wrong: 0 });
     const [isComplete, setIsComplete] = useState(false);
     const [endTime, setEndTime] = useState(null);
-    const [startTime, setStartTime] = useState(null);
+    const [startTime] = useState(() => Date.now());
     const [showExitConfirm, setShowExitConfirm] = useState(false);
     const [combo, setCombo] = useState(0);
     const [maxCombo, setMaxCombo] = useState(0);
     const questionStartTimeRef = useRef(null);
     const [questionTimes, setQuestionTimes] = useState([]);
-
-    // Initialize time on mount
-    useEffect(() => {
-        const now = Date.now();
-        setStartTime(now);
-        questionStartTimeRef.current = now;
-    }, []);
     const [playCount, setPlayCount] = useState(0);
     const [isSpeaking, setIsSpeaking] = useState(false);
     const [hasAutoPlayed, setHasAutoPlayed] = useState(false);
+
+    // Initialize time refs on mount
+    useEffect(() => {
+        questionStartTimeRef.current = Date.now();
+    }, []);
 
     // Load words
     useEffect(() => {
@@ -107,27 +105,6 @@ export default function ListeningMode() {
             return () => clearTimeout(timer);
         }
     }, [currentQuestion, hasAutoPlayed, isAnswered, playWord]);
-
-    // Levenshtein distance for typo tolerance
-    const levenshteinDistance = (str1, str2) => {
-        const m = str1.length;
-        const n = str2.length;
-        const dp = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0));
-
-        for (let i = 0; i <= m; i++) dp[i][0] = i;
-        for (let j = 0; j <= n; j++) dp[0][j] = j;
-
-        for (let i = 1; i <= m; i++) {
-            for (let j = 1; j <= n; j++) {
-                if (str1[i - 1] === str2[j - 1]) {
-                    dp[i][j] = dp[i - 1][j - 1];
-                } else {
-                    dp[i][j] = Math.min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]) + 1;
-                }
-            }
-        }
-        return dp[m][n];
-    };
 
     // Check answer
     const checkAnswer = useCallback(() => {

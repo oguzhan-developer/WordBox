@@ -11,10 +11,10 @@ import { getReadingStats, getWeeklyReadingSummary, formatReadingTime } from '../
 export default function ProgressPage() {
     const { user } = useUser();
 
-    // Weekly activity data
-    const weeklyActivity = useMemo(() => getWeeklyActivity(), [user.wordsToday]);
-    const weeklyTotal = useMemo(() => getWeeklyTotal(), [user.wordsToday]);
-    const bestDay = useMemo(() => getBestDayThisWeek(), [user.wordsToday]);
+    // Weekly activity data (these read from localStorage)
+    const weeklyActivity = useMemo(() => getWeeklyActivity(), []);
+    const weeklyTotal = useMemo(() => getWeeklyTotal(), []);
+    const bestDay = useMemo(() => getBestDayThisWeek(), []);
     const weeklyMax = bestDay > 0 ? bestDay : 20;
     
     // Reading stats

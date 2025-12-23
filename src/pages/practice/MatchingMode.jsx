@@ -3,7 +3,6 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { X, Clock, Lightbulb, RotateCcw } from 'lucide-react';
 import { useUser } from '../../context/UserContext';
 import { useToast } from '../../components/Toast';
-import { supabaseService } from '../../services/supabaseService';
 import Card from '../../components/Card';
 import Button from '../../components/Button';
 import { SuccessModal } from '../../components/Modal';
@@ -17,8 +16,8 @@ export default function MatchingMode() {
 
     // Settings
     const wordCount = Math.min(parseInt(searchParams.get('count')) || 10, 10); // Max 10 for matching
-    const wordSource = searchParams.get('source') || 'all';
-    const dbLevel = searchParams.get('level') || user.level || 'B1';
+    const _wordSource = searchParams.get('source') || 'all';
+    const _dbLevel = searchParams.get('level') || user.level || 'B1';
 
     // State
     const [words, setWords] = useState([]);

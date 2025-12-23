@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useCallback } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
     Layers,
@@ -9,13 +9,11 @@ import {
     Headphones,
     Clock,
     Zap,
-    Lock,
     BookOpen,
     TrendingUp,
     Plus
 } from 'lucide-react';
 import { useUser } from '../context/UserContext';
-import { supabaseService } from '../services/supabaseService';
 import Card from '../components/Card';
 import Button from '../components/Button';
 import { LevelBadge } from '../components/Badge';
@@ -29,6 +27,9 @@ export default function PracticePage() {
     const [selectedMode, setSelectedMode] = useState(searchParams.get('mode') || null);
     const [wordCount, setWordCount] = useState(20);
     const [wordSource, setWordSource] = useState('all');
+    
+    // Word count options
+    const wordCounts = [10, 20, 30, 50];
     
     // SRS Statistics - memoized
     const srsStats = useMemo(() => getSrsStats(user.vocabulary || []), [user.vocabulary]);
@@ -143,52 +144,7 @@ export default function PracticePage() {
         },
     ], [wordSourceCounts]);
 
-    // If no words in vocabulary, show motivational empty state
-    if (user.vocabulary.length === 0) {
-        return (
-            <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 pt-20 pb-12 flex items-center justify-center">
-                <div className="max-w-2xl mx-auto px-4 text-center">
-                    <div className="animate-bounce text-8xl mb-6">📚</div>
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                        Kelime Listeniz Boş!
-                    </h2>
-                    <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-lg mx-auto">
-                        Pratik yapabilmek için önce kelime eklemelisiniz. Kütüphanedeki içerikleri okuyarak veya manuel olarak kelime ekleyebilirsiniz.
-                    </p>
-                    
-                    {/* Action Cards */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                        <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border-2 border-indigo-200 dark:border-indigo-700/50 hover:border-indigo-400 dark:hover:border-indigo-600 transition-all cursor-pointer group" onClick={() => navigate('/library')}>
-                            <div className="text-4xl mb-3">📰</div>
-                            <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-lg">Kütüphaneden Oku</h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">Haberler ve hikayeler okuyarak kelime öğrenin</p>
-                        </div>
-                        <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-700/50 hover:border-purple-400 dark:hover:border-purple-600 transition-all cursor-pointer group" onClick={() => navigate('/vocabulary')}>
-                            <div className="text-4xl mb-3">➕</div>
-                            <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-lg">Manuel Ekle</h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">Kendi kelimelerinizi listeye ekleyin</p>
-                        </div>
-                    </div>
-                    
-                    <Button
-                        variant="primary"
-                        size="lg"
-                        onClick={() => navigate('/library')}
-                        className="px-8 py-4 text-lg"
-                    >
-                        <BookOpen className="w-5 h-5 mr-2" />
-                        Kütüphaneye Git
-                    </Button>
-                    
-                    <p className="text-sm text-gray-500 dark:text-gray-500 mt-6">
-                        💡 İpucu: En az 10 kelime eklediğinizde pratik yapabilirsiniz
-                    </p>
-                </div>
-            </div>
-        );
-    }
-
-    // Start practice - useCallback
+    // Start practice - useCallback (must be before early returns)
     const startPractice = useCallback(() => {
         if (!selectedMode) return;
         
@@ -240,31 +196,6 @@ export default function PracticePage() {
                     <p className="text-sm text-gray-500 dark:text-gray-500 mt-6">
                         💡 İpucu: En az 10 kelime eklediğinizde pratik yapabilirsiniz
                     </p>
-                </div>
-            </div>
-        );
-    }
-
-    // If no words anywhere, show empty state
-    if (user.vocabulary.length === 0) {
-        return (
-            <div className="min-h-screen bg-gray-50 dark:bg-[#18181b] pt-20 pb-12 flex items-center justify-center">
-                <div className="text-center max-w-md px-4">
-                    <div className="text-6xl mb-4">📚</div>
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                        Önce kelime ekle!
-                    </h2>
-                    <p className="text-gray-600 mb-6">
-                        Pratik yapmak için kelime listende kelime olması gerekiyor.
-                        Kütüphaneden içerik okuyarak kelime eklemeye başla.
-                    </p>
-                    <Button
-                        variant="primary"
-                        size="lg"
-                        onClick={() => navigate('/library')}
-                    >
-                        📚 Kütüphaneye Git
-                    </Button>
                 </div>
             </div>
         );

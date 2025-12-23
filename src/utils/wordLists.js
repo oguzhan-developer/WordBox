@@ -276,20 +276,16 @@ const saveListsData = (data) => {
 // HOOK: React component'lerde kullanım için
 // ============================================
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 
 export const useWordLists = () => {
-  const [lists, setLists] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [lists, setLists] = useState(() => getAllLists());
+  const [loading, setLoading] = useState(false);
 
   const refresh = useCallback(() => {
     setLists(getAllLists());
     setLoading(false);
   }, []);
-
-  useEffect(() => {
-    refresh();
-  }, [refresh]);
 
   const create = useCallback((list) => {
     const newList = createList(list);

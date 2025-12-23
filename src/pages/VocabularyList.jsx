@@ -34,7 +34,7 @@ import {
 } from '../utils/vocabularyExport';
 
 export default function VocabularyList() {
-    const navigate = useNavigate();
+    const _navigate = useNavigate();
     const { user, removeWord, addWord } = useUser();
     const toast = useToast();
     const fileInputRef = useRef(null);
@@ -50,7 +50,7 @@ export default function VocabularyList() {
     const [showExportModal, setShowExportModal] = useState(false);
     const [showImportModal, setShowImportModal] = useState(false);
     const [importResult, setImportResult] = useState(null);
-    const [showBulkActions, setShowBulkActions] = useState(false);
+    const [_showBulkActions, setShowBulkActions] = useState(false);
     const [displayCount, setDisplayCount] = useState(50); // Pagination
     const [showQuickAdd, setShowQuickAdd] = useState(false);
 

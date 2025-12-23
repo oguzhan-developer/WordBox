@@ -46,8 +46,8 @@ export default function SprintMode() {
             const pool = await supabaseService.getWordsByLevel(selectedLevel);
 
             if (pool.length === 0) {
-                console.warn("No words found for level:", selectedLevel);
-                generateQuestion(); // Simple retry or use a different level
+                // No words available - end the game gracefully
+                setIsLoading(false);
                 return;
             }
 

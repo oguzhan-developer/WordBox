@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { supabaseService } from '../services/supabaseService';
@@ -13,7 +13,6 @@ import { useNetworkStatus } from '../hooks/useNetworkStatus';
 
 export default function Dashboard() {
     const { user, addWord, addXp } = useUser();
-    const navigate = useNavigate();
     const { isOnline } = useNetworkStatus();
     const [showFocusTimer, setShowFocusTimer] = useState(false);
     const [wotdLearned, setWotdLearned] = useState(() => isWordLearnedToday());
@@ -84,9 +83,9 @@ export default function Dashboard() {
         return () => { cancelled = true; };
     }, [user.level]);
     
-    // Study Goals - memoize properly
-    const dailyGoalStatus = useMemo(() => getDailyGoalStatus(), [wordsToday]);
-    const motivation = useMemo(() => getMotivationMessage(), [wordsToday]);
+    // Study Goals - memoize properly (these read from localStorage, don't depend on wordsToday)
+    const dailyGoalStatus = useMemo(() => getDailyGoalStatus(), []);
+    const motivation = useMemo(() => getMotivationMessage(), []);
     
     // Handle learning WOTD - useCallback to prevent recreating function
     const handleLearnWotd = useCallback(() => {
@@ -118,9 +117,9 @@ export default function Dashboard() {
         }
     }, [wordsToday]);
 
-    // Get weekly activity data - memoize properly
-    const weeklyActivity = useMemo(() => getWeeklyActivity(), [wordsToday]);
-    const bestDay = useMemo(() => getBestDayThisWeek(), [wordsToday]);
+    // Get weekly activity data - memoize properly (these read from localStorage)
+    const weeklyActivity = useMemo(() => getWeeklyActivity(), []);
+    const bestDay = useMemo(() => getBestDayThisWeek(), []);
     const weeklyMax = useMemo(() => Math.max(bestDay, 20), [bestDay]);
 
     return (

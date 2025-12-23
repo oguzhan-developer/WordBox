@@ -164,7 +164,8 @@ export function UserProvider({ children }) {
             mounted = false;
             subscription.unsubscribe();
         };
-    }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []); // Intentionally empty - init only on mount
 
     // Theme Switch Logic
     useEffect(() => {
@@ -179,7 +180,8 @@ export function UserProvider({ children }) {
             root.classList.remove('dark');
         }
 
-    }, [user.preferences?.theme]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user.preferences?.theme]); // Only react to theme preference changes
 
     // Font Size Logic
     useEffect(() => {
@@ -203,7 +205,8 @@ export function UserProvider({ children }) {
 
         root.style.fontSize = scale;
 
-    }, [user.preferences?.fontSize]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user.preferences?.fontSize]); // Only react to fontSize preference changes
 
     // Check reset daily stats (only logic, sync is handled in recordActivity or separately)
     useEffect(() => {
@@ -215,7 +218,8 @@ export function UserProvider({ children }) {
         if (lastActivity && lastActivity !== today && user.wordsToday > 0) {
             updateProfile({ words_today: 0 }); // Reset wordsToday in DB
         }
-    }, [isLoggedIn, user.lastPracticeDate]); // Minimal dependency to check once date changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isLoggedIn, user.lastPracticeDate]); // Intentionally minimal deps to run once per date change
 
 
     // Fetch Profile from DB
@@ -408,8 +412,12 @@ export function UserProvider({ children }) {
     const addWord = async (word) => {
         if (!user.id) return;
 
-        // Check if exists
-        if (user.vocabulary.find(w => w.id === word.id)) {
+        // Check if word already exists in vocabulary by word text
+        const existingWord = user.vocabulary.find(w => 
+            w.id === word.id || 
+            w.word?.toLowerCase() === word.word?.toLowerCase()
+        );
+        if (existingWord) {
             console.log('Word already in vocabulary:', word.word);
             return;
         }

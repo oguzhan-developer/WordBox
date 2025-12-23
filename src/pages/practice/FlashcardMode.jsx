@@ -3,7 +3,6 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { X, Volume2, RotateCcw, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useUser } from '../../context/UserContext';
 import { useToast } from '../../components/Toast';
-import { supabaseService } from '../../services/supabaseService';
 import Card from '../../components/Card';
 import Button from '../../components/Button';
 import { CircularProgress } from '../../components/ProgressBar';
@@ -21,8 +20,8 @@ export default function FlashcardMode() {
 
     // Settings from URL
     const wordCount = parseInt(searchParams.get('count')) || 20;
-    const wordSource = searchParams.get('source') || 'all';
-    const dbLevel = searchParams.get('level') || user.level || 'B1';
+    const _wordSource = searchParams.get('source') || 'all';
+    const _dbLevel = searchParams.get('level') || user.level || 'B1';
 
     // State
     const [words, setWords] = useState([]);

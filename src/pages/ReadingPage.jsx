@@ -117,7 +117,8 @@ export default function ReadingPage() {
         };
 
         loadContent();
-    }, [id, selectedLevel]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [id, selectedLevel]); // navigate excluded - stable reference from react-router
 
     // Track scroll progress
     useEffect(() => {
@@ -693,35 +694,27 @@ export default function ReadingPage() {
 
                                         <button
                                             onClick={async () => {
+                                                let addedCount = 0;
                                                 for (const wordItem of article.newWords || []) {
                                                     const wordText = typeof wordItem === 'string' ? wordItem : wordItem?.word;
                                                     if (!wordText) continue;
                                                     
                                                     if (!user.vocabulary.some(v => v.word?.toLowerCase() === wordText.toLowerCase())) {
-                                                        // First check if we have word info from the article itself
-                                                        if (typeof wordItem === 'object' && wordItem.word) {
-                                                            const payload = {
-                                                                id: `article-${wordItem.word.toLowerCase().replace(/\s+/g, '-')}`,
-                                                                word: wordItem.word,
-                                                                turkish: wordItem.turkish || '-',
-                                                                definition: wordItem.definition || '',
-                                                                level: selectedLevel,
-                                                                source: 'reading',
-                                                            };
-                                                            addWord(payload);
-                                                            setAddedWords(prev => new Set([...prev, payload.id]));
-                                                        } else {
-                                                            // Fallback to searching in database
-                                                            const results = await supabaseService.searchWords(wordText);
-                                                            const wordInfo = results.find(w => w.word?.toLowerCase() === wordText.toLowerCase());
-                                                            if (wordInfo) {
-                                                                addWord(wordInfo);
-                                                                setAddedWords(prev => new Set([...prev, wordInfo.id]));
-                                                            }
+                                                        // Always search in database to get real word ID
+                                                        const results = await supabaseService.searchWords(wordText);
+                                                        const wordInfo = results.find(w => w.word?.toLowerCase() === wordText.toLowerCase());
+                                                        if (wordInfo) {
+                                                            addWord(wordInfo);
+                                                            setAddedWords(prev => new Set([...prev, wordInfo.id]));
+                                                            addedCount++;
                                                         }
                                                     }
                                                 }
-                                                toast.success('Tüm kelimeler eklendi!');
+                                                if (addedCount > 0) {
+                                                    toast.success(`${addedCount} kelime eklendi!`);
+                                                } else {
+                                                    toast.info('Eklenecek yeni kelime yok.');
+                                                }
                                             }}
                                             className="w-full mt-6 px-4 py-4 rounded-xl border-2 border-dashed border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 font-bold hover:border-indigo-600 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all flex items-center justify-center gap-2"
                                         >

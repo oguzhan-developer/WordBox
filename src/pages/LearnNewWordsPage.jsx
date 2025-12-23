@@ -204,7 +204,8 @@ export default function LearnNewWordsPage() {
     // Seviye değiştiğinde kelimeleri getir
     useEffect(() => {
         fetchWords();
-    }, [selectedLevel]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedLevel]); // fetchWords excluded - we only want to refetch when level changes
 
     // Konuşma
     const handleSpeak = useCallback((text) => {

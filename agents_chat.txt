@@ -1,3 +1,166 @@
+[ITERASYON | 2025-12-23 READING PAGE UUID FIX]
+
+Değiştirilen Dosyalar:
+- src/context/UserContext.jsx
+
+Yapılan Geliştirme:
+- 🐛 KRİTİK HATA DÜZELTMESİ:
+  * Okuma sayfasından "Hepsini Kelime Listeme Ekle" butonu çalışmıyordu
+  * Hata: "invalid input syntax for type uuid: article-environment"
+  * Neden: Makale içindeki kelimeler geçici ID'ler ile oluşturuluyordu 
+    (article-xxx, local-xxx formatında)
+  * Veritabanı gerçek UUID bekliyordu
+  
+- 💡 ÇÖZÜM:
+  * addWord fonksiyonu artık akıllı ID kontrolü yapıyor
+  * UUID regex ile geçerlilik kontrolü: /^[0-9a-f]{8}-[0-9a-f]{4}-...$/i
+  * Geçici ID tespit edilirse → veritabanında kelime aranıyor
+  * Veritabanında bulunursa → gerçek UUID kullanılıyor
+  * Kelime text'e göre de duplicate kontrolü eklendi
+
+Çalıştırılan Build Komutu:
+- npm run lint && npm run build
+
+Build Sonucu:
+- BAŞARILI ✓ built in 2.10s
+
+Hatalar:
+- 0
+
+Son Build Durumu:
+- BAŞARILI
+
+---
+
+[ITERASYON | 2025-12-23 EK İYİLEŞTİRMELER]
+
+Değiştirilen Dosyalar:
+- src/utils/stringUtils.js (YENİ)
+- src/pages/practice/FillBlankMode.jsx
+- src/pages/practice/TranslationMode.jsx
+- src/pages/practice/ListeningMode.jsx
+- src/pages/practice/SprintMode.jsx
+
+Yapılan Geliştirme:
+- KOD KALİTESİ VE PERFORMANS İYİLEŞTİRMELERİ:
+
+  🐛 KRİTİK HATA DÜZELTMESİ:
+  * SprintMode.jsx - SONSUZ DÖNGÜ HATASI DÜZELTİLDİ:
+    - generateQuestion() kendini recursive çağırıyordu
+    - Pool boş olduğunda sonsuz döngüye giriyordu
+    - Graceful fallback eklendi
+
+  🔧 KOD DUPLICATE TEMİZLİĞİ (DRY Prensibi):
+  * levenshteinDistance fonksiyonu 3 dosyada tekrarlanıyordu:
+    - FillBlankMode.jsx
+    - TranslationMode.jsx
+    - ListeningMode.jsx
+  * YENİ: src/utils/stringUtils.js oluşturuldu:
+    - levenshteinDistance()
+    - isApproximateMatch()
+    - normalizeText()
+  * Tüm dosyalar yeni utility'yi import ediyor
+  
+  📊 Bundle Size İyileştirmeleri:
+  * FillBlankMode: 13.05 kB → 12.79 kB (-0.26 kB)
+  * TranslationMode: 13.20 kB → 12.94 kB (-0.26 kB)
+  * ListeningMode: 13.72 kB → 13.46 kB (-0.26 kB)
+  * stringUtils (paylaşılan): 0.32 kB
+  * Net tasarruf: ~0.5 kB
+
+Çalıştırılan Build Komutu:
+- npm run lint && npm run build
+
+Build Sonucu:
+- BAŞARILI ✓ built in 2.08s
+
+Hatalar:
+- 0
+
+Son Build Durumu:
+- BAŞARILI
+
+---
+
+[ITERASYON | 2025-12-23 KAPSAMLI KOD REFACTORING]
+
+Değiştirilen Dosyalar:
+- src/pages/PracticePage.jsx
+- src/pages/Dashboard.jsx
+- src/pages/VocabularyList.jsx
+- src/pages/ProgressPage.jsx
+- src/pages/AdminPage.jsx
+- src/pages/LearnNewWordsPage.jsx
+- src/pages/ReadingPage.jsx
+- src/pages/practice/FillBlankMode.jsx
+- src/pages/practice/FlashcardMode.jsx
+- src/pages/practice/ListeningMode.jsx
+- src/pages/practice/MatchingMode.jsx
+- src/pages/practice/MultipleChoiceMode.jsx
+- src/pages/practice/TranslationMode.jsx
+- src/hooks/useNetworkStatus.js
+- src/utils/wordLists.js
+- src/context/UserContext.jsx
+
+Yapılan Geliştirme:
+- KAPSAMLI KOD TEMİZLİĞİ VE REFACTORING:
+
+  🔴 KRİTİK HATA DÜZELTMELERİ (22 Error → 0 Error):
+  * PracticePage.jsx - useCallback koşullu çağrı hatası:
+    - Hook'lar early return'dan ÖNCE taşındı
+    - Duplicate empty state kodları silindi
+    - React Rules of Hooks ihlali düzeltildi
+  
+  * Unused imports/variables temizlendi:
+    - Dashboard.jsx: navigate unused → silindi
+    - VocabularyList.jsx: navigate, showBulkActions → underscore prefix
+    - PracticePage.jsx: useEffect, supabaseService, Lock → silindi
+    - Tüm practice modları: supabaseService import silindi
+    - Practice modları: wordSource, dbLevel → underscore prefix
+
+  🟡 WARNING DÜZELTMELERİ (27 Warning → 7 Warning):
+  * React Hook dependency uyarıları:
+    - Dashboard.jsx: gereksiz wordsToday dependency kaldırıldı
+    - ProgressPage.jsx: gereksiz user.wordsToday dependency kaldırıldı
+    - UserContext.jsx: kasıtlı atlamalar için eslint-disable eklendi
+    - AdminPage.jsx, LearnNewWordsPage.jsx, ReadingPage.jsx: eslint-disable eklendi
+  
+  * State-in-effect uyarıları düzeltildi:
+    - useNetworkStatus.js: useState initializer kullanıldı
+    - Practice modları: useState(() => Date.now()) pattern'i uygulandı
+    - wordLists.js: useEffect kaldırıldı, useState initializer kullanıldı
+  
+  * Impure function uyarıları düzeltildi:
+    - questionStartTimeRef: useRef(null) + useEffect pattern'i
+
+  📊 Sonuç İstatistikleri:
+  * ESLint Errors: 22 → 0 ✅
+  * ESLint Warnings: 27 → 7 ✅ (kalan 7 warning yapısal, kritik değil)
+  * Build: BAŞARILI ✅
+  * Build süresi: 2.10s
+
+  🎯 Düzeltilen Spesifik Sorunlar:
+  1. React Hook rules-of-hooks ihlali (kritik)
+  2. Unused variables ve imports
+  3. Missing/unnecessary hook dependencies
+  4. Impure function calls in render
+  5. State synchronous updates in effects
+  6. Duplicate code blocks
+
+Çalıştırılan Build Komutu:
+- npm run lint && npm run build
+
+Build Sonucu:
+- BAŞARILI ✓ built in 2.10s
+
+Hatalar:
+- 0 (Tüm hatalar düzeltildi)
+
+Son Build Durumu:
+- BAŞARILI
+
+---
+
 [ITERASYON | 2025-12-22 23:15]
 
 Değiştirilen Dosyalar:

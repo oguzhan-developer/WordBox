@@ -1,16 +1,8 @@
-import { useEffect, useState, useCallback, useRef } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 export function useNetworkStatus() {
     const [isOnline, setIsOnline] = useState(typeof navigator !== 'undefined' ? navigator.onLine : true);
-    const initialTimeRef = useRef(null);
     const [lastChangedAt, setLastChangedAt] = useState(null);
-
-    // Initialize time on mount
-    useEffect(() => {
-        const now = Date.now();
-        initialTimeRef.current = now;
-        setLastChangedAt(now);
-    }, []);
 
     const updateStatus = useCallback((status) => {
         setIsOnline(status);

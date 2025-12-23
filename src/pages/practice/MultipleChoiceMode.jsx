@@ -3,7 +3,6 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { X, Volume2, CheckCircle, XCircle, ArrowRight, Trophy, Target, Zap } from 'lucide-react';
 import { useUser } from '../../context/UserContext';
 import { useToast } from '../../components/Toast';
-import { supabaseService } from '../../services/supabaseService';
 import Button from '../../components/Button';
 import PracticeSummary from '../../components/PracticeSummary';
 import { calculatePracticeXp } from '../../utils/gamification';
@@ -30,7 +29,7 @@ export default function MultipleChoiceMode() {
     const [results, setResults] = useState({ correct: 0, wrong: 0 });
     const [isComplete, setIsComplete] = useState(false);
     const [endTime, setEndTime] = useState(null);
-    const [startTime, setStartTime] = useState(null);
+    const [startTime] = useState(() => Date.now());
     const [showExitConfirm, setShowExitConfirm] = useState(false);
     const [combo, setCombo] = useState(0);
     const [maxCombo, setMaxCombo] = useState(0);
@@ -38,11 +37,9 @@ export default function MultipleChoiceMode() {
     const questionStartTimeRef = useRef(null);
     const [missedWords, setMissedWords] = useState([]);
 
-    // Initialize time on mount
+    // Initialize time refs on mount
     useEffect(() => {
-        const now = Date.now();
-        setStartTime(now);
-        questionStartTimeRef.current = now;
+        questionStartTimeRef.current = Date.now();
     }, []);
 
     // Generate questions from words

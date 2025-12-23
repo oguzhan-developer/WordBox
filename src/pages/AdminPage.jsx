@@ -315,7 +315,8 @@ export default function AdminPage() {
             return;
         }
         loadData();
-    }, [activeTab, user?.email, isAdmin, filterLevel]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [activeTab, user?.email, isAdmin, filterLevel]); // loadData and navigate excluded intentionally
 
     const loadData = async () => {
         setIsLoading(true);
