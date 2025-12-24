@@ -20,7 +20,9 @@ import {
     Filter,
     GripVertical,
     BookA,
-    Link2
+    Link2,
+    FileJson,
+    Download
 } from 'lucide-react';
 import { supabase } from '../lib/supabaseClient';
 import { supabaseService } from '../services/supabaseService';
@@ -260,10 +262,7 @@ export default function AdminPage() {
         usageNotes: '',
         commonMistakes: '',
         imageUrl: '',
-        audioUrl: '',
-        frequencyRank: null,
-        isCommon: true,
-        tags: []
+        audioUrl: ''
     });
 
     // Modal states
@@ -271,6 +270,14 @@ export default function AdminPage() {
     const [showEditModal, setShowEditModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
+
+    // JSON Import states
+    const [showJsonModal, setShowJsonModal] = useState(false);
+    const [jsonFile, setJsonFile] = useState(null);
+    const [jsonPreview, setJsonPreview] = useState(null);
+    const [jsonUploadStatus, setJsonUploadStatus] = useState('idle'); // 'idle' | 'preview' | 'uploading' | 'success' | 'error'
+    const [jsonError, setJsonError] = useState(null);
+    const [jsonUploadProgress, setJsonUploadProgress] = useState({ current: 0, total: 0 });
 
     // Form state for news/stories - kelimeler artık ID referansları olarak tutulacak
     const [formData, setFormData] = useState({
@@ -445,10 +452,7 @@ export default function AdminPage() {
             usageNotes: '',
             commonMistakes: '',
             imageUrl: '',
-            audioUrl: '',
-            frequencyRank: null,
-            isCommon: true,
-            tags: []
+            audioUrl: ''
         });
         setEditingWord(null);
     };
@@ -474,10 +478,7 @@ export default function AdminPage() {
             usageNotes: word.usageNotes || '',
             commonMistakes: word.commonMistakes || '',
             imageUrl: word.imageUrl || '',
-            audioUrl: word.audioUrl || '',
-            frequencyRank: word.frequencyRank || null,
-            isCommon: word.isCommon ?? true,
-            tags: word.tags || []
+            audioUrl: word.audioUrl || ''
         });
         setEditingWord(word);
         setShowWordModal(true);
@@ -536,6 +537,148 @@ export default function AdminPage() {
             console.error('Error deleting word:', error);
             toast.error('Kelime silinemedi: ' + error.message);
         }
+    };
+
+    // JSON Import fonksiyonları
+    const handleJsonFileSelect = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        if (file.type !== 'application/json' && !file.name.endsWith('.json')) {
+            setJsonError('Lütfen geçerli bir JSON dosyası seçin.');
+            return;
+        }
+
+        setJsonFile(file);
+        setJsonError(null);
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            try {
+                const json = JSON.parse(event.target.result);
+                if (!Array.isArray(json)) {
+                    setJsonError('JSON formatı hatalı. Kelimeler bir array olmalı.');
+                    return;
+                }
+                if (json.length === 0) {
+                    setJsonError('JSON dosyası boş.');
+                    return;
+                }
+                setJsonPreview(json.slice(0, 3)); // İlk 3 kelimeyi göster
+                setJsonUploadStatus('preview');
+            } catch (err) {
+                setJsonError('JSON parse edilemedi: ' + err.message);
+            }
+        };
+        reader.readAsText(file);
+    };
+
+    const handleJsonUpload = async () => {
+        if (!jsonFile) return;
+
+        setJsonUploadStatus('uploading');
+        setJsonError(null);
+
+        const reader = new FileReader();
+        reader.onload = async (event) => {
+            try {
+                const words = JSON.parse(event.target.result);
+                const total = words.length;
+                let successCount = 0;
+                let errorCount = 0;
+                const errors = [];
+
+                for (let i = 0; i < total; i++) {
+                    setJsonUploadProgress({ current: i + 1, total });
+                    const word = words[i];
+
+                    try {
+                        await supabaseService.createWord({
+                            word: word.word || '',
+                            phonetic: word.phonetic || '',
+                            partOfSpeech: word.partOfSpeech || word.part_of_speech || '',
+                            level: word.level || 'B1',
+                            meaningsTr: word.meaningsTr || word.meanings_tr || [],
+                            definitionsEn: word.definitionsEn || word.definitions_en || [],
+                            examplesEn: word.examplesEn || word.examples_en || [],
+                            examplesTr: word.examplesTr || word.examples_tr || [],
+                            synonyms: word.synonyms || [],
+                            antonyms: word.antonyms || [],
+                            usageNotes: word.usageNotes || word.usage_notes || '',
+                            commonMistakes: word.commonMistakes || word.common_mistakes || '',
+                            imageUrl: word.imageUrl || word.image_url || '',
+                            audioUrl: word.audioUrl || word.audio_url || ''
+                        });
+                        successCount++;
+                    } catch (err) {
+                        errorCount++;
+                        errors.push({ word: word.word, error: err.message });
+                    }
+                }
+
+                if (successCount > 0) {
+                    toast.success(`${successCount} kelime başarıyla eklendi!`);
+                }
+                if (errorCount > 0) {
+                    toast.error(`${errorCount} kelime eklenemedi.`);
+                    console.error('Import errors:', errors);
+                }
+
+                setJsonUploadStatus('success');
+                loadWords(wordsPagination.page);
+            } catch (err) {
+                setJsonError('İçe aktarım sırasında hata: ' + err.message);
+                setJsonUploadStatus('error');
+            }
+        };
+        reader.readAsText(jsonFile);
+    };
+
+    const handleDownloadSampleJson = () => {
+        const sampleWords = [
+            {
+                word: "example",
+                phonetic: "/ɪɡˈzæmpəl/",
+                partOfSpeech: "noun",
+                level: "B1",
+                meaningsTr: ["örnek", "misal"],
+                definitionsEn: ["A thing characteristic of its kind or illustrating a general rule."],
+                examplesEn: ["This is an example of how to use the word."],
+                examplesTr: ["Bu kelimeyi nasıl kullanacağınızın bir örneği."],
+                synonyms: ["sample", "instance"],
+                antonyms: [],
+                usageNotes: "Use 'for example' to introduce an illustration.",
+                commonMistakes: "",
+                imageUrl: "",
+                audioUrl: ""
+            },
+            {
+                word: "learn",
+                phonetic: "/lɜːrn/",
+                partOfSpeech: "verb",
+                level: "A1",
+                meaningsTr: ["öğrenmek", "kavramak"],
+                definitionsEn: ["To gain knowledge or skill."],
+                examplesEn: ["I want to learn English."],
+                examplesTr: ["İngilizce öğrenmek istiyorum."],
+                synonyms: ["study", "acquire"],
+                antonyms: ["forget", "ignore"],
+                usageNotes: "",
+                commonMistakes: "Don't confuse 'learn' with 'teach'.",
+                imageUrl: "",
+                audioUrl: ""
+            }
+        ];
+
+        const blob = new Blob([JSON.stringify(sampleWords, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'sample-words.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
     };
 
     // Array field güncelleme yardımcı fonksiyonları
@@ -1072,6 +1215,19 @@ export default function AdminPage() {
                             >
                                 <RefreshCw size={20} />
                                 Ara
+                            </button>
+                            <button
+                                onClick={() => {
+                                    setShowJsonModal(true);
+                                    setJsonUploadStatus('idle');
+                                    setJsonFile(null);
+                                    setJsonPreview(null);
+                                    setJsonError(null);
+                                }}
+                                className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+                            >
+                                <FileJson size={20} />
+                                JSON ile Yükle
                             </button>
                         </div>
 
@@ -1832,17 +1988,6 @@ export default function AdminPage() {
                                 <option value="C1">C1 - İleri</option>
                             </select>
                         </div>
-                        <div className="flex items-center gap-4">
-                            <label className="flex items-center gap-2 cursor-pointer">
-                                <input
-                                    type="checkbox"
-                                    checked={wordForm.isCommon}
-                                    onChange={(e) => setWordForm({ ...wordForm, isCommon: e.target.checked })}
-                                    className="w-5 h-5 rounded border-gray-300"
-                                />
-                                <span className="text-sm text-gray-700 dark:text-gray-300">Yaygın Kelime</span>
-                            </label>
-                        </div>
                     </div>
 
                     {/* Türkçe Anlamlar */}
@@ -2028,6 +2173,229 @@ export default function AdminPage() {
                         <Save size={20} />
                         {editingWord ? 'Güncelle' : 'Kaydet'}
                     </button>
+                </div>
+            </Modal>
+
+            {/* JSON Import Modal */}
+            <Modal
+                isOpen={showJsonModal}
+                onClose={() => {
+                    setShowJsonModal(false);
+                    setJsonUploadStatus('idle');
+                    setJsonFile(null);
+                    setJsonPreview(null);
+                    setJsonError(null);
+                }}
+                title="JSON ile Kelime Yükle"
+            >
+                <div className="space-y-4">
+                    {/* Durum: Idle - Başlangıç */}
+                    {jsonUploadStatus === 'idle' && (
+                        <div className="text-center py-8">
+                            <FileJson className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                JSON Dosyası ile Kelime Yükle
+                            </h3>
+                            <p className="text-gray-600 dark:text-gray-400 mb-6">
+                                JSON formatında hazırladığınız kelime listesini yükleyebilirsiniz.
+                            </p>
+
+                            {/* Örnek JSON Gösterimi */}
+                            <div className="bg-gray-900 text-gray-100 rounded-lg p-4 text-left text-sm overflow-x-auto mb-6">
+                                <pre className="text-xs">{`[
+  {
+    "word": "example",
+    "phonetic": "/ɪɡˈzæmpəl/",
+    "partOfSpeech": "noun",
+    "level": "B1",
+    "meaningsTr": ["örnek", "misal"],
+    "definitionsEn": ["A thing characteristic..."],
+    "examplesEn": ["This is an example..."],
+    "examplesTr": ["Bu bir örnektir..."],
+    "synonyms": ["sample", "instance"],
+    "antonyms": [],
+    "usageNotes": "Use 'for example'...",
+    "commonMistakes": "",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  ...
+]`}</pre>
+                            </div>
+
+                            <div className="flex gap-3 justify-center">
+                                <button
+                                    onClick={handleDownloadSampleJson}
+                                    className="flex items-center gap-2 px-4 py-2 bg-gray-200 dark:bg-zinc-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-300 dark:hover:bg-zinc-600"
+                                >
+                                    <Download size={18} />
+                                    Örnek JSON İndir
+                                </button>
+                                <label className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 cursor-pointer">
+                                    <FileJson size={18} />
+                                    JSON Dosyası Seç
+                                    <input
+                                        type="file"
+                                        accept=".json,application/json"
+                                        onChange={handleJsonFileSelect}
+                                        className="hidden"
+                                    />
+                                </label>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Durum: Preview - Önizleme */}
+                    {jsonUploadStatus === 'preview' && jsonPreview && (
+                        <div>
+                            <div className="flex items-center justify-between mb-4">
+                                <h4 className="font-semibold text-gray-900 dark:text-white">
+                                    Önizleme (İlk 3 kelime)
+                                </h4>
+                                <button
+                                    onClick={() => {
+                                        setJsonUploadStatus('idle');
+                                        setJsonFile(null);
+                                        setJsonPreview(null);
+                                    }}
+                                    className="text-sm text-gray-500 hover:text-gray-700"
+                                >
+                                    Başka dosya seç
+                                </button>
+                            </div>
+
+                            <div className="space-y-3 mb-4">
+                                {jsonPreview.map((word, index) => (
+                                    <div key={index} className="p-3 bg-gray-50 dark:bg-zinc-800 rounded-lg">
+                                        <div className="flex items-center gap-2 mb-1">
+                                            <span className="font-medium text-gray-900 dark:text-white">
+                                                {word.word}
+                                            </span>
+                                            <span className={`px-2 py-0.5 text-xs rounded ${
+                                                word.level === 'A1' ? 'bg-green-100 text-green-700' :
+                                                word.level === 'A2' ? 'bg-blue-100 text-blue-700' :
+                                                word.level === 'B1' ? 'bg-yellow-100 text-yellow-700' :
+                                                word.level === 'B2' ? 'bg-orange-100 text-orange-700' :
+                                                'bg-red-100 text-red-700'
+                                            }`}>
+                                                {word.level}
+                                            </span>
+                                        </div>
+                                        <div className="text-sm text-gray-600 dark:text-gray-400">
+                                            {word.meaningsTr?.join(', ') || '-'}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {jsonError && (
+                                <div className="p-3 bg-red-50 dark:bg-red-900/20 text-red-600 rounded-lg mb-4">
+                                    {jsonError}
+                                </div>
+                            )}
+
+                            <div className="flex justify-end gap-3">
+                                <button
+                                    onClick={() => setShowJsonModal(false)}
+                                    className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-zinc-700 rounded-lg"
+                                >
+                                    İptal
+                                </button>
+                                <button
+                                    onClick={handleJsonUpload}
+                                    className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+                                >
+                                    <Upload size={18} />
+                                    Yükle
+                                </button>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Durum: Uploading - Yükleniyor */}
+                    {jsonUploadStatus === 'uploading' && (
+                        <div className="text-center py-8">
+                            <RefreshCw className="w-16 h-16 text-green-600 mx-auto mb-4 animate-spin" />
+                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                Kelimeler Yükleniyor...
+                            </h3>
+                            <p className="text-gray-600 dark:text-gray-400 mb-4">
+                                {jsonUploadProgress.current} / {jsonUploadProgress.total}
+                            </p>
+                            <div className="w-full bg-gray-200 dark:bg-zinc-700 rounded-full h-2">
+                                <div
+                                    className="bg-green-600 h-2 rounded-full transition-all"
+                                    style={{ width: `${(jsonUploadProgress.current / jsonUploadProgress.total) * 100}%` }}
+                                />
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Durum: Success - Başarılı */}
+                    {jsonUploadStatus === 'success' && (
+                        <div className="text-center py-8">
+                            <Check className="w-16 h-16 text-green-600 mx-auto mb-4" />
+                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                Kelimeler Yüklendi!
+                            </h3>
+                            <p className="text-gray-600 dark:text-gray-400 mb-6">
+                                {jsonUploadProgress.total} kelime başarıyla işlendi.
+                            </p>
+                            <button
+                                onClick={() => {
+                                    setShowJsonModal(false);
+                                    setJsonUploadStatus('idle');
+                                    setJsonFile(null);
+                                    setJsonPreview(null);
+                                }}
+                                className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+                            >
+                                Tamam
+                            </button>
+                        </div>
+                    )}
+
+                    {/* Durum: Error - Hata */}
+                    {jsonUploadStatus === 'error' && (
+                        <div className="text-center py-8">
+                            <AlertCircle className="w-16 h-16 text-red-600 mx-auto mb-4" />
+                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                Hata Oluştu
+                            </h3>
+                            {jsonError && (
+                                <p className="text-red-600 dark:text-red-400 mb-6">
+                                    {jsonError}
+                                </p>
+                            )}
+                            <div className="flex justify-center gap-3">
+                                <button
+                                    onClick={() => {
+                                        setShowJsonModal(false);
+                                        setJsonUploadStatus('idle');
+                                        setJsonFile(null);
+                                        setJsonPreview(null);
+                                        setJsonError(null);
+                                    }}
+                                    className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-zinc-700 rounded-lg"
+                                >
+                                    Kapat
+                                </button>
+                                <button
+                                    onClick={() => setJsonUploadStatus('idle')}
+                                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                                >
+                                    Tekrar Dene
+                                </button>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Hata mesajı (ilk seçimde) */}
+                    {jsonError && jsonUploadStatus === 'idle' && (
+                        <div className="p-3 bg-red-50 dark:bg-red-900/20 text-red-600 rounded-lg">
+                            {jsonError}
+                        </div>
+                    )}
                 </div>
             </Modal>
         </div>

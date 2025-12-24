@@ -42,12 +42,7 @@ CREATE TABLE IF NOT EXISTS words (
     -- Görsel/Medya
     image_url VARCHAR(500),                          -- Kelimeyle ilişkili görsel
     audio_url VARCHAR(500),                          -- Telaffuz ses dosyası
-    
-    -- Meta veriler
-    frequency_rank INTEGER,                          -- Kullanım sıklığı sıralaması (1 = en yaygın)
-    is_common BOOLEAN DEFAULT true,                  -- Yaygın kullanılan kelime mi?
-    tags JSONB DEFAULT '[]',                         -- ["academic", "business", "daily"]
-    
+
     -- Zaman damgaları
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
@@ -57,7 +52,6 @@ CREATE TABLE IF NOT EXISTS words (
 CREATE INDEX IF NOT EXISTS idx_words_word ON words(word);
 CREATE INDEX IF NOT EXISTS idx_words_level ON words(level);
 CREATE INDEX IF NOT EXISTS idx_words_part_of_speech ON words(part_of_speech);
-CREATE INDEX IF NOT EXISTS idx_words_frequency ON words(frequency_rank);
 CREATE INDEX IF NOT EXISTS idx_words_search ON words USING gin(to_tsvector('english', word));
 
 -- =====================================================

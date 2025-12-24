@@ -42,12 +42,7 @@ CREATE TABLE words (
     -- Görsel/Medya
     image_url VARCHAR(500),
     audio_url VARCHAR(500),
-    
-    -- Meta veriler
-    frequency_rank INTEGER,
-    is_common BOOLEAN DEFAULT true,
-    tags JSONB DEFAULT '[]',
-    
+
     -- Zaman damgaları
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
@@ -57,7 +52,6 @@ CREATE TABLE words (
 CREATE INDEX idx_words_word ON words(word);
 CREATE INDEX idx_words_level ON words(level);
 CREATE INDEX idx_words_part_of_speech ON words(part_of_speech);
-CREATE INDEX idx_words_frequency ON words(frequency_rank);
 
 -- =====================================================
 -- 2. KATEGORİ TABLOLARI

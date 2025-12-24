@@ -435,7 +435,7 @@ export const supabaseService = {
                 .from('words')
                 .select('*')
                 .or(`word.ilike.%${query}%,meanings_tr.cs.["${query}"]`)
-                .order('frequency_rank', { ascending: true, nullsFirst: false })
+                .order('word', { ascending: true })
                 .limit(limit);
 
             if (error) {
@@ -459,7 +459,7 @@ export const supabaseService = {
                 .from('words')
                 .select('*')
                 .eq('level', level)
-                .order('frequency_rank', { ascending: true, nullsFirst: false });
+                .order('word', { ascending: true });
 
             if (error) {
                 console.error('Error fetching words by level:', error);
@@ -520,10 +520,7 @@ export const supabaseService = {
                 usage_notes: wordData.usageNotes || null,
                 common_mistakes: wordData.commonMistakes || null,
                 image_url: wordData.imageUrl || null,
-                audio_url: wordData.audioUrl || null,
-                frequency_rank: wordData.frequencyRank || null,
-                is_common: wordData.isCommon ?? true,
-                tags: wordData.tags || []
+                audio_url: wordData.audioUrl || null
             };
 
             const { data, error } = await supabase
@@ -566,9 +563,6 @@ export const supabaseService = {
             if (wordData.commonMistakes !== undefined) updateData.common_mistakes = wordData.commonMistakes;
             if (wordData.imageUrl !== undefined) updateData.image_url = wordData.imageUrl;
             if (wordData.audioUrl !== undefined) updateData.audio_url = wordData.audioUrl;
-            if (wordData.frequencyRank !== undefined) updateData.frequency_rank = wordData.frequencyRank;
-            if (wordData.isCommon !== undefined) updateData.is_common = wordData.isCommon;
-            if (wordData.tags !== undefined) updateData.tags = wordData.tags;
 
             const { data, error } = await supabase
                 .from('words')
@@ -634,9 +628,6 @@ export const supabaseService = {
             commonMistakes: dbWord.common_mistakes,
             imageUrl: dbWord.image_url,
             audioUrl: dbWord.audio_url,
-            frequencyRank: dbWord.frequency_rank,
-            isCommon: dbWord.is_common,
-            tags: dbWord.tags || [],
             createdAt: dbWord.created_at,
             updatedAt: dbWord.updated_at,
             
