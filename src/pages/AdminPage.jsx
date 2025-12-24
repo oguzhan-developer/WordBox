@@ -251,7 +251,7 @@ export default function AdminPage() {
     const [wordForm, setWordForm] = useState({
         word: '',
         phonetic: '',
-        partOfSpeech: '',
+        partOfSpeech: [],
         level: 'B1',
         meaningsTr: [''],
         definitionsEn: [''],
@@ -441,7 +441,7 @@ export default function AdminPage() {
         setWordForm({
             word: '',
             phonetic: '',
-            partOfSpeech: '',
+            partOfSpeech: [],
             level: 'B1',
             meaningsTr: [''],
             definitionsEn: [''],
@@ -464,10 +464,20 @@ export default function AdminPage() {
     };
 
     const handleEditWord = (word) => {
+        // partOfSpeech array veya string olabilir, normalize et
+        let partOfSpeechArr = [];
+        if (word.partOfSpeech) {
+            if (Array.isArray(word.partOfSpeech)) {
+                partOfSpeechArr = word.partOfSpeech;
+            } else if (typeof word.partOfSpeech === 'string') {
+                partOfSpeechArr = [word.partOfSpeech];
+            }
+        }
+
         setWordForm({
             word: word.word || '',
             phonetic: word.phonetic || '',
-            partOfSpeech: word.partOfSpeech || '',
+            partOfSpeech: partOfSpeechArr,
             level: word.level || 'B1',
             meaningsTr: word.meaningsTr?.length > 0 ? word.meaningsTr : [''],
             definitionsEn: word.definitionsEn?.length > 0 ? word.definitionsEn : [''],
@@ -596,7 +606,9 @@ export default function AdminPage() {
                         await supabaseService.createWord({
                             word: word.word || '',
                             phonetic: word.phonetic || '',
-                            partOfSpeech: word.partOfSpeech || word.part_of_speech || '',
+                            partOfSpeech: Array.isArray(word.partOfSpeech || word.part_of_speech) 
+                                ? (word.partOfSpeech || word.part_of_speech) 
+                                : (word.partOfSpeech || word.part_of_speech ? [word.partOfSpeech || word.part_of_speech] : []),
                             level: word.level || 'B1',
                             meaningsTr: word.meaningsTr || word.meanings_tr || [],
                             definitionsEn: word.definitionsEn || word.definitions_en || [],
@@ -617,10 +629,10 @@ export default function AdminPage() {
                 }
 
                 if (successCount > 0) {
-                    toast.success(`${successCount} kelime başarıyla eklendi!`);
+                    toast.success(`${successCount} kelime başarıyla eklendi/güncellendi!`);
                 }
                 if (errorCount > 0) {
-                    toast.error(`${errorCount} kelime eklenemedi.`);
+                    toast.error(`${errorCount} kelime işlenemedi.`);
                     console.error('Import errors:', errors);
                 }
 
@@ -639,7 +651,7 @@ export default function AdminPage() {
             {
                 word: "example",
                 phonetic: "/ɪɡˈzæmpəl/",
-                partOfSpeech: "noun",
+                partOfSpeech: ["noun", "verb"],
                 level: "B1",
                 meaningsTr: ["örnek", "misal"],
                 definitionsEn: ["A thing characteristic of its kind or illustrating a general rule."],
@@ -655,7 +667,7 @@ export default function AdminPage() {
             {
                 word: "learn",
                 phonetic: "/lɜːrn/",
-                partOfSpeech: "verb",
+                partOfSpeech: ["verb"],
                 level: "A1",
                 meaningsTr: ["öğrenmek", "kavramak"],
                 definitionsEn: ["To gain knowledge or skill."],
@@ -1278,10 +1290,14 @@ export default function AdminPage() {
                                                     }`}>
                                                         {word.level}
                                                     </span>
-                                                    {word.partOfSpeech && (
-                                                        <span className="text-xs text-gray-400 bg-gray-100 dark:bg-zinc-700 px-2 py-0.5 rounded">
-                                                            {word.partOfSpeech}
-                                                        </span>
+                                                    {word.partOfSpeech && (Array.isArray(word.partOfSpeech) ? word.partOfSpeech : [word.partOfSpeech]).filter(Boolean).length > 0 && (
+                                                        <div className="flex flex-wrap gap-1">
+                                                            {(Array.isArray(word.partOfSpeech) ? word.partOfSpeech : [word.partOfSpeech]).filter(Boolean).map((pos, idx) => (
+                                                                <span key={idx} className="text-xs text-gray-400 bg-gray-100 dark:bg-zinc-700 px-2 py-0.5 rounded">
+                                                                    {pos}
+                                                                </span>
+                                                            ))}
+                                                        </div>
                                                     )}
                                                 </div>
                                                 <div className="mt-1">
@@ -1949,25 +1965,46 @@ export default function AdminPage() {
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                                Sözcük Türü
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                Sözcük Türü (Birden fazla seçilebilir)
                             </label>
-                            <select
-                                value={wordForm.partOfSpeech}
-                                onChange={(e) => setWordForm({ ...wordForm, partOfSpeech: e.target.value })}
-                                className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-gray-900 dark:text-white"
-                            >
-                                <option value="">Seçin</option>
-                                <option value="noun">Noun (İsim)</option>
-                                <option value="verb">Verb (Fiil)</option>
-                                <option value="adjective">Adjective (Sıfat)</option>
-                                <option value="adverb">Adverb (Zarf)</option>
-                                <option value="preposition">Preposition (Edat)</option>
-                                <option value="conjunction">Conjunction (Bağlaç)</option>
-                                <option value="pronoun">Pronoun (Zamir)</option>
-                                <option value="interjection">Interjection (Ünlem)</option>
-                                <option value="phrase">Phrase (Deyim)</option>
-                            </select>
+                            <div className="flex flex-wrap gap-1">
+                                {[
+                                    { value: 'Noun', label: 'Noun (İsim)' },
+                                    { value: 'Verb', label: 'Verb (Fiil)' },
+                                    { value: 'Adjective', label: 'Adjective (Sıfat)' },
+                                    { value: 'Adverb', label: 'Adverb (Zarf)' },
+                                    { value: 'Preposition', label: 'Preposition (Edat)' },
+                                    { value: 'Conjunction', label: 'Conjunction (Bağlaç)' },
+                                    { value: 'Pronoun', label: 'Pronoun (Zamir)' },
+                                    { value: 'Interjection', label: 'Interjection (Ünlem)' },
+                                    { value: 'Phrase', label: 'Phrase (Deyim)' }
+                                ].map((pos) => (
+                                    <label
+                                        key={pos.value}
+                                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border cursor-pointer transition-colors text-sm  ${
+                                            Array.isArray(wordForm.partOfSpeech) && wordForm.partOfSpeech.includes(pos.value)
+                                                ? 'bg-indigo-100 dark:bg-indigo-900/30 border-indigo-500 text-indigo-700 dark:text-indigo-300'
+                                                : 'bg-gray-50 dark:bg-zinc-800 border-gray-300 dark:border-zinc-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-zinc-700'
+                                        }`}
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            checked={Array.isArray(wordForm.partOfSpeech) && wordForm.partOfSpeech.includes(pos.value)}
+                                            onChange={(e) => {
+                                                const currentPartOfSpeech = Array.isArray(wordForm.partOfSpeech) ? wordForm.partOfSpeech : [];
+                                                if (e.target.checked) {
+                                                    setWordForm({ ...wordForm, partOfSpeech: [...currentPartOfSpeech, pos.value] });
+                                                } else {
+                                                    setWordForm({ ...wordForm, partOfSpeech: currentPartOfSpeech.filter(p => p !== pos.value) });
+                                                }
+                                            }}
+                                            className="sr-only"
+                                        />
+                                        <span className="text-sm">{pos.label}</span>
+                                    </label>
+                                ))}
+                            </div>
                         </div>
                     </div>
 
@@ -2123,6 +2160,74 @@ export default function AdminPage() {
                             className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-1"
                         >
                             <Plus size={16} /> Örnek Ekle
+                        </button>
+                    </div>
+
+                    {/* Eş Anlamlılar */}
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            Eş Anlamlılar (Synonyms)
+                        </label>
+                        {wordForm.synonyms.map((syn, index) => (
+                            <div key={index} className="flex gap-2 mb-2">
+                                <input
+                                    type="text"
+                                    value={syn}
+                                    onChange={(e) => updateArrayField('synonyms', index, e.target.value)}
+                                    placeholder={`Eş anlamlı ${index + 1}`}
+                                    className="flex-1 px-3 py-2 rounded-lg border border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-gray-900 dark:text-white"
+                                />
+                                {wordForm.synonyms.length > 0 && (
+                                    <button
+                                        type="button"
+                                        onClick={() => removeArrayField('synonyms', index)}
+                                        className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                                    >
+                                        <X size={20} />
+                                    </button>
+                                )}
+                            </div>
+                        ))}
+                        <button
+                            type="button"
+                            onClick={() => addArrayField('synonyms')}
+                            className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-1"
+                        >
+                            <Plus size={16} /> Eş Anlamlı Ekle
+                        </button>
+                    </div>
+
+                    {/* Zıt Anlamlılar */}
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            Zıt Anlamlılar (Antonyms)
+                        </label>
+                        {wordForm.antonyms.map((ant, index) => (
+                            <div key={index} className="flex gap-2 mb-2">
+                                <input
+                                    type="text"
+                                    value={ant}
+                                    onChange={(e) => updateArrayField('antonyms', index, e.target.value)}
+                                    placeholder={`Zıt anlamlı ${index + 1}`}
+                                    className="flex-1 px-3 py-2 rounded-lg border border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-gray-900 dark:text-white"
+                                />
+                                {wordForm.antonyms.length > 0 && (
+                                    <button
+                                        type="button"
+                                        onClick={() => removeArrayField('antonyms', index)}
+                                        className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                                    >
+                                        <X size={20} />
+                                    </button>
+                                )}
+                            </div>
+                        ))}
+                        <button
+                            type="button"
+                            onClick={() => addArrayField('antonyms')}
+                            className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-1"
+                        >
+                            <Plus size={16} /> Zıt Anlamlı Ekle
                         </button>
                     </div>
 

@@ -369,10 +369,14 @@ export default function LearnNewWordsPage() {
                             )}
 
                             {/* Part of speech */}
-                            {currentWord.partOfSpeech && (
-                                <span className="px-2.5 py-0.5 bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400 rounded-full text-xs mb-4">
-                                    {currentWord.partOfSpeech}
-                                </span>
+                            {currentWord.partOfSpeech && (Array.isArray(currentWord.partOfSpeech) ? currentWord.partOfSpeech : [currentWord.partOfSpeech]).filter(Boolean).length > 0 && (
+                                <div className="flex flex-wrap gap-1 mb-4">
+                                    {(Array.isArray(currentWord.partOfSpeech) ? currentWord.partOfSpeech : [currentWord.partOfSpeech]).filter(Boolean).map((pos, idx) => (
+                                        <span key={idx} className="px-2.5 py-0.5 bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400 rounded-full text-xs">
+                                            {pos}
+                                        </span>
+                                    ))}
+                                </div>
                             )}
 
                             {/* Audio button */}

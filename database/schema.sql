@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS words (
     -- Ana kelime bilgileri
     word VARCHAR(255) NOT NULL UNIQUE,
     phonetic VARCHAR(255),                           -- Fonetik yazım: /ˈwɔːtər/
-    part_of_speech VARCHAR(50),                      -- noun, verb, adjective, adverb, etc.
+    part_of_speech JSONB DEFAULT '[]',               -- ["noun", "verb"] - Birden fazla sözcük türü
     level VARCHAR(10) DEFAULT 'B1',                  -- A1, A2, B1, B2, C1, C2
     
     -- Türkçe anlamlar (birden fazla olabilir)

@@ -273,17 +273,31 @@ export default function VocabularyList() {
                     {/* Main Content */}
                     <div className="flex-1 min-w-0">
                         {/* Word Header */}
-                        <div className="flex items-center gap-2 mb-1">
+                        <div className="flex items-center gap-2 mb-1 flex-wrap">
                             <h3 className="text-xl font-bold text-gray-900 dark:text-white">{word.word}</h3>
                             {word.phonetic && (
                                 <span className="text-gray-400 text-xs">/{word.phonetic}/</span>
                             )}
                             <LevelBadge level={word.level} size="sm" />
-                            <span className="text-gray-400 text-xs">{word.partOfSpeech || 'noun'}</span>
+                            {word.partOfSpeech && (Array.isArray(word.partOfSpeech) ? word.partOfSpeech : [word.partOfSpeech]).filter(Boolean).length > 0 ? (
+                                (Array.isArray(word.partOfSpeech) ? word.partOfSpeech : [word.partOfSpeech]).filter(Boolean).map((pos, idx) => (
+                                    <span key={idx} className="text-gray-400 text-xs bg-gray-100 dark:bg-zinc-700 px-1.5 py-0.5 rounded">{pos}</span>
+                                ))
+                            ) : (
+                                <span className="text-gray-400 text-xs">noun</span>
+                            )}
                         </div>
 
                         {/* Turkish Meaning */}
                         <p className="text-indigo-600 dark:text-indigo-400 font-medium mb-2">{word.turkish}</p>
+
+                        {/* Synonyms */}
+                        {word.synonyms && word.synonyms.length > 0 && (
+                            <p className="text-gray-600 dark:text-gray-400 text-sm mb-2">
+                                <span className="font-medium text-gray-700 dark:text-gray-300">Eş anlamlı(lar): </span>
+                                <span className="text-purple-600 dark:text-purple-400">{word.synonyms.join(', ')}</span>
+                            </p>
+                        )}
 
                         {/* Definition */}
                         {word.definition && (

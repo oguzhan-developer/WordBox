@@ -505,10 +505,18 @@ export const supabaseService = {
      */
     async createWord(wordData) {
         try {
+            // partOfSpeech'i array olarak normalize et
+            let partOfSpeech = [];
+            if (Array.isArray(wordData.partOfSpeech)) {
+                partOfSpeech = wordData.partOfSpeech;
+            } else if (typeof wordData.partOfSpeech === 'string' && wordData.partOfSpeech) {
+                partOfSpeech = [wordData.partOfSpeech];
+            }
+
             const insertData = {
                 word: wordData.word?.trim().toLowerCase(),
                 phonetic: wordData.phonetic || null,
-                part_of_speech: wordData.partOfSpeech || null,
+                part_of_speech: partOfSpeech.length > 0 ? partOfSpeech : null,
                 level: wordData.level || 'B1',
                 meanings_tr: wordData.meaningsTr || [],
                 definitions_en: wordData.definitionsEn || [],
@@ -525,7 +533,7 @@ export const supabaseService = {
 
             const { data, error } = await supabase
                 .from('words')
-                .insert(insertData)
+                .upsert(insertData, { onConflict: 'word' })
                 .select()
                 .single();
 
@@ -550,7 +558,16 @@ export const supabaseService = {
 
             if (wordData.word !== undefined) updateData.word = wordData.word?.trim().toLowerCase();
             if (wordData.phonetic !== undefined) updateData.phonetic = wordData.phonetic;
-            if (wordData.partOfSpeech !== undefined) updateData.part_of_speech = wordData.partOfSpeech;
+            if (wordData.partOfSpeech !== undefined) {
+                // partOfSpeech'i array olarak normalize et
+                let partOfSpeech = [];
+                if (Array.isArray(wordData.partOfSpeech)) {
+                    partOfSpeech = wordData.partOfSpeech;
+                } else if (typeof wordData.partOfSpeech === 'string' && wordData.partOfSpeech) {
+                    partOfSpeech = [wordData.partOfSpeech];
+                }
+                updateData.part_of_speech = partOfSpeech.length > 0 ? partOfSpeech : null;
+            }
             if (wordData.level !== undefined) updateData.level = wordData.level;
             if (wordData.meaningsTr !== undefined) updateData.meanings_tr = wordData.meaningsTr;
             if (wordData.definitionsEn !== undefined) updateData.definitions_en = wordData.definitionsEn;
@@ -610,12 +627,22 @@ export const supabaseService = {
      */
     normalizeWord(dbWord) {
         if (!dbWord) return null;
-        
+
+        // partOfSpeech array olarak normalize et
+        let partOfSpeech = [];
+        if (dbWord.part_of_speech) {
+            if (Array.isArray(dbWord.part_of_speech)) {
+                partOfSpeech = dbWord.part_of_speech;
+            } else if (typeof dbWord.part_of_speech === 'string') {
+                partOfSpeech = [dbWord.part_of_speech];
+            }
+        }
+
         return {
             id: dbWord.id,
             word: dbWord.word,
             phonetic: dbWord.phonetic,
-            partOfSpeech: dbWord.part_of_speech,
+            partOfSpeech: partOfSpeech,
             level: dbWord.level,
             meaningsTr: dbWord.meanings_tr || [],
             definitionsEn: dbWord.definitions_en || [],
@@ -990,7 +1017,7 @@ export const supabaseService = {
                 word: word.word,
                 phonetic: word.pronunciation || '',
                 turkish: word.meanings_tr ? word.meanings_tr[0] : '',
-                partOfSpeech: word.part_of_speech || 'noun',
+                partOfSpeech: Array.isArray(word.part_of_speech) ? word.part_of_speech : (word.part_of_speech ? [word.part_of_speech] : ['noun']),
                 definition: word.meanings_en ? word.meanings_en[0] : '',
                 example: word.example_sentence || '',
                 level: word.level,
@@ -1047,7 +1074,7 @@ export const supabaseService = {
                     id: word.id,
                     word: word.word,
                     phonetic: word.phonetic || '',
-                    partOfSpeech: word.part_of_speech || '',
+                    partOfSpeech: Array.isArray(word.part_of_speech) ? word.part_of_speech : (word.part_of_speech ? [word.part_of_speech] : []),
                     turkish: (word.meanings_tr || []).join(', '),
                     definition: word.definitions_en?.[0] || '',
                     meanings: word.meanings_tr || [],
@@ -1128,7 +1155,7 @@ export const supabaseService = {
                 id: word.id,
                 word: word.word,
                 phonetic: word.phonetic || '',
-                partOfSpeech: word.part_of_speech || '',
+                partOfSpeech: Array.isArray(word.part_of_speech) ? word.part_of_speech : (word.part_of_speech ? [word.part_of_speech] : []),
                 turkish: word.meanings_tr?.[0] || '',
                 definition: word.definitions_en?.[0] || '',
                 examples: word.examples_en || [],

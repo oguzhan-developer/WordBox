@@ -1,0 +1,36 @@
+[ITERASYON | 2024-12-24 12:00]
+
+Değiştirilen Dosyalar:
+- src/pages/AdminPage.jsx
+- src/pages/VocabularyList.jsx
+- src/pages/LearnNewWordsPage.jsx
+- src/services/supabaseService.js
+- database/schema.sql
+- database/migrate_part_of_speech_to_array.sql (YENİ)
+
+Yapılan Geliştirme:
+- partOfSpeech alanı artık birden fazla sözcük türünü destekliyor (array format)
+- Admin panelinde kelime eklerken/düzenlerken multi-select checkbox UI eklendi
+- JSON ile kelime yüklerken hem string hem array format destekleniyor
+- VocabularyList sayfasında birden fazla partOfSpeech gösterimi eklendi
+- LearnNewWordsPage'de birden fazla partOfSpeech gösterimi eklendi
+- supabaseService'te tüm partOfSpeech dönüşümleri array uyumlu hale getirildi
+- Veritabanı şeması güncellendi (part_of_speech: VARCHAR -> JSONB)
+- Migration dosyası oluşturuldu
+
+Çalıştırılan Build Komutu:
+- npm run build
+
+Build Sonucu:
+- BAŞARILI
+
+Hatalar:
+- Yok
+
+Yapılan Düzeltmeler:
+- Yok
+
+Son Build Durumu:
+- BAŞARILI
+
+---
