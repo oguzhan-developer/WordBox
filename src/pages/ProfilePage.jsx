@@ -172,7 +172,7 @@ export default function ProfilePage() {
                                     <div className="text-3xl font-black">Lvl {currentLevel}</div>
                                 </div>
                                 <div className="text-right">
-                                    <div className="text-sm text-gray-500 dark:text-gray-400 font-medium text-brand-blue">{xpToNext} XP Kaldı</div>
+                                    <div className="text-sm dark:text-gray-400 font-medium text-brand-blue">{xpToNext} XP Kaldı</div>
                                     <div className="text-xl font-bold text-gray-400 uppercase tracking-tighter">Lvl {currentLevel + 1}</div>
                                 </div>
                             </div>

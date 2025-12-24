@@ -1258,4 +1258,152 @@ export const supabaseService = {
             return false;
         }
     },
+
+    // ============================================
+    // KNOWN_WORDS - Bildiği Kelimeler
+    // ============================================
+
+    /**
+     * Kullanıcının bildiği kelimeleri getir
+     */
+    async getKnownWords(userId) {
+        try {
+            const { data, error } = await supabase
+                .from('known_words')
+                .select('word_id')
+                .eq('user_id', userId);
+
+            if (error) throw error;
+            return new Set(data?.map(kw => kw.word_id) || []);
+        } catch (err) {
+            console.error('Error in getKnownWords:', err);
+            return new Set();
+        }
+    },
+
+    /**
+     * Kelimeyi bildiği olarak işaretle
+     */
+    async markWordAsKnown(userId, wordId) {
+        try {
+            const { error } = await supabase
+                .from('known_words')
+                .insert({
+                    user_id: userId,
+                    word_id: wordId,
+                    confidence: 'known'
+                });
+
+            if (error) {
+                // Duplicate hatasıysa Ignore
+                if (error.code === '23505') return true;
+                throw error;
+            }
+            return true;
+        } catch (err) {
+            console.error('Error in markWordAsKnown:', err);
+            return false;
+        }
+    },
+
+    /**
+     * Kullanıcı için rastgele kelimeler getir
+     * - user_words'ta olmayan
+     * - known_words'ta olmayan
+     * - Seviyeye uygun
+     */
+    async getRandomWordsForLearning(userId, level, count = 10) {
+        try {
+            console.log('[getRandomWordsForLearning] Fetching words:', { userId, level, count });
+
+            // Önce kullanıcının kelimelerini al
+            const [userWordsResult, knownWordsResult] = await Promise.all([
+                supabase.from('user_words').select('word_id').eq('user_id', userId),
+                supabase.from('known_words').select('word_id').eq('user_id', userId)
+            ]);
+
+            const excludedWordIds = new Set([
+                ...(userWordsResult.data?.map(w => w.word_id) || []),
+                ...(knownWordsResult.data?.map(w => w.word_id) || [])
+            ]);
+
+            console.log('[getRandomWordsForLearning] Excluded words:', excludedWordIds.size);
+
+            // Seviyedeki kelimeleri getir
+            const { data: words, error } = await supabase
+                .from('words')
+                .select('*')
+                .eq('level', level)
+                .limit(count * 3); // Daha fazla getir, random seçeceğiz
+
+            if (error) throw error;
+
+            // Hariç tutulanları filtrele
+            const availableWords = words?.filter(w => !excludedWordIds.has(w.id)) || [];
+
+            // Rastgele karıştır ve limitle
+            const shuffled = availableWords.sort(() => Math.random() - 0.5);
+            const selected = shuffled.slice(0, count);
+
+            // Normalize
+            const normalized = selected.map(word => this.normalizeWord(word));
+
+            console.log('[getRandomWordsForLearning] Returning:', normalized.length, 'words');
+            return normalized;
+        } catch (err) {
+            console.error('Error in getRandomWordsForLearning:', err);
+            return [];
+        }
+    },
+
+    /**
+     * Kelimeyi öğrenme listesine ekle (Bilmiyorum)
+     */
+    async learnWord(userId, wordId) {
+        try {
+            console.log('[learnWord] Adding word to learning:', { userId, wordId });
+
+            const { data, error } = await supabase
+                .from('user_words')
+                .insert({
+                    user_id: userId,
+                    word_id: wordId,
+                    status: 'new',
+                    mastery_level: 0,
+                    times_seen: 0,
+                    times_correct: 0,
+                    times_incorrect: 0,
+                    ease_factor: 2.5,
+                    interval_days: 1,
+                    repetitions: 0,
+                    next_review_at: new Date().toISOString()
+                })
+                .select(`
+                    *,
+                    words (*)
+                `)
+                .single();
+
+            if (error) {
+                // Duplicate hatasıysa
+                if (error.code === '23505') {
+                    console.log('[learnWord] Word already in user_words');
+                    return null;
+                }
+                throw error;
+            }
+
+            const normalized = data.words ? this.normalizeWord(data.words) : null;
+            if (normalized) {
+                normalized.status = data.status;
+                normalized.addedAt = data.created_at;
+            }
+
+            console.log('[learnWord] Word added successfully');
+            return normalized;
+        } catch (err) {
+            console.error('Error in learnWord:', err);
+            throw err;
+        }
+    },
 };

@@ -5,6 +5,7 @@ import {
     Download,
     Upload,
     Plus,
+    Sparkles,
     BookOpen,
     Clock,
     CheckCircle,
@@ -20,7 +21,6 @@ import { useToast } from '../components/Toast';
 import Card, { StatCard } from '../components/Card';
 import { LevelBadge } from '../components/Badge';
 import Modal from '../components/Modal';
-import QuickAddWord from '../components/QuickAddWord';
 import { speak } from '../utils/speechSynthesis';
 import {
     exportToJSON,
@@ -48,7 +48,6 @@ export default function VocabularyList() {
     const [showImportModal, setShowImportModal] = useState(false);
     const [importResult, setImportResult] = useState(null);
     const [displayCount, setDisplayCount] = useState(30);
-    const [showQuickAdd, setShowQuickAdd] = useState(false);
     const [sortBy, setSortBy] = useState('alphabetical');
     const [sortOrder, setSortOrder] = useState('asc');
 
@@ -361,11 +360,11 @@ export default function VocabularyList() {
                     </div>
                     <div className="flex gap-2">
                         <button
-                            onClick={() => setShowQuickAdd(true)}
+                            onClick={() => navigate('/vocabulary/learn')}
                             className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-amber-500 text-white hover:opacity-90 transition-opacity shadow-lg"
                         >
-                            <Plus className="w-4 h-4" />
-                            Kelime Ekle
+                            <Sparkles className="w-4 h-4" />
+                            Yeni Kelimeler Öğren
                         </button>
                         <button
                             onClick={() => setShowImportModal(true)}
@@ -669,17 +668,6 @@ export default function VocabularyList() {
                     )}
                 </div>
             </Modal>
-
-            {/* Quick Add Word Modal */}
-            <QuickAddWord
-                isOpen={showQuickAdd}
-                onClose={() => setShowQuickAdd(false)}
-                onAdd={(word) => {
-                    addWord(word);
-                    toast.success('Kelime eklendi!');
-                    setShowQuickAdd(false);
-                }}
-            />
         </div>
     );
 }
