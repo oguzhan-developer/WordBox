@@ -7,7 +7,6 @@ import Navbar from './components/Navbar';
 import ErrorBoundary from './components/ErrorBoundary';
 import KeyboardShortcutsModal from './components/KeyboardShortcutsModal';
 import AchievementNotification from './components/AchievementNotification';
-import { QuickAddFAB } from './components/QuickAddWord';
 import useKeyboardShortcuts from './hooks/useKeyboardShortcuts';
 
 // Pages - Lazy loaded for code splitting
@@ -71,7 +70,6 @@ function Layout({ children, showNavbar = true }) {
       {showNavbar && <Navbar />}
       <main id="main-content" tabIndex={-1}>{children}</main>
       <AchievementNotification />
-      <QuickAddFAB />
     </>
   );
 }
@@ -305,7 +303,7 @@ function AppRoutes() {
           path="*"
           element={
             <Layout>
-              <div className="min-h-screen bg-gray-50 pt-20 flex items-center justify-center">
+              <div className="min-h-screen bg-gray-50 pt-8 flex items-center justify-center">
                 <div className="text-center">
                   <div className="text-6xl mb-4">🤔</div>
                   <h1 className="text-2xl font-bold text-gray-900 mb-2">Sayfa Bulunamadı</h1>

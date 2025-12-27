@@ -158,7 +158,7 @@ export default function FlashcardMode() {
         : 0;
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 pt-20 pb-12">
+        <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 pt-8 pb-12">
             <div className="max-w-2xl mx-auto px-4">
 
                 {/* Header */}

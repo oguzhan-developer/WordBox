@@ -361,7 +361,7 @@ export default function VocabularyList() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-[#18181b] pt-20 pb-12">
+        <div className="min-h-screen bg-gray-50 dark:bg-[#18181b] pt-8 pb-12">
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 {/* Header */}

@@ -161,7 +161,7 @@ export function SkeletonNav() {
 // Full page skeleton loader
 export function SkeletonPage({ title = true, stats = false, cards = 3 }) {
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-[#18181b] pt-20 pb-12">
+        <div className="min-h-screen bg-gray-50 dark:bg-[#18181b] pt-8 pb-12">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {title && (
                     <div className="mb-8 space-y-2">

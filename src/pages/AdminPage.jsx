@@ -34,7 +34,7 @@ export default function AdminPage() {
     // User henüz yüklenmemişse loading göster
     if (!user?.email) {
         return (
-            <div className="min-h-screen bg-gray-50 dark:bg-[#18181b] pt-20 flex items-center justify-center">
+            <div className="min-h-screen bg-gray-50 dark:bg-[#18181b] pt-8 flex items-center justify-center">
                 <div className="text-center">
                     <RefreshCw className="w-12 h-12 animate-spin text-primary mx-auto mb-4" />
                     <p className="text-gray-600 dark:text-gray-400">Yükleniyor...</p>
@@ -45,7 +45,7 @@ export default function AdminPage() {
 
     if (!isAdmin) {
         return (
-            <div className="min-h-screen bg-gray-50 dark:bg-[#18181b] pt-20 flex items-center justify-center">
+            <div className="min-h-screen bg-gray-50 dark:bg-[#18181b] pt-8 flex items-center justify-center">
                 <Card className="p-8 text-center max-w-md">
                     <AlertCircle className="w-16 h-16 text-danger mx-auto mb-4" />
                     <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
@@ -63,7 +63,7 @@ export default function AdminPage() {
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-[#18181b] pt-20 pb-10">
+        <div className="min-h-screen bg-gray-50 dark:bg-[#18181b] pt-8 pb-10">
             <div className="max-w-7xl mx-auto px-4">
                 {/* Header */}
                 <div className="mb-6">

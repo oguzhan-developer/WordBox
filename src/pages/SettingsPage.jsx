@@ -874,7 +874,7 @@ export default function SettingsPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-background-dark pt-20 pb-12">
+        <div className="min-h-screen bg-gray-50 dark:bg-background-dark pt-8 pb-12">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col lg:flex-row gap-8">
                     {/* Sidebar */}

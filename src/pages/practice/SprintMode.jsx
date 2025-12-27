@@ -213,7 +213,7 @@ export default function SprintMode() {
 
         return (
             <div className={`min-h-screen transition-colors duration-300 ${lastResult === 'correct' ? 'bg-green-50 dark:bg-green-900/10' : lastResult === 'wrong' ? 'bg-red-50 dark:bg-red-900/10' : 'bg-gray-50 dark:bg-[#18181b]'
-                } flex flex-col items-center pt-12 md:pt-20 px-4`}>
+                } flex flex-col items-center pt-8 px-4`}>
 
                 {/* Header Info */}
                 <div className="max-w-xl w-full flex items-center justify-between mb-8">

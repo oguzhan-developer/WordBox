@@ -196,7 +196,7 @@ export default function LearnNewWordsPage() {
     // Loading state
     if (loading) {
         return (
-            <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-20 flex items-center justify-center">
+            <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-8 flex items-center justify-center">
                 <div className="text-center">
                     <Loader2 className="w-12 h-12 text-primary animate-spin mx-auto mb-4" />
                     <p className="text-gray-600 dark:text-gray-400">Kelimeler yükleniyor...</p>
@@ -209,7 +209,7 @@ export default function LearnNewWordsPage() {
     if (sessionComplete) {
         const totalXp = learnedCount * XP_PER_WORD;
         return (
-            <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-20 flex items-center justify-center p-4">
+            <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-8 flex items-center justify-center p-4">
                 <div className="text-center max-w-md w-full">
                     <div className="bg-white dark:bg-[#2a2a24] rounded-2xl shadow-lg p-6 border border-gray-100 dark:border-[#333]">
                         {learnedCount > 0 ? (
@@ -272,7 +272,7 @@ export default function LearnNewWordsPage() {
     // No words available state
     if (words.length === 0 && !loading) {
         return (
-            <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-20 flex items-center justify-center p-4">
+            <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-8 flex items-center justify-center p-4">
                 <div className="text-center max-w-md w-full">
                     <div className="bg-white dark:bg-[#2a2a24] rounded-2xl shadow-lg p-6 border border-gray-100 dark:border-[#333]">
                         <div className="text-5xl mb-3">📚</div>
@@ -297,7 +297,7 @@ export default function LearnNewWordsPage() {
 
     // Flashcard view
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-20 pb-12 px-4">
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-8 pb-12 px-4">
             <div className="max-w-xl mx-auto">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-4">
@@ -324,16 +324,7 @@ export default function LearnNewWordsPage() {
                     <div className="w-8" />
                 </div>
 
-                {/* Session stats */}
-                <div className="flex justify-center gap-3 mb-4">
-                    <div className="flex items-center gap-1 px-2.5 py-1 bg-secondary/10 dark:bg-secondary-900/20 text-secondary-700 dark:text-secondary-300 rounded-full text-xs">
-                        {learnedCount} öğrenilen
-                    </div>
-                    <div className="flex items-center gap-1 px-2.5 py-1 bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400 rounded-full text-xs">
-                        {knownCount} bilinen
-                    </div>
-                </div>
-
+                
                 {/* Flashcard */}
                 <div className="perspective-1000 mb-4">
                     <div
