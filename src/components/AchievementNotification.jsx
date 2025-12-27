@@ -68,7 +68,7 @@ export default function AchievementNotification() {
         isExiting ? 'opacity-0 -translate-y-4' : 'opacity-100 translate-y-0'
       }`}
     >
-      <div className="relative bg-gradient-to-r from-yellow-400 via-amber-500 to-orange-500 rounded-2xl p-1 shadow-2xl animate-pulse-slow">
+      <div className="relative bg-gradient-to-r from-accent via-warning to-danger rounded-2xl p-1 shadow-2xl animate-pulse-slow">
         <div className="bg-white dark:bg-[#1a1a1e] rounded-xl p-4 pr-10">
           <button
             onClick={handleClose}
@@ -76,22 +76,22 @@ export default function AchievementNotification() {
           >
             <X className="w-4 h-4" />
           </button>
-          
+
           <div className="flex items-center gap-4">
             {/* Icon */}
             <div className="relative">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-400 to-amber-500 flex items-center justify-center shadow-lg">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent to-warning flex items-center justify-center shadow-lg">
                 <span className="text-3xl">{notification.icon}</span>
               </div>
-              <div className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
+              <div className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-gradient-to-r from-purple to-danger flex items-center justify-center">
                 <Star className="w-3 h-3 text-white fill-current" />
               </div>
             </div>
-            
+
             {/* Content */}
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wide">
+                <span className="text-xs font-bold text-warning dark:text-warning-400 uppercase tracking-wide">
                   🎉 Yeni Başarı!
                 </span>
               </div>
@@ -102,7 +102,7 @@ export default function AchievementNotification() {
                 {notification.description}
               </p>
               {notification.xp > 0 && (
-                <div className="mt-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 text-xs font-bold">
+                <div className="mt-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 dark:bg-primary/30 text-primary dark:text-primary-400 text-xs font-bold">
                   <span>+{notification.xp} XP</span>
                 </div>
               )}
@@ -124,10 +124,10 @@ export function AchievementBadge({ achievement, size = 'md' }) {
     md: 'w-14 h-14 text-2xl',
     lg: 'w-20 h-20 text-4xl'
   };
-  
+
   return (
-    <div 
-      className={`${sizeClasses[size]} rounded-2xl bg-gradient-to-br from-yellow-400 to-amber-500 flex items-center justify-center shadow-lg`}
+    <div
+      className={`${sizeClasses[size]} rounded-2xl bg-gradient-to-br from-accent to-warning flex items-center justify-center shadow-lg`}
       title={`${achievement.title}: ${achievement.description}`}
     >
       <span>{achievement.icon}</span>
@@ -149,8 +149,8 @@ export function AchievementProgressBar({ progress }) {
         </span>
       </div>
       <div className="h-2 bg-gray-100 dark:bg-white/10 rounded-full overflow-hidden">
-        <div 
-          className="h-full bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full transition-all duration-500"
+        <div
+          className="h-full bg-gradient-to-r from-accent to-warning rounded-full transition-all duration-500"
           style={{ width: `${progress.percentage}%` }}
         />
       </div>

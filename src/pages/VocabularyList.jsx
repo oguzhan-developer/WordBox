@@ -264,7 +264,7 @@ export default function VocabularyList() {
                     {/* Audio Button - Left */}
                     <button
                         onClick={() => handleSpeak(word.word)}
-                        className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-amber-500 flex items-center justify-center text-white hover:opacity-80 transition-opacity"
+                        className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-primary via-purple to-accent flex items-center justify-center text-white hover:opacity-80 transition-opacity"
                         title="Sesli oku"
                     >
                         <Volume2 className="w-5 h-5" />
@@ -289,13 +289,13 @@ export default function VocabularyList() {
                         </div>
 
                         {/* Turkish Meaning */}
-                        <p className="text-indigo-600 dark:text-indigo-400 font-medium mb-2">{word.turkish}</p>
+                        <p className="text-primary dark:text-primary-400 font-medium mb-2">{word.turkish}</p>
 
                         {/* Synonyms */}
                         {word.synonyms && word.synonyms.length > 0 && (
                             <p className="text-gray-600 dark:text-gray-400 text-sm mb-2">
                                 <span className="font-medium text-gray-700 dark:text-gray-300">Eş anlamlı(lar): </span>
-                                <span className="text-purple-600 dark:text-purple-400">{word.synonyms.join(', ')}</span>
+                                <span className="text-accent dark:text-accent-400">{word.synonyms.join(', ')}</span>
                             </p>
                         )}
 
@@ -315,12 +315,12 @@ export default function VocabularyList() {
                                         <div key={i}>
                                             <p
                                                 onClick={() => toggleExample(i)}
-                                                className="text-gray-600 dark:text-gray-400 text-xs italic cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                                                className="text-gray-600 dark:text-gray-400 text-xs italic cursor-pointer hover:text-primary dark:hover:text-primary-400 transition-colors"
                                             >
                                                 "{enText}"
                                             </p>
                                             {expandedExample === i && trText && (
-                                                <p className="text-brand-blue dark:text-blue-400 text-xs mt-0.5">
+                                                <p className="text-primary dark:text-blue-400 text-xs mt-0.5">
                                                     "{trText}"
                                                 </p>
                                             )}
@@ -339,7 +339,7 @@ export default function VocabularyList() {
                                 </span>
                             )}
                             {commonMistakes.length > 0 && (
-                                <span className="inline-flex items-center gap-1 px-2 py-1 bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 rounded text-xs">
+                                <span className="inline-flex items-center gap-1 px-2 py-1 bg-amber-50 dark:bg-warning-900/20 text-warning dark:text-warning-300 rounded text-xs">
                                     <AlertTriangle className="w-3 h-3" />
                                     {typeof commonMistakes[0] === 'string' ? commonMistakes[0] : commonMistakes[0]?.incorrect + ' → ' + commonMistakes[0]?.correct}
                                 </span>
@@ -350,7 +350,7 @@ export default function VocabularyList() {
                     {/* Delete Button */}
                     <button
                         onClick={() => handleRemoveWord(word.id)}
-                        className="flex-shrink-0 p-2 text-gray-400 hover:text-red-500 transition-colors"
+                        className="flex-shrink-0 p-2 text-gray-400 hover:text-danger transition-colors"
                         title="Sil"
                     >
                         <Trash2 className="w-4 h-4" />
@@ -375,7 +375,7 @@ export default function VocabularyList() {
                     <div className="flex gap-2">
                         <button
                             onClick={() => navigate('/vocabulary/learn')}
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-amber-500 text-white hover:opacity-90 transition-opacity shadow-lg"
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-primary via-purple to-accent text-white hover:opacity-90 transition-opacity shadow-lg"
                         >
                             <Sparkles className="w-4 h-4" />
                             Yeni Kelimeler Öğren
@@ -403,15 +403,15 @@ export default function VocabularyList() {
                         icon={BookOpen}
                         title="Toplam"
                         value={stats.total}
-                        iconBgColor="bg-indigo-100"
-                        iconColor="text-indigo-600"
+                        iconBgColor="bg-primary/10"
+                        iconColor="text-primary"
                     />
                     <StatCard
                         icon={Plus}
                         title="Yeni"
                         value={stats.new}
-                        iconBgColor="bg-blue-100"
-                        iconColor="text-blue-600"
+                        iconBgColor="bg-info/10"
+                        iconColor="text-info"
                     />
                     <StatCard
                         icon={Clock}
@@ -424,8 +424,8 @@ export default function VocabularyList() {
                         icon={CheckCircle}
                         title="Öğrenildi"
                         value={stats.learned}
-                        iconBgColor="bg-green-100"
-                        iconColor="text-green-600"
+                        iconBgColor="bg-secondary/10"
+                        iconColor="text-secondary"
                     />
                 </div>
 
@@ -459,7 +459,7 @@ export default function VocabularyList() {
                                     key={level}
                                     onClick={() => setSelectedLevel(level)}
                                     className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${selectedLevel === level
-                                        ? 'bg-gradient-to-r from-indigo-500 via-purple-500 to-amber-500 text-white'
+                                        ? 'bg-gradient-to-r from-primary via-purple to-accent text-white'
                                         : 'bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/20'
                                         }`}
                                 >
@@ -501,7 +501,7 @@ export default function VocabularyList() {
                                 key={status.value}
                                 onClick={() => setSelectedStatus(status.value)}
                                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${selectedStatus === status.value
-                                    ? 'bg-gradient-to-r from-indigo-500 via-purple-500 to-amber-500 text-white'
+                                    ? 'bg-gradient-to-r from-primary via-purple to-accent text-white'
                                     : 'bg-gray-100 dark:bg-white/10 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/20'
                                     }`}
                             >
@@ -536,7 +536,7 @@ export default function VocabularyList() {
                             <div className="text-center pt-8">
                                 <button
                                     onClick={loadMore}
-                                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-amber-500 text-white font-medium hover:opacity-90 transition-opacity shadow-lg"
+                                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-primary via-purple to-accent text-white font-medium hover:opacity-90 transition-opacity shadow-lg"
                                 >
                                     Daha Fazla Yükle ({filteredVocabulary.length - displayCount} kelime kaldı)
                                 </button>
@@ -562,7 +562,7 @@ export default function VocabularyList() {
                         {user.vocabulary.length === 0 ? (
                             <button
                                 onClick={() => navigate('/library')}
-                                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-amber-500 text-white font-medium hover:opacity-90 transition-opacity shadow-lg"
+                                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-primary via-purple to-accent text-white font-medium hover:opacity-90 transition-opacity shadow-lg"
                             >
                                 <BookOpen className="w-4 h-4" />
                                 Kütüphaneye Git
@@ -574,7 +574,7 @@ export default function VocabularyList() {
                                     setSelectedLevel('all');
                                     setSelectedStatus('all');
                                 }}
-                                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-amber-500 text-white font-medium hover:opacity-90 transition-opacity shadow-lg"
+                                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-primary via-purple to-accent text-white font-medium hover:opacity-90 transition-opacity shadow-lg"
                             >
                                 Filtreleri Temizle
                             </button>
@@ -600,11 +600,11 @@ export default function VocabularyList() {
                             <button
                                 key={format.id}
                                 onClick={() => handleExport(format.id)}
-                                className="flex flex-col items-start gap-1 p-4 rounded-xl border border-gray-200 dark:border-[#333] hover:border-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all text-left"
+                                className="flex flex-col items-start gap-1 p-4 rounded-xl border border-gray-200 dark:border-[#333] hover:border-indigo-500 hover:bg-indigo-50 dark:hover:bg-primary-900/20 transition-all text-left"
                             >
                                 <span className="font-bold text-gray-900 dark:text-white">{format.label}</span>
                                 <span className="text-xs text-gray-500 dark:text-gray-400">{format.description}</span>
-                                <span className="text-xs text-indigo-600 dark:text-indigo-400 font-medium">{format.extension}</span>
+                                <span className="text-xs text-primary dark:text-primary-400 font-medium">{format.extension}</span>
                             </button>
                         ))}
                     </div>
@@ -646,7 +646,7 @@ export default function VocabularyList() {
 
                             <button
                                 onClick={() => fileInputRef.current?.click()}
-                                className="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-amber-500 text-white font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+                                className="w-full py-3 rounded-xl bg-gradient-to-r from-primary via-purple to-accent text-white font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
                             >
                                 <Upload className="w-5 h-5" />
                                 Dosya Seç
@@ -654,9 +654,9 @@ export default function VocabularyList() {
                         </>
                     ) : (
                         <>
-                            <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
-                                <h4 className="font-bold text-green-700 dark:text-green-300 mb-2">Dosya okundu!</h4>
-                                <div className="space-y-1 text-sm text-green-600 dark:text-green-400">
+                            <div className="p-4 rounded-xl bg-green-50 dark:bg-secondary-900/20 border border-green-200 dark:border-green-800">
+                                <h4 className="font-bold text-secondary-700 dark:text-secondary-300 mb-2">Dosya okundu!</h4>
+                                <div className="space-y-1 text-sm text-secondary dark:text-secondary-400">
                                     <p>✓ {importResult.validCount} geçerli kelime bulundu</p>
                                     {importResult.skippedCount > 0 && (
                                         <p>⚠ {importResult.skippedCount} kelime atlandı (eksik veri)</p>
@@ -673,7 +673,7 @@ export default function VocabularyList() {
                                 </button>
                                 <button
                                     onClick={handleConfirmImport}
-                                    className="flex-1 py-3 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-amber-500 text-white font-medium hover:opacity-90 transition-opacity"
+                                    className="flex-1 py-3 rounded-xl bg-gradient-to-r from-primary via-purple to-accent text-white font-medium hover:opacity-90 transition-opacity"
                                 >
                                     İçe Aktar
                                 </button>

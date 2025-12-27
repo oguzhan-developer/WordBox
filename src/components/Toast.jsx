@@ -4,52 +4,52 @@ import { CheckCircle, XCircle, AlertTriangle, Info, X } from 'lucide-react';
 // Toast Context
 const ToastContext = createContext(null);
 
-// Toast types configuration with dark mode support
+// Toast types configuration with consistent color palette
 const toastConfig = {
     success: {
         icon: CheckCircle,
         bgColor: 'glass-strong',
-        borderColor: 'border-green-500/30',
-        iconColor: 'text-green-500 dark:text-green-400',
-        textColor: 'text-green-800 dark:text-green-200',
+        borderColor: 'border-secondary-500/30',
+        iconColor: 'text-secondary-500 dark:text-secondary-400',
+        textColor: 'text-secondary-800 dark:text-secondary-200',
         role: 'status',
-        gradient: 'from-green-500/10 to-emerald-500/10',
+        gradient: 'from-secondary-500/10 to-secondary-600/10',
     },
     error: {
         icon: XCircle,
         bgColor: 'glass-strong',
-        borderColor: 'border-red-500/30',
-        iconColor: 'text-red-500 dark:text-red-400',
-        textColor: 'text-red-800 dark:text-red-200',
+        borderColor: 'border-danger-500/30',
+        iconColor: 'text-danger-500 dark:text-danger-400',
+        textColor: 'text-danger-800 dark:text-danger-200',
         role: 'alert',
-        gradient: 'from-red-500/10 to-rose-500/10',
+        gradient: 'from-danger-500/10 to-danger-600/10',
     },
     warning: {
         icon: AlertTriangle,
         bgColor: 'glass-strong',
-        borderColor: 'border-orange-500/30',
-        iconColor: 'text-orange-500 dark:text-orange-400',
-        textColor: 'text-orange-800 dark:text-orange-200',
+        borderColor: 'border-accent-500/30',
+        iconColor: 'text-accent-500 dark:text-accent-400',
+        textColor: 'text-accent-800 dark:text-accent-200',
         role: 'alert',
-        gradient: 'from-orange-500/10 to-amber-500/10',
+        gradient: 'from-accent-500/10 to-accent-600/10',
     },
     info: {
         icon: Info,
         bgColor: 'glass-strong',
-        borderColor: 'border-blue-500/30',
-        iconColor: 'text-blue-500 dark:text-blue-400',
-        textColor: 'text-blue-800 dark:text-blue-200',
+        borderColor: 'border-info-500/30',
+        iconColor: 'text-info-500 dark:text-info-400',
+        textColor: 'text-info-800 dark:text-info-200',
         role: 'status',
-        gradient: 'from-blue-500/10 to-cyan-500/10',
+        gradient: 'from-info-500/10 to-info-600/10',
     },
     xp: {
         icon: null,
-        bgColor: 'glass-strong bg-gradient-to-r from-yellow-500/20 to-orange-500/20',
-        borderColor: 'border-yellow-500/30',
-        iconColor: 'text-yellow-500 dark:text-yellow-400',
-        textColor: 'text-yellow-800 dark:text-yellow-200',
+        bgColor: 'glass-strong bg-gradient-to-r from-accent-500/20 to-warning-500/20',
+        borderColor: 'border-accent-500/30',
+        iconColor: 'text-accent-500 dark:text-accent-400',
+        textColor: 'text-accent-800 dark:text-accent-200',
         role: 'status',
-        gradient: 'from-yellow-500/20 to-orange-500/20',
+        gradient: 'from-accent-500/20 to-warning-500/20',
     },
 };
 
@@ -89,7 +89,7 @@ function Toast({ id, type = 'info', message, onClose, duration = 3000 }) {
       `}
         >
             {type === 'xp' ? (
-                <div className="size-10 rounded-xl bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center shadow-lg">
+                <div className="size-10 rounded-xl bg-gradient-to-br from-accent-500 to-warning-500 flex items-center justify-center shadow-lg shadow-accent-500/30">
                     <span className="text-2xl" role="img" aria-label="star">⭐</span>
                 </div>
             ) : Icon ? (
@@ -105,7 +105,7 @@ function Toast({ id, type = 'info', message, onClose, duration = 3000 }) {
             <button
                 onClick={handleClose}
                 aria-label="Bildirimi kapat"
-                className={`size-8 rounded-xl glass hover:bg-red-500/10 transition-all hover:scale-110 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-1 ${config.iconColor}`}
+                className={`size-8 rounded-xl glass hover:bg-danger-500/10 transition-all hover:scale-110 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-1 ${config.iconColor}`}
             >
                 <X className="w-4 h-4" aria-hidden="true" />
             </button>
@@ -116,7 +116,7 @@ function Toast({ id, type = 'info', message, onClose, duration = 3000 }) {
 // Toast Container
 export function ToastContainer({ toasts, removeToast }) {
     return (
-        <div 
+        <div
             className="fixed top-24 right-4 z-50 flex flex-col gap-2 pointer-events-none"
             aria-label="Bildirimler"
         >

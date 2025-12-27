@@ -24,13 +24,13 @@ export default function Navbar() {
 
     if (!isLoggedIn) {
         return (
-            <nav className="sticky top-0 z-[90] w-full glass-strong shadow-lg border-b border-white/20 dark:border-slate-700/50">
+            <nav className="sticky top-0 z-[90] w-full glass-strong shadow-lg border-b border-white/20 dark:border-dark-border">
                 <div className="max-w-[1200px] mx-auto px-4 md:px-8 py-4">
                     <div className="flex items-center justify-between">
                         <Logo to="/" size="md" />
                         <Link
                             to="/auth"
-                            className="gradient-primary text-white text-sm font-bold py-2.5 px-6 rounded-xl shadow-lg hover:shadow-indigo-500/50 transition-all hover:-translate-y-0.5 active:scale-95"
+                            className="gradient-primary text-white text-sm font-bold py-2.5 px-6 rounded-xl shadow-lg hover:shadow-primary-500/50 transition-all hover:-translate-y-0.5 active:scale-95"
                         >
                             Giriş Yap
                         </Link>
@@ -45,14 +45,14 @@ export default function Navbar() {
             {/* Skip to Content Link - Accessibility */}
             <a
                 href="#main-content"
-                className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-indigo-600 focus:text-white focus:rounded-lg focus:font-medium focus:shadow-lg"
+                className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary-600 focus:text-white focus:rounded-lg focus:font-medium focus:shadow-lg"
             >
                 İçeriğe Atla
             </a>
-            
+
             {!isOnline && (
                 <div
-                    className="w-full bg-red-50 dark:bg-red-900/40 text-red-800 dark:text-red-100 border-b border-red-200 dark:border-red-800 text-sm"
+                    className="w-full bg-danger-50 dark:bg-danger-900/40 text-danger-800 dark:text-danger-100 border-b border-danger-200 dark:border-danger-800 text-sm"
                     role="status"
                     aria-live="assertive"
                 >
@@ -63,7 +63,7 @@ export default function Navbar() {
                 </div>
             )}
 
-            <nav className="sticky top-0 z-[90] w-full glass-strong shadow-xl border-b border-white/20 dark:border-slate-700/50">
+            <nav className="sticky top-0 z-[90] w-full glass-strong shadow-xl border-b border-white/20 dark:border-dark-border">
                 <div className="max-w-[1200px] mx-auto px-4 md:px-8 py-4">
                     <div className="flex items-center justify-between">
                         {/* Logo */}
@@ -79,8 +79,8 @@ export default function Navbar() {
                                         to={item.path}
                                         className={`relative text-sm font-semibold px-3 py-2 rounded-xl transition-all ${
                                             active
-                                                ? 'text-white bg-gradient-to-r from-indigo-500 to-purple-600 shadow-lg shadow-indigo-500/30'
-                                                : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-slate-800/50'
+                                                ? 'text-white gradient-primary shadow-lg shadow-primary-500/30'
+                                                : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-dark-card/50'
                                         }`}
                                     >
                                         {item.label}
@@ -92,7 +92,7 @@ export default function Navbar() {
                         {/* Right Actions */}
                         <div className="flex items-center gap-2 sm:gap-3">
                             {/* Combined Level & XP Badge */}
-                            <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-amber-500 rounded-full shadow-lg hover:shadow-xl transition-all cursor-default group">
+                            <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-primary-500 via-purple-500 to-accent-500 rounded-full shadow-lg hover:shadow-xl transition-all cursor-default group">
                                 <div className="flex items-center gap-1">
                                     <span className="material-symbols-outlined text-[14px] text-white leading-none">verified</span>
                                     <span className="text-xs font-bold text-white">{user.level || 'B1'}</span>
@@ -113,7 +113,7 @@ export default function Navbar() {
                                     onClick={() => { setProfileMenuOpen(!profileMenuOpen); setMobileMenuOpen(false); }}
                                     aria-expanded={profileMenuOpen}
                                     aria-haspopup="menu"
-                                    className="size-12 rounded-full overflow-hidden cursor-pointer border-2 border-white shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/70 dark:focus:ring-offset-gray-900 bg-gradient-to-br from-indigo-500 via-purple-500 to-amber-500"
+                                    className="size-12 rounded-full overflow-hidden cursor-pointer border-2 border-white shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/70 dark:focus:ring-offset-dark-card bg-gradient-to-br from-primary-500 via-purple-500 to-accent-500"
                                 >
                                     {(() => {
                                         const avatar = user.avatar;
@@ -143,19 +143,19 @@ export default function Navbar() {
 
                                 {/* Dropdown Menu */}
                                 {profileMenuOpen && (
-                                    <div className="absolute right-0 mt-2 w-56 bg-white/95 dark:bg-[#1f1f1a]/95 rounded-2xl shadow-xl border border-gray-100 dark:border-[#333] overflow-hidden z-[95] backdrop-blur-md">
+                                    <div className="absolute right-0 mt-2 w-56 bg-white/95 dark:bg-dark-card/95 rounded-2xl shadow-xl border border-gray-100 dark:border-dark-border overflow-hidden z-[95] backdrop-blur-md">
                                         {/* XP & Level Display */}
-                                        <div className="mx-2 mt-2 px-4 py-3 border-b border-gray-100 dark:border-[#333] bg-gradient-to-r from-indigo-50 via-purple-50 to-amber-50 dark:from-indigo-900/20 dark:via-purple-900/20 dark:to-amber-900/20 rounded-t-xl">
-                                            <p className="text-sm font-bold text-gray-900 dark:text-white">{user.name}</p>
-                                            <p className="text-xs text-gray-500 dark:text-gray-400 truncate mb-3">{user.email}</p>
+                                        <div className="mx-2 mt-2 px-4 py-3 border-b border-gray-100 dark:border-dark-border bg-gradient-to-r from-primary-50 via-purple-50 to-accent-50 dark:from-primary-900/20 dark:via-purple-900/20 dark:to-accent-900/20 rounded-t-xl">
+                                            <p className="text-sm font-bold text-gray-900 dark:text-dark-text">{user.name}</p>
+                                            <p className="text-xs text-gray-500 dark:text-dark-muted truncate mb-3">{user.email}</p>
                                             <div className="flex items-center justify-between">
                                                 <div className="flex items-center gap-2">
-                                                    <span className="material-symbols-outlined text-[16px] text-indigo-600 dark:text-indigo-400">verified</span>
-                                                    <span className="text-sm font-bold text-indigo-600 dark:text-indigo-400">Level {user.level || 'B1'}</span>
+                                                    <span className="material-symbols-outlined text-[16px] text-primary-600 dark:text-primary-400">verified</span>
+                                                    <span className="text-sm font-bold text-primary-600 dark:text-primary-400">Level {user.level || 'B1'}</span>
                                                 </div>
                                                 <div className="flex items-center gap-1">
-                                                    <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
-                                                    <span className="text-sm font-bold text-amber-600 dark:text-amber-400">{user.xp || 0} XP</span>
+                                                    <Star className="w-4 h-4 text-accent-500 fill-accent-500" />
+                                                    <span className="text-sm font-bold text-accent-600 dark:text-accent-400">{user.xp || 0} XP</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -182,10 +182,10 @@ export default function Navbar() {
                                                 <span className="material-symbols-outlined text-lg">settings</span>
                                                 Ayarlar
                                             </Link>
-                                            <div className="border-t border-gray-100 dark:border-[#333] my-1 mx-2"></div>
+                                            <div className="border-t border-gray-100 dark:border-dark-border my-1 mx-2"></div>
                                             <button
                                                 onClick={() => { logout(); setProfileMenuOpen(false); }}
-                                                className="flex items-center gap-3 w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-b-xl"
+                                                className="flex items-center gap-3 w-full text-left px-4 py-2 text-sm text-danger-600 hover:bg-danger-50 dark:hover:bg-danger-900/20 rounded-b-xl"
                                             >
                                                 <span className="material-symbols-outlined text-lg">logout</span>
                                                 Çıkış Yap
@@ -202,7 +202,7 @@ export default function Navbar() {
 
                             {/* Mobile Menu Button */}
                             <button
-                                className="md:hidden size-10 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/70 dark:focus:ring-offset-gray-900"
+                                className="md:hidden size-10 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-dark-card transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/70 dark:focus:ring-offset-dark-bg"
                                 onClick={() => { setMobileMenuOpen(!mobileMenuOpen); setProfileMenuOpen(false); }}
                                 aria-expanded={mobileMenuOpen}
                                 aria-label="Menüyü aç/kapat"
@@ -214,14 +214,14 @@ export default function Navbar() {
 
                     {/* Mobile Menu */}
                     {mobileMenuOpen && (
-                        <div className="md:hidden py-4 border-t border-gray-100 dark:border-[#333] mt-2 space-y-2 bg-white/90 dark:bg-[#181811]/95 rounded-2xl shadow-lg animate-slideDown">
+                        <div className="md:hidden py-4 border-t border-gray-100 dark:border-dark-border mt-2 space-y-2 bg-white/90 dark:bg-dark-bg/95 rounded-2xl shadow-lg animate-slideDown">
                             {navItems.map((item) => (
                                 <Link
                                     key={item.path}
                                     to={item.path}
                                     className={`block px-4 py-2 text-sm font-semibold rounded-xl transition-colors ${
                                         isActive(item.path)
-                                            ? 'bg-primary/10 text-black dark:text-white'
+                                            ? 'gradient-primary text-white'
                                             : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10'
                                     }`}
                                     onClick={() => setMobileMenuOpen(false)}

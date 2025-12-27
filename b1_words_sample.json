@@ -1,0 +1,222 @@
+[
+  {
+    "word": "achieve",
+    "phonetic": "/əˈtʃiːv/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["başarmak", "elde etmek", "ulaştırmak"],
+    "definitionsEn": ["To successfully complete something or get a good result, especially by working hard."],
+    "examplesEn": [
+      "She achieved her goal of running a marathon.",
+      "You need to work hard to achieve success."
+    ],
+    "examplesTr": [
+      "O bir maraton koşma hedefine ulaştı.",
+      "Başarıya ulaşmak için sıkı çalışman gerek."
+    ],
+    "synonyms": ["accomplish", "attain", "reach", "fulfill"],
+    "antonyms": ["fail", "lose", "miss"],
+    "usageNotes": "",
+    "commonMistakes": "",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "advantage",
+    "phonetic": "/ədˈvɑːntɪdʒ/",
+    "partOfSpeech": ["noun"],
+    "level": "B1",
+    "meaningsTr": ["avantaj", "üstünlük", "fayda"],
+    "definitionsEn": ["A condition giving a greater chance of success."],
+    "examplesEn": [
+      "Having a good education is a big advantage in today's job market.",
+      "The home team had the advantage of playing on their own field."
+    ],
+    "examplesTr": [
+      "İyi bir eğitim, günümüz iş piyasasında büyük bir avantajdır.",
+      "Ev sahibi takım kendi sahasında oynamanın avantajına sahipti."
+    ],
+    "synonyms": ["benefit", "asset", "edge", "plus"],
+    "antonyms": ["disadvantage", "drawback", "handicap"],
+    "usageNotes": "Commonly used in phrases like 'take advantage of' or 'have an advantage over'.",
+    "commonMistakes": "Remember the spelling: advantage (not 'advantedge').",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "avoid",
+    "phonetic": "/əˈvɔɪd/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["kaçınmak", "çekinmek", "engel olmak"],
+    "definitionsEn": ["To prevent something from happening or to stay away from someone or something."],
+    "examplesEn": [
+      "You should avoid eating too much sugar.",
+      "She tried to avoid answering the question."
+    ],
+    "examplesTr": [
+      "Çok fazla şeker yemekten kaçınmalısın.",
+      "Soruyu yanıtlamaktan kaçınmaya çalıştı."
+    ],
+    "synonyms": ["prevent", "evade", "escape", "shun"],
+    "antonyms": ["seek", "face", "encounter", "pursue"],
+    "usageNotes": "After 'avoid', use the -ing form of the verb (e.g., 'avoid going', not 'avoid to go').",
+    "commonMistakes":"Don't use 'to + infinitive' after avoid. Say 'avoid doing' not 'avoid to do'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "brilliant",
+    "phonetic": "/ˈbrɪliənt/",
+    "partOfSpeech": ["adjective"],
+    "level": "B1",
+    "meaningsTr": ["parlak", "mükemmel", "zeyn"],
+    "definitionsEn": ["Extremely clever, impressive, or beautiful."],
+    "examplesEn": [
+      "She had a brilliant idea for solving the problem.",
+      "The team gave a brilliant performance last night."
+    ],
+    "examplesTr": [
+      "Sorunu çözmek için harika bir fikri vardı.",
+      "Takım geçen gece mükemmel bir performans sergiledi."
+    ],
+    "synonyms": ["excellent", "outstanding", "superb", "genius"],
+    "antonyms": ["terrible", "awful", "poor", "dull"],
+    "usageNotes": "Used to describe both intelligence (brilliant idea) and performance (brilliant performance).",
+    "commonMistakes": "In British English, 'brilliant' can also mean 'very good' as informal usage.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "career",
+    "phonetic": "/kəˈrɪər/",
+    "partOfSpeech": ["noun"],
+    "level": "B1",
+    "meaningsTr": ["kariyer", "meslek", "iş hayatı"],
+    "definitionsEn": ["A job or profession that someone does for a long period of their life."],
+    "examplesEn": [
+      "She is planning a career in medicine.",
+      "He worked hard to build his career in finance."
+    ],
+    "examplesTr": [
+      "Tipte bir kariyer planlıyor.",
+      "Finans sektöründe kariyer yapmak için çok çalıştı."
+    ],
+    "synonyms": ["profession", "occupation", "vocation", "calling"],
+    "antonyms": ["hobby", "pastime", "unemployment"],
+    "usageNotes": "Career refers to long-term professional development, not just a single job.",
+    "commonMistakes":"Don't confuse 'career' with 'carrier' - a carrier is something that carries things.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "challenge",
+    "phonetic": "/ˈtʃælɪndʒ/",
+    "partOfSpeech": ["noun", "verb"],
+    "level": "B1",
+    "meaningsTr": ["meydan okuma", "zorluk", "meydan okumak"],
+    "definitionsEn": ["Something that needs great mental or physical effort in order to be done successfully."],
+    "examplesEn": [
+      "Climbing the mountain was a huge challenge for them.",
+      "She challenged the decision in court."
+    ],
+    "examplesTr": [
+      "Dağa tırmanmak onlar için büyük bir meydan okumaydı.",
+      "Kararı mahkemede tartışmaya açtı."
+    ],
+    "synonyms": ["difficulty", "test", "trial", "confront"],
+    "antonyms": ["breeze", "walkover", "avoid"],
+    "usageNotes": "Can be used as both a noun (a challenge) and a verb (to challenge someone/something).",
+    "commonMistakes": "Remember to keep the 'l' silent in pronunciation: CHAL-enj, not CHAL-lenj.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "decision",
+    "phonetic": "/dɪˈsɪʒən/",
+    "partOfSpeech": ["noun"],
+    "level": "B1",
+    "meaningsTr": ["karar", "hüküm", "tedbir"],
+    "definitionsEn": ["A choice that you make about something after thinking about several possibilities."],
+    "examplesEn": [
+      "We need to make a decision by tomorrow.",
+      "It was a difficult decision, but I think it was the right one."
+    ],
+    "examplesTr": [
+      "Yarına kadar bir karar vermemiz gerekiyor.",
+      "Zor bir karardı ama doğru olduğunu düşünüyorum."
+    ],
+    "synonyms": ["choice", "judgment", "resolution", "conclusion"],
+    "antonyms": ["indecision", "doubt", "hesitation"],
+    "usageNotes": "Common collocations: 'make a decision', 'reach a decision', 'final decision'.",
+    "commonMistakes": "Don't say 'do a decision' - use 'make a decision'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "effort",
+    "phonetic": "/ˈefət/",
+    "partOfSpeech": ["noun"],
+    "level": "B1",
+    "meaningsTr": ["çaba", "uğraş", "emek"],
+    "definitionsEn": ["Physical or mental activity needed to achieve something."],
+    "examplesEn": [
+      "You need to put more effort into your studies.",
+      "The team's effort finally paid off."
+    ],
+    "examplesTr": [
+      "Çalışmalarına daha fazla çaba harcamalısın.",
+      "Takımın çabaları nihayet karşılık verdi."
+    ],
+    "synonyms": ["attempt", "exertion", "struggle", "endeavor"],
+    "antonyms": ["laziness", "idleness", "inaction"],
+    "usageNotes": "Commonly used with 'make' (make an effort) or 'put in' (put in effort).",
+    "commonMistakes": "Don't confuse with 'affect' - they sound similar but effort is a noun.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "explain",
+    "phonetic": "/ɪkˈspleɪn/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["açıklamak", "anlatmak"],
+    "definitionsEn": ["To make something clear or easy to understand by describing or giving information about it."],
+    "examplesEn": [
+      "Can you explain how this machine works?",
+      "The teacher explained the lesson to the students."
+    ],
+    "examplesTr": [
+      "Bu makinenin nasıl çalıştığını açıklar mısın?",
+      "Öğretmen dersi öğrencilere açıkladı."
+    ],
+    "synonyms": ["clarify", "describe", "illustrate", "demonstrate"],
+    "antonyms": ["confuse", "complicate", "obscure"],
+    "usageNotes": "After explain, use object + to + person (e.g., 'explain it to me', not 'explain me it').",
+    "commonMistakes": "Don't say 'explain me' - use 'explain it to me' or 'explain to me'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "manage",
+    "phonetic": "/ˈmænɪdʒ/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["yönetmek", "halletmek", "başarmak"],
+    "definitionsEn": ["To succeed in dealing with a difficult situation or to control something."],
+    "examplesEn": [
+      "How do you manage to work and study at the same time?",
+      "She manages a team of ten people."
+    ],
+    "examplesTr": [
+      "Aynı anda hem çalışıp nasıl başarabiliyorsun?",
+      "On kişilik bir ekip yönetiyor."
+    ],
+    "synonyms": ["handle", "cope with", "control", "supervise"],
+    "antonyms": ["fail", "lose control", "neglect"],
+    "usageNotes": "Can be followed by 'to + infinitive' (managed to do) or a direct object (manage a team).",
+    "commonMistakes": "Don't confuse 'manage to' (success) with 'can' (ability). 'Manage to' implies overcoming difficulty.",
+    "imageUrl": "",
+    "audioUrl": ""
+  }
+]

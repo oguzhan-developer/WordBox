@@ -19,12 +19,13 @@ export default function ProgressBar({
     };
 
     const colors = {
-        primary: 'bg-gradient-to-r from-indigo-600 to-purple-600',
-        secondary: 'bg-gradient-to-r from-purple-600 to-pink-600',
-        success: 'bg-gradient-to-r from-green-500 to-emerald-500',
-        warning: 'bg-gradient-to-r from-orange-500 to-amber-500',
-        danger: 'bg-gradient-to-r from-red-500 to-rose-500',
-        gradient: 'bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500',
+        primary: 'gradient-primary',
+        secondary: 'gradient-purple',
+        success: 'gradient-secondary',
+        warning: 'gradient-accent',
+        danger: 'gradient-danger',
+        info: 'gradient-info',
+        gradient: 'gradient-hero',
     };
 
     return (
@@ -87,8 +88,8 @@ export function CircularProgress({
                 {/* Progress circle with gradient */}
                 <defs>
                     <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#6366f1" />
-                        <stop offset="100%" stopColor="#8b5cf6" />
+                        <stop offset="0%" stopColor="#6366F1" />
+                        <stop offset="100%" stopColor="#8B5CF6" />
                     </linearGradient>
                 </defs>
                 <circle
@@ -106,11 +107,11 @@ export function CircularProgress({
             </svg>
             {showValue && (
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className="text-xl font-bold text-gray-900">
+                    <span className="text-xl font-bold text-gray-900 dark:text-dark-text">
                         {valueLabel || `${Math.round(percentage)}%`}
                     </span>
                     {subtitle && (
-                        <span className="text-xs text-gray-500">{subtitle}</span>
+                        <span className="text-xs text-gray-500 dark:text-dark-muted">{subtitle}</span>
                     )}
                 </div>
             )}
@@ -134,10 +135,10 @@ export function StepProgress({
               flex items-center justify-center w-8 h-8 rounded-full font-medium text-sm
               transition-colors duration-200
               ${index < currentStep
-                                ? 'bg-indigo-600 text-white'
+                                ? 'bg-primary-600 text-white'
                                 : index === currentStep
-                                    ? 'bg-indigo-600 text-white ring-4 ring-indigo-100'
-                                    : 'bg-gray-200 text-gray-500'
+                                    ? 'bg-primary-600 text-white ring-4 ring-primary-100 dark:ring-primary-900/30'
+                                    : 'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400'
                             }
             `}
                     >
@@ -148,7 +149,7 @@ export function StepProgress({
                     {step && (
                         <span className={`
               ml-2 text-sm hidden sm:inline
-              ${index <= currentStep ? 'text-gray-900 font-medium' : 'text-gray-500'}
+              ${index <= currentStep ? 'text-gray-900 dark:text-dark-text font-medium' : 'text-gray-500 dark:text-gray-500'}
             `}>
                             {step}
                         </span>
@@ -158,7 +159,7 @@ export function StepProgress({
                     {index < steps.length - 1 && (
                         <div className={`
               w-8 sm:w-16 h-1 mx-2
-              ${index < currentStep ? 'bg-indigo-600' : 'bg-gray-200'}
+              ${index < currentStep ? 'bg-primary-600' : 'bg-gray-200 dark:bg-gray-700'}
             `} />
                     )}
                 </div>
@@ -180,15 +181,15 @@ export function XpProgressBar({
         <div className={`${className}`}>
             <div className="flex justify-between items-center mb-2">
                 <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium text-gray-900">Level {currentLevel}</span>
+                    <span className="text-sm font-medium text-gray-900 dark:text-dark-text">Level {currentLevel}</span>
                 </div>
-                <span className="text-sm text-gray-500">
+                <span className="text-sm text-gray-500 dark:text-dark-muted">
                     {currentXp.toLocaleString()} / {requiredXp.toLocaleString()} XP
                 </span>
             </div>
-            <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
+            <div className="w-full h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                 <div
-                    className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 transition-all duration-500"
+                    className="h-full rounded-full gradient-primary transition-all duration-500"
                     style={{ width: `${percentage}%` }}
                 />
             </div>

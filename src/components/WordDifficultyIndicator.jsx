@@ -8,11 +8,11 @@ import { getSrsData, BOX_LABELS, BOX_COLORS } from '../utils/spacedRepetition';
 
 // Difficulty levels based on performance
 const DIFFICULTY_LEVELS = {
-    mastered: { label: 'Ustalaşmış', color: 'text-green-500', bg: 'bg-green-500', icon: '🏆' },
-    easy: { label: 'Kolay', color: 'text-emerald-500', bg: 'bg-emerald-500', icon: '😊' },
-    normal: { label: 'Normal', color: 'text-blue-500', bg: 'bg-blue-500', icon: '📚' },
-    challenging: { label: 'Zorlu', color: 'text-orange-500', bg: 'bg-orange-500', icon: '💪' },
-    hard: { label: 'Zor', color: 'text-red-500', bg: 'bg-red-500', icon: '🔥' },
+    mastered: { label: 'Ustalaşmış', color: 'text-secondary', bg: 'bg-secondary', icon: '🏆' },
+    easy: { label: 'Kolay', color: 'text-secondary-400', bg: 'bg-secondary-400', icon: '😊' },
+    normal: { label: 'Normal', color: 'text-primary', bg: 'bg-primary', icon: '📚' },
+    challenging: { label: 'Zorlu', color: 'text-warning', bg: 'bg-warning', icon: '💪' },
+    hard: { label: 'Zor', color: 'text-danger', bg: 'bg-danger', icon: '🔥' },
     unknown: { label: 'Yeni', color: 'text-gray-500', bg: 'bg-gray-500', icon: '✨' },
 };
 
@@ -129,11 +129,11 @@ export function WordStatsMini({ wordId }) {
             <span className="text-gray-600 dark:text-gray-400">
                 {srsEntry.reviewCount} tekrar
             </span>
-            <span className={accuracy >= 70 ? 'text-green-500' : accuracy >= 50 ? 'text-orange-500' : 'text-red-500'}>
+            <span className={accuracy >= 70 ? 'text-secondary' : accuracy >= 50 ? 'text-warning' : 'text-danger'}>
                 %{accuracy} doğru
             </span>
             {srsEntry.streak > 0 && (
-                <span className="text-orange-500 flex items-center gap-0.5">
+                <span className="text-warning flex items-center gap-0.5">
                     🔥 {srsEntry.streak}
                 </span>
             )}
@@ -167,13 +167,13 @@ export function WordDifficultyCard({ wordId, word: _word }) {
                     <p className="text-[10px] text-gray-500">Tekrar</p>
                 </div>
                 <div>
-                    <p className={`text-lg font-bold ${accuracy >= 70 ? 'text-green-500' : accuracy >= 50 ? 'text-orange-500' : 'text-red-500'}`}>
+                    <p className={`text-lg font-bold ${accuracy >= 70 ? 'text-secondary' : accuracy >= 50 ? 'text-warning' : 'text-danger'}`}>
                         {accuracy}%
                     </p>
                     <p className="text-[10px] text-gray-500">Başarı</p>
                 </div>
                 <div>
-                    <p className="text-lg font-bold text-orange-500">{srsEntry.streak}</p>
+                    <p className="text-lg font-bold text-warning">{srsEntry.streak}</p>
                     <p className="text-[10px] text-gray-500">Seri</p>
                 </div>
             </div>

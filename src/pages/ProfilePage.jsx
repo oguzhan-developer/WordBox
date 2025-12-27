@@ -15,7 +15,7 @@ import { getWeeklyActivity } from '../utils/weeklyActivity';
 const renderAvatar = (avatar, name) => {
     if (!avatar) {
         return (
-            <div className="w-full h-full bg-gradient-to-br from-indigo-500 via-purple-500 to-amber-500 flex items-center justify-center">
+            <div className="w-full h-full bg-gradient-to-br from-primary via-purple to-accent flex items-center justify-center">
                 <span className="text-4xl font-bold text-white">{(name || 'A')[0].toUpperCase()}</span>
             </div>
         );
@@ -39,7 +39,7 @@ const renderAvatar = (avatar, name) => {
     // Emoji kontrolü
     if (/^[\p{Emoji}\p{Emoji_Component}]+$/u.test(avatar) && avatar.length < 10) {
         return (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-indigo-50 via-purple-50 to-amber-50 dark:from-indigo-900/20 dark:via-purple-900/20 dark:to-amber-900/20">
+            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/10 via-purple/10 to-accent/10 dark:from-primary/20 dark:via-purple/20 dark:to-accent/20">
                 <span className="text-5xl">{avatar}</span>
             </div>
         );
@@ -71,23 +71,23 @@ export default function ProfilePage() {
     const bestDay = weeklyActivity.reduce((max, day) => Math.max(max, day.words), 0);
 
     const stats = [
-        { label: 'Seri', value: `${user.streak} Gün`, icon: 'local_fire_department', color: 'text-brand-orange' },
-        { label: 'Toplam XP', value: user.xp.toLocaleString(), icon: 'trophy', color: 'text-brand-blue' },
-        { label: 'Öğrenilen Kelime', value: user.wordsLearned, icon: 'menu_book', color: 'text-brand-green' },
-        { label: 'Pratik Sayısı', value: user.practiceCount, icon: 'fitness_center', color: 'text-brand-purple' },
+        { label: 'Seri', value: `${user.streak} Gün`, icon: 'local_fire_department', color: 'text-warning' },
+        { label: 'Toplam XP', value: user.xp.toLocaleString(), icon: 'trophy', color: 'text-primary' },
+        { label: 'Öğrenilen Kelime', value: user.wordsLearned, icon: 'menu_book', color: 'text-secondary' },
+        { label: 'Pratik Sayısı', value: user.practiceCount, icon: 'fitness_center', color: 'text-accent' },
     ];
 
     const recentActivities = [
-        { type: 'word_learned', count: user.wordsToday, label: 'Bugün Öğrenilen Kelimeler', icon: 'add_circle', color: 'bg-brand-green/10 text-brand-green' },
-        { type: 'practice', count: user.practiceCount || 0, label: 'Toplam Pratik', icon: 'quiz', color: 'bg-brand-purple/10 text-brand-purple' },
-        { type: 'articles', count: user.articlesRead || 0, label: 'Okunan Makale', icon: 'article', color: 'bg-brand-blue/10 text-brand-blue' },
-        { type: 'streak', count: user.streak || 0, label: 'Öğrenme Serisi', icon: 'local_fire_department', color: 'bg-brand-orange/10 text-brand-orange' },
+        { type: 'word_learned', count: user.wordsToday, label: 'Bugün Öğrenilen Kelimeler', icon: 'add_circle', color: 'bg-secondary/10 text-secondary' },
+        { type: 'practice', count: user.practiceCount || 0, label: 'Toplam Pratik', icon: 'quiz', color: 'bg-accent/10 text-accent' },
+        { type: 'articles', count: user.articlesRead || 0, label: 'Okunan Makale', icon: 'article', color: 'bg-primary/10 text-primary' },
+        { type: 'streak', count: user.streak || 0, label: 'Öğrenme Serisi', icon: 'local_fire_department', color: 'bg-warning/10 text-warning' },
     ];
 
     return (
         <div className="bg-background-light dark:bg-background-dark font-display text-[#181811] dark:text-white min-h-screen pb-12">
             {/* Header / Banner Area */}
-            <div className="h-48 bg-gradient-to-r from-brand-blue to-brand-purple opacity-80 relative overflow-hidden">
+            <div className="h-48 bg-gradient-to-r from-primary to-purple opacity-80 relative overflow-hidden">
                 <div className="absolute inset-0 opacity-20">
                     <div className="absolute -top-10 -left-10 w-40 h-40 bg-white rounded-full blur-3xl"></div>
                     <div className="absolute top-20 right-20 w-60 h-60 bg-white rounded-full blur-3xl"></div>
@@ -105,7 +105,7 @@ export default function ProfilePage() {
                             </div>
                             <button
                                 onClick={() => setShowAvatarPicker(true)}
-                                className="absolute -bottom-2 -right-2 size-10 bg-gradient-to-r from-indigo-500 via-purple-500 to-amber-500 rounded-xl shadow-lg flex items-center justify-center text-white hover:scale-110 transition-transform"
+                                className="absolute -bottom-2 -right-2 size-10 bg-gradient-to-r from-primary via-purple to-accent rounded-xl shadow-lg flex items-center justify-center text-white hover:scale-110 transition-transform"
                                 title="Avatarını değiştir"
                             >
                                 <span className="material-symbols-outlined text-lg">edit</span>
@@ -122,7 +122,7 @@ export default function ProfilePage() {
                                 </div>
                             </div>
                             <p className="text-gray-500 dark:text-gray-400 mb-4">{user.email}</p>
-                            <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-blue/10 text-brand-blue rounded-full text-sm font-bold uppercase tracking-wider">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-bold uppercase tracking-wider">
                                 <span className="material-symbols-outlined text-sm">military_tech</span>
                                 {levelTitle}
                             </div>
@@ -143,7 +143,7 @@ export default function ProfilePage() {
                     {/* Left Column: Stats Grid */}
                     <div className="space-y-6">
                         <h2 className="text-xl font-bold flex items-center gap-2">
-                            <span className="material-symbols-outlined text-brand-blue">analytics</span>
+                            <span className="material-symbols-outlined text-primary">analytics</span>
                             İstatistikler
                         </h2>
                         <div className="grid grid-cols-2 gap-4">
@@ -162,7 +162,7 @@ export default function ProfilePage() {
                     {/* Right Column: Level Progress */}
                     <div className="space-y-6">
                         <h2 className="text-xl font-bold flex items-center gap-2">
-                            <span className="material-symbols-outlined text-brand-orange">trending_up</span>
+                            <span className="material-symbols-outlined text-accent">trending_up</span>
                             Seviye İlerlemesi
                         </h2>
                         <div className="bg-white dark:bg-[#2a2a24] p-6 rounded-xl border border-gray-100 dark:border-[#333] shadow-sm h-full flex flex-col justify-center">
@@ -172,14 +172,14 @@ export default function ProfilePage() {
                                     <div className="text-3xl font-black">Lvl {currentLevel}</div>
                                 </div>
                                 <div className="text-right">
-                                    <div className="text-sm dark:text-gray-400 font-medium text-brand-blue">{xpToNext} XP Kaldı</div>
+                                    <div className="text-sm dark:text-gray-400 font-medium text-primary">{xpToNext} XP Kaldı</div>
                                     <div className="text-xl font-bold text-gray-400 uppercase tracking-tighter">Lvl {currentLevel + 1}</div>
                                 </div>
                             </div>
 
                             <div className="relative w-full h-4 bg-gray-100 dark:bg-white/10 rounded-full overflow-hidden mb-2">
                                 <div
-                                    className="absolute top-0 left-0 h-full bg-gradient-to-r from-brand-blue to-brand-purple rounded-full transition-all duration-1000"
+                                    className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary to-purple rounded-full transition-all duration-1000"
                                     style={{ width: `${progress}%` }}
                                 ></div>
                             </div>
@@ -195,14 +195,14 @@ export default function ProfilePage() {
                             <span className="material-symbols-outlined text-yellow-500">stars</span>
                             Başarımlar
                         </h2>
-                        <span className="text-sm font-bold text-brand-blue">{user.earnedBadges?.length || 0} Rozet</span>
+                        <span className="text-sm font-bold text-primary">{user.earnedBadges?.length || 0} Rozet</span>
                     </div>
 
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                         {user.earnedBadges && user.earnedBadges.length > 0 ? (
                             user.earnedBadges.map((badge, i) => (
-                                <div key={i} className="bg-white dark:bg-[#2a2a24] p-4 rounded-xl border border-gray-100 dark:border-[#333] flex flex-col items-center text-center group hover:border-brand-blue/30 transition-all">
-                                    <div className="size-20 rounded-full bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center mb-3 border-2 border-brand-blue/20 group-hover:scale-110 transition-transform">
+                                <div key={i} className="bg-white dark:bg-[#2a2a24] p-4 rounded-xl border border-gray-100 dark:border-[#333] flex flex-col items-center text-center group hover:border-primary/30 transition-all">
+                                    <div className="size-20 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-3 border-2 border-primary/20 group-hover:scale-110 transition-transform">
                                         <span className="text-4xl">{badge.icon || '🏅'}</span>
                                     </div>
                                     <h3 className="font-bold text-sm mb-1">{badge.name}</h3>
@@ -229,7 +229,7 @@ export default function ProfilePage() {
                             <Link
                                 key={i}
                                 to={activity.type === 'word_learned' ? '/vocabulary' : '/practice'}
-                                className="bg-white dark:bg-[#2a2a24] p-5 rounded-xl border border-gray-100 dark:border-[#333] hover:border-brand-blue/30 transition-all group"
+                                className="bg-white dark:bg-[#2a2a24] p-5 rounded-xl border border-gray-100 dark:border-[#333] hover:border-primary/30 transition-all group"
                             >
                                 <div className={`size-12 rounded-xl ${activity.color} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}>
                                     <span className="material-symbols-outlined text-2xl">{activity.icon}</span>
@@ -244,10 +244,10 @@ export default function ProfilePage() {
                 {/* Weekly Activity Summary */}
                 <div className="mt-12">
                     <h2 className="text-xl font-bold flex items-center gap-2 mb-6">
-                        <span className="material-symbols-outlined text-brand-orange">calendar_month</span>
+                        <span className="material-symbols-outlined text-accent">calendar_month</span>
                         Haftalık Özet
                     </h2>
-                    <div className="bg-gradient-to-br from-brand-blue/10 to-brand-purple/10 dark:from-brand-blue/20 dark:to-brand-purple/20 p-6 rounded-2xl border border-brand-blue/20">
+                    <div className="bg-gradient-to-br from-primary/10 to-purple/10 dark:from-primary/20 dark:to-purple/20 p-6 rounded-2xl border border-primary/20">
                         <div className="flex items-center justify-between mb-4">
                             <div>
                                 <p className="text-sm text-gray-600 dark:text-gray-400">Bu Hafta</p>
@@ -264,7 +264,7 @@ export default function ProfilePage() {
                                     <div
                                         className={`w-full rounded-t-lg transition-all ${
                                             day.words > 0
-                                                ? 'bg-brand-blue'
+                                                ? 'bg-primary'
                                                 : 'bg-gray-200 dark:bg-white/10'
                                         }`}
                                         style={{
@@ -272,7 +272,7 @@ export default function ProfilePage() {
                                             minHeight: '8px'
                                         }}
                                     />
-                                    <span className={`text-[10px] mt-1 font-bold ${day.isToday ? 'text-brand-blue' : 'text-gray-400'}`}>
+                                    <span className={`text-[10px] mt-1 font-bold ${day.isToday ? 'text-primary' : 'text-gray-400'}`}>
                                         {day.day}
                                     </span>
                                 </div>

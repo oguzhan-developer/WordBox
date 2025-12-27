@@ -51,10 +51,10 @@ export default function ProgressPage() {
     ], [user.streak, user.wordsLearned, user.practiceCount, user.xp, user.perfectPractices]);
 
     const skillStats = [
-        { label: 'Okuma', value: Math.min(100, (user.articlesRead || 0) * 5), icon: 'menu_book', color: 'bg-brand-blue' },
-        { label: 'Kelime Bilgisi', value: Math.min(100, Math.round((user.wordsLearned / 500) * 100)), icon: 'translate', color: 'bg-brand-green' },
-        { label: 'Pratik İstikrarı', value: Math.min(100, (user.practiceCount || 0) * 2), icon: 'bolt', color: 'bg-brand-orange' },
-        { label: 'Hatasızlık', value: user.practiceCount > 0 ? Math.round((user.perfectPractices / user.practiceCount) * 100) : 0, icon: 'check_circle', color: 'bg-brand-purple' },
+        { label: 'Okuma', value: Math.min(100, (user.articlesRead || 0) * 5), icon: 'menu_book', color: 'bg-primary' },
+        { label: 'Kelime Bilgisi', value: Math.min(100, Math.round((user.wordsLearned / 500) * 100)), icon: 'translate', color: 'bg-secondary' },
+        { label: 'Pratik İstikrarı', value: Math.min(100, (user.practiceCount || 0) * 2), icon: 'bolt', color: 'bg-warning' },
+        { label: 'Hatasızlık', value: user.practiceCount > 0 ? Math.round((user.perfectPractices / user.practiceCount) * 100) : 0, icon: 'check_circle', color: 'bg-accent' },
     ];
 
     return (
@@ -68,7 +68,7 @@ export default function ProgressPage() {
                 {/* Top Row: Overview Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                     <div className="bg-white dark:bg-[#2a2a24] p-6 rounded-2xl border border-gray-100 dark:border-[#333] shadow-sm flex flex-col items-center text-center">
-                        <div className="size-12 rounded-full bg-brand-orange/10 text-brand-orange flex items-center justify-center mb-4">
+                        <div className="size-12 rounded-full bg-warning/10 text-warning flex items-center justify-center mb-4">
                             <span className="material-symbols-outlined font-fill">local_fire_department</span>
                         </div>
                         <div className="text-3xl font-black">{user.streak} Gün</div>
@@ -76,7 +76,7 @@ export default function ProgressPage() {
                     </div>
 
                     <div className="bg-white dark:bg-[#2a2a24] p-6 rounded-2xl border border-gray-100 dark:border-[#333] shadow-sm flex flex-col items-center text-center">
-                        <div className="size-12 rounded-full bg-brand-blue/10 text-brand-blue flex items-center justify-center mb-4">
+                        <div className="size-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
                             <span className="material-symbols-outlined font-fill">stars</span>
                         </div>
                         <div className="text-3xl font-black">{user.xp.toLocaleString()}</div>
@@ -84,7 +84,7 @@ export default function ProgressPage() {
                     </div>
 
                     <div className="bg-white dark:bg-[#2a2a24] p-6 rounded-2xl border border-gray-100 dark:border-[#333] shadow-sm flex flex-col items-center text-center">
-                        <div className="size-12 rounded-full bg-brand-green/10 text-brand-green flex items-center justify-center mb-4">
+                        <div className="size-12 rounded-full bg-secondary/10 text-secondary flex items-center justify-center mb-4">
                             <span className="material-symbols-outlined font-fill">menu_book</span>
                         </div>
                         <div className="text-3xl font-black">{user.wordsLearned}</div>
@@ -98,14 +98,14 @@ export default function ProgressPage() {
                         {/* Daily Progress */}
                         <div className="bg-white dark:bg-[#2a2a24] p-8 rounded-2xl border border-gray-100 dark:border-[#333] shadow-sm">
                             <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-                                <span className="material-symbols-outlined text-brand-orange">event_available</span>
+                                <span className="material-symbols-outlined text-warning">event_available</span>
                                 Bugünü Hedefi
                             </h2>
                             <div className="flex flex-col md:flex-row items-center gap-8">
                                 <div className="relative size-32">
                                     <svg className="size-full -rotate-90" viewBox="0 0 36 36">
                                         <circle cx="18" cy="18" r="16" fill="none" className="stroke-gray-100 dark:stroke-white/5" strokeWidth="3" />
-                                        <circle cx="18" cy="18" r="16" fill="none" className="stroke-brand-orange" strokeWidth="3"
+                                        <circle cx="18" cy="18" r="16" fill="none" className="stroke-warning" strokeWidth="3"
                                             strokeDasharray={`${dailyProgress}, 100`} strokeLinecap="round" />
                                     </svg>
                                     <div className="absolute inset-0 flex flex-col items-center justify-center">
@@ -132,35 +132,35 @@ export default function ProgressPage() {
                         {/* Vocabulary Status Breakdown */}
                         <div className="bg-white dark:bg-[#2a2a24] p-8 rounded-2xl border border-gray-100 dark:border-[#333] shadow-sm">
                             <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-                                <span className="material-symbols-outlined text-brand-blue">bar_chart</span>
+                                <span className="material-symbols-outlined text-primary">bar_chart</span>
                                 Kelime Havuzu Dağılımı
                             </h2>
 
                             <div className="space-y-6">
                                 {/* Stacked Progress Bar */}
                                 <div className="h-6 w-full flex rounded-full overflow-hidden bg-gray-100 dark:bg-white/5">
-                                    <div style={{ width: `${(counts.learned / totalVocab) * 100}%` }} className="h-full bg-brand-green" />
-                                    <div style={{ width: `${(counts.learning / totalVocab) * 100}%` }} className="h-full bg-brand-orange" />
-                                    <div style={{ width: `${(counts.new / totalVocab) * 100}%` }} className="h-full bg-brand-blue" />
+                                    <div style={{ width: `${(counts.learned / totalVocab) * 100}%` }} className="h-full bg-secondary" />
+                                    <div style={{ width: `${(counts.learning / totalVocab) * 100}%` }} className="h-full bg-warning" />
+                                    <div style={{ width: `${(counts.new / totalVocab) * 100}%` }} className="h-full bg-primary" />
                                 </div>
 
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    <div className="flex items-center gap-3 p-4 rounded-xl bg-brand-green/5 border border-brand-green/10">
-                                        <div className="size-3 rounded-full bg-brand-green" />
+                                    <div className="flex items-center gap-3 p-4 rounded-xl bg-secondary/5 border border-secondary/10">
+                                        <div className="size-3 rounded-full bg-secondary" />
                                         <div>
                                             <div className="text-xl font-black">{counts.learned}</div>
                                             <div className="text-xs font-bold text-gray-500 uppercase">Öğrenildi</div>
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-3 p-4 rounded-xl bg-brand-orange/5 border border-brand-orange/10">
-                                        <div className="size-3 rounded-full bg-brand-orange" />
+                                    <div className="flex items-center gap-3 p-4 rounded-xl bg-warning/5 border border-warning/10">
+                                        <div className="size-3 rounded-full bg-warning" />
                                         <div>
                                             <div className="text-xl font-black">{counts.learning}</div>
                                             <div className="text-xs font-bold text-gray-500 uppercase">Çalışılıyor</div>
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-3 p-4 rounded-xl bg-brand-blue/5 border border-brand-blue/10">
-                                        <div className="size-3 rounded-full bg-brand-blue" />
+                                    <div className="flex items-center gap-3 p-4 rounded-xl bg-primary/5 border border-primary/10">
+                                        <div className="size-3 rounded-full bg-primary" />
                                         <div>
                                             <div className="text-xl font-black">{counts.new}</div>
                                             <div className="text-xs font-bold text-gray-500 uppercase">Tanımlandı</div>
@@ -174,11 +174,11 @@ export default function ProgressPage() {
                         <div className="bg-white dark:bg-[#2a2a24] p-8 rounded-2xl border border-gray-100 dark:border-[#333] shadow-sm">
                             <div className="flex justify-between items-start mb-6">
                                 <h2 className="text-xl font-bold flex items-center gap-2">
-                                    <span className="material-symbols-outlined text-brand-purple">calendar_month</span>
+                                    <span className="material-symbols-outlined text-accent">calendar_month</span>
                                     Haftalık Aktivite
                                 </h2>
                                 <div className="text-right">
-                                    <div className="text-2xl font-black text-brand-purple">{weeklyTotal}</div>
+                                    <div className="text-2xl font-black text-accent">{weeklyTotal}</div>
                                     <div className="text-xs text-gray-500 font-bold uppercase">Bu Hafta Toplam</div>
                                 </div>
                             </div>
@@ -201,16 +201,16 @@ export default function ProgressPage() {
                                             <div 
                                                 className={`w-full rounded-t-lg transition-all ${
                                                     isToday 
-                                                        ? 'bg-gradient-to-t from-brand-purple to-brand-blue' 
+                                                        ? 'bg-gradient-to-t from-accent to-primary' 
                                                         : isActive 
-                                                            ? 'bg-brand-purple/50' 
+                                                            ? 'bg-accent/50' 
                                                             : 'bg-gray-100 dark:bg-white/5'
                                                 }`}
                                                 style={{ height: `${heightPercent}%` }}
                                             />
                                             
                                             {/* Day label */}
-                                            <div className={`text-xs mt-2 font-bold ${isToday ? 'text-brand-purple' : 'text-gray-400'}`}>
+                                            <div className={`text-xs mt-2 font-bold ${isToday ? 'text-accent' : 'text-gray-400'}`}>
                                                 {day.day}
                                             </div>
                                         </div>
@@ -241,24 +241,24 @@ export default function ProgressPage() {
                         {/* Reading Stats */}
                         <div className="bg-white dark:bg-[#2a2a24] p-6 rounded-2xl border border-gray-100 dark:border-[#333] shadow-sm">
                             <h2 className="text-lg font-bold mb-4 flex items-center gap-2">
-                                <span className="material-symbols-outlined text-brand-blue">auto_stories</span>
+                                <span className="material-symbols-outlined text-primary">auto_stories</span>
                                 Okuma İstatistikleri
                             </h2>
                             <div className="grid grid-cols-2 gap-3">
-                                <div className="p-3 bg-brand-blue/5 rounded-xl border border-brand-blue/10">
-                                    <div className="text-2xl font-black text-brand-blue">{readingStats.articlesCompleted}</div>
+                                <div className="p-3 bg-primary/5 rounded-xl border border-primary/10">
+                                    <div className="text-2xl font-black text-primary">{readingStats.articlesCompleted}</div>
                                     <div className="text-xs text-gray-500 font-bold">Makale</div>
                                 </div>
-                                <div className="p-3 bg-brand-green/5 rounded-xl border border-brand-green/10">
-                                    <div className="text-2xl font-black text-brand-green">{readingStats.totalWordsRead.toLocaleString()}</div>
+                                <div className="p-3 bg-secondary/5 rounded-xl border border-secondary/10">
+                                    <div className="text-2xl font-black text-secondary">{readingStats.totalWordsRead.toLocaleString()}</div>
                                     <div className="text-xs text-gray-500 font-bold">Kelime</div>
                                 </div>
-                                <div className="p-3 bg-brand-purple/5 rounded-xl border border-brand-purple/10">
-                                    <div className="text-2xl font-black text-brand-purple">{formatReadingTime(readingStats.totalTimeSpent)}</div>
+                                <div className="p-3 bg-accent/5 rounded-xl border border-accent/10">
+                                    <div className="text-2xl font-black text-accent">{formatReadingTime(readingStats.totalTimeSpent)}</div>
                                     <div className="text-xs text-gray-500 font-bold">Toplam Süre</div>
                                 </div>
-                                <div className="p-3 bg-brand-orange/5 rounded-xl border border-brand-orange/10">
-                                    <div className="text-2xl font-black text-brand-orange">{readingStats.averageReadingSpeed}</div>
+                                <div className="p-3 bg-warning/5 rounded-xl border border-warning/10">
+                                    <div className="text-2xl font-black text-warning">{readingStats.averageReadingSpeed}</div>
                                     <div className="text-xs text-gray-500 font-bold">Kelime/dk</div>
                                 </div>
                             </div>
@@ -267,7 +267,7 @@ export default function ProgressPage() {
                                     <div className="text-xs text-gray-400 font-bold uppercase mb-2">Başarılar</div>
                                     <div className="flex flex-wrap gap-1">
                                         {readingStats.achievements.map((badge) => (
-                                            <span key={badge} className="px-2 py-1 text-xs bg-brand-purple/10 text-brand-purple rounded-lg font-bold">
+                                            <span key={badge} className="px-2 py-1 text-xs bg-accent/10 text-accent rounded-lg font-bold">
                                                 🏆 {badge}
                                             </span>
                                         ))}
@@ -307,7 +307,7 @@ export default function ProgressPage() {
                                 {user.readArticles && user.readArticles.length > 0 ? (
                                     user.readArticles.slice(-3).reverse().map((id, i) => (
                                         <div key={i} className="flex gap-3">
-                                            <div className="size-8 rounded-lg bg-brand-blue/10 text-brand-blue flex items-center justify-center shrink-0">
+                                            <div className="size-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
                                                 <span className="material-symbols-outlined text-[18px]">article</span>
                                             </div>
                                             <div className="min-w-0">
@@ -320,7 +320,7 @@ export default function ProgressPage() {
                                     <p className="text-xs text-gray-500 text-center py-4">Henüz aktivite bulunmuyor.</p>
                                 )}
                                 <div className="flex gap-3">
-                                    <div className="size-8 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center shrink-0">
+                                    <div className="size-8 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center shrink-0">
                                         <span className="material-symbols-outlined text-[18px]">check_circle</span>
                                     </div>
                                     <div>

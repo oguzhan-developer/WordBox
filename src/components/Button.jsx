@@ -17,12 +17,21 @@ const Button = memo(function Button({
     const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group';
 
     const variants = useMemo(() => ({
-        primary: 'gradient-primary text-white hover:shadow-lg hover:shadow-indigo-500/50 focus:ring-indigo-500 hover:-translate-y-0.5 active:scale-95 font-semibold',
-        secondary: 'glass text-indigo-600 dark:text-indigo-400 border-2 border-indigo-500/20 hover:border-indigo-500/40 hover:shadow-lg hover:shadow-indigo-500/20 focus:ring-indigo-500 hover:-translate-y-0.5',
+        // Primary - Indigo gradient
+        primary: 'gradient-primary text-white hover:shadow-lg hover:shadow-primary-500/50 focus:ring-primary-500 hover:-translate-y-0.5 active:scale-95 font-semibold',
+        // Secondary - Glass with primary color
+        secondary: 'glass text-primary-600 dark:text-primary-400 border-2 border-primary-500/20 hover:border-primary-500/40 hover:shadow-lg hover:shadow-primary-500/20 focus:ring-primary-500 hover:-translate-y-0.5',
+        // Ghost - Subtle
         ghost: 'text-gray-700 dark:text-gray-300 hover:bg-gray-100/80 dark:hover:bg-slate-800/80 focus:ring-gray-500 backdrop-blur-sm',
-        danger: 'bg-gradient-to-r from-red-500 to-rose-500 text-white hover:shadow-lg hover:shadow-red-500/50 focus:ring-red-500 hover:-translate-y-0.5 active:scale-95',
-        success: 'bg-gradient-to-r from-green-500 to-emerald-500 text-white hover:shadow-lg hover:shadow-green-500/50 focus:ring-green-500 hover:-translate-y-0.5 active:scale-95',
-        warning: 'bg-gradient-to-r from-orange-500 to-amber-500 text-white hover:shadow-lg hover:shadow-orange-500/50 focus:ring-orange-500 hover:-translate-y-0.5 active:scale-95',
+        // Danger - Rose gradient
+        danger: 'gradient-danger text-white hover:shadow-lg hover:shadow-danger-500/50 focus:ring-danger-500 hover:-translate-y-0.5 active:scale-95',
+        // Success - Emerald gradient
+        success: 'gradient-secondary text-white hover:shadow-lg hover:shadow-secondary-500/50 focus:ring-secondary-500 hover:-translate-y-0.5 active:scale-95',
+        // Warning - Amber/Orange gradient
+        warning: 'gradient-accent text-white hover:shadow-lg hover:shadow-accent-500/50 focus:ring-accent-500 hover:-translate-y-0.5 active:scale-95',
+        // Info - Sky gradient
+        info: 'gradient-info text-white hover:shadow-lg hover:shadow-info-500/50 focus:ring-info-500 hover:-translate-y-0.5 active:scale-95',
+        // Outline - Border only
         outline: 'bg-transparent border-2 border-gray-300 dark:border-slate-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50/50 dark:hover:bg-slate-800/50 focus:ring-gray-500 backdrop-blur-sm',
     }), []);
 
@@ -122,14 +131,15 @@ export const IconButton = memo(function IconButton({
     }), []);
 
     const variants = useMemo(() => ({
-        primary: 'bg-indigo-600 text-white hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600',
-        secondary: 'bg-white dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 border border-indigo-600 dark:border-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-900/20',
+        primary: 'bg-primary-600 text-white hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600',
+        secondary: 'bg-white dark:bg-slate-800 text-primary-600 dark:text-primary-400 border border-primary-600 dark:border-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/20',
         ghost: 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800',
-        danger: 'text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20',
+        danger: 'text-danger-600 dark:text-danger-400 hover:bg-danger-50 dark:hover:bg-danger-900/20',
+        success: 'text-secondary-600 dark:text-secondary-400 hover:bg-secondary-50 dark:hover:bg-secondary-900/20',
     }), []);
 
     const buttonClasses = useMemo(() => `
-        rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-900 active:scale-95
+        rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:focus:ring-offset-gray-900 active:scale-95
         ${variants[variant]}
         ${sizes[size]}
         ${className}

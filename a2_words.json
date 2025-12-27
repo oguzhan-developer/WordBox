@@ -1,0 +1,1538 @@
+[
+  {
+    "word": "happy",
+    "phonetic": "/ˈhæpi/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["mutlu", "sevinçli", "neşeli"],
+    "definitionsEn": ["Feeling or showing pleasure or contentment", "Satisfied with something"],
+    "examplesEn": [
+      "I'm so happy to see you!",
+      "She looks very happy today.",
+      "They had a happy ending."
+    ],
+    "examplesTr": [
+      "Seni gördüğüme çok mutluyum!",
+      "Bugün çok mutlu görünüyor.",
+      "Mutlu bir sonla bittiler."
+    ],
+    "synonyms": ["joyful", "cheerful", "pleased", "delighted"],
+    "antonyms": ["sad", "unhappy", "miserable"],
+    "usageNotes": "Use 'happy about something' or 'happy to do something'.",
+    "commonMistakes": "Don't say 'happy with' when you mean 'happy about'. Use 'happy with' for satisfaction with a person or thing.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "sad",
+    "phonetic": "/sæd/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["üzgün", "kederli", "tasalı"],
+    "definitionsEn": ["Feeling or showing sorrow", "Unhappy about something"],
+    "examplesEn": [
+      "The movie made me sad.",
+      "I feel sad when I think about leaving.",
+      "She gave me a sad smile."
+    ],
+    "examplesTr": [
+      "Film beni üzdü.",
+      "Gitmeyi düşündüğümde üzgün hissediyorum.",
+      "Bana üzgün bir gülümseme verdi."
+    ],
+    "synonyms": ["unhappy", "sorrowful", "depressed", "gloomy"],
+    "antonyms": ["happy", "joyful", "cheerful"],
+    "usageNotes": "Can describe temporary feelings or longer emotional states.",
+    "commonMistakes": "Don't use 'sad' to describe bad situations - use 'unfortunate' or 'terrible' instead.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "angry",
+    "phonetic": "/ˈæŋɡri/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["kızgın", "öfkeli", "sinirli"],
+    "definitionsEn": ["Feeling or showing strong annoyance, displeasure, or hostility"],
+    "examplesEn": [
+      "He was angry about the decision.",
+      "Don't be angry with me.",
+      "She gave me an angry look."
+    ],
+    "examplesTr": [
+      "Karar hakkında öfkeliydi.",
+      "Bana kızma.",
+      "Bana öfkeli bir bakış attı."
+    ],
+    "synonyms": ["mad", "furious", "annoyed", "irritated"],
+    "antonyms": ["calm", "happy", "pleased"],
+    "usageNotes": "Use 'angry with someone' or 'angry about something'.",
+    "commonMistakes": "Don't say 'angry at' - use 'angry with' (for people) or 'angry about' (for situations).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "important",
+    "phonetic": "/ɪmˈpɔːrtənt/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["önemli", "değerli", "mühim"],
+    "definitionsEn": ["Of great significance or value", "Having high rank or status"],
+    "examplesEn": [
+      "This is an important decision.",
+      "Health is more important than money.",
+      "He is an important person in the company."
+    ],
+    "examplesTr": [
+      "Bu önemli bir karar.",
+      "Sağlık paradan daha önemlidir.",
+      "Şirkette önemli bir kişi."
+    ],
+    "synonyms": ["significant", "crucial", "essential", "major"],
+    "antonyms": ["unimportant", "trivial", "minor"],
+    "usageNotes": "Use 'it is important to do something' or 'it is important that...'",
+    "commonMistakes": "Don't use 'very important' in formal writing - 'crucial' or 'essential' are better alternatives.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "different",
+    "phonetic": "/ˈdɪfərənt/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["farklı", "çeşitli", "ayırtıcı"],
+    "definitionsEn": ["Not the same as another or each other", "Distinct or separate"],
+    "examplesEn": [
+      "We have different opinions.",
+      "It's a different approach.",
+      "They come from different cultures."
+    ],
+    "examplesTr": [
+      "Farklı görüşlerimiz var.",
+      "Bu farklı bir yaklaşım.",
+      "Farklı kültürlerden geliyorlar."
+    ],
+    "synonyms": ["distinct", "various", "diverse", "unlike"],
+    "antonyms": ["same", "similar", "alike"],
+    "usageNotes": "Use 'different from' (most common), 'different to' (British), or 'different than' (American).",
+    "commonMistakes": "Don't say 'different that' - use 'different from' or 'different than'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "possible",
+    "phonetic": "/ˈpɑːsəbəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["mümkün", "olası", "ihtimal dahilinde"],
+    "definitionsEn": ["Able to exist or happen", "That might or may not happen"],
+    "examplesEn": [
+      "Is it possible to finish today?",
+      "It's possible that it will rain.",
+      "We need every possible solution."
+    ],
+    "examplesTr": [
+      "Bugün bitirmek mümkün mü?",
+      "Yağmur yağması mümkün.",
+      "Her mümkün çözüme ihtiyacımız var."
+    ],
+    "synonyms": ["feasible", "doable", "likely", "achievable"],
+    "antonyms": ["impossible", "unlikely"],
+    "usageNotes": "Use 'as soon as possible' or 'if possible' for common expressions.",
+    "commonMistakes": "Don't say 'possible to do something' without 'it is' - say 'it is possible to do something'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "necessary",
+    "phonetic": "/ˈnesəseri/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["gerekli", "lazım", "zorunlu"],
+    "definitionsEn": ["Required to be done or obtained", "Essential"],
+    "examplesEn": [
+      "It is necessary to study hard.",
+      "Sleep is necessary for health.",
+      "Is it really necessary?"
+    ],
+    "examplesTr": [
+      "Çok çalışmak gerekli.",
+      "Sağlık için uyku şarttır.",
+      "Bu gerçekten gerekli mi?"
+    ],
+    "synonyms": ["essential", "required", "vital", "needed"],
+    "antonyms": ["unnecessary", "optional", "dispensable"],
+    "usageNotes": "Stronger than 'needed' - implies something cannot be avoided.",
+    "commonMistakes": "Don't use 'necessary' for simple preferences - use 'needed' or 'wanted' instead.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "enough",
+    "phonetic": "/ɪˈnʌf/",
+    "partOfSpeech": ["adjective", "adverb", "determiner"],
+    "level": "A2",
+    "meaningsTr": ["yeterli", "kadar", "yeterince"],
+    "definitionsEn": ["As much or as many as needed", "To the required degree"],
+    "examplesEn": [
+      "I have enough money.",
+      "Is the food good enough?",
+      "We didn't have enough time."
+    ],
+    "examplesTr": [
+      "Yeterli param var.",
+      "Yemek yeterince iyi mi?",
+      "Yeterli zamanımız yoktu."
+    ],
+    "synonyms": ["sufficient", "adequate", "plenty"],
+    "antonyms": ["insufficient", "inadequate", "scarce"],
+    "usageNotes": "Can go before or after the noun: 'enough time' or 'time enough' (less common).",
+    "commonMistakes": "Don't say 'enough hot' - say 'hot enough'. Adverbs come after the adjective.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "available",
+    "phonetic": "/əˈveɪləbəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["mevcut", "uygun", "müsait"],
+    "definitionsEn": ["Not busy or occupied", "Able to be used or obtained"],
+    "examplesEn": [
+      "Are you available tomorrow?",
+      "This room is available for rent.",
+      "No tickets are available."
+    ],
+    "examplesTr": [
+      "Yarın müsait misin?",
+      "Bu oda kiralamaya uygun.",
+      "Bilet yok."
+    ],
+    "synonyms": ["free", "accessible", "obtainable", "open"],
+    "antonyms": ["unavailable", "occupied", "busy"],
+    "usageNotes": "Commonly used for appointments, resources, and products.",
+    "commonMistakes": "Don't say 'available to buy' - say 'available for purchase' or just 'available'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "difficult",
+    "phonetic": "/ˈdɪfɪkəlt/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["zor", "güç", " güçlük çektiren"],
+    "definitionsEn": ["Needing much effort or skill", "Not easy to do or understand"],
+    "examplesEn": [
+      "The exam was very difficult.",
+      "It's difficult to learn a new language.",
+      "She is in a difficult situation."
+    ],
+    "examplesTr": [
+      "Sınav çok zordu.",
+      "Yeni bir dil öğrenmek zordur.",
+      "Zor bir durumda."
+    ],
+    "synonyms": ["hard", "challenging", "tough", "demanding"],
+    "antonyms": ["easy", "simple", "straightforward"],
+    "usageNotes": "More formal than 'hard'. Use in formal contexts.",
+    "commonMistakes": "Don't use 'difficult' to describe people - use 'difficult person' is OK, but 'hard person' is not correct.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "dangerous",
+    "phonetic": "/ˈdeɪndʒərəs/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["tehlikeli", "riskli"],
+    "definitionsEn": ["Able to cause harm or injury", "Involving danger"],
+    "examplesEn": [
+      "This road is dangerous.",
+      "It's dangerous to swim alone.",
+      "The situation is dangerous."
+    ],
+    "examplesTr": [
+      "Bu yol tehlikeli.",
+      "Tek başına yüzmek tehlikeli.",
+      "Durum tehlikeli."
+    ],
+    "synonyms": ["hazardous", "risky", "unsafe", "perilous"],
+    "antonyms": ["safe", "harmless", "secure"],
+    "usageNotes": "Use 'dangerous to someone' or 'dangerous for something'.",
+    "commonMistakes": "Don't say 'very dangerous' when describing minor risks - 'risky' is more appropriate.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "interested",
+    "phonetic": "/ˈɪntrəstɪd/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["ilgili", "ilgilenen", "meraklı"],
+    "definitionsEn": ["Showing curiosity or concern", "Having an interest in something"],
+    "examplesEn": [
+      "I'm interested in learning Spanish.",
+      "Are you interested in this job?",
+      "She looks interested."
+    ],
+    "examplesTr": [
+      "İspanyolca öğrenmekle ilgileniyorum.",
+      "Bu işle ilgileniyor musun?",
+      "İlgili görünüyor."
+    ],
+    "synonyms": ["curious", "keen", "fascinated", "engaged"],
+    "antonyms": ["uninterested", "bored", "indifferent"],
+    "usageNotes": "Always use 'interested in' (not 'at' or 'for').",
+    "commonMistakes": "Don't say 'interested to' - always use 'interested in' or 'interested to learn' (for infinitive).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "excited",
+    "phonetic": "/ɪkˈsaɪtɪd/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["heyecanlı", "coşkulu"],
+    "definitionsEn": ["Feeling very happy and enthusiastic", "In a state of excitement"],
+    "examplesEn": [
+      "I'm excited about the trip.",
+      "The children are excited about Christmas.",
+      "She seems excited."
+    ],
+    "examplesTr": [
+      "Gezi için heyecanlıyım.",
+      "Çocuklar Noel için heyecanlı.",
+      "Heyecanlı görünüyor."
+    ],
+    "synonyms": ["thrilled", "enthusiastic", "eager", "delighted"],
+    "antonyms": ["bored", "calm", "unexcited"],
+    "usageNotes": "Use 'excited about something' or 'excited to do something'.",
+    "commonMistakes": "Don't say 'excited with' - use 'excited about' or 'excited by'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "worried",
+    "phonetic": "/ˈwɜːrid/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["endişeli", "kaygılı", "tasalı"],
+    "definitionsEn": ["Feeling anxiety or concern", "Having concerns about something"],
+    "examplesEn": [
+      "I'm worried about the exam results.",
+      "She looks worried.",
+      "Don't be worried."
+    ],
+    "examplesTr": [
+      "Sınav sonuçlarından endişeliyim.",
+      "Endişeli görünüyor.",
+      "Endişelenme."
+    ],
+    "synonyms": ["concerned", "anxious", "nervous", "troubled"],
+    "antonyms": ["calm", "relaxed", "unworried"],
+    "usageNotes": "Use 'worried about someone/something'.",
+    "commonMistakes": "Don't say 'worried for' - use 'worried about' in most cases.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "bored",
+    "phonetic": "/bɔːrd/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["sıkılmış", "bıkık", "canı sıkılmış"],
+    "definitionsEn": ["Feeling weary because of uninteresting activity", "Losing interest"],
+    "examplesEn": [
+      "I'm bored with this movie.",
+      "The children got bored easily.",
+      "He looks bored."
+    ],
+    "examplesTr": [
+      "Bu filmden sıkıldım.",
+      "Çocuklar çabuk sıkıldı.",
+      "Sıkılmış görünüyor."
+    ],
+    "synonyms": ["uninterested", "weary", "tired", "indifferent"],
+    "antonyms": ["interested", "excited", "engaged"],
+    "usageNotes": "Use 'bored with something' or 'bored of doing something'.",
+    "commonMistakes": "Don't confuse 'bored' (feeling) with 'boring' (causing boredom).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "surprised",
+    "phonetic": "/sərˈpraɪzd/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["şaşkın", "şaşırmış", " sürpriz olmuş"],
+    "definitionsEn": ["Feeling or showing surprise", "Unexpectedly affected"],
+    "examplesEn": [
+      "I was surprised by the news.",
+      "She seemed surprised to see me.",
+      "We were pleasantly surprised."
+    ],
+    "examplesTr": [
+      "Haberden şaşırdım.",
+      "Beni görünce şaşırmış gibi göründü.",
+      "Güzel bir şekilde şaşırdık."
+    ],
+    "synonyms": ["amazed", "astonished", "shocked", "stunned"],
+    "antonyms": ["unsurprised", "expectant"],
+    "usageNotes": "Use 'surprised by/at something' or 'surprised to do something'.",
+    "commonMistakes": "Don't say 'surprised with' - use 'surprised by' or 'surprised at'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "tired",
+    "phonetic": "/ˈtaɪərd/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["yorgun", "bitkin", "yorulmuş"],
+    "definitionsEn": ["In need of rest or sleep", "Weary from work or activity"],
+    "examplesEn": [
+      "I'm tired after work.",
+      "She looks tired today.",
+      "I'm tired of waiting."
+    ],
+    "examplesTr": [
+      "İşten sonra yorgunum.",
+      "Bugün yorgun görünüyor.",
+      "Beklemekten bıktım."
+    ],
+    "synonyms": ["exhausted", "weary", "fatigued", "sleepy"],
+    "antonyms": ["energetic", "refreshed", "awake"],
+    "usageNotes": "Use 'tired from something' (cause) or 'tired of something' (fed up).",
+    "commonMistakes": "Don't say 'tired to do something' - use 'too tired to do something'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "comfortable",
+    "phonetic": "/ˈkʌmfərtəbəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["rahat", "konforlu", "huzurlu"],
+    "definitionsEn": ["Providing physical ease and relaxation", "Feeling at ease"],
+    "examplesEn": [
+      "This chair is very comfortable.",
+      "I feel comfortable here.",
+      "Are you comfortable with this?"
+    ],
+    "examplesTr": [
+      "Bu sandalye çok rahat.",
+      "Burada kendimi rahat hissediyorum.",
+      "Bununla rahat mısın?"
+    ],
+    "synonyms": ["cozy", "relaxed", "at ease", "pleasant"],
+    "antonyms": ["uncomfortable", "uneasy", "painful"],
+    "usageNotes": "Can describe physical comfort or emotional ease.",
+    "commonMistakes": "Don't say 'comfortable to do something' - use 'comfortable doing something'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "successful",
+    "phonetic": "/səkˈsesfəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["başarılı", "üretken", "istekli"],
+    "definitionsEn": ["Accomplishing an aim or purpose", "Having achieved popularity or profit"],
+    "examplesEn": [
+      "The project was very successful.",
+      "She is a successful businesswoman.",
+      "We had a successful meeting."
+    ],
+    "examplesTr": [
+      "Proje çok başarılıydı.",
+      "Başarılı bir iş kadını.",
+      "Başarılı bir toplantı yaptık."
+    ],
+    "synonyms": ["triumphant", "prosperous", "effective", "victorious"],
+    "antonyms": ["unsuccessful", "failing", "unprofitable"],
+    "usageNotes": "Use 'successful in/at something' or 'successful at doing something'.",
+    "commonMistakes": "Don't say 'success' when you mean 'successful' - 'success' is the noun.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "famous",
+    "phonetic": "/ˈfeɪməs/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["ünlü", "meşhur", "tanınmış"],
+    "definitionsEn": ["Known about by many people", "Well-known"],
+    "examplesEn": [
+      "She is a famous actress.",
+      "This is a famous restaurant.",
+      "He became famous for his paintings."
+    ],
+    "examplesTr": [
+      "Ünlü bir aktris.",
+      "Bu meşhur bir restoran.",
+      "Tablolarıyla ünlendi."
+    ],
+    "synonyms": ["well-known", "celebrated", "renowned", "noted"],
+    "antonyms": ["unknown", "obscure", "anonymous"],
+    "usageNotes": "Use 'famous for something' when stating what someone is known for.",
+    "commonMistakes": "Don't say 'famous by' - use 'famous for' to indicate the reason.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "ready",
+    "phonetic": "/ˈredi/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["hazır", "eli yüzü düzgün"],
+    "definitionsEn": ["Prepared for use or action", "Willing to do something"],
+    "examplesEn": [
+      "Dinner is ready!",
+      "Are you ready to leave?",
+      "I'm ready for the exam."
+    ],
+    "examplesTr": [
+      "Yemek hazır!",
+      "Çıkmaya hazır mısın?",
+      "Sınava hazırım."
+    ],
+    "synonyms": ["prepared", "set", "all set", "willing"],
+    "antonyms": ["unready", "unprepared", "reluctant"],
+    "usageNotes": "Use 'ready for something' or 'ready to do something'.",
+    "commonMistakes": "Don't say 'ready with' unless referring to having something prepared.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "sure",
+    "phonetic": "/ʃʊr/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["emin", "kesin", "beli"],
+    "definitionsEn": ["Having no doubt that something is true", "Certain"],
+    "examplesEn": [
+      "I'm sure about this.",
+      "Are you sure you want to go?",
+      "Make sure to lock the door."
+    ],
+    "examplesTr": [
+      "Bundan eminim.",
+      "Gitmek istediğinden emin misin?",
+      "Kapıyı kilitlediğinden emin ol."
+    ],
+    "synonyms": ["certain", "confident", "convinced", "positive"],
+    "antonyms": ["unsure", "uncertain", "doubtful"],
+    "usageNotes": "Use 'sure of/about something' or 'sure to do something'.",
+    "commonMistakes": "Don't say 'sure that' in formal English - use 'sure whether' or 'sure if'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "afraid",
+    "phonetic": "/əˈfreɪd/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["korkmuş", "korkak", " endişeli"],
+    "definitionsEn": ["Feeling fear or anxiety", "Worried about something"],
+    "examplesEn": [
+      "Don't be afraid of the dark.",
+      "I'm afraid I can't help you.",
+      "She is afraid of spiders."
+    ],
+    "examplesTr": [
+      "Karanlıktan korkma.",
+      "Korkarım sana yardımcı olamam.",
+      "Örümceklerden korkuyor."
+    ],
+    "synonyms": ["scared", "frightened", "fearful", "terrified"],
+    "antonyms": ["brave", "fearless", "confident"],
+    "usageNotes": "Use 'afraid of something/someone' or 'afraid to do something'.",
+    "commonMistakes": "Use 'I'm afraid' as a polite way to say no or give bad news.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "proud",
+    "phonetic": "/praʊd/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["gururlu", "övüngen", " iftihar eden"],
+    "definitionsEn": ["Feeling deep pleasure or satisfaction", "Having pride in something"],
+    "examplesEn": [
+      "I'm proud of my children.",
+      "She is proud of her work.",
+      "You should be proud of yourself."
+    ],
+    "examplesTr": [
+      "Çocuklarımla gurur duyuyorum.",
+      "İşiyle gurur duyuyor.",
+      "Kendinle gurur duymalısın."
+    ],
+    "synonyms": ["pleased", "satisfied", "glad"],
+    "antonyms": ["ashamed", "disappointed", "embarrassed"],
+    "usageNotes": "Always use 'proud of' someone or something.",
+    "commonMistakes": "Don't use 'proud with' or 'proud about' - always 'proud of'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "jealous",
+    "phonetic": "/ˈdʒeləs/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["kıskanç", "imrenmiş"],
+    "definitionsEn": ["Feeling resentment against someone's success", "Protective of what one has"],
+    "examplesEn": [
+      "He is jealous of his brother.",
+      "Don't be jealous of others.",
+      "She gets jealous easily."
+    ],
+    "examplesTr": [
+      "Kardeşinden kıskanç.",
+      "Başkalarını kıskanma.",
+      "Kolayca kıskanır."
+    ],
+    "synonyms": ["envious", "possessive", "suspicious"],
+    "antonyms": ["generous", "trusting", "unconcerned"],
+    "usageNotes": "Use 'jealous of someone/something'. Can be negative (envious) or protective.",
+    "commonMistakes": "Don't confuse with 'envious' - 'jealous' is stronger and can be about relationships.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "similar",
+    "phonetic": "/ˈsɪmələr/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["benzer", "benzer şekilde"],
+    "definitionsEn": ["Resembling something but not the same", "Alike in some ways"],
+    "examplesEn": [
+      "We have similar tastes.",
+      "The two problems are similar.",
+      "She looks similar to her mother."
+    ],
+    "examplesTr": [
+      "Benzer zevklerimiz var.",
+      "İki sorun benzer.",
+      "Annesine benziyor."
+    ],
+    "synonyms": ["alike", "comparable", "analogous", "resembling"],
+    "antonyms": ["different", "dissimilar", "unlike"],
+    "usageNotes": "Use 'similar to' (not 'with' or 'from').",
+    "commonMistakes": "Don't say 'similar with' - use 'similar to' or 'similar in'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "popular",
+    "phonetic": "/ˈpɑːpjələr/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["popüler", "sevilen", "uygulanabilir"],
+    "definitionsEn": ["Liked or admired by many people", "Widely used or followed"],
+    "examplesEn": [
+      "She is popular at school.",
+      "This is a popular restaurant.",
+      "Football is a popular sport."
+    ],
+    "examplesTr": [
+      "Okulda popüler.",
+      "Bu popüler bir restoran.",
+      "Futbol popüler bir spor."
+    ],
+    "synonyms": ["well-liked", "famous", "favored", "common"],
+    "antonyms": ["unpopular", "unknown", "obscure"],
+    "usageNotes": "Use 'popular with someone' or 'popular among people'.",
+    "commonMistakes": "Don't say 'popular by' - use 'popular with' or 'popular among'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "public",
+    "phonetic": "/ˈpʌblɪk/",
+    "partOfSpeech": ["adjective", "noun"],
+    "level": "A2",
+    "meaningsTr": ["genel", "kamusal", "halka açık"],
+    "definitionsEn": ["Available for people to use", "Concerning people in general"],
+    "examplesEn": [
+      "This is a public park.",
+      "She works in public service.",
+      "Public transportation is convenient."
+    ],
+    "examplesTr": [
+      "Bu bir halk parkı.",
+      "Kamu hizmeti çalışıyor.",
+      "Toplu taşıma uygun."
+    ],
+    "synonyms": ["community", "social", "open", "general"],
+    "antonyms": ["private", "personal", "hidden"],
+    "usageNotes": "Refers to something available to everyone, not private.",
+    "commonMistakes": "Don't confuse with 'pub' (short for public house - a bar).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "private",
+    "phonetic": "/ˈpraɪvət/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["özel", "şahsi", "gizli"],
+    "definitionsEn": ["Not available for public use", "Personal or confidential"],
+    "examplesEn": [
+      "This is a private property.",
+      "I need to speak with you in private.",
+      "He has a private tutor."
+    ],
+    "examplesTr": [
+      "Bu özel mülkiyet.",
+      "Sizinle özel konuşmam lazım.",
+      "Özel bir hocası var."
+    ],
+    "synonyms": ["personal", "confidential", "secret", "exclusive"],
+    "antonyms": ["public", "open", "shared"],
+    "usageNotes": "Can mean not public, personal, or confidential.",
+    "commonMistakes": "Don't use 'privacy' (noun) when you mean 'private' (adjective).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "local",
+    "phonetic": "/ˈloʊkəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["yerel", "bölgesel", "mahallî"],
+    "definitionsEn": ["Relating to a particular area", "Nearby"],
+    "examplesEn": [
+      "We support local businesses.",
+      "She is a local resident.",
+      "Let's check the local news."
+    ],
+    "examplesTr": [
+      "Yerel işletmeleri destekliyoruz.",
+      "Yerel bir sakin.",
+      "Yerel haberlere bakalım."
+    ],
+    "synonyms": ["regional", "nearby", "community", "neighborhood"],
+    "antonyms": ["national", "international", "distant"],
+    "usageNotes": "Often refers to one's immediate area or community.",
+    "commonMistakes": "Don't use 'local' to mean 'traditional' - that's a different meaning.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "foreign",
+    "phonetic": "/ˈfɔːrən/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["yabancı", "ecnebi"],
+    "definitionsEn": ["From outside one's own country", "Not familiar"],
+    "examplesEn": [
+      "She speaks foreign languages.",
+      "I'm interested in foreign cultures.",
+      "This is foreign to me."
+    ],
+    "examplesTr": [
+      "Yabancı diller biliyor.",
+      "Yabancı kültürlerle ilgileniyorum.",
+      "Bu bana yabancı."
+    ],
+    "synonyms": ["alien", "external", "strange", "exotic"],
+    "antonyms": ["domestic", "native", "familiar"],
+    "usageNotes": "Can refer to other countries or things unfamiliar to someone.",
+    "commonMistakes": "Don't use 'foreign' to describe people - use 'from another country' instead.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "main",
+    "phonetic": "/meɪn/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["ana", "asıl", "temel"],
+    "definitionsEn": ["Most important", "Chief or principal"],
+    "examplesEn": [
+      "This is the main reason.",
+      "What's the main idea?",
+      "The main entrance is over there."
+    ],
+    "examplesTr": [
+      "Bu ana sebep.",
+      "Ana fikir ne?",
+      "Ana giriş orada."
+    ],
+    "synonyms": ["primary", "principal", "major", "chief"],
+    "antonyms": ["minor", "secondary", "unimportant"],
+    "usageNotes": "Used to identify the most important thing in a group.",
+    "commonMistakes": "Don't use 'main' to mean 'most' - they have different meanings.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "major",
+    "phonetic": "/ˈmeɪdʒər/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["büyük", "önemli", "ana"],
+    "definitionsEn": ["Important or serious", "Greater than others"],
+    "examplesEn": [
+      "This is a major problem.",
+      "She plays a major role.",
+      "There are major changes coming."
+    ],
+    "examplesTr": [
+      "Bu büyük bir sorun.",
+      "Önemli bir rol oynuyor.",
+      "Büyük değişiklikler geliyor."
+    ],
+    "synonyms": ["significant", "important", "considerable", "substantial"],
+    "antonyms": ["minor", "trivial", "insignificant"],
+    "usageNotes": "Emphasizes size, importance, or seriousness.",
+    "commonMistakes": "Can also be a noun meaning a university subject or military rank.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "recent",
+    "phonetic": "/ˈriːsənt/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["yakın", "son zamanlarda", "güncel"],
+    "definitionsEn": ["Happening or beginning a short time ago", "Not long past"],
+    "examplesEn": [
+      "I read about it in recent news.",
+      "Have there been any recent changes?",
+      "Her recent book is excellent."
+    ],
+    "examplesTr": [
+      "Bunu son haberlerde okudum.",
+      "Son zamanlarda bir değişiklik oldu mu?",
+      "Son kitabı mükemmel."
+    ],
+    "synonyms": ["latest", "new", "fresh", "current"],
+    "antonyms": ["ancient", "old", "distant"],
+    "usageNotes": "Refers to things that happened not long ago.",
+    "commonMistakes": "Don't use 'recent' for future events - only past or present.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "modern",
+    "phonetic": "/ˈmɑːdərn/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["modern", "çağdaş", "güncel"],
+    "definitionsEn": ["Using current methods and technology", "Relating to present times"],
+    "examplesEn": [
+      "They live in a modern apartment.",
+      "Modern technology is amazing.",
+      "She prefers modern art."
+    ],
+    "examplesTr": [
+      "Modern bir dairede yaşıyorlar.",
+      "Modern teknoloji harika.",
+      "Modern sanatı sever."
+    ],
+    "synonyms": ["current", "contemporary", "new", "up-to-date"],
+    "antonyms": ["traditional", "old-fashioned", "ancient"],
+    "usageNotes": "Often implies improvement over old ways.",
+    "commonMistakes": "Don't use 'modern' to mean 'fashionable' - they're different concepts.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "traditional",
+    "phonetic": "/trəˈdɪʃənəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["geleneksel", "ananevi"],
+    "definitionsEn": ["Following long-established customs", "Existing for a long time"],
+    "examplesEn": [
+      "We have traditional food on holidays.",
+      "She wears traditional clothes.",
+      "It's a traditional ceremony."
+    ],
+    "examplesTr": [
+      "Bayramlarda geleneksel yemek yeriz.",
+      "Geleneksel kıyafetler giyiyor.",
+      "Bu geleneksel bir tören."
+    ],
+    "synonyms": ["customary", "conventional", "established", "classic"],
+    "antonyms": ["modern", "new", "innovative"],
+    "usageNotes": "Refers to practices passed down through generations.",
+    "commonMistakes": "Don't confuse with 'historic' (important in history) - traditional is about customs.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "social",
+    "phonetic": "/ˈsoʊʃəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["sosyal", "toplumsal"],
+    "definitionsEn": ["Relating to society", "Relating to activities with other people"],
+    "examplesEn": [
+      "She has an active social life.",
+      "Social media is very popular.",
+      "We need social change."
+    ],
+    "examplesTr": [
+      "Aktif bir sosyal hayatı var.",
+      "Sosyal medya çok popüler.",
+      "Sosyal değişime ihtiyacımız var."
+    ],
+    "synonyms": ["communal", "societal", "public", "community"],
+    "antonyms": ["private", "personal", "individual"],
+    "usageNotes": "Can refer to society or interpersonal activities.",
+    "commonMistakes": "Don't use 'social' to mean 'socialist' (political ideology).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "political",
+    "phonetic": "/pəˈlɪtɪkəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["siyasal", "siyasi"],
+    "definitionsEn": ["Relating to government or politics", "Having political views"],
+    "examplesEn": [
+      "He has political ambitions.",
+      "We discuss political issues.",
+      "Her political party won the election."
+    ],
+    "examplesTr": [
+      "Siyasi ambisyonları var.",
+      "Siyasi konuları tartışıyoruz.",
+      "Siyasi partisi seçimi kazandı."
+    ],
+    "synonyms": ["governmental", "legislative", "civic"],
+    "antonyms": ["non-political", "apolitical"],
+    "usageNotes": "Refers to government, elections, and political activities.",
+    "commonMistakes": "Don't confuse 'politics' (the subject) with 'political' (the adjective).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "cultural",
+    "phonetic": "/ˈkʌltʃərəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["kültürel", "kültürel"],
+    "definitionsEn": ["Relating to culture and ideas", "Of or relating to a culture"],
+    "examplesEn": [
+      "We have many cultural differences.",
+      "She is interested in cultural activities.",
+      "The city is known for cultural diversity."
+    ],
+    "examplesTr": [
+      "Birçok kültürel farkımız var.",
+      "Kültürel etkinliklerle ilgileniyor.",
+      "Şehir kültürel çeşitliliğiyle bilinir."
+    ],
+    "synonyms": ["artistic", "intellectual", "social", "customary"],
+    "antonyms": ["natural", "biological"],
+    "usageNotes": "Refers to the arts, customs, and achievements of a society.",
+    "commonMistakes": "Don't use 'cultural' to mean 'cultured' (having good manners/taste).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "financial",
+    "phonetic": "/faɪˈnænʃəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["finansal", "mali", "ekonomik"],
+    "definitionsEn": ["Relating to money", "Relating to finance"],
+    "examplesEn": [
+      "She needs financial help.",
+      "We have financial problems.",
+      "He works in financial services."
+    ],
+    "examplesTr": [
+      "Mali yardıma ihtiyacı var.",
+      "Mali sorunlarımız var.",
+      "Finans hizmetlerinde çalışıyor."
+    ],
+    "synonyms": ["monetary", "economic", "fiscal", "budgetary"],
+    "antonyms": ["non-financial", "non-monetary"],
+    "usageNotes": "Used in business and personal money matters.",
+    "commonMistakes": "Don't confuse 'finance' (noun) with 'financial' (adjective).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "medical",
+    "phonetic": "/ˈmedɪkəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["tıbbi", "medikal", "tıbbi"],
+    "definitionsEn": ["Relating to medicine and health", "Requiring medical treatment"],
+    "examplesEn": [
+      "She has a medical condition.",
+      "I need medical attention.",
+      "He works in a medical field."
+    ],
+    "examplesTr": [
+      "Tıbbi bir durumu var.",
+      "Tıbbi yardıma ihtiyacım var.",
+      "Tıbbi bir alanda çalışıyor."
+    ],
+    "synonyms": ["health", "clinical", "therapeutic"],
+    "antonyms": ["non-medical", "surgical"],
+    "usageNotes": "Refers to health care, medicine, and treatment.",
+    "commonMistakes": "Don't use 'medicine' (noun) when you mean 'medical' (adjective).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "legal",
+    "phonetic": "/ˈliːɡəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["yasal", "kanuni", "hukuki"],
+    "definitionsEn": ["Allowed by law", "Relating to the law"],
+    "examplesEn": [
+      "Is this legal?",
+      "She needs legal advice.",
+      "We have a legal right to protest."
+    ],
+    "examplesTr": [
+      "Bu yasal mı?",
+      "Yasal tavsiyeye ihtiyacı var.",
+      "Protest etmek için yasal hakkımız var."
+    ],
+    "synonyms": ["lawful", "legitimate", "authorized"],
+    "antonyms": ["illegal", "unlawful", "illegitimate"],
+    "usageNotes": "Can mean 'permitted by law' or 'relating to law'.",
+    "commonMistakes": "Don't confuse 'legal' with 'legible' (able to be read).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "natural",
+    "phonetic": "/ˈnætʃərəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["doğal", "tabii", "salâhi"],
+    "definitionsEn": ["Existing in nature", "Normal or expected"],
+    "examplesEn": [
+      "We use natural ingredients.",
+      "It's natural to feel nervous.",
+      "The view is beautiful and natural."
+    ],
+    "examplesTr": [
+      "Doğal malzemeler kullanıyoruz.",
+      "Heyecanlamak doğal.",
+      "Manzara güzel ve doğal."
+    ],
+    "synonyms": ["organic", "innate", "normal", "genuine"],
+    "antonyms": ["artificial", "synthetic", "unnatural"],
+    "usageNotes": "Can mean 'from nature' or 'normal/expected'.",
+    "commonMistakes": "Don't use 'natural' to mean 'obvious' - that's a different meaning.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "physical",
+    "phonetic": "/ˈfɪzɪkəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["fiziksel", "bedensel", "somut"],
+    "definitionsEn": ["Relating to the body", "Relating to things you can touch"],
+    "examplesEn": [
+      "I need physical exercise.",
+      "He has great physical strength.",
+      "There was physical evidence."
+    ],
+    "examplesTr": [
+      "Fiziksel egzersize ihtiyacım var.",
+      "Büyük fiziksel gücü var.",
+      "Fiziksel kanıt vardı."
+    ],
+    "synonyms": ["bodily", "corporal", "tangible", "material"],
+    "antonyms": ["mental", "emotional", "intangible"],
+    "usageNotes": "Relates to the body or material things (not mental).",
+    "commonMistakes": "Don't use 'physical' to mean 'energetic' - though they can overlap.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "mental",
+    "phonetic": "/ˈmentəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["zihinsel", "manevi", "ruhsal"],
+    "definitionsEn": ["Relating to the mind", "Done in the mind"],
+    "examplesEn": [
+      "She has mental health issues.",
+      "It was a mental challenge.",
+      "I need a mental break."
+    ],
+    "examplesTr": [
+      "Ruhsal sağlık sorunları var.",
+      "Bu zihinsel bir meydan okumaydı.",
+      "Zihinsel bir mola lazım."
+    ],
+    "synonyms": ["psychological", "intellectual", "cognitive"],
+    "antonyms": ["physical", "bodily"],
+    "usageNotes": "Relates to the mind, not the body.",
+    "commonMistakes": "Don't use 'mental' as an insult - it's a legitimate term for psychological matters.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "emotional",
+    "phonetic": "/ɪˈmoʊʃənəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["duygusal", "hisli", "heyecanlı"],
+    "definitionsEn": ["Relating to feelings", "Showing strong feelings"],
+    "examplesEn": [
+      "She is an emotional person.",
+      "The movie was very emotional.",
+      "I need emotional support."
+    ],
+    "examplesTr": [
+      "Duygusal bir kişi.",
+      "Film çok duygusaldı.",
+      "Duygusal desteğe ihtiyacım var."
+    ],
+    "synonyms": ["sentimental", "feeling", "passionate", "expressive"],
+    "antonyms": ["unemotional", "rational", "logical"],
+    "usageNotes": "Can mean relating to emotions or showing emotions.",
+    "commonMistakes": "Don't use 'emotional' to mean 'dramatic' - they're related but different.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "professional",
+    "phonetic": "/prəˈfeʃənəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["profesyonel", "mesleki", "uzman"],
+    "definitionsEn": ["Relating to a profession", "Competent and skilled"],
+    "examplesEn": [
+      "She is very professional.",
+      "He has professional experience.",
+      "We need professional help."
+    ],
+    "examplesTr": [
+      "Çok profesyonel.",
+      "Profesyonel deneyimi var.",
+      "Profesyonel yardıma ihtiyacımız var."
+    ],
+    "synonyms": ["expert", "skilled", "qualified", "trained"],
+    "antonyms": ["amateur", "unprofessional", "inexperienced"],
+    "usageNotes": "Can mean 'as a paid job' or 'showing expertise'.",
+    "commonMistakes": "Don't use 'professional' to mean 'polite' - they're different.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "personal",
+    "phonetic": "/ˈpɜːrsənəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["kişisel", "şahsi", "özel"],
+    "definitionsEn": ["Belonging to a particular person", "Relating to private life"],
+    "examplesEn": [
+      "This is my personal opinion.",
+      "I need some personal space.",
+      "Don't take it personal."
+    ],
+    "examplesTr": [
+      "Bu kişisel görüşüm.",
+      "Biraz kişisel alana ihtiyacım var.",
+      "Bunu kişisel alma."
+    ],
+    "synonyms": ["private", "individual", "own", "intimate"],
+    "antonyms": ["public", "general", "impersonal"],
+    "usageNotes": "Refers to something belonging to or affecting one person.",
+    "commonMistakes": "The phrase is 'take it personally' (with -ly), not 'take it personal'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "positive",
+    "phonetic": "/ˈpɑːzətɪv/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["olumlu", "pozitif", "iyimser"],
+    "definitionsEn": ["Constructive and optimistic", "Certain or sure"],
+    "examplesEn": [
+      "She has a positive attitude.",
+      "Are you positive about this?",
+      "We need positive feedback."
+    ],
+    "examplesTr": [
+      "Olumlu bir tavrı var.",
+      "Bundan emin misin?",
+      "Olumlu geri bildirime ihtiyacımız var."
+    ],
+    "synonyms": ["optimistic", "confident", "hopeful", "affirmative"],
+    "antonyms": ["negative", "pessimistic", "uncertain"],
+    "usageNotes": "Can mean optimistic/constructive or certain/definite.",
+    "commonMistakes": "Don't use 'positive' when you mean 'good' - use 'positive' for attitude/thinking.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "negative",
+    "phonetic": "/ˈneɡətɪv/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["olumsuz", "negatif", "müspet"],
+    "definitionsEn": ["Pessimistic or harmful", "Expressing denial or refusal"],
+    "examplesEn": [
+      "Don't be so negative.",
+      "The feedback was negative.",
+      "He has a negative influence."
+    ],
+    "examplesTr": [
+      "Bu kadar olumsuz olma.",
+      "Geri bildirim olumsuzdu.",
+      "Olumsuz bir etkisi var."
+    ],
+    "synonyms": ["pessimistic", "unfavorable", "harmful", "critical"],
+    "antonyms": ["positive", "optimistic", "affirmative"],
+    "usageNotes": "Can mean pessimistic in attitude or expressing disagreement.",
+    "commonMistakes": "Don't confuse with 'negotiative' (relating to negotiation).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "realistic",
+    "phonetic": "/riːˈɪstɪk/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["gerçekçi", "aklî", "muhtemel"],
+    "definitionsEn": ["Practical and sensible", "Showing things as they really are"],
+    "examplesEn": [
+      "We need a realistic plan.",
+      "Be realistic about your goals.",
+      "Her expectations are realistic."
+    ],
+    "examplesTr": [
+      "Gerçekçi bir plana ihtiyacımız var.",
+      "Hedeflerin konusunda gerçekçi ol.",
+      "Beklentileri gerçekçi."
+    ],
+    "synonyms": ["practical", "sensible", "feasible", "reasonable"],
+    "antonyms": ["unrealistic", "idealistic", "impractical"],
+    "usageNotes": "Means both 'achievable' and 'true to reality'.",
+    "commonMistakes": "Don't use 'realistic' to mean 'real' - realistic is about being practical/achievable.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "careful",
+    "phonetic": "/ˈkerfəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["dikkatli", "özenli", "titiz"],
+    "definitionsEn": ["Exercising caution", "Making sure to avoid damage"],
+    "examplesEn": [
+      "Be careful with that!",
+      "She is a careful driver.",
+      "I was careful not to make mistakes."
+    ],
+    "examplesTr": [
+      "Buna dikkat et!",
+      "Dikkatli bir sürücü.",
+      "Hata yapmamaya dikkat ettim."
+    ],
+    "synonyms": ["cautious", "attentive", "meticulous", "thorough"],
+    "antonyms": ["careless", "reckless", "negligent"],
+    "usageNotes": "Use 'careful with something' or 'careful about something'.",
+    "commonMistakes": "Don't say 'careful of' - use 'careful with' or 'careful about'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "hopeful",
+    "phonetic": "/ˈhoʊpfəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["umutlu", "ümitli", "müspet"],
+    "definitionsEn": ["Feeling optimism about a future event", "Likely to succeed"],
+    "examplesEn": [
+      "I'm hopeful about the future.",
+      "She has a hopeful attitude.",
+      "We are hopeful for a good result."
+    ],
+    "examplesTr": [
+      "Gelecek konusunda umutluyum.",
+      "Umutlu bir tavrı var.",
+      "İyi bir sonuç için umutluyuz."
+    ],
+    "synonyms": ["optimistic", "confident", "expectant", "positive"],
+    "antonyms": ["hopeless", "pessimistic", "despairing"],
+    "usageNotes": "Use 'hopeful about something' or 'hopeful of something'.",
+    "commonMistakes": "Don't say 'hopeful to' - use 'hopeful about' or 'hopeful of'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "nervous",
+    "phonetic": "/ˈnɜːrvəs/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["sinirli", "gergin", "endişeli"],
+    "definitionsEn": ["Easily agitated or worried", "Feeling anxiety"],
+    "examplesEn": [
+      "I feel nervous before exams.",
+      "She was nervous about the presentation.",
+      "Don't be nervous!"
+    ],
+    "examplesTr": [
+      "Sınavlardan önce sinirli hissediyorum.",
+      "Sunum hakkında gergindi.",
+      "Sinir olma!"
+    ],
+    "synonyms": ["anxious", "tense", "worried", "apprehensive"],
+    "antonyms": ["calm", "relaxed", "confident"],
+    "usageNotes": "Use 'nervous about something' or 'nervous of something'.",
+    "commonMistakes": "Don't say 'nervous to do something' - use 'nervous about doing something'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "serious",
+    "phonetic": "/ˈsɪriəs/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["ciddi", "önemli", "ağırbaşlı"],
+    "definitionsEn": ["Not joking or playful", "Bad or dangerous"],
+    "examplesEn": [
+      "This is a serious problem.",
+      "Are you serious?",
+      "She has a serious expression."
+    ],
+    "examplesTr": [
+      "Bu ciddi bir sorun.",
+      "Ciddi misin?",
+      "Ciddi bir ifadesi var."
+    ],
+    "synonyms": ["solemn", "grave", "earnest", "significant"],
+    "antonyms": ["playful", "frivolous", "trivial"],
+    "usageNotes": "Can mean not joking, important, or severe/bad.",
+    "commonMistakes": "Don't use 'serious' to mean 'sincere' - though they can overlap.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "strange",
+    "phonetic": "/streɪndʒ/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["garip", "acayip", "tuhaf"],
+    "definitionsEn": ["Unusual or surprising", "Not familiar"],
+    "examplesEn": [
+      "That's a strange question.",
+      "I heard a strange noise.",
+      "He is acting strange today."
+    ],
+    "examplesTr": [
+      "Bu garip bir soru.",
+      "Tuhaf bir ses duydum.",
+      "Bugün garip davranıyor."
+    ],
+    "synonyms": ["odd", "peculiar", "weird", "unusual"],
+    "antonyms": ["normal", "ordinary", "familiar"],
+    "usageNotes": "Can mean unusual, unfamiliar, or odd/bizarre.",
+    "commonMistakes": "Don't use 'strange' to be rude about differences - use 'unusual' to be more polite.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "perfect",
+    "phonetic": "/ˈpɜːrfɪkt/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["mükemmel", "kusursuz", "tam"],
+    "definitionsEn": ["Having all required elements", "Completely correct"],
+    "examplesEn": [
+      "The weather is perfect today!",
+      "Her English is perfect.",
+      "This is the perfect time."
+    ],
+    "examplesTr": [
+      "Bugün hava mükemmel!",
+      "İngilizcesi mükemmel.",
+      "Tam zamanı."
+    ],
+    "synonyms": ["flawless", "ideal", "excellent", "immaculate"],
+    "antonyms": ["imperfect", "flawed", "defective"],
+    "usageNotes": "Means completely without faults or exactly right.",
+    "commonMistakes": "The verb is pronounced /pərˈfekt/ (per-FECT), the adjective is /ˈpɜːrfɪkt/ (PER-fect).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "excellent",
+    "phonetic": "/ˈeksələnt/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["mükemmel", "harika", "üstün"],
+    "definitionsEn": ["Extremely good", "Of very high quality"],
+    "examplesEn": [
+      "She did an excellent job.",
+      "The food was excellent.",
+      "He has excellent manners."
+    ],
+    "examplesTr": [
+      "Mükemmel bir iş çıkardı.",
+      "Yemek mükemmeldi.",
+      "Mükemmel davranışları var."
+    ],
+    "synonyms": ["superb", "outstanding", "wonderful", "superior"],
+    "antonyms": ["terrible", "poor", "bad"],
+    "usageNotes": "Stronger than 'good' or 'very good'.",
+    "commonMistakes": "Don't use 'excellent' for casual things - 'great' or 'really good' are more common.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "terrible",
+    "phonetic": "/ˈterəbəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["berbat", "korkunç", "pek kötü"],
+    "definitionsEn": ["Very bad or unpleasant", "Severe"],
+    "examplesEn": [
+      "The weather is terrible today.",
+      "I have a terrible headache.",
+      "That was a terrible mistake."
+    ],
+    "examplesTr": [
+      "Bugün hava berbat.",
+      "Çok korkunç başım ağrıyor.",
+      "Bu berbat bir hataydı."
+    ],
+    "synonyms": ["awful", "horrible", "dreadful", "atrocious"],
+    "antonyms": ["excellent", "wonderful", "great"],
+    "usageNotes": "Stronger than 'bad' or 'very bad'.",
+    "commonMistakes": "Don't use 'terrible' to describe minor problems - 'bad' is sufficient.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "awful",
+    "phonetic": "/ˈɔːfəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["berbat", "korkunç", "iğrenç"],
+    "definitionsEn": ["Very bad or unpleasant", "Extremely bad"],
+    "examplesEn": [
+      "The movie was awful.",
+      "I feel awful today.",
+      "What awful weather!"
+    ],
+    "examplesTr": [
+      "Film berbattı.",
+      "Bugün kendimi çok kötü hissediyorum.",
+      "Ne kötü hava!"
+    ],
+    "synonyms": ["terrible", "horrible", "dreadful", "poor"],
+    "antonyms": ["wonderful", "great", "excellent"],
+    "usageNotes": "Can mean very bad quality or very unpleasant feeling.",
+    "commonMistakes": "Don't use 'awful' to mean 'full of awe' (respectful wonder) - that's 'awesome'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "wonderful",
+    "phonetic": "/ˈwʌndərfəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["harika", "müthiş", "şahane"],
+    "definitionsEn": ["Extremely good or pleasant", "Causing wonder or admiration"],
+    "examplesEn": [
+      "We had a wonderful time.",
+      "That's wonderful news!",
+      "She is a wonderful person."
+    ],
+    "examplesTr": [
+      "Harika zaman geçirdik.",
+      "Harika haberler!",
+      "O harika bir insan."
+    ],
+    "synonyms": ["marvelous", "fantastic", "excellent", "superb"],
+    "antonyms": ["terrible", "awful", "horrible"],
+    "usageNotes": "Stronger than 'good' - expresses enthusiasm and delight.",
+    "commonMistakes": "Don't use 'wonderful' for ordinary things - 'nice' or 'good' are more appropriate.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "fantastic",
+    "phonetic": "/fænˈtæstɪk/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["fantastik", "muhteşem", "inanılmaz"],
+    "definitionsEn": ["Extraordinarily good", "Imaginative or unrealistic"],
+    "examplesEn": [
+      "The view is fantastic!",
+      "You did a fantastic job.",
+      "She has fantastic ideas."
+    ],
+    "examplesTr": [
+      "Manzara muhteşem!",
+      "Muhteşem bir iş çıkardın.",
+      "Muhteşem fikirleri var."
+    ],
+    "synonyms": ["wonderful", "excellent", "amazing", "incredible"],
+    "antonyms": ["terrible", "awful", "poor"],
+    "usageNotes": "Can mean extraordinarily good or imaginative/unreal.",
+    "commonMistakes": "Don't use 'fantastic' in very formal writing - 'excellent' or 'outstanding' are better.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "amazing",
+    "phonetic": "/əˈmeɪzɪŋ/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["şaşırtıcı", "hayret verici", "muhteşem"],
+    "definitionsEn": ["Causing great surprise or wonder", "Extremely good"],
+    "examplesEn": [
+      "That's amazing!",
+      "She has an amazing voice.",
+      "The results were amazing."
+    ],
+    "examplesTr": [
+      "Bu inanılmaz!",
+      "Muhteşem bir sesi var.",
+      "Sonuçlar şaşırtıcıydı."
+    ],
+    "synonyms": ["wonderful", "incredible", "fantastic", "astonishing"],
+    "antonyms": ["ordinary", "unremarkable", "disappointing"],
+    "usageNotes": "Stronger than 'good' or 'great' - implies surprise.",
+    "commonMistakes": "Don't overuse 'amazing' - it loses impact when used for everything.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "incredible",
+    "phonetic": "/ɪnˈkredəbəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A2",
+    "meaningsTr": ["inanılmaz", "müthiş", "sağır"],
+    "definitionsEn": ["Impossible to believe", "Extremely good"],
+    "examplesEn": [
+      "The view is incredible!",
+      "She made incredible progress.",
+      "That's an incredible story."
+    ],
+    "examplesTr": [
+      "Manzara inanılmaz!",
+      "İnanılmaz ilerleme kaydetti.",
+      "Bu inanılmaz bir hikaye."
+    ],
+    "synonyms": ["unbelievable", "amazing", "extraordinary", "fantastic"],
+    "antonyms": ["credible", "believable", "ordinary"],
+    "usageNotes": "Can mean literally unbelievable or figuratively wonderful.",
+    "commonMistakes": "Don't use 'incredible' for formal reports - 'remarkable' or 'exceptional' are better.",
+    "imageUrl": "",
+    "audioUrl": ""
+  }
+]

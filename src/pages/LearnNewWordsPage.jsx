@@ -198,7 +198,7 @@ export default function LearnNewWordsPage() {
         return (
             <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-20 flex items-center justify-center">
                 <div className="text-center">
-                    <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" />
+                    <Loader2 className="w-12 h-12 text-primary animate-spin mx-auto mb-4" />
                     <p className="text-gray-600 dark:text-gray-400">Kelimeler yükleniyor...</p>
                 </div>
             </div>
@@ -214,8 +214,8 @@ export default function LearnNewWordsPage() {
                     <div className="bg-white dark:bg-[#2a2a24] rounded-2xl shadow-lg p-6 border border-gray-100 dark:border-[#333]">
                         {learnedCount > 0 ? (
                             <>
-                                <div className="w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <Trophy className="w-8 h-8 text-indigo-600 dark:text-indigo-400" />
+                                <div className="w-16 h-16 bg-primary/10 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <Trophy className="w-8 h-8 text-primary dark:text-primary-400" />
                                 </div>
                                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                                     Tebrikler!
@@ -225,12 +225,12 @@ export default function LearnNewWordsPage() {
                                 </p>
 
                                 <div className="grid grid-cols-2 gap-3 mb-6">
-                                    <div className="bg-green-50 dark:bg-green-900/20 rounded-xl p-3">
-                                        <div className="text-2xl font-bold text-green-600 dark:text-green-400">{learnedCount}</div>
+                                    <div className="bg-secondary/10 dark:bg-secondary-900/20 rounded-xl p-3">
+                                        <div className="text-2xl font-bold text-secondary dark:text-secondary-400">{learnedCount}</div>
                                         <div className="text-xs text-gray-600 dark:text-gray-400">Öğrenilen</div>
                                     </div>
-                                    <div className="bg-indigo-50 dark:bg-indigo-900/20 rounded-xl p-3">
-                                        <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">+{totalXp}</div>
+                                    <div className="bg-indigo-50 dark:bg-primary-900/20 rounded-xl p-3">
+                                        <div className="text-2xl font-bold text-primary dark:text-primary-400">+{totalXp}</div>
                                         <div className="text-xs text-gray-600 dark:text-gray-400">Kazanılan XP</div>
                                     </div>
                                 </div>
@@ -257,7 +257,7 @@ export default function LearnNewWordsPage() {
                             </button>
                             <button
                                 onClick={handleNewSession}
-                                className="flex-1 py-2.5 px-4 bg-indigo-600 text-white rounded-xl text-sm font-medium hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2"
+                                className="flex-1 py-2.5 px-4 bg-primary text-white rounded-xl text-sm font-medium hover:bg-primary-700 transition-colors flex items-center justify-center gap-2"
                             >
                                 <RotateCcw className="w-4 h-4" />
                                 Yeni Oturum
@@ -284,7 +284,7 @@ export default function LearnNewWordsPage() {
                         </p>
                         <button
                             onClick={goToVocabulary}
-                            className="py-2.5 px-4 bg-indigo-600 text-white rounded-xl text-sm font-medium hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2 mx-auto"
+                            className="py-2.5 px-4 bg-primary text-white rounded-xl text-sm font-medium hover:bg-primary-700 transition-colors flex items-center justify-center gap-2 mx-auto"
                         >
                             <ArrowLeft className="w-4 h-4" />
                             Kelimelerime Git
@@ -315,7 +315,7 @@ export default function LearnNewWordsPage() {
                         </div>
                         <div className="w-40 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                             <div
-                                className="h-full bg-indigo-500 transition-all duration-500"
+                                className="h-full bg-primary-500 transition-all duration-500"
                                 style={{ width: `${(progress / totalWords) * 100}%` }}
                             />
                         </div>
@@ -326,7 +326,7 @@ export default function LearnNewWordsPage() {
 
                 {/* Session stats */}
                 <div className="flex justify-center gap-3 mb-4">
-                    <div className="flex items-center gap-1 px-2.5 py-1 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 rounded-full text-xs">
+                    <div className="flex items-center gap-1 px-2.5 py-1 bg-secondary/10 dark:bg-secondary-900/20 text-secondary-700 dark:text-secondary-300 rounded-full text-xs">
                         {learnedCount} öğrenilen
                     </div>
                     <div className="flex items-center gap-1 px-2.5 py-1 bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400 rounded-full text-xs">
@@ -385,7 +385,7 @@ export default function LearnNewWordsPage() {
                                     e.stopPropagation();
                                     handleSpeak();
                                 }}
-                                className="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center text-white hover:bg-indigo-700 transition-colors"
+                                className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white hover:bg-primary-700 transition-colors"
                             >
                                 <Volume2 className="w-5 h-5" />
                             </button>
@@ -397,7 +397,7 @@ export default function LearnNewWordsPage() {
                         </div>
 
                         {/* Back - Turkish */}
-                        <div className="absolute inset-0 bg-indigo-600 rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center overflow-y-auto"
+                        <div className="absolute inset-0 bg-primary rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center overflow-y-auto"
                             style={{
                                 backfaceVisibility: 'hidden',
                                 transform: 'rotateY(180deg)',
@@ -476,7 +476,7 @@ export default function LearnNewWordsPage() {
                     </button>
                     <button
                         onClick={handleLearning}
-                        className="flex-1 max-w-[160px] py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold transition-all flex items-center justify-center gap-2 text-sm"
+                        className="flex-1 max-w-[160px] py-3 bg-primary hover:bg-primary-700 text-white rounded-xl font-semibold transition-all flex items-center justify-center gap-2 text-sm"
                     >
                         <Sparkles className="w-5 h-5" />
                         Öğren

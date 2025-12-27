@@ -1,0 +1,1610 @@
+[
+  {
+    "word": "decision",
+    "phonetic": "/dɪˈsɪʒən/",
+    "partOfSpeech": ["noun"],
+    "level": "B1",
+    "meaningsTr": ["karar", "hüküm", "kestirim"],
+    "definitionsEn": ["A conclusion or resolution reached after consideration", "The action or process of deciding"],
+    "examplesEn": [
+      "I need to make a decision about my career.",
+      "The committee reached a final decision.",
+      "It was a difficult decision to make."
+    ],
+    "examplesTr": [
+      "Kariyerim hakkında bir karar vermem gerekiyor.",
+      "Komite nihai karara ulaştı.",
+      "Alınması zor bir karardı."
+    ],
+    "synonyms": ["choice", "judgment", "resolution", "conclusion"],
+    "antonyms": ["indecision", "hesitation", "doubt"],
+    "usageNotes": "Use 'make a decision' (not 'do a decision'). Common collocations: reach a decision, final decision.",
+    "commonMistakes": "Don't say 'do a decision' - always use 'make a decision'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "effort",
+    "phonetic": "/ˈefərt/",
+    "partOfSpeech": ["noun"],
+    "level": "B1",
+    "meaningsTr": ["çaba", "gayret", "uğraş"],
+    "definitionsEn": ["A vigorous or determined attempt", "Strenuous physical or mental exertion"],
+    "examplesEn": [
+      "You should put more effort into your studies.",
+      "It was a team effort.",
+      "I appreciate your effort in helping me."
+    ],
+    "examplesTr": [
+      "Çalışmalarınıza daha fazla çaba harcamalısınız.",
+      "Bu bir takım çalışmasıydı.",
+      "Bana yardım etme çabanızı takdir ediyorum."
+    ],
+    "synonyms": ["attempt", "exertion", "endeavor", "struggle"],
+    "antonyms": ["laziness", "idleness", "apathy"],
+    "usageNotes": "Use 'make an effort', 'put effort into', or 'put forth effort'.",
+    "commonMistakes": "Don't say 'do an effort' - use 'make an effort' or 'put in effort'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "explain",
+    "phonetic": "/ɪkˈspleɪn/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["açıklamak", "beltirmek"],
+    "definitionsEn": ["To make something clear or easy to understand", "To give a detailed account"],
+    "examplesEn": [
+      "Can you explain how this works?",
+      "She explained the situation to me.",
+      "Let me explain why I made this choice."
+    ],
+    "examplesTr": [
+      "Bunun nasıl çalıştığını açıklar mısın?",
+      "Durumu bana açıkladı.",
+      "Bu seçimi neden yaptığımı açıklayayım."
+    ],
+    "synonyms": ["clarify", "describe", "illustrate", "demonstrate"],
+    "antonyms": ["confuse", "complicate", "obscure"],
+    "usageNotes": "Use 'explain something TO someone' (not 'explain someone something').",
+    "commonMistakes": "Don't say 'explain me' - say 'explain it to me'. You must use 'to' with people.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "manage",
+    "phonetic": "/ˈmænɪdʒ/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["yönetmek", "başarmak", "idare etmek"],
+    "definitionsEn": ["To succeed in surviving or achieving something", "To be in charge of or organize"],
+    "examplesEn": [
+      "She manages a team of ten people.",
+      "I managed to finish the project on time.",
+      "How do you manage your time?"
+    ],
+    "examplesTr": [
+      "On kişilik bir ekibi yönetiyor.",
+      "Projeyi zamanında bitirmeyi başardım.",
+      "Zamanınızı nasıl yönetiyorsunuz?"
+    ],
+    "synonyms": ["handle", "control", "supervise", "cope with"],
+    "antonyms": ["fail", "neglect", "mismanage"],
+    "usageNotes": "Can mean 'to be in charge of' or 'to succeed in doing something difficult'.",
+    "commonMistakes": "When saying you succeeded, use 'manage to' + verb: 'I managed to finish it.'",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "achieve",
+    "phonetic": "/əˈtʃiːv/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["başarmak", "elde etmek", "üretmek"],
+    "definitionsEn": ["To successfully bring about or reach a desired objective", "To accomplish"],
+    "examplesEn": [
+      "She worked hard to achieve her goals.",
+      "You can achieve anything with dedication.",
+      "The team achieved great results."
+    ],
+    "examplesTr": [
+      "Hedeflerine ulaşmak için çok çalıştı.",
+      "Azimle her şeyi başarabilirsiniz.",
+      "Takım harika sonuçlar elde etti."
+    ],
+    "synonyms": ["accomplish", "attain", "reach", "fulfill"],
+    "antonyms": ["fail", "lose", "miss"],
+    "usageNotes": "Use 'achieve' with goals, success, results, or dreams.",
+    "commonMistakes": "Don't use 'achieve' for small tasks - 'complete' or 'finish' is more appropriate.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "develop",
+    "phonetic": "/dɪˈveləp/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["geliştirmek", "büyütmek", "teşekkül etmek"],
+    "definitionsEn": ["To grow or cause to grow and become more mature", "To create or produce something new"],
+    "examplesEn": [
+      "She wants to develop her skills.",
+      "The company is developing a new product.",
+      "Children develop quickly at this age."
+    ],
+    "examplesTr": [
+      "Becerilerini geliştirmek istiyor.",
+      "Şirket yeni bir ürün geliştiriyor.",
+      "Çocuklar bu yaştan hızla gelişir."
+    ],
+    "synonyms": ["grow", "improve", "create", "advance"],
+    "antonyms": ["decline", "deteriorate", "regress"],
+    "usageNotes": "Can refer to physical growth, skill improvement, or creating new things.",
+    "commonMistakes": "Don't confuse 'develop' (create/improve) with 'development' (the noun form).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "increase",
+    "phonetic": "/ɪnˈkriːs/",
+    "partOfSpeech": ["verb", "noun"],
+    "level": "B1",
+    "meaningsTr": ["artırmak", "çoğaltmak", "artış"],
+    "definitionsEn": ["To become or make greater in amount or size", "The action of increasing"],
+    "examplesEn": [
+      "Prices increased significantly last year.",
+      "We need to increase our sales.",
+      "There was a steady increase in population."
+    ],
+    "examplesTr": [
+      "Geçen yıl fiyatlar önemli ölçüde arttı.",
+      "Satışlarımızı artırmamız gerekiyor.",
+      "Nüfusta istikrarlı bir artış vardı."
+    ],
+    "synonyms": ["raise", "boost", "grow", "expand"],
+    "antonyms": ["decrease", "reduce", "lower"],
+    "usageNotes": "Can be a verb (to increase) or noun (an increase).",
+    "commonMistakes": "Pronunciation changes: verb is /ɪnˈkriːs/, noun is /ˈɪnkriːs/.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "decrease",
+    "phonetic": "/dɪˈkriːs/",
+    "partOfSpeech": ["verb", "noun"],
+    "level": "B1",
+    "meaningsTr": ["azaltmak", "eksiltmek", "azalma"],
+    "definitionsEn": ["To become or make less in amount or size", "The action of decreasing"],
+    "examplesEn": [
+      "We need to decrease our expenses.",
+      "The number of students decreased this year.",
+      "There was a significant decrease in crime."
+    ],
+    "examplesTr": [
+      "Harcamalarımızı azaltmamız gerekiyor.",
+      "Öğrenci sayısı bu yıl azaldı.",
+      "Suçta önemli bir azalma vardı."
+    ],
+    "synonyms": ["reduce", "lower, diminish", "decline"],
+    "antonyms": ["increase", "raise", "boost"],
+    "usageNotes": "Can be a verb (to decrease) or noun (a decrease).",
+    "commonMistakes": "Pronunciation changes: verb is /dɪˈkriːs/, noun is /ˈdiːkriːs/.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "improve",
+    "phonetic": "/ɪmˈpruːv/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["iyileştirmek", "geliştirmek", "becermek"],
+    "definitionsEn": ["To make or become better", "To develop in quality or condition"],
+    "examplesEn": [
+      "I want to improve my English.",
+      "The situation has improved significantly.",
+      "She's trying to improve her health."
+    ],
+    "examplesTr": [
+      "İngilizcemi geliştirmek istiyorum.",
+      "Durum önemli ölçüde iyileşti.",
+      "Sağlığını iyileştirmeye çalışıyor."
+    ],
+    "synonyms": ["enhance", "better", "upgrade", "refine"],
+    "antonyms": ["worsen", "deteriorate", "decline"],
+    "usageNotes": "Use 'improve' with skills, conditions, situations, or performance.",
+    "commonMistakes": "Don't say 'improve in something' - use 'improve something' directly.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "avoid",
+    "phonetic": "/əˈvɔɪd/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["kaçınmak", "istenmemek", "yakınmamak"],
+    "definitionsEn": ["To keep away from or prevent from happening", "To stay clear of"],
+    "examplesEn": [
+      "You should avoid eating too much sugar.",
+      "I managed to avoid the accident.",
+      "She tried to avoid answering the question."
+    ],
+    "examplesTr": [
+      "Çok fazla şeker yemekten kaçınmalısınız.",
+      "Kazayı yıkmayı başardım.",
+      "Soruyu yanıtlamaktan kaçınmaya çalıştı."
+    ],
+    "synonyms": ["evade", "escape", "prevent", "shun"],
+    "antonyms": ["face", "confront", "seek", "encounter"],
+    "usageNotes": "Use 'avoid' + gerund (verb+ing), not infinitive.",
+    "commonMistakes": "Don't say 'avoid to do something' - say 'avoid doing something'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "encourage",
+    "phonetic": "/ɪnˈkʌrɪdʒ/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["teşvik etmek", "özendirmek", "umut vermek"],
+    "definitionsEn": ["To give support and confidence", "To help something to happen or develop"],
+    "examplesEn": [
+      "She encouraged me to apply for the job.",
+      "We should encourage creativity in children.",
+      "The policy aims to encourage investment."
+    ],
+    "examplesTr": [
+      "Beni iş için başvurmaya teşvik etti.",
+      "Çocuklarda yaratıcılığı teşvik etmeliyiz.",
+      "Politika yatırımı teşvik etmeyi amaçlıyor."
+    ],
+    "synonyms": ["inspire", "motivate, support", "urge"],
+    "antonyms": ["discourage", "deter, prevent"],
+    "usageNotes": "Use 'encourage someone TO do something' (with infinitive).",
+    "commonMistakes": "Don't use 'encourage' + 'ing' - use 'encourage someone TO do' something.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "suggest",
+    "phonetic": "/səˈdʒest/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["önermek", "göstermek", "iftira etmek"],
+    "definitionsEn": ["To put forward an idea or plan for consideration", "To imply or hint"],
+    "examplesEn": [
+      "Can you suggest a good restaurant?",
+      "She suggested going to the cinema.",
+      "The data suggests a strong correlation."
+    ],
+    "examplesTr": [
+      "İyi bir restoran önerebilir misin?",
+      "Sinemaya gitmeyi önerdi.",
+      "Veriler güçlü bir ilişki gösteriyor."
+    ],
+    "synonyms": ["recommend", "propose, advise", "imply"],
+    "antonyms": ["demand", "reject, ignore"],
+    "usageNotes": "Use 'suggest doing something' (gerund) or 'suggest that someone do something'.",
+    "commonMistakes": "Don't say 'suggest to do' - use 'suggest doing' or 'suggest that someone do'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "realize",
+    "phonetic": "/ˈriːəlaɪz/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["farketmek", "kavramak", "gerçekleştirmek"],
+    "definitionsEn": ["To become fully aware of something", "To cause to happen in reality"],
+    "examplesEn": [
+      "I didn't realize how late it was.",
+      "She finally realized her dream.",
+      "We need to realize the importance of this issue."
+    ],
+    "examplesTr": [
+      "Ne kadar geç olduğunu fark etmedim.",
+      "Nihayet hayalini gerçekleştirdi.",
+      "Bu sorunun önemini fark etmeliyiz."
+    ],
+    "synonyms": ["understand", "recognize, achieve", "accomplish"],
+    "antonyms": ["misunderstand", "ignore, overlook"],
+    "usageNotes": "Spelling differs by region: 'realize' (US) vs 'realise' (UK).",
+    "commonMistakes": "Don't use 'realize as' - use 'realize that' or just 'realize' + object.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "consider",
+    "phonetic": "/kənˈsɪdər/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["düşünmek", "göz önünde bulundurmak"],
+    "definitionsEn": ["To think carefully about", "To regard as something"],
+    "examplesEn": [
+      "Please consider my proposal.",
+      "We are considering moving to a new city.",
+      "She is considered an expert in her field."
+    ],
+    "examplesTr": [
+      "Lütfen önerimi göz önünde bulundurun.",
+      "Yeni bir şehre taşınmayı düşünüyoruz.",
+      "Kendi alanında uzman olarak kabul ediliyor."
+    ],
+    "synonyms": ["think about", "contemplate, regard", "view"],
+    "antonyms": ["ignore, disregard, reject"],
+    "usageNotes": "Use 'consider doing something' (gerund) or 'consider someone as something'.",
+    "commonMistakes": "Don't say 'consider to do' - use 'consider doing' or 'consider how to do'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "suppose",
+    "phonetic": "/səˈpoʊz/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["varsaymak", "farzetmek", "gerek"],
+    "definitionsEn": ["To assume something is true", "To be expected to do something"],
+    "examplesEn": [
+      "I suppose you're right.",
+      "We are supposed to be there at 8 PM.",
+      "Let's suppose that happens."
+    ],
+    "examplesTr": [
+      "Sanırım haklısın.",
+      "Saat 8'de orada olmamız gerekiyor.",
+      "Farz edelim ki bu oldu."
+    ],
+    "synonyms": ["assume, expect, presume", "believe"],
+    "antonyms": ["know, prove, verify"],
+    "usageNotes": "Use 'be supposed to' for expectations and rules.",
+    "commonMistakes": "Don't use 'suppose to' - must be 'supposed to' when talking about expectations.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "require",
+    "phonetic": "/rɪˈkwaɪər/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["gerektirmek", "istemek", "ihtiyaç duymak"],
+    "definitionsEn": ["To need something", "To make something necessary"],
+    "examplesEn": [
+      "This job requires experience.",
+      "All students are required to attend.",
+      "The task requires patience and skill."
+    ],
+    "examplesTr": [
+      "Bu iş deneyim gerektirir.",
+      "Tüm öğrencilerin katılması gerekiyor.",
+      "Görev sabır ve beceri gerektiriyor."
+    ],
+    "synonyms": ["need, demand, involve", "necessitate"],
+    "antonyms": ["exclude, lack, want"],
+    "usageNotes": "More formal than 'need'. Use 'require someone TO do something'.",
+    "commonMistakes": "Don't say 'require doing' when talking about people - use 'require someone TO do'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "appear",
+    "phonetic": "/əˈpɪər/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["görünmek", "belirmek", "gözükmek"],
+    "definitionsEn": ["To become visible", "To seem or look a certain way"],
+    "examplesEn": [
+      "The stars appear at night.",
+      "She appears to be happy.",
+      "A new problem appeared."
+    ],
+    "examplesTr": [
+      "Yıldızlar geceleri görünür.",
+      "Mutlu görünüyor.",
+      "Yeni bir sorun belirdi."
+    ],
+    "synonyms": ["emerge, seem, show up", "look"],
+    "antonyms": ["disappear, vanish, hide"],
+    "usageNotes": "Can mean physical visibility or seeming to be something.",
+    "commonMistakes": "Don't confuse 'appear' (verb) with 'appearance' (noun).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "mention",
+    "phonetic": "/ˈmenʃən/",
+    "partOfSpeech": ["verb", "noun"],
+    "level": "B1",
+    "meaningsTr": ["bahsetmek", "anmak", "zikretmek"],
+    "definitionsEn": ["To refer to something briefly", "A brief reference to something"],
+    "examplesEn": [
+      "Did I mention the meeting tomorrow?",
+      "She mentioned your name.",
+      "Thank you for mentioning this."
+    ],
+    "examplesTr": [
+      "Yarınki toplantıdan bahsettim mi?",
+      "Adını bahsetti.",
+      "Bunu bahsettiğiniz için teşekkürler."
+    ],
+    "synonyms": ["refer to, note, cite", "name"],
+    "antonyms": ["ignore, omit, overlook"],
+    "usageNotes": "Use 'mention something TO someone' or just 'mention something'.",
+    "commonMistakes": "Don't say 'mention about' - just use 'mention' directly.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "wonder",
+    "phonetic": "/ˈwʌndər/",
+    "partOfSpeech": ["verb", "noun"],
+    "level": "B1",
+    "meaningsTr": ["merak etmek", "hayret etmek", "mucize"],
+    "definitionsEn": ["To feel curiosity or doubt", "A feeling of surprise and admiration"],
+    "examplesEn": [
+      "I wonder what she's thinking.",
+      "The Grand Canyon is a natural wonder.",
+      "I was wondering if you could help me."
+    ],
+    "examplesTr": [
+      "Ne düşündüğünü merak ediyorum.",
+      "Büyük Kanyon doğal bir mucizedir.",
+      "Yardım edip edemeyeceğini merak ediyordum."
+    ],
+    "synonyms": ["marvel, be curious, ponder", "miracle"],
+    "antonyms": ["know, certainty, indifference"],
+    "usageNotes": "Use 'wonder if/whether/what/why' for questions. Use 'I was wondering' for polite requests.",
+    "commonMistakes": "Don't say 'wonder to do something' - use 'wonder how/what to do' or 'wonder if'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "imagine",
+    "phonetic": "/ɪˈmædʒɪn/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["hayal etmek", "tasavvur etmek", "varsaymak"],
+    "definitionsEn": ["To form a mental image or concept", "To suppose or assume"],
+    "examplesEn": [
+      "I can't imagine living without music.",
+      "Imagine you're on a beautiful beach.",
+      "I can't imagine why she did that."
+    ],
+    "examplesTr": [
+      "Müziiksiz yaşamayı hayal edemiyorum.",
+      "Güzel bir plajda olduğunu hayal et.",
+      "Neden bunu yaptığını hayal edemiyorum."
+    ],
+    "synonyms": ["visualize, picture, suppose", "envision"],
+    "antonyms": ["know, experience, forget"],
+    "usageNotes": "Use 'imagine doing something' or 'imagine that...'",
+    "commonMistakes": "Don't say 'imagine to do' - always use 'imagine' + gerund or 'that' clause.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "create",
+    "phonetic": "/kriˈeɪt/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["yaratmak", "oluşturmak", "meydana getirmek"],
+    "definitionsEn": ["To bring something into existence", "To produce or make something"],
+    "examplesEn": [
+      "She wants to create her own business.",
+      "Artists create beautiful works.",
+      "The program will create new opportunities."
+    ],
+    "examplesTr": [
+      "Kendi işini yaratmak istiyor.",
+      "Sanatçılar güzel eserler yaratır.",
+      "Program yeni fırsatlar yaratacak."
+    ],
+    "synonyms": ["make, produce, generate", "form"],
+    "antonyms": ["destroy, eliminate, remove"],
+    "usageNotes": "Implies bringing something new into existence.",
+    "commonMistakes": "Don't confuse with 'creative' (adjective) or 'creation' (noun).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "provide",
+    "phonetic": "/prəˈvaɪd/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["sağlamak", "temin etmek", "vermek"],
+    "definitionsEn": ["To supply or make available", "To furnish or equip"],
+    "examplesEn": [
+      "The hotel provides free Wi-Fi.",
+      "We need to provide better customer service.",
+      "He provides for his family."
+    ],
+    "examplesTr": [
+      "Otel ücretsiz Wi-Fi sağlıyor.",
+      "Daha iyi müşteri hizmeti sağlamalıyız.",
+      "Ailesine bakıyor."
+    ],
+    "synonyms": ["supply, offer, furnish", "give"],
+    "antonyms": ["withhold, deny, withhold"],
+    "usageNotes": "Use 'provide someone WITH something' or 'provide something FOR someone'.",
+    "commonMistakes": "Don't say 'provide something TO someone' - use 'provide someone WITH something'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "receive",
+    "phonetic": "/rɪˈsiːv/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["almak", "kabul etmek", "elde etmek"],
+    "definitionsEn": ["To get or be given something", "To welcome or greet guests"],
+    "examplesEn": [
+      "I received a letter from my friend.",
+      "She received a promotion at work.",
+      "The hotel receives many guests."
+    ],
+    "examplesTr": [
+      "Arkadaşımından mektup aldım.",
+      "İte terfi aldı.",
+      "Otel çok misafir ağırlıyor."
+    ],
+    "synonyms": ["get, obtain, accept", "welcome"],
+    "antonyms": ["give, send, reject"],
+    "usageNotes": "More formal than 'get'. Used for receiving things, news, or guests.",
+    "commonMistakes": "Don't use 'receive to' - say 'receive from' or just 'receive' + object.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "reach",
+    "phonetic": "/riːtʃ/",
+    "partOfSpeech": ["verb", "noun"],
+    "level": "B1",
+    "meaningsTr": ["ulaşmak", "erişmek", "kavuşmak"],
+    "definitionsEn": ["To arrive at or get to", "To stretch out to touch something"],
+    "examplesEn": [
+      "We will reach the airport in an hour.",
+      "Can you reach that book on the shelf?",
+      "The message didn't reach me."
+    ],
+    "examplesTr": [
+      "Bir saatte havaalanına ulaşacağız.",
+      "Raftaki kitaba ulaşabilir misin?",
+      "Mesaj bana ulaşmadı."
+    ],
+    "synonyms": ["arrive at, attain, contact", "stretch"],
+    "antonyms": ["depart, leave, miss"],
+    "usageNotes": "Can mean arriving at a place, achieving a goal, or contacting someone.",
+    "commonMistakes": "Don't use 'reach to' a place - just use 'reach' + place.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "attend",
+    "phonetic": "/əˈtend/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["katılmak", "devam etmek", "hazır bulunmak"],
+    "definitionsEn": ["To be present at an event", "To go regularly to a place"],
+    "examplesEn": [
+      "Did you attend the meeting?",
+      "She attends university in London.",
+      "All students must attend classes."
+    ],
+    "examplesTr": [
+      "Toplantıya katıldın mı?",
+      "Londra'da üniversiteye gidiyor.",
+      "Tüm öğrencilerin derslere katılması zorunlu."
+    ],
+    "synonyms": ["go to, be present at, visit", "join"],
+    "antonyms": ["miss, skip, avoid"],
+    "usageNotes": "Formal word for 'going to' events, classes, or institutions.",
+    "commonMistakes": "Don't use 'attend at' - just 'attend' + event/place.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "invite",
+    "phonetic": "/ɪnˈvaɪt/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["davet etmek", "çağırmak"],
+    "definitionsEn": ["To ask someone to go somewhere or do something"],
+    "examplesEn": [
+      "She invited me to her party.",
+      "We invited all our friends.",
+      "Can I invite you to dinner?"
+    ],
+    "examplesTr": [
+      "Beni partisine davet etti.",
+      "Tüm arkadaşlarımızı davet ettik.",
+      "Beni akşam yemeğine davet edebilir misin?"
+    ],
+    "synonyms": ["ask, welcome, request", "summon"],
+    "antonyms": ["reject, refuse, exclude"],
+    "usageNotes": "Use 'invite someone TO something' or 'invite someone TO DO something'.",
+    "commonMistakes": "Don't use 'invite for' - use 'invite TO' an event or activity.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "arrange",
+    "phonetic": "/əˈreɪndʒ/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["düzenlemek", "ayarlamak", "planlamak"],
+    "definitionsEn": ["To organize or make plans for something", "To put in order"],
+    "examplesEn": [
+      "I'll arrange a meeting for tomorrow.",
+      "She arranged the flowers beautifully.",
+      "We need to arrange transportation."
+    ],
+    "examplesTr": [
+      "Yarın için bir toplantı ayarlayacağım.",
+      "Çiçekleri güzelce düzenledi.",
+      "Ulaşım düzenlememiz gerekiyor."
+    ],
+    "synonyms": ["organize, plan, prepare", "order"],
+    "antonyms": ["disorganize, disrupt, confuse"],
+    "usageNotes": "Use 'arrange TO do something' or 'arrange FOR something'.",
+    "commonMistakes": "Don't say 'arrange for doing' - use 'arrange TO do' or 'arrange for someone TO do'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "organize",
+    "phonetic": "/ˈɔːrɡənaɪz/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["organize etmek", "düzenlemek", "kurmak"],
+    "definitionsEn": ["To arrange systematically", "To coordinate activities"],
+    "examplesEn": [
+      "She organized the conference.",
+      "I need to organize my desk.",
+      "They organized a protest."
+    ],
+    "examplesTr": [
+      "Konferansı organize etti.",
+      "Masamı düzenlemem gerekiyor.",
+      "Bir protesto organize ettiler."
+    ],
+    "synonyms": ["arrange, coordinate, plan", "structure"],
+    "antonyms": ["disorganize, confuse, mix up"],
+    "usageNotes": "About putting things in order or planning events.",
+    "commonMistakes": "Spelling: US is 'organize', UK can be 'organise'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "complete",
+    "phonetic": "/kəmˈpliːt/",
+    "partOfSpeech": ["verb", "adjective"],
+    "level": "B1",
+    "meaningsTr": ["tamamlamak", "bitirmek", "tam"],
+    "definitionsEn": ["To finish making or doing something", "Having all necessary parts"],
+    "examplesEn": [
+      "I need to complete my homework.",
+      "The project is complete.",
+      "She completed the marathon."
+    ],
+    "examplesTr": [
+      "Ödevimi tamamlamam gerekiyor.",
+      "Proje tamamlandı.",
+      "Maratonu tamamladı."
+    ],
+    "synonyms": ["finish, conclude, finalize", "total"],
+    "antonyms": ["incomplete, partial, unfinished"],
+    "usageNotes": "Can be a verb (to finish) or adjective (whole/finished).",
+    "commonMistakes": "Don't confuse with 'finish' - 'complete' emphasizes making something whole.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "prepare",
+    "phonetic": "/prɪˈper/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["hazırlamak", "tedbirli olmak", "hazırlıklı olmak"],
+    "definitionsEn": ["To make ready for use or consideration", "To get ready"],
+    "examplesEn": [
+      "I'm preparing for the exam.",
+      "She prepared a delicious meal.",
+      "We need to prepare for the meeting."
+    ],
+    "examplesTr": [
+      "Sınava hazırlanıyorum.",
+      "Lezzetli bir yemek hazırladı.",
+      "Toplantıya hazırlanmamız gerekiyor."
+    ],
+    "synonyms": ["get ready, arrange, plan", "organize"],
+    "antonyms": ["ignore, neglect, destroy"],
+    "usageNotes": "Use 'prepare FOR something' or 'prepare TO do something'.",
+    "commonMistakes": "Don't say 'prepare myself' when talking about doing something - just 'prepare'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "continue",
+    "phonetic": "/kənˈtɪnjuː/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["devam etmek", "sürmek", "uzatmak"],
+    "definitionsEn": ["To persist in an activity", "To resume after interruption"],
+    "examplesEn": [
+      "Please continue with your work.",
+      "The rain continued all day.",
+      "She decided to continue her studies."
+    ],
+    "examplesTr": [
+      "Lütfen işinize devam edin.",
+      "Yağmur bütün gün sürdü.",
+      "Çalışmalarına devam etmeye karar verdi."
+    ],
+    "synonyms": ["carry on, proceed, keep going", "maintain"],
+    "antonyms": ["stop, quit, discontinue"],
+    "usageNotes": "Use 'continue doing something' or 'continue with something'.",
+    "commonMistakes": "Don't use 'continue to do' for activities - use 'continue doing' or 'continue with'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "include",
+    "phonetic": "/ɪnˈkluːd/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["içermek", "dahil etmek", "katmak"],
+    "definitionsEn": ["To contain as part of a whole", "To make part of something"],
+    "examplesEn": [
+      "The price includes breakfast.",
+      "Please include me in your plans.",
+      "The tour includes five cities."
+    ],
+    "examplesTr": [
+      "Fiyat kahvaltıyı dahil ediyor.",
+      "Lütfen planlarınıza beni de katın.",
+      "Tur beş şehri kapsıyor."
+    ],
+    "synonyms": ["contain, comprise, involve", "incorporate"],
+    "antonyms": ["exclude, omit, leave out"],
+    "usageNotes": "Use 'include something IN something' or just 'include' + object.",
+    "commonMistakes": "Don't confuse with 'including' (preposition) vs 'include' (verb).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "experience",
+    "phonetic": "/ɪkˈspɪriəns/",
+    "partOfSpeech": ["noun", "verb"],
+    "level": "B1",
+    "meaningsTr": ["deneyim", "tecrübe", "yaşamak"],
+    "definitionsEn": ["Practical contact with or observation of facts or events", "To go through something"],
+    "examplesEn": [
+      "She has years of experience.",
+      "I experienced a culture shock.",
+      "It was an unforgettable experience."
+    ],
+    "examplesTr": [
+      "Yılların deneyimi var.",
+      "Kültür şoku yaşadım.",
+      "Unutulmaz bir deneyimdi."
+    ],
+    "synonyms": ["knowledge, skill, undergo", "encounter"],
+    "antonyms": ["inexperience, ignorance, miss"],
+    "usageNotes": "Can be noun (knowledge gained) or verb (to live through something).",
+    "commonMistakes": "Don't say 'make an experience' - use 'have an experience' or 'gain experience'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "influence",
+    "phonetic": "/ˈɪnfluəns/",
+    "partOfSpeech": ["noun", "verb"],
+    "level": "B1",
+    "meaningsTr": ["etkilemek", "etki", "nüfuz"],
+    "definitionsEn": ["The capacity to have an effect on someone", "To affect or change something"],
+    "examplesEn": [
+      "She has a lot of influence at work.",
+      "Music influenced his decision.",
+      "Don't let others influence you."
+    ],
+    "examplesTr": [
+      "İşte çok nüfuzu var.",
+      "Müzik kararını etkiledi.",
+      "Başkalarının seni etkilemesine izin verme."
+    ],
+    "synonyms": ["affect, impact, sway", "power"],
+    "antonyms": ["ignore, neglect, have no effect"],
+    "usageNotes": "Can be noun (power to affect) or verb (to affect something).",
+    "commonMistakes": "Don't confuse with 'affect' (usually verb) vs 'effect' (usually noun).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "affect",
+    "phonetic": "/əˈfekt/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["etkilemek", "dokunmak", "değiştirmek"],
+    "definitionsEn": ["To produce a change in something", "To influence something"],
+    "examplesEn": [
+      "Weather affects my mood.",
+      "The decision will affect everyone.",
+      "How does this affect you?"
+    ],
+    "examplesTr": [
+      "Hava ruh halimi etkiliyor.",
+      "Karar herkesi etkileyecek.",
+      "Bu seni nasıl etkiliyor?"
+    ],
+    "synonyms": ["influence, impact, change", "alter"],
+    "antonyms": ["have no effect, leave unchanged"],
+    "usageNotes": "Usually a verb. The noun form is 'effect'.",
+    "commonMistakes": "Don't confuse with 'effect' (noun). Remember: RAVEN (Remember Affect Verb Effect Noun).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "measure",
+    "phonetic": "/ˈmeʒər/",
+    "partOfSpeech": ["verb", "noun"],
+    "level": "B1",
+    "meaningsTr": ["ölçmek", "tedbir", "Ölçü"],
+    "definitionsEn": ["To determine the size or amount of something", "A plan or course of action"],
+    "examplesEn": [
+      "Can you measure the room?",
+      "We took measures to prevent errors.",
+      "Time is measured in seconds."
+    ],
+    "examplesTr": [
+      "Odayı ölçebilir misin?",
+      "Hataları önlemek için tedbirler aldık.",
+      "Zaman saniyeyle ölçülür."
+    ],
+    "synonyms": ["gauge, assess, step, action", "calculate"],
+    "antonyms": ["guess, estimate, ignore"],
+    "usageNotes": "Can be verb (to determine size) or noun (action taken to achieve something).",
+    "commonMistakes": "Don't use 'measure about' - just 'measure' + object.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "expect",
+    "phonetic": "/ɪkˈspekt/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["beklemek", "ümit etmek", "ummak"],
+    "definitionsEn": ["To regard something as likely to happen", "To require or anticipate something"],
+    "examplesEn": [
+      "I expect to finish soon.",
+      "We expect great things from you.",
+      "Don't expect perfection."
+    ],
+    "examplesTr": [
+      "Yakında bitirmeyi bekliyorum.",
+      "Senden büyük şeyler bekliyoruz.",
+      "Mükemmellik bekleme."
+    ],
+    "synonyms": ["anticipate, hope for, require", "demand"],
+    "antonyms": ["surprise, disappoint, doubt"],
+    "usageNotes": "Use 'expect TO DO something' or 'expect something FROM someone'.",
+    "commonMistakes": "Don't say 'expect that he will' - more common is 'expect him to'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "hope",
+    "phonetic": "/hoʊp/",
+    "partOfSpeech": ["verb", "noun"],
+    "level": "B1",
+    "meaningsTr": ["umutmak", "ümit etmek", "temenni"],
+    "definitionsEn": ["To want something to happen", "A feeling of expectation and desire"],
+    "examplesEn": [
+      "I hope to see you soon.",
+      "We have high hopes for this project.",
+      "I hope it doesn't rain."
+    ],
+    "examplesTr": [
+      "Yakında seni görmeyi umuyorum.",
+      "Bu projede yüksek umutlarımız var.",
+      "Yağmur yağmamasını umuyorum."
+    ],
+    "synonyms": ["wish, desire, expect", "pray"],
+    "antonyms": ["despair, fear, doubt"],
+    "usageNotes": "Use 'hope TO DO something' or 'hope THAT...' (present tense for future).",
+    "commonMistakes": "Don't use 'hope for TO DO' - use 'hope TO DO' directly.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "agree",
+    "phonetic": "/əˈɡriː/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["katılmak", "anlaşmak", "uygun olmak"],
+    "definitionsEn": ["To have the same opinion", "To give consent"],
+    "examplesEn": [
+      "I agree with your opinion.",
+      "We agreed to meet tomorrow.",
+      "They couldn't agree on a price."
+    ],
+    "examplesTr": [
+      "Görüşünle katılıyorum.",
+      "Yarın buluşmaya anlaştık.",
+      "Fiyatta anlaşamadılar."
+    ],
+    "synonyms": ["concur, consent, approve", "accept"],
+    "antonyms": ["disagree, refuse, reject"],
+    "usageNotes": "Use 'agree WITH someone', 'agree TO something', or 'agree ON something'.",
+    "commonMistakes": "Don't say 'agree that' is wrong - it's correct but less common than 'agree with'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "depend",
+    "phonetic": "/dɪˈpend/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["bağlı olmak", "güvenmek", "beli olmak"],
+    "definitionsEn": ["To be influenced or determined by something", "To rely on someone"],
+    "examplesEn": [
+      "It depends on the weather.",
+      "I'm depending on you.",
+      "Success depends on hard work."
+    ],
+    "examplesTr": [
+      "Bu havaya bağlı.",
+      "Sana güveniyorum.",
+      "Başarı sıkı çalışmaya bağlı."
+    ],
+    "synonyms": ["rely on, count on, be influenced by", "hinge on"],
+    "antonyms": ["be independent, distrust"],
+    "usageNotes": "Always use 'depend ON' someone or something.",
+    "commonMistakes": "Don't say 'depend of' or 'depend from' - always 'depend ON'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "argue",
+    "phonetic": "/ˈɑːrɡjuː/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["tartışmak", "mücadele etmek", "iddia etmek"],
+    "definitionsEn": ["To give reasons or cite evidence in support of an idea", "To disagree angrily"],
+    "examplesEn": [
+      "Don't argue with me.",
+      "She argued that she was right.",
+      "They argued about politics all night."
+    ],
+    "examplesTr": [
+      "Benimle tartışma.",
+      "Haklı olduğunu iddia etti.",
+      "Tüm gece siyaset hakkında tartıştılar."
+    ],
+    "synonyms": ["debate, dispute, quarrel", "reason"],
+    "antonyms": ["agree, concur, accept"],
+    "usageNotes": "Can mean reasoned debate or angry disagreement.",
+    "commonMistakes": "Don't say 'argue with him about' - use 'argue with someone ABOUT something'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "discuss",
+    "phonetic": "/dɪˈskʌs/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["tartışmak", "görüşmek", "istişare etmek"],
+    "definitionsEn": ["To talk about something in detail", "To examine or consider something"],
+    "examplesEn": [
+      "Let's discuss the problem.",
+      "We discussed our plans.",
+      "The issue will be discussed tomorrow."
+    ],
+    "examplesTr": [
+      "Sorunu tartışalım.",
+      "Planlarımızı görüştük.",
+      "Sorun yarın tartışılacak."
+    ],
+    "synonyms": ["talk about, debate, consider", "examine"],
+    "antonyms": ["ignore, neglect, overlook"],
+    "usageNotes": "Use 'discuss something' (not 'discuss about something').",
+    "commonMistakes": "Don't say 'discuss about' - just 'discuss' + topic.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "communicate",
+    "phonetic": "/kəˈmjuːnɪkeɪt/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["iletişim kurmak", "bildirmek", "haber vermek"],
+    "definitionsEn": ["To exchange information or ideas", "To express thoughts and feelings"],
+    "examplesEn": [
+      "We need to communicate better.",
+      "She communicated her decision clearly.",
+      "It's important to communicate with your team."
+    ],
+    "examplesTr": [
+      "Daha iyi iletişim kurmamız gerekiyor.",
+      "Kararını açıkça bildirdi.",
+      "Ekibinle iletişim kurmak önemli."
+    ],
+    "synonyms": ["talk, express, connect", "interact"],
+    "antonyms": ["hide, conceal, isolate"],
+    "usageNotes": "Use 'communicate WITH someone' or 'communicate something TO someone'.",
+    "commonMistakes": "Don't say 'communicate with about' - use 'communicate about' directly.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "understand",
+    "phonetic": "/ˌʌndərˈstænd/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["anlamak", "kavramak", "tasarlamak"],
+    "definitionsEn": ["To comprehend the meaning of something", "To be aware of something"],
+    "examplesEn": [
+      "I understand your concerns.",
+      "Do you understand the instructions?",
+      "She understands the situation perfectly."
+    ],
+    "examplesTr": [
+      "Endişelerinizi anlıyorum.",
+      "Talimatları anlıyor musun?",
+      "Durumu mükemmel şekilde kavradı."
+    ],
+    "synonyms": ["comprehend, grasp, perceive", "realize"],
+    "antonyms": ["misunderstand, confuse, miss"],
+    "usageNotes": "Past tense is 'understood' - irregular verb.",
+    "commonMistakes": "Don't use 'understand about' - just 'understand' + object.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "believe",
+    "phonetic": "/bɪˈliːv/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["inanmak", "zannetmek", "tasadduk etmek"],
+    "definitionsEn": ["To accept something as true", "To hold something as an opinion"],
+    "examplesEn": [
+      "I believe you're right.",
+      "Do you believe in ghosts?",
+      "She believes in hard work."
+    ],
+    "examplesTr": [
+      "Haklı olduğuna inanıyorum.",
+      "Huzulara inanır mısın?",
+      "Sıkı çalışmaya inanıyor."
+    ],
+    "synonyms": ["think, trust, accept", "have faith in"],
+    "antonyms": ["disbelieve, doubt, reject"],
+    "usageNotes": "Use 'believe someone/something' or 'believe IN something'.",
+    "commonMistakes": "Don't say 'believe to someone' - use 'believe someone' or 'believe IN something'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "compare",
+    "phonetic": "/kəmˈper/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["karşılaştırmak", "kıyaslamak", "benzetmek"],
+    "definitionsEn": ["To examine the character or qualities of something", "To find similarities and differences"],
+    "examplesEn": [
+      "Compare the prices before buying.",
+      "She compared the two options.",
+      "Don't compare yourself to others."
+    ],
+    "examplesTr": [
+      "Satın almadan önce fiyatları karşılaştırın.",
+      "İki seçeneği kıyasladı.",
+      "Kendini başkalarıyla kıyaslama."
+    ],
+    "synonyms": ["contrast, liken, examine", "evaluate"],
+    "antonyms": ["ignore, overlook, disregard"],
+    "usageNotes": "Use 'compare something TO/WITH something' or 'compare A AND B'.",
+    "commonMistakes": "Don't say 'compare with' when highlighting differences - use 'contrast' instead.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "determine",
+    "phonetic": "/dɪˈtɜːrmɪn/",
+    "partOfSpeech": ["verb"],
+    "level": "B1",
+    "meaningsTr": ["belirlemek", "tespit etmek", "karar vermek"],
+    "definitionsEn": ["To cause something to occur in a particular way", "To discover or establish facts"],
+    "examplesEn": [
+      "We need to determine the cause.",
+      "The weather determined our plans.",
+      "Factors that determine success."
+    ],
+    "examplesTr": [
+      "Sebebi belirlememiz gerekiyor.",
+      "Hava planlarımızı belirledi.",
+      "Başarıyı belirleyen faktörler."
+    ],
+    "synonyms": ["decide, establish, figure out", "conclude"],
+    "antonyms": ["hesitate, wonder, question"],
+    "usageNotes": "More formal than 'decide' or 'find out'.",
+    "commonMistakes": "Don't use 'determine about' - use 'determine' + object directly.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "estimate",
+    "phonetic": "/ˈestɪmeɪt/",
+    "partOfSpeech": ["verb", "noun"],
+    "level": "B1",
+    "meaningsTr": ["tahmin etmek", "kestirmek", "tahmin"],
+    "definitionsEn": ["To roughly calculate or judge something", "An approximate calculation"],
+    "examplesEn": [
+      "I estimate the cost at $500.",
+      "Can you estimate the time needed?",
+      "The estimate was too high."
+    ],
+    "examplesTr": [
+      "Maliyeti 500 dolar olarak tahmin ediyorum.",
+      "Gereken zamanı tahmin edebilir misin?",
+      "Tahmin çok yüksekti."
+    ],
+    "synonyms": ["guess, calculate, approximate", "project"],
+    "antonyms": ["measure exactly, know precisely"],
+    "usageNotes": "Used when you don't have exact numbers.",
+    "commonMistakes": "Don't confuse 'estimate' (rough calculation) with 'exact' (precise).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "method",
+    "phonetic": "/ˈmeθəd/",
+    "partOfSpeech": ["noun"],
+    "level": "B1",
+    "meaningsTr": ["yöntem", "metot", "sistem"],
+    "definitionsEn": ["A particular procedure for accomplishing something", "An ordered way of doing something"],
+    "examplesEn": [
+      "This method works well.",
+      "She has a unique teaching method.",
+      "We need a better method."
+    ],
+    "examplesTr": [
+      "Bu yöntem iyi çalışıyor.",
+      "Eşsiz bir öğretim yöntemi var.",
+      "Daha iyi bir yönteme ihtiyacımız var."
+    ],
+    "synonyms": ["technique, approach, system", "process"],
+    "antonyms": ["disorder, chaos, confusion"],
+    "usageNotes": "Implies an organized, systematic way of doing things.",
+    "commonMistakes": "Don't confuse with 'way' (general) - 'method' is more organized/systematic.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "process",
+    "phonetic": "/ˈprɑːses/",
+    "partOfSpeech": ["noun", "verb"],
+    "level": "B1",
+    "meaningsTr": ["süreç", "işlem", "işlemek"],
+    "definitionsEn": ["A series of actions to achieve a result", "To deal with something according to a procedure"],
+    "examplesEn": [
+      "The application process takes time.",
+      "We process information quickly.",
+      "It's a learning process."
+    ],
+    "examplesTr": [
+      "Başvuru süreci zaman alıyor.",
+      "Bilgileri hızlı işliyoruz.",
+      "Bu bir öğrenme süreci."
+    ],
+    "synonyms": ["procedure, method, treat", "handle"],
+    "antonyms": ["result, outcome, neglect"],
+    "usageNotes": "Can be noun (series of actions) or verb (to handle/treat).",
+    "commonMistakes": "Pronunciation: verb is /prəˈses/, noun is /ˈprɑːses/.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "solution",
+    "phonetic": "/səˈluːʃən/",
+    "partOfSpeech": ["noun"],
+    "level": "B1",
+    "meaningsTr": ["çözüm", "çözelti", "cevap"],
+    "definitionsEn": ["A means of solving a problem", "A liquid mixture"],
+    "examplesEn": [
+      "We need a solution to this problem.",
+      "There's no simple solution.",
+      "She found the perfect solution."
+    ],
+    "examplesTr": [
+      "Bu soruna bir çözüm lazım.",
+      "Basit bir çözüm yok.",
+      "Mükemmel çözümü buldu."
+    ],
+    "synonyms": ["answer, resolution, remedy", "mixture"],
+    "antonyms": ["problem, difficulty, question"],
+    "usageNotes": "Use 'solution TO a problem' (not 'solution for').",
+    "commonMistakes": "Don't say 'solution for' - use 'solution TO' a problem/challenge.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "result",
+    "phonetic": "/rɪˈzʌlt/",
+    "partOfSpeech": ["noun", "verb"],
+    "level": "B1",
+    "meaningsTr": ["sonuç", "netice", "olmak"],
+    "definitionsEn": ["A consequence or effect", "To happen as a consequence"],
+    "examplesEn": [
+      "The results were disappointing.",
+      "Hard work brings good results.",
+      "This resulted from poor planning."
+    ],
+    "examplesTr": [
+      "Sonuçlar hayal kırıklığı yaratıcıydı.",
+      "Sıkı çalışma iyi sonuçlar getirir.",
+      "Bu kötü planlamanın sonucuydu."
+    ],
+    "synonyms": ["outcome, consequence, effect", "ensue"],
+    "antonyms": ["cause, origin, source"],
+    "usageNotes": "Use 'result IN something' (cause) or 'result FROM something' (effect).",
+    "commonMistakes": "Don't confuse 'result from' (caused by) with 'result in' (causes).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "effect",
+    "phonetic": "/ɪˈfekt/",
+    "partOfSpeech": ["noun"],
+    "level": "B1",
+    "meaningsTr": ["etki", "tesir", "netice"],
+    "definitionsEn": ["A change that is a result of an action", "The result of a particular cause"],
+    "examplesEn": [
+      "The medicine had an immediate effect.",
+      "Her speech had a powerful effect.",
+      "Cause and effect relationship."
+    ],
+    "examplesTr": [
+      "İlacın anında etkisi oldu.",
+      "Konuşmasının güçlü bir etkisi vardı.",
+      "Neden-sonuç ilişkisi."
+    ],
+    "synonyms": ["result, consequence, impact", "outcome"],
+    "antonyms": ["cause, origin, source"],
+    "usageNotes": "Usually a noun. The verb form is 'affect'.",
+    "commonMistakes": "Don't use 'effect' as a verb - that's 'affect'. Remember: RAVEN.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "opportunity",
+    "phonetic": "/ˌɑːpərˈtuːnəti/",
+    "partOfSpeech": ["noun"],
+    "level": "B1",
+    "meaningsTr": ["fırsat", "imkân", "kulis"],
+    "definitionsEn": ["A favorable set of circumstances", "A chance for progress or advancement"],
+    "examplesEn": [
+      "Don't miss this opportunity.",
+      "Every opportunity is a learning chance.",
+      "She got a job opportunity."
+    ],
+    "examplesTr": [
+      "Bu fırsatı kaçırma.",
+      "Her fırsat bir öğrenme şansıdır.",
+      "Bir iş fırsatı elde etti."
+    ],
+    "synonyms": ["chance, possibility, occasion", "prospect"],
+    "antonyms": ["obstacle, hindrance, difficulty"],
+    "usageNotes": "Use 'opportunity FOR something' or 'opportunity TO DO something'.",
+    "commonMistakes": "Don't say 'opportunity of' - use 'opportunity to' or 'opportunity for'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "advantage",
+    "phonetic": "/ədˈvæntɪdʒ/",
+    "partOfSpeech": ["noun"],
+    "level": "B1",
+    "meaningsTr": ["avantaj", "üstünlük", "menfaat"],
+    "definitionsEn": ["A condition giving a greater chance of success", "A beneficial feature"],
+    "examplesEn": [
+      "What's the advantage of this plan?",
+      "She has a competitive advantage.",
+      "Experience is a big advantage."
+    ],
+    "examplesTr": [
+      "Bu planın avantajı ne?",
+      "Rekabetçi bir avantajı var.",
+      "Deneyim büyük bir avantajdır."
+    ],
+    "synonyms": ["benefit, strength, asset", "edge"],
+    "antonyms": ["disadvantage, drawback, weakness"],
+    "usageNotes": "Use 'advantage OF something' or 'advantage OVER someone'.",
+    "commonMistakes": "Don't say 'take advantage of someone' when meaning 'help' - it can mean 'exploit'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "disadvantage",
+    "phonetic": "/ˌdɪsədˈvæntɪdʒ/",
+    "partOfSpeech": ["noun"],
+    "level": "B1",
+    "meaningsTr": ["dezavantaj", "eksiklik", "zarar"],
+    "definitionsEn": ["An unfavorable circumstance", "A drawback or negative feature"],
+    "examplesEn": [
+      "Living in a big city has disadvantages.",
+      "The disadvantage is the cost.",
+      "What are the disadvantages?"
+    ],
+    "examplesTr": [
+      "Büyük bir şehirde yaşamanın dezavantajları var.",
+      "Dezavantaj maliyet.",
+      "Dezavantajlar neler?"
+    ],
+    "synonyms": ["drawback, drawback, weakness", "downside"],
+    "antonyms": ["advantage, benefit, strength"],
+    "usageNotes": "Use 'disadvantage OF something' or 'at a disadvantage'.",
+    "commonMistakes": "Don't use 'disadvantage for' - use 'disadvantage of' or 'at a disadvantage'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "goal",
+    "phonetic": "/ɡoʊl/",
+    "partOfSpeech": ["noun"],
+    "level": "B1",
+    "meaningsTr": ["hedef", "gol", "amac"],
+    "definitionsEn": ["The object of a person's ambition", "A point scored in a game"],
+    "examplesEn": [
+      "My goal is to learn Spanish.",
+      "Set realistic goals for yourself.",
+      "He scored a goal in the last minute."
+    ],
+    "examplesTr": [
+      "Hedefim İspanyolca öğrenmek.",
+      "Kendiniz için gerçekçi hedefler belirleyin.",
+      "Son dakikada bir gol attı."
+    ],
+    "synonyms": ["objective, target, aim", "ambition"],
+    "antonyms": [],
+    "usageNotes": "Can mean life objective or points in sports.",
+    "commonMistakes": "Use 'goal OF doing something' or 'goal TO DO something', not 'goal for doing'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "purpose",
+    "phonetic": "/ˈpɜːrpəs/",
+    "partOfSpeech": ["noun"],
+    "level": "B1",
+    "meaningsTr": ["amaç", "gaye", "maksat"],
+    "definitionsEn": ["The reason for which something is done", "Intention or aim"],
+    "examplesEn": [
+      "What's the purpose of this meeting?",
+      "She studied with a clear purpose.",
+      "Everything happens for a purpose."
+    ],
+    "examplesTr": [
+      "Bu toplantının amacı ne?",
+      "Açık bir amaçla çalıştı.",
+      "Her şey bir amaçla olur."
+    ],
+    "synonyms": ["aim, intention, objective", "reason"],
+    "antonyms": ["accident, chance, aimlessness"],
+    "usageNotes": "Use 'purpose OF something' or 'on purpose' (intentionally).",
+    "commonMistakes": "Don't say 'purpose for' - use 'purpose of' or 'with the purpose of'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "attitude",
+    "phonetic": "/ˈætɪtuːd/",
+    "partOfSpeech": ["noun"],
+    "level": "B1",
+    "meaningsTr": ["tutum", "duruş", "niyet"],
+    "definitionsEn": ["A way of thinking or feeling about something", "A position of the body"],
+    "examplesEn": [
+      "She has a positive attitude.",
+      "His attitude towards work is excellent.",
+      "You need to change your attitude."
+    ],
+    "examplesTr": [
+      "Olumlu bir tutumu var.",
+      "İe tutumu mükemmel.",
+      "Tutumunu değiştirmelisin."
+    ],
+    "synonyms": ["approach, mindset, perspective", "stance"],
+    "antonyms": [],
+    "usageNotes": "Use 'attitude TO/TOWARDS someone/something'.",
+    "commonMistakes": "Don't say 'attitude about' - use 'attitude to' or 'attitude towards'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "behavior",
+    "phonetic": "/bɪˈheɪvjər/",
+    "partOfSpeech": ["noun"],
+    "level": "B1",
+    "meaningsTr": ["davranış", "teferruat", "usul"],
+    "definitionsEn": ["The way someone acts or conducts themselves", "The response of an organism"],
+    "examplesEn": [
+      "His behavior was unacceptable.",
+      "Good behavior is rewarded.",
+      "The study of human behavior."
+    ],
+    "examplesTr": [
+      "Davranışı kabul edilemezdi.",
+      "İyi davranış ödüllendirilir.",
+      "İnsan davranışının çalışılması."
+    ],
+    "synonyms": ["conduct, manner, actions", "deeds"],
+    "antonyms": [],
+    "usageNotes": "Spelling: US is 'behavior', UK is 'behaviour'.",
+    "commonMistakes": "Don't use 'behavior' for just one action - use 'action' or 'act' for single events.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "habit",
+    "phonetic": "/ˈhæbɪt/",
+    "partOfSpeech": ["noun"],
+    "level": "B1",
+    "meaningsTr": ["alışkanlık", " huy", "adet"],
+    "definitionsEn": ["A regular practice or tendency", "An addictive pattern of behavior"],
+    "examplesEn": [
+      "Smoking is a bad habit.",
+      "She developed healthy habits.",
+      "It takes time to change a habit."
+    ],
+    "examplesTr": [
+      "Sigara içmek kötü bir alışkanlıktır.",
+      "Sağlıklı alışkanlıklar geliştirdi.",
+      "Bir alışkanlığı değiştirmek zaman alır."
+    ],
+    "synonyms": ["custom, practice, routine", "addiction"],
+    "antonyms": [],
+    "usageNotes": "Use 'habit OF doing something'.",
+    "commonMistakes": "Don't say 'habit to do' - use 'habit of doing' something.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "relationship",
+    "phonetic": "/rɪˈleɪʃənʃɪp/",
+    "partOfSpeech": ["noun"],
+    "level": "B1",
+    "meaningsTr": ["ilişki", "bağ", "münasebet"],
+    "definitionsEn": ["The way two or more people are connected", "An emotional connection"],
+    "examplesEn": [
+      "They have a great relationship.",
+      "The relationship between teachers and students.",
+      "She's in a serious relationship."
+    ],
+    "examplesTr": [
+      "Harika bir ilişkileri var.",
+      "Öğretmenler ve öğrenciler arasındaki ilişki.",
+      "Ciddi bir ilişki içinde."
+    ],
+    "synonyms": ["connection, bond, association", "tie"],
+    "antonyms": ["disconnection, separation"],
+    "usageNotes": "Use 'relationship WITH someone' or 'relationship BETWEEN people'.",
+    "commonMistakes": "Don't use 'relationship with' when talking about two people - use 'relationship between'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "environment",
+    "phonetic": "/ɪnˈvaɪrənmənt/",
+    "partOfSpeech": ["noun"],
+    "level": "B1",
+    "meaningsTr": ["çevre", "ortam", "muhit"],
+    "definitionsEn": ["The surroundings or conditions in which one lives", "The natural world"],
+    "examplesEn": [
+      "We must protect the environment.",
+      "A clean work environment is important.",
+      "She cares about the environment."
+    ],
+    "examplesTr": [
+      "Çevreyi korumalıyız.",
+      "Temiz bir çalışma ortamı önemlidir.",
+      "Çevre önem veriyor."
+    ],
+    "synonyms": ["surroundings, atmosphere, habitat", "conditions"],
+    "antonyms": [],
+    "usageNotes": "Can refer to nature or general living/working conditions.",
+    "commonMistakes": "Don't use 'an environment' when referring to nature - just 'the environment'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "society",
+    "phonetic": "/səˈsaɪəti/",
+    "partOfSpeech": ["noun"],
+    "level": "B1",
+    "meaningsTr": ["toplum", "cemiyet", "taife"],
+    "definitionsEn": ["The community of people living in a country", "An organization or club"],
+    "examplesEn": [
+      "We live in a modern society.",
+      "She joined a historical society.",
+      "Society has changed over time."
+    ],
+    "examplesTr": [
+      "Modern bir toplumda yaşıyoruz.",
+      "Bir tarihi derneğe katıldı.",
+      "Toplum zamanla değişti."
+    ],
+    "synonyms": ["community, population, association", "club"],
+    "antonyms": ["individual, isolation"],
+    "usageNotes": "Can mean general population or a specific organization.",
+    "commonMistakes": "Don't use 'a society' when talking about the population - use 'society' without 'a'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "culture",
+    "phonetic": "/ˈkʌltʃər/",
+    "partOfSpeech": ["noun"],
+    "level": "B1",
+    "meaningsTr": ["kültür", "medeniyet", "tarım"],
+    "definitionsEn": ["The customs and achievements of a nation", "The cultivation of plants or animals"],
+    "examplesEn": [
+      "Turkish culture is rich and diverse.",
+      "She studies different cultures.",
+      "Language is part of culture."
+    ],
+    "examplesTr": [
+      "Türk kültürü zengin ve çeşitlidir.",
+      "Farklı kültürleri çalışıyor.",
+      "Dil kültürün bir parçasıdır."
+    ],
+    "synonyms": ["traditions, customs, civilization", "heritage"],
+    "antonyms": [],
+    "usageNotes": "Refers to shared beliefs, customs, and achievements of a group.",
+    "commonMistakes": "Don't use 'a culture' when talking about general culture - just 'culture'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "economy",
+    "phonetic": "/ɪˈkɑːnəmi/",
+    "partOfSpeech": ["noun"],
+    "level": "B1",
+    "meaningsTr": ["ekonomi", "içtimaiyat", "tasarruf"],
+    "definitionsEn": ["The system of trade and industry", "Careful management of resources"],
+    "examplesEn": [
+      "The global economy is struggling.",
+      "She studies economics at university.",
+      "We need to strengthen the economy."
+    ],
+    "examplesTr": [
+      "Küresel ekonomi zorlanıyor.",
+      "Üniversitede iktisat okuyor.",
+      "Ekonomiyi güçlendirmemiz gerekiyor."
+    ],
+    "synonyms": ["financial system, market, resources", "wealth"],
+    "antonyms": [],
+    "usageNotes": "Related to 'economics' (the subject of study).",
+    "commonMistakes": "Don't confuse 'economy' (system) with 'economics' (the study).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "politics",
+    "phonetic": "/ˈpɑːlətɪks/",
+    "partOfSpeech": ["noun"],
+    "level": "B1",
+    "meaningsTr": ["siyaset", "siyasa", "politika"],
+    "definitionsEn": ["Activities associated with government", "The study of government"],
+    "examplesEn": [
+      "He is interested in politics.",
+      "Politics can be complicated.",
+      "Discuss politics with care."
+    ],
+    "examplesTr": [
+      "Siyasetle ilgileniyor.",
+      "Siyaset karmaşık olabilir.",
+      "Siyaseti dikkatle tartışın."
+    ],
+    "synonyms": ["government, affairs, diplomacy", "policies"],
+    "antonyms": [],
+    "usageNotes": "Always ends with 's' but is singular in meaning.",
+    "commonMistakes": "Treat as singular: 'Politics IS interesting' not 'Politics ARE interesting'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  }
+]

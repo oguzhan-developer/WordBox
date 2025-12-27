@@ -21,13 +21,13 @@ const STREAK_MILESTONES = [
 // Streak motivasyon mesajları
 const STREAK_MESSAGES = {
   0: { text: 'Bugün çalışmaya başla!', color: 'text-gray-500' },
-  1: { text: 'Harika başlangıç! Devam et!', color: 'text-green-500' },
-  3: { text: '3 gün seri! Momentum kazanıyorsun!', color: 'text-green-600' },
-  7: { text: 'Bir hafta! 🔥 Muhteşemsin!', color: 'text-orange-500' },
-  14: { text: '2 hafta! ⚡ Durdurulamıyorsun!', color: 'text-orange-600' },
-  30: { text: '1 ay! 🌟 Efsanesin!', color: 'text-amber-500' },
-  60: { text: '2 ay! 💎 İnanılmaz!', color: 'text-purple-500' },
-  100: { text: '100 gün! 👑 Efsane!', color: 'text-pink-500' },
+  1: { text: 'Harika başlangıç! Devam et!', color: 'text-secondary' },
+  3: { text: '3 gün seri! Momentum kazanıyorsun!', color: 'text-secondary-600' },
+  7: { text: 'Bir hafta! 🔥 Muhteşemsin!', color: 'text-warning' },
+  14: { text: '2 hafta! ⚡ Durdurulamıyorsun!', color: 'text-warning-600' },
+  30: { text: '1 ay! 🌟 Efsanesin!', color: 'text-accent' },
+  60: { text: '2 ay! 💎 İnanılmaz!', color: 'text-purple' },
+  100: { text: '100 gün! 👑 Efsane!', color: 'text-danger' },
 };
 
 /**
@@ -104,7 +104,7 @@ const StreakRing = ({ current, target, size = 'md' }) => {
         />
         {/* Progress ring */}
         <path
-          className="text-orange-500 transition-all duration-500"
+          className="text-warning transition-all duration-500"
           d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
           fill="none"
           stroke="currentColor"
@@ -114,7 +114,7 @@ const StreakRing = ({ current, target, size = 'md' }) => {
         />
       </svg>
       <div className={`absolute inset-0 flex items-center justify-center font-bold ${textClasses[size]}`}>
-        <span className="bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-warning to-accent bg-clip-text text-transparent">
           {current}
         </span>
       </div>
@@ -140,15 +140,15 @@ const WeeklyStreakView = ({ streak, dailyProgress }) => {
         
         return (
           <div key={day} className="flex flex-col items-center gap-1">
-            <span className={`text-xs font-medium ${isToday ? 'text-orange-500' : 'text-gray-500'}`}>
+            <span className={`text-xs font-medium ${isToday ? 'text-warning' : 'text-gray-500'}`}>
               {day}
             </span>
             <div
               className={`size-6 rounded-full flex items-center justify-center text-xs transition-all ${
                 isCompleted || isTodayCompleted
-                  ? 'bg-gradient-to-br from-orange-500 to-amber-500 text-white'
+                  ? 'bg-gradient-to-br from-warning to-accent text-white'
                   : isToday
-                  ? 'bg-orange-100 dark:bg-orange-900/30 text-orange-500 ring-2 ring-orange-500'
+                  ? 'bg-warning/10 dark:bg-warning/30 text-warning ring-2 ring-warning'
                   : 'bg-gray-100 dark:bg-slate-700 text-gray-400'
               }`}
             >
@@ -190,7 +190,7 @@ export default function PracticeStreakWidget({ variant = 'full', className = '' 
   if (variant === 'compact') {
     return (
       <div className={`flex items-center gap-3 p-3 glass rounded-xl ${className}`}>
-        <div className="size-10 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center">
+        <div className="size-10 rounded-full bg-gradient-to-br from-warning to-accent flex items-center justify-center">
           <span className="text-white font-bold">{streakData.currentStreak}</span>
         </div>
         <div>
@@ -211,7 +211,7 @@ export default function PracticeStreakWidget({ variant = 'full', className = '' 
     return (
       <div className={`flex items-center gap-2 ${className}`}>
         <span className="text-lg">🔥</span>
-        <span className="font-bold text-orange-500">{streakData.currentStreak}</span>
+        <span className="font-bold text-warning">{streakData.currentStreak}</span>
       </div>
     );
   }
@@ -227,7 +227,7 @@ export default function PracticeStreakWidget({ variant = 'full', className = '' 
         </h3>
         <button
           onClick={() => setShowDetails(!showDetails)}
-          className="text-sm text-indigo-600 dark:text-indigo-400 hover:underline"
+          className="text-sm text-primary dark:text-primary-400 hover:underline"
         >
           {showDetails ? 'Kapat' : 'Detaylar'}
         </button>
@@ -257,7 +257,7 @@ export default function PracticeStreakWidget({ variant = 'full', className = '' 
             </div>
             <div className="h-2 bg-gray-200 dark:bg-slate-700 rounded-full overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-orange-500 to-amber-500 transition-all duration-500"
+                className="h-full bg-gradient-to-r from-warning to-accent transition-all duration-500"
                 style={{
                   width: `${Math.min(100, (streakData.currentStreak / streakData.nextMilestone.days) * 100)}%`
                 }}
@@ -321,9 +321,9 @@ export default function PracticeStreakWidget({ variant = 'full', className = '' 
                     key={milestone.days}
                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm transition-all ${
                       isAchieved
-                        ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-white'
+                        ? 'bg-gradient-to-r from-warning to-accent text-white'
                         : isNext
-                        ? 'bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 ring-2 ring-orange-500'
+                        ? 'bg-warning/10 dark:bg-warning/30 text-warning-600 dark:text-warning-400 ring-2 ring-warning'
                         : 'bg-gray-100 dark:bg-slate-700 text-gray-500'
                     }`}
                   >
@@ -341,7 +341,7 @@ export default function PracticeStreakWidget({ variant = 'full', className = '' 
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                 Bugünkü İlerleme
               </span>
-              <span className="text-sm font-bold text-orange-500">
+              <span className="text-sm font-bold text-warning">
                 {streakData.todayCompletion}%
               </span>
             </div>
@@ -349,10 +349,10 @@ export default function PracticeStreakWidget({ variant = 'full', className = '' 
               <div
                 className={`h-full rounded-full transition-all duration-500 ${
                   streakData.todayCompletion >= 100
-                    ? 'bg-green-500'
+                    ? 'bg-secondary'
                     : streakData.todayCompletion >= 50
-                    ? 'bg-orange-500'
-                    : 'bg-yellow-500'
+                    ? 'bg-warning'
+                    : 'bg-accent'
                 }`}
                 style={{ width: `${streakData.todayCompletion}%` }}
               />

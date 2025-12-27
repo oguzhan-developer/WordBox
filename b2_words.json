@@ -1,0 +1,1490 @@
+[
+  {
+    "word": "sophisticated",
+    "phonetic": "/səˈfɪstɪkeɪtɪd/",
+    "partOfSpeech": ["adjective"],
+    "level": "B2",
+    "meaningsTr": ["sofistike", "karmaşık", "incelikli"],
+    "definitionsEn": ["Complex and having deep understanding", "Elegant and refined"],
+    "examplesEn": [
+      "She has sophisticated taste in art.",
+      "This software uses sophisticated algorithms.",
+      "The hotel offers sophisticated amenities."
+    ],
+    "examplesTr": [
+      "Sanata sofistike bir zevki var.",
+      "Bu yazılım sofistike algoritmalar kullanıyor.",
+      "Otel sofistike olanaklar sunuyor."
+    ],
+    "synonyms": ["advanced", "complex", "refined", "elegant"],
+    "antonyms": ["simple", "basic", "naive", "crude"],
+    "usageNotes": "Can describe technology, taste, or people with worldly experience.",
+    "commonMistakes": "Don't use for simple things - implies complexity and refinement.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "inevitable",
+    "phonetic": "/ɪnˈevɪtəbəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "B2",
+    "meaningsTr": ["kaçınılmaz", "mukadder", "elzem"],
+    "definitionsEn": ["Certain to happen; unavoidable"],
+    "examplesEn": [
+      "Change is inevitable in life.",
+      "The conflict was inevitable.",
+      "Death and taxes are inevitable."
+    ],
+    "examplesTr": [
+      "Hayatta değişim kaçınılmazdır.",
+      "Çatışma kaçınılmazdı.",
+      "Ölüm ve vergiler kaçınılmazdır."
+    ],
+    "synonyms": ["unavoidable", "certain", "destined", "inescapable"],
+    "antonyms": ["avoidable", "preventable", "unlikely"],
+    "usageNotes": "Stronger than 'likely' - means absolutely certain to happen.",
+    "commonMistakes": "Don't use for things that can be prevented.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "controversial",
+    "phonetic": "/ˌkɑːntrəˈvɜːrʃəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "B2",
+    "meaningsTr": ["tartışmalı", "mütecessim", "muhtelif"],
+    "definitionsEn": ["Giving rise to public disagreement"],
+    "examplesEn": [
+      "The politician made a controversial decision.",
+      "This topic is controversial.",
+      "She discussed controversial issues."
+    ],
+    "examplesTr": [
+      "Politikacı tartışmalı bir karar aldı.",
+      "Bu konu tartışmalı.",
+      "Tartışmalı konuları tartıştı."
+    ],
+    "synonyms": ["disputable", "debatable", "contentious", "disputed"],
+    "antonyms": ["uncontroversial", "accepted", "agreed-upon"],
+    "usageNotes": "Used for topics that divide opinion.",
+    "commonMistakes": "Don't confuse with 'argumentative' (liking to argue).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "ambiguous",
+    "phonetic": "/æmˈbɪɡjuəs/",
+    "partOfSpeech": ["adjective"],
+    "level": "B2",
+    "meaningsTr": ["belirsiz", "muğlak", "şüpheli"],
+    "definitionsEn": ["Open to more than one interpretation", "Unclear or inexact"],
+    "examplesEn": [
+      "The message was ambiguous.",
+      "Her role in the company is ambiguous.",
+      "Avoid ambiguous language in contracts."
+    ],
+    "examplesTr": [
+      "Mesaj belirsizdi.",
+      "Şirketteki rolü belirsiz.",
+      "Sözleşmelerde muğlak dilden kaçının."
+    ],
+    "synonyms": ["unclear", "vague", "equivocal", "confusing"],
+    "antonyms": ["clear", "unambiguous", "definite", "explicit"],
+    "usageNotes": "Different from 'vague' - ambiguous has multiple possible meanings.",
+    "commonMistakes": "Don't confuse with 'vague' (not clear) vs 'ambiguous' (multiple meanings).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "coincidence",
+    "phonetic": "/koʊˈɪnsɪdəns/",
+    "partOfSpeech": ["noun"],
+    "level": "B2",
+    "meaningsTr": ["tesadüf", "rastlantı", "muvafakat"],
+    "definitionsEn": ["A remarkable concurrence of events without apparent cause"],
+    "examplesEn": [
+      "Meeting her here was pure coincidence.",
+      "What a coincidence!",
+      "It's no coincidence that he succeeded."
+    ],
+    "examplesTr": [
+      "Onunla burada buluşmak tam tesadüftü.",
+      "Ne tesadüf!",
+      "Başarması tesadüf değil."
+    ],
+    "synonyms": ["accident, chance, fluke", "serendipity"],
+    "antonyms": ["design, plan, intention", "purpose"],
+    "usageNotes": "Use 'by coincidence' or 'pure coincidence'.",
+    "commonMistakes": "Don't confuse with 'coincident' (happening at the same time).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "phenomenon",
+    "phonetic": "/fəˈnɑːmɪnən/",
+    "partOfSpeech": ["noun"],
+    "level": "B2",
+    "meaningsTr": ["fenomen", "hadise", "olah"],
+    "definitionsEn": ["A fact or situation that is observed to exist", "A remarkable person or thing"],
+    "examplesEn": [
+      "Climate change is a global phenomenon.",
+      "She's a phenomenon in the music world.",
+      "This phenomenon needs more study."
+    ],
+    "examplesTr": [
+      "İklim değişikliği küresel bir fenomen.",
+      "Müzik dünyasında bir fenomen.",
+      "Bu fenomen daha fazla çalışma gerektiriyor."
+    ],
+    "synonyms": ["occurrence, event, marvel", "wonder"],
+    "antonyms": [],
+    "usageNotes": "Plural is 'phenomena'. Scientific or impressive events.",
+    "commonMistakes": "Plural is 'phenomena', not 'phenomenons'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "paradox",
+    "phonetic": "/ˈpærədɑːks/",
+    "partOfSpeech": ["noun"],
+    "level": "B2",
+    "meaningsTr": ["paradoks", "tenkuz", "çelişki"],
+    "definitionsEn": ["A seemingly absurd or contradictory statement", "A person or thing with contradictory qualities"],
+    "examplesEn": [
+      "It's a paradox that poor countries have rich leaders.",
+      "He's a living paradox.",
+      "The paradox of choice."
+    ],
+    "examplesTr": [
+      "Fakir ülkelerin zengin liderleri olması bir paradoks.",
+      "O yürüyen bir paradoks.",
+      "Seçim paradoksu."
+    ],
+    "synonyms": ["contradiction, puzzle, mystery", "enigma"],
+    "antonyms": ["consistency, logic, fact"],
+    "usageNotes": "Something that seems contradictory but may be true.",
+    "commonMistakes": "Don't use for simple contradictions - paradox implies deeper truth.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "dilemma",
+    "phonetic": "/dɪˈlemə/",
+    "partOfSpeech": ["noun"],
+    "level": "B2",
+    "meaningsTr": ["ikilem", "bunalmışlık", "cezzet"],
+    "definitionsEn": ["A situation requiring a difficult choice between alternatives"],
+    "examplesEn": [
+      "She faced a moral dilemma.",
+      "I'm in a dilemma about which job to choose.",
+      "The prisoner's dilemma."
+    ],
+    "examplesTr": [
+      "Ahlaki bir ikilemle karşı karşıya kaldı.",
+      "Hangi işi seçeceğim konusunda ikilemdeyim.",
+      "Mahkum ikilemi."
+    ],
+    "synonyms": ["predicament, quandary, difficulty", "problem"],
+    "antonyms": ["easy choice, solution, advantage"],
+    "usageNotes": "Use 'in a dilemma' or 'face a dilemma'.",
+    "commonMistakes": "Don't use for simple problems - must involve difficult choice.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "hypothesis",
+    "phonetic": "/haɪˈpɑːθəsɪs/",
+    "partOfSpeech": ["noun"],
+    "level": "B2",
+    "meaningsTr": ["hipotez", "varsayım", "tevili"],
+    "definitionsEn": ["A proposed explanation or theory", "A tentative assumption"],
+    "examplesEn": [
+      "We need to test this hypothesis.",
+      "Her hypothesis proved correct.",
+      "Formulate a hypothesis before experimenting."
+    ],
+    "examplesTr": [
+      "Bu hipotezi test etmeliyiz.",
+      "Hipotezi doğru çıktı.",
+      "Denemeden önce bir hipotez formüle edin."
+    ],
+    "synonyms": ["theory, assumption, proposition", "premise"],
+    "antonyms": ["fact, proof, conclusion", "reality"],
+    "usageNotes": "Plural is 'hypotheses'. Used in scientific contexts.",
+    "commonMistakes": "Plural is 'hypotheses', not 'hypothesises'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "criteria",
+    "phonetic": "/kraɪˈtɪriə/",
+    "partOfSpeech": ["noun"],
+    "level": "B2",
+    "meaningsTr": ["kriter", "ölçü", "şart"],
+    "definitionsEn": ["Principles or standards by which something may be judged"],
+    "examplesEn": [
+      "What are your criteria for success?",
+      "We use strict criteria for selection.",
+      "The criteria have changed."
+    ],
+    "examplesTr": [
+      "Başarı kriterlerin neler?",
+      "Seçim için katı kriterler kullanıyoruz.",
+      "Kriterler değişti."
+    ],
+    "synonyms": ["standards, measures, requirements", "benchmarks"],
+    "antonyms": [],
+    "usageNotes": "This is the plural form. Singular is 'criterion'.",
+    "commonMistakes": "Don't use 'criterias' - plural is 'criteria', singular is 'criterion'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "analysis",
+    "phonetic": "/əˈnæləsɪs/",
+    "partOfSpeech": ["noun"],
+    "level": "B2",
+    "meaningsTr": ["analiz", "inceleme", "tenkit"],
+    "definitionsEn": ["Detailed examination of elements or structure", "The process of separating something into parts"],
+    "examplesEn": [
+      "We need a detailed analysis.",
+      "Her analysis was brilliant.",
+      "Data analysis is important."
+    ],
+    "examplesTr": [
+      "Detaylı bir analize ihtiyacımız var.",
+      "Analizi harikaydı.",
+      "Veri analizi önemlidir."
+    ],
+    "synonyms": ["examination, investigation, study", "evaluation"],
+    "antonyms": ["synthesis, guess, assumption"],
+    "usageNotes": "Plural is 'analyses'. Used in academic and business contexts.",
+    "commonMistakes": "Plural is 'analyses', not 'analyses'. Pronunciation changes: /əˈnæləsiːz/",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "synthesis",
+    "phonetic": "/ˈsɪnθəsɪs/",
+    "partOfSpeech": ["noun"],
+    "level": "B2",
+    "meaningsTr": ["sentez", "bileşim", "terkip"],
+    "definitionsEn": ["Combination of ideas to form a theory or system", "The production of chemical compounds"],
+    "examplesEn": [
+      "This book is a synthesis of ideas.",
+      "The synthesis of these compounds is complex.",
+      "Her theory is a brilliant synthesis."
+    ],
+    "examplesTr": [
+      "Bu kitap fikirlerin bir sentezidir.",
+      "Bu bileşiklerin sentezi karmaşıktır.",
+      "Teorisi harika bir sentez."
+    ],
+    "synonyms": ["combination, blend, integration", "fusion"],
+    "antonyms": ["analysis, separation, breakdown"],
+    "usageNotes": "Plural is 'syntheses'. Opposite of analysis.",
+    "commonMistakes": "Plural is 'syntheses', not 'synthesises'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "perspective",
+    "phonetic": "/pərˈspektɪv/",
+    "partOfSpeech": ["noun"],
+    "level": "B2",
+    "meaningsTr": ["bakış açısı", "perspektif", "manzara"],
+    "definitionsEn": ["A particular way of viewing things", "The art of drawing solid objects"],
+    "examplesEn": [
+      "From my perspective, it's a good idea.",
+      "Try to see it from her perspective.",
+      "Historical perspective is important."
+    ],
+    "examplesTr": [
+      "Bakış açıma göre, bu iyi bir fikir.",
+      "Onun bakış açısından görmeye çalış.",
+      "Tarihsel bakış açısı önemlidir."
+    ],
+    "synonyms": ["viewpoint, outlook, angle", "standpoint"],
+    "antonyms": [],
+    "usageNotes": "Use 'from someone's perspective' or 'perspective on something'.",
+    "commonMistakes": "Don't say 'in my perspective' - use 'from my perspective'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "consensus",
+    "phonetic": "/kənˈsensəs/",
+    "partOfSpeech": ["noun"],
+    "level": "B2",
+    "meaningsTr": ["mutabakat", "uyuşma", "fikir birliği"],
+    "definitionsEn": ["General agreement among a group of people"],
+    "examplesEn": [
+      "We reached a consensus.",
+      "There is no consensus on this issue.",
+      "Build consensus before deciding."
+    ],
+    "examplesTr": [
+      "Fikir birliğine vardık.",
+      "Bu konuda fikir birliği yok.",
+      "Karar vermeden önce fikir birliği oluşturun."
+    ],
+    "synonyms": ["agreement, accord, unanimity", "harmony"],
+    "antonyms": ["disagreement, conflict, dispute", "dissent"],
+    "usageNotes": "Use 'reach a consensus' or 'consensus on/among something'.",
+    "commonMistakes": "Don't say 'consensus about' - use 'consensus on' or 'consensus that'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "implication",
+    "phonetic": "/ˌɪmplɪˈkeɪʃən/",
+    "partOfSpeech": ["noun"],
+    "level": "B2",
+    "meaningsTr": ["implication", "sonuç", "zit"],
+    "definitionsEn": ["A likely consequence of something", "A suggestion implied rather than stated"],
+    "examplesEn": [
+      "The implications of this decision are serious.",
+      "What are the implications?",
+      "She understood the implication."
+    ],
+    "examplesTr": [
+      "Bu kararın sonuçları ciddi.",
+      "Sonuçlar nelerdir?",
+      "İtbarını anladı."
+    ],
+    "synonyms": ["consequence, effect, suggestion", "inference"],
+    "antonyms": [],
+    "usageNotes": "Use 'implication OF something' or 'implication THAT...'",
+    "commonMistakes": "Don't confuse with 'application' - implication is about consequences.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "implement",
+    "phonetic": "/ˈɪmplɪment/",
+    "partOfSpeech": ["verb"],
+    "level": "B2",
+    "meaningsTr": ["uygulamak", "icra etmek", "yerine getirmek"],
+    "definitionsEn": ["To put a decision or plan into effect"],
+    "examplesEn": [
+      "We need to implement the new policy.",
+      "The plan was implemented successfully.",
+      "Implement changes gradually."
+    ],
+    "examplesTr": [
+      "Yeni politikayı uygulamalıyız.",
+      "Plan başarıyla uygulandı.",
+      "Değişiklikleri gradual olarak uygulayın."
+    ],
+    "synonyms": ["execute, carry out, apply", "enforce"],
+    "antonyms": ["neglect, ignore, abandon", "postpone"],
+    "usageNotes": "Use 'implement something' (plans, policies, decisions).",
+    "commonMistakes": "Don't use 'implement on' - just 'implement' + object.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "incorporate",
+    "phonetic": "/ɪnˈkɔːrpəreɪt/",
+    "partOfSpeech": ["verb"],
+    "level": "B2",
+    "meaningsTr": ["birleştirmek", "dahil etmek", "kurmak"],
+    "definitionsEn": ["To take in or include something as part of a whole"],
+    "examplesEn": [
+      "We should incorporate your ideas.",
+      "The company was incorporated in 2020.",
+      "Incorporate feedback into the design."
+    ],
+    "examplesTr": [
+      "Fikirlerinizi dahil etmeliyiz.",
+      "Şirket 2020'de kuruldu.",
+      "Geri bildirimi tasarıma dahil edin."
+    ],
+    "synonyms": ["integrate, include, combine", "blend"],
+    "antonyms": ["exclude, separate, remove", "isolate"],
+    "usageNotes": "Use 'incorporate something INTO something'.",
+    "commonMistakes": "Don't use 'incorporate with' - use 'incorporate into'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "compensate",
+    "phonetic": "/ˈkɑːmpenseɪt/",
+    "partOfSpeech": ["verb"],
+    "level": "B2",
+    "meaningsTr": ["telafi etmek", "tazmin etmek", "dengelemek"],
+    "definitionsEn": ["To give someone something in recognition of loss", "To make up for something"],
+    "examplesEn": [
+      "The company will compensate you for your time.",
+      "Nothing can compensate for this loss.",
+      "Skills compensate for lack of experience."
+    ],
+    "examplesTr": [
+      "Şirket zamanınız için sizi tazmin edecek.",
+      "Hiçbir şey bu kaybı telafi edemez.",
+      "Beceriler deneyim eksikliğini telafi eder."
+    ],
+    "synonyms": ["reimburse, pay, make up for", "balance"],
+    "antonyms": ["penalize, punish, ignore"],
+    "usageNotes": "Use 'compensate someone FOR something'.",
+    "commonMistakes": "Don't say 'compensate someone with' - use 'compensate for'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "accumulate",
+    "phonetic": "/əˈkjuːmjəleɪt/",
+    "partOfSpeech": ["verb"],
+    "level": "B2",
+    "meaningsTr": ["biriktirmek", "toplamak", "artırmak"],
+    "definitionsEn": ["To gather or collect over time", "To gradually increase"],
+    "examplesEn": [
+      "Dust accumulated on the furniture.",
+      "She accumulated great wealth.",
+      "Knowledge accumulates over time."
+    ],
+    "examplesTr": [
+      "Mobilyada birikti.",
+      "Büyük servet biriktirdi.",
+      "Bilgi zamanla birikir."
+    ],
+    "synonyms": ["collect, gather, amass", "build up"],
+    "antonyms": ["scatter, disperse, lose", "deplete"],
+    "usageNotes": "Implies gradual collection over time.",
+    "commonMistakes": "Don't use 'accumulate' for quick actions - implies gradual process.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "derive",
+    "phonetic": "/dɪˈraɪv/",
+    "partOfSpeech": ["verb"],
+    "level": "B2",
+    "meaningsTr": ["türetmek", "elde etmek", "kaynaklanmak"],
+    "definitionsEn": ["To obtain something from a specified source", "To originate from"],
+    "examplesEn": [
+      "We derive pleasure from reading.",
+      "Many English words derive from Latin.",
+      "He derives his income from investments."
+    ],
+    "examplesTr": [
+      "Okumaktan zevk alıyoruz.",
+      "Birçok İngilizce kelime Latince'den türetilmiştir.",
+      "Gelirini yatırımlardan elde ediyor."
+    ],
+    "synonyms": ["obtain, get, originate", "come from"],
+    "antonyms": ["lose, give, originate (as source)"],
+    "usageNotes": "Use 'derive something FROM something'.",
+    "commonMistakes": "Don't say 'derive from TO be' - use 'derive FROM'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "enhance",
+    "phonetic": "/ɪnˈhæns/",
+    "partOfSpeech": ["verb"],
+    "level": "B2",
+    "meaningsTr": ["artırmak", "iyileştirmek", "güçlendirmek"],
+    "definitionsEn": ["To improve the quality or value of something"],
+    "examplesEn": [
+      "The lighting enhanced the atmosphere.",
+      "We need to enhance our reputation.",
+      "Technology can enhance learning."
+    ],
+    "examplesTr": [
+      "Aydinlatma atmosferi güçlendirdi.",
+      "Ünümüzü iyileştirmemiz gerekiyor.",
+      "Teknoloji öğrenmeyi güçlendirebilir."
+    ],
+    "synonyms": ["improve, boost, strengthen", "elevate"],
+    "antonyms": ["diminish, reduce, worsen", "weaken"],
+    "usageNotes": "More formal than 'improve'. Often used with quality, value, or appearance.",
+    "commonMistakes": "Don't use 'enhance' for basic improvements - it means to make better.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "facilitate",
+    "phonetic": "/fəˈsɪlɪteɪt/",
+    "partOfSpeech": ["verb"],
+    "level": "B2",
+    "meaningsTr": ["kolaylaştırmak", "hızlandırmak", "eli açmak"],
+    "definitionsEn": ["To make an action or process easier"],
+    "examplesEn": [
+      "Technology facilitates communication.",
+      "The new policy will facilitate trade.",
+      "Structured discussions facilitate learning."
+    ],
+    "examplesTr": [
+      "Teknoloji iletişimi kolaylaştırır.",
+      "Yeni politika ticareti kolaylaştıracak.",
+      "Yapılandırılmış tartışmalar öğrenmeyi kolaylaştırır."
+    ],
+    "synonyms": ["ease, help, assist", "smooth"],
+    "antonyms": ["hinder, obstruct, complicate", "impede"],
+    "usageNotes": "Formal word meaning to make a process easier.",
+    "commonMistakes": "Don't use 'facilitate' for directly doing something - it means to help happen.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "justify",
+    "phonetic": "/ˈdʒʌstɪfaɪ/",
+    "partOfSpeech": ["verb"],
+    "level": "B2",
+    "meaningsTr": ["haklı çıkarmak", "nezdinde tutmak", "gerekçelendirmek"],
+    "definitionsEn": ["To show or prove to be right", "To be a good reason for"],
+    "examplesEn": [
+      "Can you justify your decision?",
+      "The end doesn't justify the means.",
+      "Her actions were justified."
+    ],
+    "examplesTr": [
+      "Kararını haklı çıkarabilir misin?",
+      "Sonuç araçları haklı çıkarmaz.",
+      "Eylemleri haklıydı."
+    ],
+    "synonyms": ["defend, warrant, excuse", "vindicate"],
+    "antonyms": ["condemn, blame, criticize"],
+    "usageNotes": "Use 'justify something' or 'justify doing something'.",
+    "commonMistakes": "Don't use 'justify for' - use 'justify' + object directly.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "clarify",
+    "phonetic": "/ˈklærəfaɪ/",
+    "partOfSpeech": ["verb"],
+    "level": "B2",
+    "meaningsTr": ["açıklamak", "netleştirmek", "berraklaştırmak"],
+    "definitionsEn": ["To make a statement or situation less confused", "To remove ambiguity"],
+    "examplesEn": [
+      "Let me clarify my position.",
+      "Can you clarify what you mean?",
+      "The explanation clarified everything."
+    ],
+    "examplesTr": [
+      "Konumumu netleştireyim.",
+      "Ne demek istediğini açıklayabilir misin?",
+      "Açıklama her şeyi netleştirdi."
+    ],
+    "synonyms": ["explain, elucidate, illuminate", "clear up"],
+    "antonyms": ["confuse, obscure, complicate", "muddle"],
+    "usageNotes": "Use 'clarify something' or 'clarify that...'",
+    "commonMistakes": "Don't say 'clarify about' - just 'clarify' + object.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "elaborate",
+    "phonetic": "/ɪˈlæbərət/",
+    "partOfSpeech": ["verb", "adjective"],
+    "level": "B2",
+    "meaningsTr": ["detaylandırmak", "açıklamak", "karmaşık"],
+    "definitionsEn": ["To explain in greater detail", "Intricate and detailed"],
+    "examplesEn": [
+      "Can you elaborate on that point?",
+      "She elaborated her theory.",
+      "The plan requires elaborate preparation."
+    ],
+    "examplesTr": [
+      "Bu noktada detaylandırabilir misin?",
+      "Teorisini detaylandırdı.",
+      "Plan detaylı hazırlık gerektiriyor."
+    ],
+    "synonyms": ["expand (verb), detail, develop", "complex (adj)"],
+    "antonyms": ["simplify, summarize, shorten", "basic"],
+    "usageNotes": "Verb: /ɪˈlæbəreɪt/, Adjective: /ɪˈlæbərət/",
+    "commonMistakes": "Pronunciation differs between verb and adjective.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "substantiate",
+    "phonetic": "/səbˈstænʃieɪt/",
+    "partOfSpeech": ["verb"],
+    "level": "B2",
+    "meaningsTr": ["kanıtlamak", "doğrulamak", "güçlendirmek"],
+    "definitionsEn": ["To provide evidence to support or prove the truth of"],
+    "examplesEn": [
+      "Can you substantiate your claim?",
+      "We need data to substantiate the theory.",
+      "Her statement was substantiated by facts."
+    ],
+    "examplesTr": [
+      "İddianızı kanıtlayabilir misin?",
+      "Teoriyi doğrulamak için veri lazım.",
+      "İfadesi gerçeklerle desteklendi."
+    ],
+    "synonyms": ["prove, verify, confirm", "support"],
+    "antonyms": ["refute, disprove, contradict", "challenge"],
+    "usageNotes": "Formal word used in academic and legal contexts.",
+    "commonMistakes": "Don't use 'substantiate for' - use 'substantiate' + object.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "contradict",
+    "phonetic": "/ˌkɑːntrəˈdɪkt/",
+    "partOfSpeech": ["verb"],
+    "level": "B2",
+    "meaningsTr": ["çelişmek", "ters düşmek", "inkar etmek"],
+    "definitionsEn": ["To assert the opposite", "To be in conflict with"],
+    "examplesEn": [
+      "Don't contradict your boss.",
+      "The evidence contradicts his story.",
+      "Her actions contradict her words."
+    ],
+    "examplesTr": [
+      "Şefinle ters düşme.",
+      "Kanıt hikayesiyle çelişiyor.",
+      "Eylemleri sözleriyle çelişiyor."
+    ],
+    "synonyms": ["deny, oppose, conflict with", "disagree with"],
+    "antonyms": ["agree, confirm, support", "corroborate"],
+    "usageNotes": "Use 'contradict someone' or 'contradict something'.",
+    "commonMistakes": "Don't use 'contradict with' - just 'contradict' + object.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "speculate",
+    "phonetic": "/ˈspekjəleɪt/",
+    "partOfSpeech": ["verb"],
+    "level": "B2",
+    "meaningsTr": ["tahmin yürütmek", "spekülatif yapmak"],
+    "definitionsEn": ["To form a theory without firm evidence", "To invest in risky business transactions"],
+    "examplesEn": [
+      "Scientists speculate about life on other planets.",
+      "Don't speculate on the stock market.",
+      "We can only speculate why he left."
+    ],
+    "examplesTr": [
+      "Bilim insanları diğer gezegenlerdeki hayat hakkında spekülasyon yapıyor.",
+      "Borsada spekülasyon yapma.",
+      "Neden ayrıldığı hakkında sadece spekülasyon yapabiliriz."
+    ],
+    "synonyms": ["guess, theorize, hypothesize", "gamble"],
+    "antonyms": ["know, prove, verify", "confirm"],
+    "usageNotes": "Use 'speculate ABOUT/ON something' or 'speculate THAT...'",
+    "commonMistakes": "Don't use 'speculate' when you have facts - only for guesses.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "anticipate",
+    "phonetic": "/ænˈtɪsɪpeɪt/",
+    "partOfSpeech": ["verb"],
+    "level": "B2",
+    "meaningsTr": ["önceden kestirmek", "beklemek", "ümit etmek"],
+    "definitionsEn": ["To expect or predict", "To act before someone else has a chance"],
+    "examplesEn": [
+      "We anticipate problems.",
+      "She anticipated his questions.",
+      "I didn't anticipate this outcome."
+    ],
+    "examplesTr": [
+      "Sorunları önceden kestiriyoruz.",
+      "Sorularını önceden bildi.",
+      "Bu sonucu beklemiyordum."
+    ],
+    "synonyms": ["expect, predict, foresee", "prepare for"],
+    "antonyms": ["surprise, shock, misunderstand"],
+    "usageNotes": "More formal than 'expect'.",
+    "commonMistakes": "Don't say 'anticipate on' - just 'anticipate' + object.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "prioritize",
+    "phonetic": "/praɪˈɔːrətaɪz/",
+    "partOfSpeech": ["verb"],
+    "level": "B2",
+    "meaningsTr": ["öncelik vermek", "öncelemek", "dereceye koymak"],
+    "definitionsEn": ["To designate or treat as more important", "To arrange in order of importance"],
+    "examplesEn": [
+      "We need to prioritize our tasks.",
+      "She prioritizes her family.",
+      "Learn to prioritize effectively."
+    ],
+    "examplesTr": [
+      "Görevlerimize öncelik vermeliyiz.",
+      "Ailesini önceliklendiriyor.",
+      "Etkili bir şekilde öncelik vermeyi öğrenin."
+    ],
+    "synonyms": ["rank, order, give priority to", "focus on"],
+    "antonyms": ["neglect, ignore, postpone"],
+    "usageNotes": "Use 'prioritize something' or 'prioritize doing something'.",
+    "commonMistakes": "Don't use 'prioritize for' - use 'prioritize' + object.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "allocate",
+    "phonetic": "/ˈæləkeɪt/",
+    "partOfSpeech": ["verb"],
+    "level": "B2",
+    "meaningsTr": ["pay etmek", " tahsis etmek", "dağıtmak"],
+    "definitionsEn": ["To distribute resources for a particular purpose"],
+    "examplesEn": [
+      "We need to allocate more funds.",
+      "Time should be allocated wisely.",
+      "Resources were allocated efficiently."
+    ],
+    "examplesTr": [
+      "Daha fazla fon ayırmalıyız.",
+      "Zaman akıllıca tahsis edilmelidir.",
+      "Kaynaklar verimli bir şekilde dağıtıldı."
+    ],
+    "synonyms": ["assign, distribute, allot", "earmark"],
+    "antonyms": ["withhold, keep, hoard"],
+    "usageNotes": "Use 'allocate something TO/FOR something'.",
+    "commonMistakes": "Don't use 'allocate for' when meaning 'to' - 'allocate TO' is more common.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "assess",
+    "phonetic": "/əˈses/",
+    "partOfSpeech": ["verb"],
+    "level": "B2",
+    "meaningsTr": ["değerlendirmek", "belirlemek", "tahmin etmek"],
+    "definitionsEn": ["To evaluate or estimate the nature, quality, or ability of someone or something"],
+    "examplesEn": [
+      "We need to assess the damage.",
+      "Assess your options carefully.",
+      "The situation was assessed by experts."
+    ],
+    "examplesTr": [
+      "Hasarı değerlendirmemiz gerekiyor.",
+      "Seçeneklerinizi dikkatlice değerlendirin.",
+      "Durum uzmanlar tarafından değerlendirildi."
+    ],
+    "synonyms": ["evaluate, estimate, judge", "analyze"],
+    "antonyms": ["guess, ignore, neglect"],
+    "usageNotes": "Formal evaluation process.",
+    "commonMistakes": "Don't say 'assess on' - use 'assess' + object directly.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "evaluate",
+    "phonetic": "/ɪˈvæljueɪt/",
+    "partOfSpeech": ["verb"],
+    "level": "B2",
+    "meaningsTr": ["değerlendirmek", "hükmetmek", "kıymet biçmek"],
+    "definitionsEn": ["To form an idea of the amount or value of something"],
+    "examplesEn": [
+      "We must evaluate the results.",
+      "How do you evaluate success?",
+      "The policy will be evaluated next year."
+    ],
+    "examplesTr": [
+      "Sonuçları değerlendirmeliyiz.",
+      "Başarıyı nasıl değerlendiriyorsunuz?",
+      "Politika gelecek yıl değerlendirilecek."
+    ],
+    "synonyms": ["assess, judge, appraise", "rate"],
+    "antonyms": ["guess, ignore, overlook"],
+    "usageNotes": "More formal than 'judge' or 'assess'.",
+    "commonMistakes": "Don't use 'evaluate on' - use 'evaluate' + object.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "monitor",
+    "phonetic": "/ˈmɑːnɪtər/",
+    "partOfSpeech": ["verb", "noun"],
+    "level": "B2",
+    "meaningsTr": ["izlemek", "gözetlemek", "monitör"],
+    "definitionsEn": ["To observe and check over a period", "A display screen"],
+    "examplesEn": [
+      "We need to monitor the situation.",
+      "The doctor will monitor your progress.",
+      "Computer monitors are expensive."
+    ],
+    "examplesTr": [
+      "Durumu izlememiz gerekiyor.",
+      "Doktor ilerlemenizi izleyecek.",
+      "Bilgisayar monitörleri pahalı."
+    ],
+    "synonyms": ["observe, track, watch", "screen"],
+    "antonyms": ["ignore, neglect, overlook"],
+    "usageNotes": "Can be a verb (to watch) or noun (screen).",
+    "commonMistakes": "Use 'monitor' + object, not 'monitor about'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "regulate",
+    "phonetic": "/ˈreɡjʊleɪt/",
+    "partOfSpeech": ["verb"],
+    "level": "B2",
+    "meaningsTr": ["düzenlemek", "denetlemek", "idare etmek"],
+    "definitionsEn": ["To control or maintain the rate or speed of", "To control by rules"],
+    "examplesEn": [
+      "Government regulates industries.",
+      "The body regulates temperature.",
+      "We need to regulate traffic."
+    ],
+    "examplesTr": [
+      "Hükümet sektörleri düzenler.",
+      "Vücut sıcaklığı düzenler.",
+      "Trafiği düzenlememiz gerekiyor."
+    ],
+    "synonyms": ["control, adjust, govern", "manage"],
+    "antonyms": ["disorganize, deregulate, free"],
+    "usageNotes": "Used for systems, laws, and biological processes.",
+    "commonMistakes": "Don't use 'regulate on' - use 'regulate' + object.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "constrain",
+    "phonetic": "/kənˈstreɪn/",
+    "partOfSpeech": ["verb"],
+    "level": "B2",
+    "meaningsTr": ["kısıtlamak", "zorlamak", "engellemek"],
+    "definitionsEn": ["To restrict or limit", "To compel or force"],
+    "examplesEn": [
+      "Budget constraints limit our options.",
+      "She felt constrained by the rules.",
+      "Time constraints are tight."
+    ],
+    "examplesTr": [
+      "Bütçe kısıtlamaları seçeneklerimizi sınırlıyor.",
+      "Kurallar tarafından kısıtlanmış hissetti.",
+      "Zaman kısıtlamaları sıkı."
+    ],
+    "synonyms": ["restrict, limit, confine", "compel"],
+    "antonyms": ["free, liberate, enable", "empower"],
+    "usageNotes": "Noun form is 'constraint'.",
+    "commonMistakes": "Don't confuse with 'restrain' (hold back).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "prohibit",
+    "phonetic": "/prəˈhɪbɪt/",
+    "partOfSpeech": ["verb"],
+    "level": "B2",
+    "meaningsTr": ["yasaklamak", "men etmek", "engel olmak"],
+    "definitionsEn": ["To forbid by law or rule", "To prevent or make impossible"],
+    "examplesEn": [
+      "Smoking is prohibited here.",
+      "Law prohibits discrimination.",
+      "Cost prohibits us from buying it."
+    ],
+    "examplesTr": [
+      "Burada sigara içmek yasaktır.",
+      "Yasa ayrımcılığı yasaklar.",
+      "Maliyet bizim almamızı engelliyor."
+    ],
+    "synonyms": ["forbid, ban, prevent", "block"],
+    "antonyms": ["allow, permit, enable", "authorize"],
+    "usageNotes": "More formal than 'ban' or 'forbid'.",
+    "commonMistakes": "Use 'prohibit someone FROM doing something'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "oblige",
+    "phonetic": "/əˈblaɪdʒ/",
+    "partOfSpeech": ["verb"],
+    "level": "B2",
+    "meaningsTr": ["zorunlu kılmak", "minnettar etmek", "mecbur bırakmak"],
+    "definitionsEn": ["To require or compel someone to do something", "To do as a favor"],
+    "examplesEn": [
+      "I am obliged to help you.",
+      "The law obliges us to pay taxes.",
+      "Could you oblige me with a favor?"
+    ],
+    "examplesTr": [
+      "Sana yardım etmek zorundayım.",
+      "Yasa bizi vergi ödemeye zorunlu kılar.",
+      "Bir iyiliği benim için yapar mısınız?"
+    ],
+    "synonyms": ["require, compel, force", "accommodate"],
+    "antonyms": ["free, release, exempt"],
+    "usageNotes": "Use 'oblige someone TO DO something' or 'be obliged TO DO'.",
+    "commonMistakes": "Don't use 'oblige with doing' - use 'oblige to do'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "persist",
+    "phonetic": "/pərˈsɪst/",
+    "partOfSpeech": ["verb"],
+    "level": "B2",
+    "meaningsTr": ["ısrar etmek", "devam etmek", "inat etmek"],
+    "definitionsEn": ["To continue firmly in a course of action", "To continue to exist"],
+    "examplesEn": [
+      "She persisted in her efforts.",
+      "The rain persisted all day.",
+      "If you persist, you will succeed."
+    ],
+    "examplesTr": [
+      "Çabalarında ısrar etti.",
+      "Yağmur tüm gün devam etti.",
+      "İsrar edersen başarısın."
+    ],
+    "synonyms": ["continue, persevere, endure", "carry on"],
+    "antonyms": ["quit, give up, stop", "cease"],
+    "usageNotes": "Use 'persist IN something' or just 'persist'.",
+    "commonMistakes": "Don't use 'persist to do' - use 'persist in doing'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "resilient",
+    "phonetic": "/rɪˈzɪliənt/",
+    "partOfSpeech": ["adjective"],
+    "level": "B2",
+    "meaningsTr": ["dayanıklı", "esnek", "çabuk toparlanan"],
+    "definitionsEn": ["Able to recover quickly from difficulties", "Flexible and strong"],
+    "examplesEn": [
+      "Children are remarkably resilient.",
+      "The economy is resilient.",
+      "She's a resilient person."
+    ],
+    "examplesTr": [
+      "Çocuklar şaşırtıcı derecede dayanıklıdır.",
+      "Ekonomi dayanıklı.",
+      "Dayanıklı bir insan."
+    ],
+    "synonyms": ["tough, flexible, adaptable", "strong"],
+    "antonyms": ["fragile, vulnerable, weak", "rigid"],
+    "usageNotes": "Describes ability to bounce back from adversity.",
+    "commonMistakes": "Don't confuse with 'resistant' - resilient implies bouncing back.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "comprehensive",
+    "phonetic": "/ˌkɑːmprɪˈhensɪv/",
+    "partOfSpeech": ["adjective"],
+    "level": "B2",
+    "meaningsTr": ["kapsamlı", "geniş", "tam"],
+    "definitionsEn": ["Complete and including everything necessary"],
+    "examplesEn": [
+      "We need a comprehensive plan.",
+      "This is a comprehensive guide.",
+      "The study was comprehensive."
+    ],
+    "examplesTr": [
+      "Kapsamlı bir plana ihtiyacımız var.",
+      "Bu kapsamlı bir rehber.",
+      "Çalışma kapsamlıydı."
+    ],
+    "synonyms": ["complete, thorough, extensive", "inclusive"],
+    "antonyms": ["incomplete, partial, limited", "sketchy"],
+    "usageNotes": "More formal than 'complete' - implies thorough coverage.",
+    "commonMistakes": "Don't use for simple things - implies thoroughness.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "meticulous",
+    "phonetic": "/məˈtɪkjələs/",
+    "partOfSpeech": ["adjective"],
+    "level": "B2",
+    "meaningsTr": ["dikkatli", "titiz", "özenli"],
+    "definitionsEn": ["Showing great attention to detail", "Very careful and precise"],
+    "examplesEn": [
+      "She is meticulous in her work.",
+      "Meticulous planning is required.",
+      "He keeps meticulous records."
+    ],
+    "examplesTr": [
+      "İşinde çok titiz.",
+      "Dikkatli planlama gerekli.",
+      "Titiz kayıtlar tutuyor."
+    ],
+    "synonyms": ["careful, precise, thorough", "detail-oriented"],
+    "antonyms": ["careless, sloppy, negligent", "rough"],
+    "usageNotes": "Positive word describing attention to detail.",
+    "commonMistakes": "Don't use for negative precision - it's always positive.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "plausible",
+    "phonetic": "/ˈplɔːzəbəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "B2",
+    "meaningsTr": ["inandırıcı", "mantıklı", "muhtemel"],
+    "definitionsEn": ["Seeming reasonable or probable"],
+    "examplesEn": [
+      "His explanation sounded plausible.",
+      "It's a plausible theory.",
+      "She found a plausible excuse."
+    ],
+    "examplesTr": [
+      "Açıklaması inandırıcı geldi.",
+      "Bu inandırıcı bir teori.",
+      "Inandırıcı bir bahane buldu."
+    ],
+    "synonyms": ["believable, credible, reasonable", "likely"],
+    "antonyms": ["implausible, unbelievable, unlikely", "absurd"],
+    "usageNotes": "Used for arguments, explanations, or theories.",
+    "commonMistakes": "Don't use to mean 'true' - just means believable.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "spontaneous",
+    "phonetic": "/spɑːnˈteɪniəs/",
+    "partOfSpeech": ["adjective"],
+    "level": "B2",
+    "meaningsTr": ["kendiliğinden olan", "doğaçlama", "gönülü"],
+    "definitionsEn": ["Performed without planning", "Happening naturally"],
+    "examplesEn": [
+      "It was a spontaneous decision.",
+      "She has a spontaneous personality.",
+      "The applause was spontaneous."
+    ],
+    "examplesTr": [
+      "Kendiliğinden bir karardı.",
+      "Kendiliğinden bir kişiliği var.",
+      "Alkışlar kendiliğinden oldu."
+    ],
+    "synonyms": ["impulsive, unplanned, natural", "instinctive"],
+    "antonyms": ["planned, deliberate, rehearsed", "prepared"],
+    "usageNotes": "Can describe actions or personality.",
+    "commonMistakes": "Don't confuse with 'impulsive' (acting without thinking).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "reluctant",
+    "phonetic": "/rɪˈlʌktənt/",
+    "partOfSpeech": ["adjective"],
+    "level": "B2",
+    "meaningsTr": ["isteksiz", "cenepez", "gönülsüz"],
+    "definitionsEn": ["Unwilling and hesitant", "Not eager to do something"],
+    "examplesEn": [
+      "She was reluctant to accept help.",
+      "He gave a reluctant agreement.",
+      "I'm reluctant to change my mind."
+    ],
+    "examplesTr": [
+      "Yardım kabul etmeye isteksizdi.",
+      "Gönülsüz bir onay verdi.",
+      "Fikrimi değiştirmeye isteksizim."
+    ],
+    "synonyms": ["unwilling, hesitant, resistant", "disinclined"],
+    "antonyms": ["willing, eager, enthusiastic", "ready"],
+    "usageNotes": "Use 'reluctant TO DO something'.",
+    "commonMistakes": "Don't use 'reluctant for' - use 'reluctant to'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "susceptible",
+    "phonetic": "/səˈseptəbəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "B2",
+    "meaningsTr": ["duyarlı", "eğilimli", "açık"],
+    "definitionsEn": ["Likely to be influenced or harmed by something", "Capable of admitting something"],
+    "examplesEn": [
+      "Children are susceptible to colds.",
+      "He is susceptible to flattery.",
+      "This area is susceptible to flooding."
+    ],
+    "examplesTr": [
+      "Çocuklar soğuk algınlığına yatkındır.",
+      "Övgüye duyarlıdır.",
+      "Bu bölge sel riskine açıktır."
+    ],
+    "synonyms": ["vulnerable, sensitive, prone", "open"],
+    "antonyms": ["resistant, immune, unaffected", "closed"],
+    "usageNotes": "Use 'susceptible TO something'.",
+    "commonMistakes": "Don't use 'susceptible for' - always 'susceptible to'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "vigorous",
+    "phonetic": "/ˈvɪɡərəs/",
+    "partOfSpeech": ["adjective"],
+    "level": "B2",
+    "meaningsTr": ["yüksek", "kuvvetli", "canlı"],
+    "definitionsEn": ["Strong, healthy, and full of energy", "Done with great force"],
+    "examplesEn": [
+      "She leads a vigorous life.",
+      "We need vigorous debate.",
+      "He gave a vigorous defense."
+    ],
+    "examplesTr": [
+      "Yoğun bir hayat yaşıyor.",
+      "Canlı bir tartışmaya ihtiyacımız var.",
+      "Güçlü bir savunma yaptı."
+    ],
+    "synonyms": ["energetic, active, intense", "strong"],
+    "antonyms": ["weak, gentle, sluggish", "mild"],
+    "usageNotes": "Can describe physical energy or intensity of actions.",
+    "commonMistakes": "Don't confuse with 'rigorous' (very thorough) - vigorous means energetic.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "obsolete",
+    "phonetic": "/ˈɑːbsəliːt/",
+    "partOfSpeech": ["adjective"],
+    "level": "B2",
+    "meaningsTr": ["eski", "kullanılmayan", "atıl"],
+    "definitionsEn": ["No longer useful or needed", "Out of date"],
+    "examplesEn": [
+      "DVD players are becoming obsolete.",
+      "Technology made these skills obsolete.",
+      "The law is now obsolete."
+    ],
+    "examplesTr": [
+      "DVD oynatıcılar kullanılmıyor hale geliyor.",
+      "Teknoloji bu becerileri gereksiz hale getirdi.",
+      "Yasa artık eski."
+    ],
+    "synonyms": ["outdated, outdated, antiquated", "extinct"],
+    "antonyms": ["current, modern, relevant", "cutting-edge"],
+    "usageNotes": "For technology, methods, or things no longer used.",
+    "commonMistakes": "Don't use for people - only for things, technology, or methods.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "substantial",
+    "phonetic": "/səbˈstænʃəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "B2",
+    "meaningsTr": ["önemli", "büyük", "ciddi"],
+    "definitionsEn": ["Of considerable importance or value", "Solid and strong"],
+    "examplesEn": [
+      "We made substantial progress.",
+      "She has substantial experience.",
+      "A substantial amount of money."
+    ],
+    "examplesTr": [
+      "Önemli ilerleme kaydettik.",
+      "Ciddi deneyimi var.",
+      "Ciddi miktarda para."
+    ],
+    "synonyms": ["significant, considerable, major", "solid"],
+    "antonyms": ["insignificant, minor, trivial", "slight"],
+    "usageNotes": "More formal than 'big' or 'large'.",
+    "commonMistakes": "Don't use for small things - means significant size or importance.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "tremendous",
+    "phonetic": "/trɪˈmendəs/",
+    "partOfSpeech": ["adjective"],
+    "level": "B2",
+    "meaningsTr": ["muazzam", "devasa", "büyük"],
+    "definitionsEn": ["Very large or great", "Extremely good"],
+    "examplesEn": [
+      "She made tremendous progress.",
+      "It was a tremendous success.",
+      "The effort required was tremendous."
+    ],
+    "examplesTr": [
+      "Muazzam ilerleme kaydetti.",
+      "Muazzam bir başarıydı.",
+      "Gerektirilen çaba büyüktü."
+    ],
+    "synonyms": ["huge, enormous, immense", "extraordinary"],
+    "antonyms": ["tiny, small, insignificant", "ordinary"],
+    "usageNotes": "Stronger than 'very' or 'quite'.",
+    "commonMistakes": "Don't overuse - reserve for truly impressive things.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "unprecedented",
+    "phonetic": "/ʌnˈpresɪdentɪd/",
+    "partOfSpeech": ["adjective"],
+    "level": "B2",
+    "meaningsTr": ["benzersiz", "daha önce görülmemiş", "eşsiz"],
+    "definitionsEn": ["Never done or known before"],
+    "examplesEn": [
+      "The crisis is unprecedented.",
+      "We face unprecedented challenges.",
+      "Unprecedented growth occurred."
+    ],
+    "examplesTr": [
+      "Kriz benzersiz.",
+      "Benzersiz zorluklarla karşı karşıyayız.",
+      "Benzersiz büyüme yaşandı."
+    ],
+    "synonyms": ["unparalleled, record-breaking, new", "novel"],
+    "antonyms": ["precedented, normal, common", "ordinary"],
+    "usageNotes": "Emphasizes something has never happened before.",
+    "commonMistakes": "Only use for truly unique situations.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "integrity",
+    "phonetic": "/ɪnˈteɡrəti/",
+    "partOfSpeech": ["noun"],
+    "level": "B2",
+    "meaningsTr": ["bütünlük", "doğruluk", " dürüstlük"],
+    "definitionsEn": ["The quality of being honest and morally upright", "State of being whole and undivided"],
+    "examplesEn": [
+      "He is a man of integrity.",
+      "We must protect the integrity of data.",
+      "Her integrity is unquestionable."
+    ],
+    "examplesTr": [
+      "O dürüst bir adam.",
+      "Verilerin bütünlüğünü korumalıyız.",
+      "Dürüstlüğü sorgusuzdur."
+    ],
+    "synonyms": ["honesty, honor, wholeness", "completeness"],
+    "antonyms": ["dishonesty, corruption, weakness", "incompleteness"],
+    "usageNotes": "Can mean moral honesty or structural completeness.",
+    "commonMistakes": "Don't confuse with 'integration' (act of combining).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "credibility",
+    "phonetic": "/ˌkredəˈbɪləti/",
+    "partOfSpeech": ["noun"],
+    "level": "B2",
+    "meaningsTr": ["güvenilirlik", "inandırıcılık", "itinat"],
+    "definitionsEn": ["The quality of being trusted and believed"],
+    "examplesEn": [
+      "The study lacks credibility.",
+      "She lost her credibility.",
+      "We need to establish credibility."
+    ],
+    "examplesTr": [
+      "Çalışma güvenilirlikten yoksun.",
+      "Güvenilirliğini kaybetti.",
+      "Güvenilirlik oluşturmamız gerekiyor."
+    ],
+    "synonyms": ["trustworthiness, reliability, believability", "reputation"],
+    "antonyms": ["incredibility, doubt, suspicion", "distrust"],
+    "usageNotes": "About being worthy of belief or trust.",
+    "commonMistakes": "Don't confuse with 'credit' (money or praise).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "reputation",
+    "phonetic": "/ˌrepjəˈteɪʃən/",
+    "partOfSpeech": ["noun"],
+    "level": "B2",
+    "meaningsTr": ["itibar", "nam", "şöhret"],
+    "definitionsEn": ["The beliefs or opinions that are generally held about someone or something"],
+    "examplesEn": [
+      "She has a good reputation.",
+      "The company's reputation was damaged.",
+      "Reputation is hard to build and easy to lose."
+    ],
+    "examplesTr": [
+      "İyi bir itibarı var.",
+      "Şirketin itibarı zedelendi.",
+      "İtibar inşa etmek zordur kaybetmek kolaydır."
+    ],
+    "synonyms": ["name, standing, status", "prestige"],
+    "antonyms": ["disrepute, infamy, shame"],
+    "usageNotes": "Use 'reputation FOR something' or 'reputation AS something'.",
+    "commonMistakes": "Don't use 'reputation of' - use 'reputation for' or 'reputation with'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "hierarchy",
+    "phonetic": "/ˈhaɪərɑːrki/",
+    "partOfSpeech": ["noun"],
+    "level": "B2",
+    "meaningsTr": ["hierarşi", "derece", "mer"],
+    "definitionsEn": ["A system or organization in which people or groups are ranked one above the other"],
+    "examplesEn": [
+      "Understand the corporate hierarchy.",
+      "Social hierarchy exists in many cultures.",
+      "She climbed the hierarchy quickly."
+    ],
+    "examplesTr": [
+      "Kurumsal hiyerarşiyi anlayın.",
+      "Birçok kültürde sosyal hiyerarşi vardır.",
+      "Hiyerarşiyi hızla tırmandı."
+    ],
+    "synonyms": ["ranking, order, structure", "ladder"],
+    "antonyms": ["equality, democracy, level"],
+    "usageNotes": "Used in organizations, societies, and systems.",
+    "commonMistakes": "Don't confuse with 'anarchy' (no hierarchy).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "ideology",
+    "phonetic": "/ˌaɪdiˈɑːlədʒi/",
+    "partOfSpeech": ["noun"],
+    "level": "B2",
+    "meaningsTr": ["ideoloji", "fikir sistemi", "doktrin"],
+    "definitionsEn":["A system of ideas and ideals", "especially forming the basis of economic or political theory"],
+    "examplesEn": [
+      "Political ideology influences voting.",
+      "Different ideologies conflict.",
+      "The party's ideology is conservative."
+    ],
+    "examplesTr": [
+      "Siyasi ideoloji oylamayı etkiler.",
+      "Farklı ideolojiler çatışır.",
+      "Partinin ideolojisi muhafazakar."
+    ],
+    "synonyms": ["belief system, doctrine, creed", "philosophy"],
+    "antonyms": ["practice, reality, pragmatism"],
+    "usageNotes": "Used for political, economic, or social belief systems.",
+    "commonMistakes": "Don't confuse with 'idea' (simple thought) - ideology is a system.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "conservation",
+    "phonetic": "/ˌkɑːnsərˈveɪʃən/",
+    "partOfSpeech": ["noun"],
+    "level": "B2",
+    "meaningsTr": ["koruma", "muhafaza", "saklama"],
+    "definitionsEn": ["Prevention of wasteful use of resources", "Protection of environment or wildlife"],
+    "examplesEn": [
+      "Wildlife conservation is important.",
+      "Energy conservation saves money.",
+      "He works in conservation."
+    ],
+    "examplesTr": [
+      "Yaban hayatı koruması önemlidir.",
+      "Enerji tasarrufu para biriktirir.",
+      "Koruma alanında çalışıyor."
+    ],
+    "synonyms": ["preservation, protection, saving", "maintenance"],
+    "antonyms": ["waste, destruction, depletion"],
+    "usageNotes": "Used for environment, energy, and historical artifacts.",
+    "commonMistakes": "Don't confuse with 'conservative' (political view).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "innovation",
+    "phonetic": "/ˌɪnəˈveɪʃən/",
+    "partOfSpeech": ["noun"],
+    "level": "B2",
+    "meaningsTr": ["yenilik", "içtihat", "icat"],
+    "definitionsEn": ["The action or process of innovating", "A new method, idea, or product"],
+    "examplesEn": [
+      "Innovation drives progress.",
+      "The company values innovation.",
+      "Technological innovation changes lives."
+    ],
+    "examplesTr": [
+      "Yenilik ilerlemeyi tetikler.",
+      "Şirket yeniliğe değer verir.",
+      "Teknolojik yenilik hayatları değiştirir."
+    ],
+    "synonyms": ["invention, novelty, creativity", "modernization"],
+    "antonyms": ["stagnation, tradition, routine"],
+    "usageNotes": "About introducing new ideas or methods.",
+    "commonMistakes": "Don't confuse with 'invention' (creating something entirely new).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "entrepreneur",
+    "phonetic": "/ˌɑːntrəprəˈnɜːr/",
+    "partOfSpeech": ["noun"],
+    "level": "B2",
+    "meaningsTr": ["girişimci", "teşebbüsçi", "müteahhit"],
+    "definitionsEn": ["A person who organizes and operates a business", "Someone who takes on financial risks"],
+    "examplesEn": [
+      "She's a successful entrepreneur.",
+      "Entrepreneurs create jobs.",
+      "Being an entrepreneur requires courage."
+    ],
+    "examplesTr": [
+      "Başarılı bir girişimci.",
+      "Girişimciler iş yaratır.",
+      "Girişimci olmak cesaret gerektirir."
+    ],
+    "synonyms": ["business person, founder, innovator", "risk-taker"],
+    "antonyms": ["employee, worker, avoider of risk"],
+    "usageNotes": "Someone who starts and runs businesses.",
+    "commonMistakes": "Spelling is difficult - remember the 'eur' ending.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "bureaucracy",
+    "phonetic": "/bjʊˈrɑːkrəsi/",
+    "partOfSpeech": ["noun"],
+    "level": "B2",
+    "meaningsTr": ["bürokrasi", "kâğıt iş", "memuriyet"],
+    "definitionsEn": ["Excessively complicated administrative procedure", "System of government through departments"],
+    "examplesEn": [
+      "We must deal with bureaucracy.",
+      "Bureaucracy slows progress.",
+      "Reduce bureaucracy in government."
+    ],
+    "examplesTr": [
+      "Bürokrasiyle uğraşmalıyız.",
+      "Bürokrasi ilerlemeyi yavaşlatır.",
+      "Hükümette bürokrasiyi azaltın."
+    ],
+    "synonyms": ["red tape, administration, officialdom", "paperwork"],
+    "antonyms": ["efficiency, streamlining, simplicity"],
+    "usageNotes": "Often negative - implies complicated procedures.",
+    "commonMistakes": "Don't confuse with 'democracy' (government by people).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "legislation",
+    "phonetic": "/ˌledʒɪsˈleɪʃən/",
+    "partOfSpeech": ["noun"],
+    "level": "B2",
+    "meaningsTr": ["yasa", "kanun", "tüzük"],
+    "definitionsEn": ["Laws made by a government", "The process of making laws"],
+    "examplesEn": [
+      "New legislation passed yesterday.",
+      "Environmental legislation is needed.",
+      "She works in legislation."
+    ],
+    "examplesTr": [
+      "Dün yeni yasa çıktı.",
+      "Çevre yasasına ihtiyaç var.",
+      "Yasa yapımında çalışıyor."
+    ],
+    "synonyms": ["laws, statutes, regulations", "lawmaking"],
+    "antonyms": [],
+    "usageNotes": "About making laws or the laws themselves.",
+    "commonMistakes": "Don't confuse with 'legislature' (the body that makes laws).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "jurisdiction",
+    "phonetic": "/ˌdʒʊərɪsˈdɪkʃən/",
+    "partOfSpeech": ["noun"],
+    "level": "B2",
+    "meaningsTr": ["yargı yetkisi", "mahkeme yetkisi", "idi"],
+    "definitionsEn": ["The official power to make legal decisions", "The extent of this power"],
+    "examplesEn": [
+      "This case is under federal jurisdiction.",
+      "The court lacks jurisdiction.",
+      "Different jurisdictions have different laws."
+    ],
+    "examplesTr": [
+      "Bu dava federal yargı yetkisi altındadır.",
+      "Mahkemenin yargı yetkisi yok.",
+      "Farklı yargı yetkilerinin farklı yasaları vardır."
+    ],
+    "synonyms": ["authority, power, control", "domain"],
+    "antonyms": [],
+    "usageNotes": "Legal term about authority boundaries.",
+    "commonMistakes": "Don't confuse with 'judicature' (the court system).",
+    "imageUrl": "",
+    "audioUrl": ""
+  }
+]

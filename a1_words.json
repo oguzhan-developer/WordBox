@@ -1,0 +1,1754 @@
+[
+  {
+    "word": "hello",
+    "phonetic": "/həˈloʊ/",
+    "partOfSpeech": ["interjection"],
+    "level": "A1",
+    "meaningsTr": ["merhaba", "selam"],
+    "definitionsEn": ["Used as a greeting or to begin a phone conversation"],
+    "examplesEn": [
+      "Hello, how are you today?",
+      "She said hello to her neighbor.",
+      "Hello! Is anyone there?"
+    ],
+    "examplesTr": [
+      "Merhaba, bugün nasılsın?",
+      "Komşusuna merhaba dedi.",
+      "Merhaba! Orada kimse var mı?"
+    ],
+    "synonyms": ["hi", "greetings", "hey"],
+    "antonyms": ["goodbye", "farewell"],
+    "usageNotes": "Used both formally and informally. More formal than 'hi' but less formal than 'good morning/afternoon'.",
+    "commonMistakes": "Don't confuse with 'hallo' (German spelling). In English, it's always spelled 'hello'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "good",
+    "phonetic": "/ɡʊd/",
+    "partOfSpeech": ["adjective"],
+    "level": "A1",
+    "meaningsTr": ["iyi", "kaliteli", "uygun"],
+    "definitionsEn": ["Of a high quality or standard", "Morally right or acceptable", "Enjoyable or satisfying"],
+    "examplesEn": [
+      "This is a good restaurant.",
+      "She is a good person.",
+      "We had a good time at the party."
+    ],
+    "examplesTr": [
+      "Bu iyi bir restoran.",
+      "O iyi bir insan.",
+      "Partide iyi vakit geçirdik."
+    ],
+    "synonyms": ["excellent", "fine", "great", "quality"],
+    "antonyms": ["bad", "poor", "terrible"],
+    "usageNotes": "One of the most common adjectives in English. Can be used in many contexts.",
+    "commonMistakes": "The comparative form is 'better', not 'gooder'. The superlative is 'best', not 'goodest'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "bad",
+    "phonetic": "/bæd/",
+    "partOfSpeech": ["adjective"],
+    "level": "A1",
+    "meaningsTr": ["kötü", "berbat", "uygunsuz"],
+    "definitionsEn": ["Of poor quality or low standard", "Not morally good", "Unpleasant or unwelcome"],
+    "examplesEn": [
+      "The weather was bad yesterday.",
+      "He has bad habits.",
+      "I have a bad headache."
+    ],
+    "examplesTr": [
+      "Dün hava kötüydü.",
+      "Kötü alışkanlıkları var.",
+      "Çok kötü başım ağrıyor."
+    ],
+    "synonyms": ["poor", "terrible", "awful", "negative"],
+    "antonyms": ["good", "excellent", "great"],
+    "usageNotes": "Used to describe quality, behavior, weather, health, and many other situations.",
+    "commonMistakes": "The comparative form is 'worse', not 'badder'. The superlative is 'worst', not 'baddest'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "house",
+    "phonetic": "/haʊs/",
+    "partOfSpeech": ["noun"],
+    "level": "A1",
+    "meaningsTr": ["ev", "konut"],
+    "definitionsEn": ["A building for human habitation", "The people living in a house"],
+    "examplesEn": [
+      "They live in a big house.",
+      "Our house has three bedrooms.",
+      "I'm going to my friend's house."
+    ],
+    "examplesTr": [
+      "Büyük bir evde yaşıyorlar.",
+      "Evimizin üç yatak odası var.",
+      "Arkadaşımın evine gidiyorum."
+    ],
+    "synonyms": ["home", "residence", "dwelling"],
+    "antonyms": [],
+    "usageNotes": "'House' refers to the physical building. 'Home' refers to where you live and feel comfortable.",
+    "commonMistakes": "Don't confuse 'house' (building) with 'home' (emotional connection).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "eat",
+    "phonetic": "/iːt/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["yemek", "yemek yemek"],
+    "definitionsEn": ["To put food into the mouth and chew and swallow it"],
+    "examplesEn": [
+      "We eat dinner at 7 PM.",
+      "Do you want to eat now?",
+      "Children should eat vegetables."
+    ],
+    "examplesTr": [
+      "Akşam yemeğini saat 7'de yeriz.",
+      "Şimdi yemek ister misin?",
+      "Çocuklar sebze yemeli."
+    ],
+    "synonyms": ["consume", "dine", "feed"],
+    "antonyms": ["fast", "starve"],
+    "usageNotes": "Past tense is 'ate', not 'eated'. Past participle is 'eaten'.",
+    "commonMistakes": "Don't say 'eated' - the past tense is irregular: 'ate'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "drink",
+    "phonetic": "/drɪŋk/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["içmek", "içecek"],
+    "definitionsEn": ["To take liquid into the body through the mouth"],
+    "examplesEn": [
+      "I drink coffee every morning.",
+      "She drank water after running.",
+      "They are drinking tea."
+    ],
+    "examplesTr": [
+      "Her sabah kahve içerim.",
+      "Koşudan sonra su içti.",
+      "Çay içiyorlar."
+    ],
+    "synonyms": ["consume", "sip", "imbibe"],
+    "antonyms": [],
+    "usageNotes": "Past tense is 'drank', past participle is 'drunk' - both irregular.",
+    "commonMistakes": "Past tense is 'drank', not 'drinked'. Past participle is 'drunk'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "go",
+    "phonetic": "/ɡoʊ/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["gitmek", "çıkmak"],
+    "definitionsEn": ["To move or travel from one place to another"],
+    "examplesEn": [
+      "I go to school by bus.",
+      "She went to the store.",
+      "Let's go to the cinema."
+    ],
+    "examplesTr": [
+      "Otobüsle okula giderim.",
+      "Mağazaya gitti.",
+      "Sinemaya gidelim."
+    ],
+    "synonyms": ["travel", "move", "proceed"],
+    "antonyms": ["come", "stay", "remain"],
+    "usageNotes": "Past tense is 'went', past participle is 'gone'. One of the most irregular verbs.",
+    "commonMistakes": "Never say 'goed' - past tense is 'went'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "come",
+    "phonetic": "/kʌm/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["gelmek", "katılmak"],
+    "definitionsEn": ["To move or travel towards the speaker or towards a specified place"],
+    "examplesEn": [
+      "Please come here.",
+      "She came to the party.",
+      "When will you come home?"
+    ],
+    "examplesTr": [
+      "Lütfen buraya gel.",
+      "Partiye geldi.",
+      "Ne zaman eve geleceksin?"
+    ],
+    "synonyms": ["arrive", "approach", "approach"],
+    "antonyms": ["go", "leave", "depart"],
+    "usageNotes": "Past tense is 'came', not 'comed'. Used very frequently in everyday English.",
+    "commonMistakes": "Past tense is 'came', not 'comed'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "family",
+    "phonetic": "/ˈfæməli/",
+    "partOfSpeech": ["noun"],
+    "level": "A1",
+    "meaningsTr": ["aile", "soy"],
+    "definitionsEn": ["A group consisting of parents and children living together", "All the descendants of a common ancestor"],
+    "examplesEn": [
+      "I love my family.",
+      "She has a large family.",
+      "Family is very important."
+    ],
+    "examplesTr": [
+      "Ailemi seviyorum.",
+      "Büyük bir ailesi var.",
+      "Aile çok önemlidir."
+    ],
+    "synonyms": ["relatives", "kin", "household"],
+    "antonyms": [],
+    "usageNotes": "Refers to immediate family (parents, children) or extended family.",
+    "commonMistakes": "'Family' is singular, not plural. Say 'my family is', not 'my family are' (unless British English with collective noun usage).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "friend",
+    "phonetic": "/frend/",
+    "partOfSpeech": ["noun"],
+    "level": "A1",
+    "meaningsTr": ["arkadaş", "dost"],
+    "definitionsEn": ["A person whom one knows and with whom one has a bond of mutual affection"],
+    "examplesEn": [
+      "She is my best friend.",
+      "I have many friends at school.",
+      "We are good friends."
+    ],
+    "examplesTr": [
+      "O en iyi arkadaşım.",
+      "Okulda çok arkadaşım var.",
+      "Biz iyi arkadaşız."
+    ],
+    "synonyms": ["companion", "pal", "buddy"],
+    "antonyms": ["enemy", "foe", "stranger"],
+    "usageNotes": "Can be used for both casual and close relationships. 'Best friend' indicates the closest relationship.",
+    "commonMistakes": "Don't add 's' to make it possessive. Say 'my friend's house', not 'my friends house'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "book",
+    "phonetic": "/bʊk/",
+    "partOfSpeech": ["noun"],
+    "level": "A1",
+    "meaningsTr": ["kitap", "rezerve etmek"],
+    "definitionsEn": ["A written or printed work consisting of pages", "To reserve something in advance"],
+    "examplesEn": [
+      "I am reading a book.",
+      "She booked a hotel room.",
+      "This book is very interesting."
+    ],
+    "examplesTr": [
+      "Bir kitap okuyorum.",
+      "Bir otel odası rezervasyon yaptı.",
+      "Bu kitap çok ilginç."
+    ],
+    "synonyms": ["reserve", "novel", "publication"],
+    "antonyms": [],
+    "usageNotes": "Can be both a noun (reading material) and a verb (to reserve).",
+    "commonMistakes": "When used as a verb, it means to reserve, not to read.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "school",
+    "phonetic": "/skuːl/",
+    "partOfSpeech": ["noun"],
+    "level": "A1",
+    "meaningsTr": ["okul", "ders"],
+    "definitionsEn": ["An institution for educating children", "The process of being educated"],
+    "examplesEn": [
+      "Children go to school every day.",
+      "She is a school teacher.",
+      "I study hard at school."
+    ],
+    "examplesTr": [
+      "Çocuklar her gün okula gider.",
+      "O bir öğretmen.",
+      "Okulda çok çalışıyorum."
+    ],
+    "synonyms": ["educational institution", "academy"],
+    "antonyms": [],
+    "usageNotes": "Used without 'the' when talking about the general concept: 'I go to school' not 'I go to the school'.",
+    "commonMistakes": "Don't say 'to the school' when talking about education in general. Use 'to school'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "teacher",
+    "phonetic": "/ˈtiːtʃər/",
+    "partOfSpeech": ["noun"],
+    "level": "A1",
+    "meaningsTr": ["öğretmen", "hoca"],
+    "definitionsEn": ["A person who teaches, especially in a school"],
+    "examplesEn": [
+      "Our teacher is very nice.",
+      "She wants to be a teacher.",
+      "The teacher helped me with math."
+    ],
+    "examplesTr": [
+      "Öğretmenimiz çok nazik.",
+      "Öğretmen olmak istiyor.",
+      "Öğretmenim bana matematikte yardımcı oldu."
+    ],
+    "synonyms": ["instructor", "educator", "tutor"],
+    "antonyms": ["student", "pupil"],
+    "usageNotes": "Used with subject: 'math teacher', 'English teacher', etc.",
+    "commonMistakes": "Don't confuse 'teach' (verb) with 'teacher' (noun).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "student",
+    "phonetic": "/ˈstuːdənt/",
+    "partOfSpeech": ["noun"],
+    "level": "A1",
+    "meaningsTr": ["öğrenci"],
+    "definitionsEn": ["A person who is studying at a school or college"],
+    "examplesEn": [
+      "He is a university student.",
+      "Students have exams next week.",
+      "I am a good student."
+    ],
+    "examplesTr": [
+      "O bir üniversite öğrencisi.",
+      "Öğrencilerin gelecek hafta sınavları var.",
+      "Ben iyi bir öğrenciyim."
+    ],
+    "synonyms": ["pupil", "learner", "scholar"],
+    "antonyms": ["teacher", "instructor"],
+    "usageNotes": "Can be used for any level of education from primary school to university.",
+    "commonMistakes": "Don't say 'studient' - the correct spelling is 'student'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "work",
+    "phonetic": "/wɜːrk/",
+    "partOfSpeech": ["verb", "noun"],
+    "level": "A1",
+    "meaningsTr": ["çalışmak", "iş", "çalışma"],
+    "definitionsEn": ["To do a job or activity", "A job or activity that you do regularly"],
+    "examplesEn": [
+      "I work in an office.",
+      "She works hard every day.",
+      "This work is very important."
+    ],
+    "examplesTr": [
+      "Bir ofiste çalışıyorum.",
+      "Her gün çok çalışıyor.",
+      "Bu iş çok önemli."
+    ],
+    "synonyms": ["labor", "job", "employment"],
+    "antonyms": ["rest", "relax", "unemployment"],
+    "usageNotes": "As a verb, can be regular (works, worked) or refer to employment. As a noun, often uncountable.",
+    "commonMistakes": "When talking about employment, don't use 'at work' and 'working' interchangeably without context.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "water",
+    "phonetic": "/ˈwɔːtər/",
+    "partOfSpeech": ["noun"],
+    "level": "A1",
+    "meaningsTr": ["su"],
+    "definitionsEn": ["A colorless, transparent, odorless liquid that forms the seas and lakes"],
+    "examplesEn": [
+      "I drink a lot of water.",
+      "The water is too cold.",
+      "She bought a bottle of water."
+    ],
+    "examplesTr": [
+      "Çok su içerim.",
+      "Su çok soğuk.",
+      "Bir şişe su aldı."
+    ],
+    "synonyms": ["H2O", "liquid"],
+    "antonyms": [],
+    "usageNotes": "Uncountable noun. Never say 'waters' unless referring to specific bodies of water.",
+    "commonMistakes": "Don't say 'a water' - use 'some water' or 'a bottle of water'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "food",
+    "phonetic": "/fuːd/",
+    "partOfSpeech": ["noun"],
+    "level": "A1",
+    "meaningsTr": ["yemek", "gıda"],
+    "definitionsEn": ["Any nutritious substance that people or animals eat or drink"],
+    "examplesEn": [
+      "We need to buy food.",
+      "The food here is delicious.",
+      "Italian food is my favorite."
+    ],
+    "examplesTr": [
+      "Yemek almalıyız.",
+      "Buradaki yemekler lezzetli.",
+      "İtalyan yemekleri favorim."
+    ],
+    "synonyms": ["nourishment", "sustenance", "provisions"],
+    "antonyms": [],
+    "usageNotes": "Uncountable noun. Use 'some food' or 'pieces/foods' when counting.",
+    "commonMistakes": "Don't say 'a food' - use 'some food' or 'a type of food'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "time",
+    "phonetic": "/taɪm/",
+    "partOfSpeech": ["noun"],
+    "level": "A1",
+    "meaningsTr": ["zaman", "vakit"],
+    "definitionsEn": ["The indefinite continued progress of existence", "A point measured in hours and minutes"],
+    "examplesEn": [
+      "What time is it?",
+      "I don't have time.",
+      "We had a good time."
+    ],
+    "examplesTr": [
+      "Saat kaç?",
+      "Vaktim yok.",
+      "İyi vakit geçirdik."
+    ],
+    "synonyms": ["moment", "period", "duration"],
+    "antonyms": [],
+    "usageNotes": "Can refer to clock time, duration, or general concept. One of the most common nouns.",
+    "commonMistakes": "Don't confuse 'time' (general) with 'times' (occurrences).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "day",
+    "phonetic": "/deɪ/",
+    "partOfSpeech": ["noun"],
+    "level": "A1",
+    "meaningsTr": ["gün"],
+    "definitionsEn": ["A period of 24 hours", "The time between sunrise and sunset"],
+    "examplesEn": [
+      "Today is a beautiful day.",
+      "I work five days a week.",
+      "See you another day!"
+    ],
+    "examplesTr": [
+      "Bugün güzel bir gün.",
+      "Haftada beş gün çalışıyorum.",
+      "Başka bir gün görüşürüz!"
+    ],
+    "synonyms": ["date", "daytime"],
+    "antonyms": ["night"],
+    "usageNotes": "Used with prepositions: in the day, on Monday, during the day.",
+    "commonMistakes": "Don't confuse with 'date' (specific calendar day).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "night",
+    "phonetic": "/naɪt/",
+    "partOfSpeech": ["noun"],
+    "level": "A1",
+    "meaningsTr": ["gece"],
+    "definitionsEn": ["The period of darkness between sunset and sunrise"],
+    "examplesEn": [
+      "Good night!",
+      "We sleep at night.",
+      "The night sky is beautiful."
+    ],
+    "examplesTr": [
+      "İyi geceler!",
+      "Gece uyuruz.",
+      "Gece gökyüzü güzel."
+    ],
+    "synonyms": ["evening", "darkness"],
+    "antonyms": ["day", "daytime"],
+    "usageNotes": "Use 'at night' (not 'in the night') for general reference.",
+    "commonMistakes": "Use 'at night', not 'in the night' for general situations.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "morning",
+    "phonetic": "/ˈmɔːrnɪŋ/",
+    "partOfSpeech": ["noun"],
+    "level": "A1",
+    "meaningsTr": ["sabah"],
+    "definitionsEn": ["The period from sunrise to noon"],
+    "examplesEn": [
+      "Good morning!",
+      "I exercise in the morning.",
+      "She wakes up early every morning."
+    ],
+    "examplesTr": [
+      "Günaydın!",
+      "Sabah spor yaparım.",
+      "Her sabah erken kalkar."
+    ],
+    "synonyms": ["dawn", "daybreak"],
+    "antonyms": ["evening", "night"],
+    "usageNotes": "Use 'in the morning' with 'the' or specific mornings: 'on Monday morning'.",
+    "commonMistakes": "Say 'in the morning', not 'at the morning' for general times.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "yes",
+    "phonetic": "/jes/",
+    "partOfSpeech": ["adverb"],
+    "level": "A1",
+    "meaningsTr": ["evet", "tamam"],
+    "definitionsEn": ["Used to give an affirmative response"],
+    "examplesEn": [
+      "Yes, I agree.",
+      "Would you like coffee? Yes, please.",
+      "Yes, that's correct."
+    ],
+    "examplesTr": [
+      "Evet, katılıyorum.",
+      "Kahve ister misin? Evet, lütfen.",
+      "Evet, bu doğru."
+    ],
+    "synonyms": ["yeah", "yep", "certainly"],
+    "antonyms": ["no"],
+    "usageNotes": "Polite and formal. Informal alternatives: yeah, yep.",
+    "commonMistakes": "In very formal situations, use 'yes' instead of 'yeah'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "no",
+    "phonetic": "/noʊ/",
+    "partOfSpeech": ["adverb"],
+    "level": "A1",
+    "meaningsTr": ["hayır", "yok"],
+    "definitionsEn": ["Used to give a negative response"],
+    "examplesEn": [
+      "No, I don't want to go.",
+      "Is there any milk? No, there isn't.",
+      "No problem!"
+    ],
+    "examplesTr": [
+      "Hayır, gitmek istemiyorum.",
+      "Süt var mı? Hayır, yok.",
+      "Sorun değil!"
+    ],
+    "synonyms": ["nope", "nah"],
+    "antonyms": ["yes"],
+    "usageNotes": "Can be used alone or in sentences. 'Nope' is informal.",
+    "commonMistakes": "Don't use 'no' with negative verbs - it creates a double negative.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "please",
+    "phonetic": "/pliːz/",
+    "partOfSpeech": ["adverb"],
+    "level": "A1",
+    "meaningsTr": ["lütfen", "ricagerim"],
+    "definitionsEn": ["Used in polite requests or questions"],
+    "examplesEn": [
+      "Please help me.",
+      "Could you please open the door?",
+      "Yes, please."
+    ],
+    "examplesTr": [
+      "Lütfen bana yardım et.",
+      "Lütfen kapıyı açar mısın?",
+      "Evet, lütfen."
+    ],
+    "synonyms": ["kindly"],
+    "antonyms": [],
+    "usageNotes": "Essential for politeness. Place it at the beginning or end of requests.",
+    "commonMistakes": "Don't forget to use 'please' in requests - it's essential for politeness.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "thank",
+    "phonetic": "/θæŋk/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["teşekkür etmek"],
+    "definitionsEn": ["To express gratitude to someone"],
+    "examplesEn": [
+      "Thank you for your help.",
+      "I want to thank everyone.",
+      "She thanked her teacher."
+    ],
+    "examplesTr": [
+      "Yardımın için teşekkür ederim.",
+      "Herkes teşekkür etmek istiyorum.",
+      "Öğretmenine teşekkür etti."
+    ],
+    "synonyms": ["appreciate", "grateful"],
+    "antonyms": ["criticize", "blame"],
+    "usageNotes": "Often used as 'thank you' or 'thanks'. 'Thank you' is more formal.",
+    "commonMistakes": "Always need an object: 'thank you', 'thank him', not just 'thank'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "big",
+    "phonetic": "/bɪɡ/",
+    "partOfSpeech": ["adjective"],
+    "level": "A1",
+    "meaningsTr": ["büyük", "iri"],
+    "definitionsEn": ["Of considerable size or extent"],
+    "examplesEn": [
+      "They live in a big house.",
+      "That's a big problem.",
+      "He has a big heart."
+    ],
+    "examplesTr": [
+      "Büyük bir evde yaşıyorlar.",
+      "Bu büyük bir sorun.",
+      "Büyük bir kalbi var."
+    ],
+    "synonyms": ["large", "huge", "enormous"],
+    "antonyms": ["small", "little", "tiny"],
+    "usageNotes": "Very common and versatile. Can describe physical size, importance, or degree.",
+    "commonMistakes": "The comparative is 'bigger', not 'more big'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "small",
+    "phonetic": "/smɔːl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A1",
+    "meaningsTr": ["küçük", "az"],
+    "definitionsEn": ["Of a size that is less than normal or average"],
+    "examplesEn": [
+      "She has small hands.",
+      "It's a small town.",
+      "Can I have a small coffee?"
+    ],
+    "examplesTr": [
+      "Küçük elleri var.",
+      "Küçük bir kasaba.",
+      "Küçük bir kahve isteyebilir miyim?"
+    ],
+    "synonyms": ["little", "tiny", "miniature"],
+    "antonyms": ["big", "large", "huge"],
+    "usageNotes": "Can describe physical size, quantity, or degree.",
+    "commonMistakes": "The comparative is 'smaller' or 'smaller', not 'more small'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "happy",
+    "phonetic": "/ˈhæpi/",
+    "partOfSpeech": ["adjective"],
+    "level": "A1",
+    "meaningsTr": ["mutlu", "sevinçli"],
+    "definitionsEn": ["Feeling or showing pleasure or contentment"],
+    "examplesEn": [
+      "I am very happy today.",
+      "She looks happy.",
+      "They had a happy marriage."
+    ],
+    "examplesTr": [
+      "Bugün çok mutluyum.",
+      "Mutlu görünüyor.",
+      "Mutlu bir evlilikleri vardı."
+    ],
+    "synonyms": ["joyful", "glad", "pleased"],
+    "antonyms": ["sad", "unhappy", "miserable"],
+    "usageNotes": "Can describe temporary feelings or general disposition.",
+    "commonMistakes": "Don't say 'I am happy with' - use 'happy about' or 'happy with' depending on context.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "sad",
+    "phonetic": "/sæd/",
+    "partOfSpeech": ["adjective"],
+    "level": "A1",
+    "meaningsTr": ["üzgün", "kırgın"],
+    "definitionsEn": ["Feeling or showing sorrow; unhappy"],
+    "examplesEn": [
+      "I feel sad when it rains.",
+      "The movie was very sad.",
+      "She looks sad today."
+    ],
+    "examplesTr": [
+      "Yağmur yağdığında üzgün hissediyorum.",
+      "Film çok üzgündü.",
+      "Bugün üzgün görünüyor."
+    ],
+    "synonyms": ["unhappy", "sorrowful", "depressed"],
+    "antonyms": ["happy", "glad", "joyful"],
+    "usageNotes": "Can describe temporary emotions or deeper states.",
+    "commonMistakes": "Don't confuse with 'bad' - 'sad' is specifically about emotion.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "new",
+    "phonetic": "/nuː/",
+    "partOfSpeech": ["adjective"],
+    "level": "A1",
+    "meaningsTr": ["yeni", "taze"],
+    "definitionsEn": ["Recently made, discovered, or created"],
+    "examplesEn": [
+      "I bought a new car.",
+      "She is learning new things.",
+      "This is my new phone."
+    ],
+    "examplesTr": [
+      "Yeni bir araba aldım.",
+      "Yeni şeyler öğreniyor.",
+      "Bu yeni telefonum."
+    ],
+    "synonyms": ["fresh", "recent", "modern"],
+    "antonyms": ["old", "ancient"],
+    "usageNotes": "One of the most common adjectives. Can describe objects, ideas, or experiences.",
+    "commonMistakes": "The comparative is 'newer', not 'more new'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "old",
+    "phonetic": "/oʊld/",
+    "partOfSpeech": ["adjective"],
+    "level": "A1",
+    "meaningsTr": ["eski", "yaşlı"],
+    "definitionsEn": ["Having lived for a long time", "Made or used for a long time"],
+    "examplesEn": [
+      "My grandfather is very old.",
+      "We live in an old house.",
+      "She is wearing old clothes."
+    ],
+    "examplesTr": [
+      "Dedem çok yaşlı.",
+      "Eski bir evde yaşıyoruz.",
+      "Eski kıyafetler giyiyor."
+    ],
+    "synonyms": ["ancient", "aged", "elderly"],
+    "antonyms": ["new", "young", "modern"],
+    "usageNotes": "Can refer to age of people, objects, or how long something existed.",
+    "commonMistakes": "Use 'older' for comparative, not 'more old'. Use 'elderly' as a polite term for old people.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "love",
+    "phonetic": "/lʌv/",
+    "partOfSpeech": ["verb", "noun"],
+    "level": "A1",
+    "meaningsTr": ["sevmek", "aşk", "sevgi"],
+    "definitionsEn": ["An intense feeling of deep affection", "To like very much"],
+    "examplesEn": [
+      "I love my family.",
+      "She loves chocolate.",
+      "Love is important in life."
+    ],
+    "examplesTr": [
+      "Ailemi çok seviyorum.",
+      "Çikolata sever.",
+      "Hayatta aşk önemlidir."
+    ],
+    "synonyms": ["adore", "cherish", "affection"],
+    "antonyms": ["hate", "dislike"],
+    "usageNotes": "Can be romantic love, family love, or strong liking for things/activities.",
+    "commonMistakes": "Don't overuse 'love' - 'like' is better for casual preferences.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "like",
+    "phonetic": "/laɪk/",
+    "partOfSpeech": ["verb", "preposition"],
+    "level": "A1",
+    "meaningsTr": ["sevmek", "hoşlanmak", "gibi"],
+    "definitionsEn": ["To find agreeable or enjoyable", "Similar to"],
+    "examplesEn": [
+      "I like pizza.",
+      "She looks like her mother.",
+      "Do you like reading?"
+    ],
+    "examplesTr": [
+      "Pizza severim.",
+      "Annesine benziyor.",
+      "Okumayı sever misin?"
+    ],
+    "synonyms": ["enjoy", "prefer", "resemble"],
+    "antonyms": ["dislike", "hate"],
+    "usageNotes": "Can be a verb (to enjoy) or preposition (similar to).",
+    "commonMistakes": "When used as a verb, it needs an object. Don't say 'I like' without saying what you like.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "want",
+    "phonetic": "/wɑːnt/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["istemek", "arzulamak"],
+    "definitionsEn": ["To have a desire to possess or do something"],
+    "examplesEn": [
+      "I want to go home.",
+      "She wants a new car.",
+      "What do you want to eat?"
+    ],
+    "examplesTr": [
+      "Eve gitmek istiyorum.",
+      "Yeni bir araba istiyor.",
+      "Ne yemek istersin?"
+    ],
+    "synonyms": ["desire", "wish", "need"],
+    "antonyms": ["refuse", "reject"],
+    "usageNotes": "Usually followed by infinitive: 'want to do', 'want to have'.",
+    "commonMistakes": "Don't say 'want that' with a full sentence. Use 'want' + object + infinitive.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "need",
+    "phonetic": "/niːd/",
+    "partOfSpeech": ["verb", "noun"],
+    "level": "A1",
+    "meaningsTr": ["ihtiyaç duymak", "lazım olmak"],
+    "definitionsEn": ["To require something because it is essential"],
+    "examplesEn": [
+      "I need some help.",
+      "We need to buy groceries.",
+      "She needs a new job."
+    ],
+    "examplesTr": [
+      "Biraz yardım lazım.",
+      "Alışveriş yapmamız gerekiyor.",
+      "Yeni bir işe ihtiyacı var."
+    ],
+    "synonyms": ["require", "demand", "necessity"],
+    "antonyms": ["want", "desire"],
+    "usageNotes": "Stronger than 'want' - implies necessity, not just desire.",
+    "commonMistakes": "Don't confuse 'need' (necessity) with 'want' (desire).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "think",
+    "phonetic": "/θɪŋk/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["düşünmek", "sanmak"],
+    "definitionsEn": ["To use the mind to consider something", "To have an opinion"],
+    "examplesEn": [
+      "I think it will rain.",
+      "What do you think?",
+      "She thinks carefully before deciding."
+    ],
+    "examplesTr": [
+      "Sanırım yağmur yağacak.",
+      "Ne düşünüyorsun?",
+      "Karar vermeden önce dikkatli düşünür."
+    ],
+    "synonyms": ["believe", "consider", "reason"],
+    "antonyms": [],
+    "usageNotes": "Past tense is 'thought'. Can express opinion or mental process.",
+    "commonMistakes": "Past tense is 'thought', not 'thinked'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "know",
+    "phonetic": "/noʊ/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["bilmek", "tanımak"],
+    "definitionsEn": ["To be aware of through observation, inquiry, or information"],
+    "examplesEn": [
+      "I know the answer.",
+      "She knows how to cook.",
+      "Do you know my brother?"
+    ],
+    "examplesTr": [
+      "Cevabı biliyorum.",
+      "Nasıl pişirileceğini biliyor.",
+      "Erkek kardeşimi tanıyor musun?"
+    ],
+    "synonyms": ["understand", "recognize", "be aware"],
+    "antonyms": ["ignore", "misunderstand"],
+    "usageNotes": "Past tense is 'knew', past participle is 'known' - both irregular.",
+    "commonMistakes": "Past tense is 'knew', not 'knowed'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "make",
+    "phonetic": "/meɪk/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["yapmak", "oluşturmak"],
+    "definitionsEn": ["To create, form, or produce something"],
+    "examplesEn": [
+      "My mother makes great food.",
+      "Can I make a phone call?",
+      "They make cars in this factory."
+    ],
+    "examplesTr": [
+      "Annem çok iyi yemek yapar.",
+      "Telefon görüşmesi yapabilir miyim?",
+      "Bu fabrikada araba üretiyorlar."
+    ],
+    "synonyms": ["create", "produce", "build"],
+    "antonyms": ["destroy", "break"],
+    "usageNotes": "Very versatile verb with many meanings and collocations.",
+    "commonMistakes": "Past tense is 'made', not 'maked'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "see",
+    "phonetic": "/siː/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["görmek", "bakmak"],
+    "definitionsEn": ["To perceive with the eyes", "To meet or visit"],
+    "examplesEn": [
+      "I can see the mountains.",
+      "Let's see a movie tonight.",
+      "Did you see my keys?"
+    ],
+    "examplesTr": [
+      "Dağları görebiliyorum.",
+      "Bu gece film izleyelim.",
+      "Anahtarlarımı gördün mü?"
+    ],
+    "synonyms": ["observe", "notice", "watch"],
+    "antonyms": ["ignore", "miss"],
+    "usageNotes": "Past tense is 'saw', past participle is 'seen'.",
+    "commonMistakes": "Past tense is 'saw', not 'seed'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "look",
+    "phonetic": "/lʊk/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["bakmak", "görünmek"],
+    "definitionsEn": ["To direct one's gaze toward someone or something", "To appear or seem"],
+    "examplesEn": [
+      "Look at the blackboard.",
+      "She looks tired today.",
+      "Can I look at your book?"
+    ],
+    "examplesTr": [
+      "Tahtaya bak.",
+      "Bugün yorgun görünüyor.",
+      "Kitabına bakabilir miyim?"
+    ],
+    "synonyms": ["watch", "observe", "appear"],
+    "antonyms": ["ignore"],
+    "usageNotes": "Often followed by 'at' when directing attention.",
+    "commonMistakes": "Use 'look at' for directing attention, not just 'look'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "listen",
+    "phonetic": "/ˈlɪsən/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["dinlemek"],
+    "definitionsEn": ["To give attention to someone or something in order to hear"],
+    "examplesEn": [
+      "Please listen to me.",
+      "I love listening to music.",
+      "She listens carefully in class."
+    ],
+    "examplesTr": [
+      "Lütfen beni dinle.",
+      "Müzik dinlemeyi severim.",
+      "Derste dikkatle dinler."
+    ],
+    "synonyms": ["hear", "pay attention to"],
+    "antonyms": ["ignore", "block out"],
+    "usageNotes": "Usually followed by 'to' when specifying what is being heard.",
+    "commonMistakes": "Use 'listen to' not just 'listen' when mentioning what you hear.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "speak",
+    "phonetic": "/spiːk/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["konuşmak"],
+    "definitionsEn": ["To say words, to use the voice, or to have a conversation"],
+    "examplesEn": [
+      "Do you speak English?",
+      "Can I speak to John?",
+      "She speaks three languages."
+    ],
+    "examplesTr": [
+      "İngilizce biliyor musun?",
+      "John ile konuşabilir miyim?",
+      "Üç dil biliyor."
+    ],
+    "synonyms": ["talk", "converse", "communicate"],
+    "antonyms": ["listen", "silence"],
+    "usageNotes": "Past tense is 'spoke', past participle is 'spoken'.",
+    "commonMistakes": "Past tense is 'spoke', not 'speaked'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "write",
+    "phonetic": "/raɪt/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["yazmak"],
+    "definitionsEn": ["To mark letters, words, or symbols on a surface"],
+    "examplesEn": [
+      "I write in my diary every day.",
+      "Please write your name here.",
+      "She is writing a letter."
+    ],
+    "examplesTr": [
+      "Her gün günlüğümü yazarım.",
+      "Lütfen adınızı buraya yazın.",
+      "Mektup yazıyor."
+    ],
+    "synonyms": ["compose", "create", "record"],
+    "antonyms": ["read", "erase"],
+    "usageNotes": "Past tense is 'wrote', past participle is 'written'.",
+    "commonMistakes": "Past tense is 'wrote', not 'writed'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "read",
+    "phonetic": "/riːd/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["okumak"],
+    "definitionsEn": ["To look at and understand written words"],
+    "examplesEn": [
+      "I read every night before bed.",
+      "Can you read this sign?",
+      "She loves reading books."
+    ],
+    "examplesTr": [
+      "Her gece yatmadan önce kitap okurum.",
+      "Bu tabelayı okuyabilir misin?",
+      "Kitap okumayı sever."
+    ],
+    "synonyms": ["peruse", "study", "examine"],
+    "antonyms": ["write", "ignore"],
+    "usageNotes": "Past tense and participle are both 'read' but pronounced like 'red'.",
+    "commonMistakes": "Past tense spelling is 'read' but pronunciation changes to /red/.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "walk",
+    "phonetic": "/wɔːk/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["yürümek"],
+    "definitionsEn": ["To move at a regular pace by lifting and setting down each foot"],
+    "examplesEn": [
+      "I walk to work every day.",
+      "Let's walk in the park.",
+      "She walks her dog every morning."
+    ],
+    "examplesTr": [
+      "Her gün işe yürürüm.",
+      "Parkta yürüyelim.",
+      "Her sabah köpeğini gezdirir."
+    ],
+    "synonyms": ["stroll", "march", "hike"],
+    "antonyms": ["run", "sit"],
+    "usageNotes": "Can be regular exercise or casual movement.",
+    "commonMistakes": "Don't confuse with 'work' - different spelling and meaning.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "run",
+    "phonetic": "/rʌn/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["koşmak", "yönetmek"],
+    "definitionsEn": ["To move at a speed faster than walking", "To manage or operate"],
+    "examplesEn": [
+      "I run every morning.",
+      "He runs a small business.",
+      "The dog ran after the ball."
+    ],
+    "examplesTr": [
+      "Her sabah koşarım.",
+      "Küçük bir işletme yönetiyor.",
+      "Köpek topun peşinden koştu."
+    ],
+    "synonyms": ["sprint", "jog", "manage"],
+    "antonyms": ["walk", "crawl"],
+    "usageNotes": "Past tense is 'ran', past participle is 'run' (same spelling).",
+    "commonMistakes": "Past tense is 'ran', not 'runned'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "sleep",
+    "phonetic": "/sliːp/",
+    "partOfSpeech": ["verb", "noun"],
+    "level": "A1",
+    "meaningsTr": ["uyumak", "uyku"],
+    "definitionsEn": ["To be in a state of rest when eyes are closed and mind is unconscious"],
+    "examplesEn": [
+      "I sleep for eight hours.",
+      "The baby is sleeping.",
+      "Did you sleep well?"
+    ],
+    "examplesTr": [
+      "Saat sekiz uyurum.",
+      "Bebek uyuyor.",
+      "İyi uyudun mu?"
+    ],
+    "synonyms": ["rest", "nap", "slumber"],
+    "antonyms": ["wake", "stay awake"],
+    "usageNotes": "Past tense and participle are both 'slept'.",
+    "commonMistakes": "Past tense is 'slept', not 'sleeped'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "play",
+    "phonetic": "/pleɪ/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["oynamak", "çalmak"],
+    "definitionsEn": ["To engage in activity for enjoyment", "To perform music"],
+    "examplesEn": [
+      "Children play in the park.",
+      "She plays the piano.",
+      "Let's play a game."
+    ],
+    "examplesTr": [
+      "Çocuklar parkta oynar.",
+      "Piyano çalar.",
+      "Bir oyun oynayalım."
+    ],
+    "synonyms": ["engage in", "perform", "have fun"],
+    "antonyms": ["work", "be serious"],
+    "usageNotes": "Can refer to games, sports, music, or general leisure activities.",
+    "commonMistakes": "Don't use 'play' for studying or working - it's for leisure only.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "learn",
+    "phonetic": "/lɜːrn/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["öğrenmek"],
+    "definitionsEn": ["To gain knowledge or skill"],
+    "examplesEn": [
+      "I want to learn English.",
+      "She learns very quickly.",
+      "We learn new things every day."
+    ],
+    "examplesTr": [
+      "İngilizce öğrenmek istiyorum.",
+      "Çok hızlı öğrenir.",
+      "Her gün yeni şeyler öğreniriz."
+    ],
+    "synonyms": ["study", "acquire", "master"],
+    "antonyms": ["forget", "teach"],
+    "usageNotes": "Often followed by 'to' + verb or a noun.",
+    "commonMistakes": "Use 'learn' for acquiring knowledge, 'teach' for giving knowledge.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "study",
+    "phonetic": "/ˈstʌdi/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["çalışmak", "öğrenmek"],
+    "definitionsEn": ["To devote time and attention to gaining knowledge"],
+    "examplesEn": [
+      "I study English every day.",
+      "She studies at the library.",
+      "We need to study for the exam."
+    ],
+    "examplesTr": [
+      "Her gün İngilizce çalışırım.",
+      "Kütüphanede çalışıyor.",
+      "Sınav için çalışmamız lazım."
+    ],
+    "synonyms": ["learn", "research", "examine"],
+    "antonyms": ["ignore", "neglect"],
+    "usageNotes": "Implies more focused effort than general 'learning'.",
+    "commonMistakes": "Don't confuse with 'learn' - study is the effort, learn is the result.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "watch",
+    "phonetic": "/wɑːtʃ/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["izlemek", "bakmak"],
+    "definitionsEn": ["To look at something for a period of time"],
+    "examplesEn": [
+      "I watch TV every evening.",
+      "She watches the kids play.",
+      "Let's watch a movie."
+    ],
+    "examplesTr": [
+      "Her akşam televizyon izlerim.",
+      "Çocukların oynamasını izliyor.",
+      "Film izleyelim."
+    ],
+    "synonyms": ["observe", "view", "see"],
+    "antonyms": ["ignore", "look away"],
+    "usageNotes": "Used for extended observation, unlike 'look' which is brief.",
+    "commonMistakes": "Use 'watch' for moving things (TV, sports), 'look' for static things.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "help",
+    "phonetic": "/help/",
+    "partOfSpeech": ["verb", "noun"],
+    "level": "A1",
+    "meaningsTr": ["yardım etmek", "yardım"],
+    "definitionsEn": ["To make it easier for someone to do something"],
+    "examplesEn": [
+      "Can you help me?",
+      "She helps her mother cook.",
+      "Thank you for your help."
+    ],
+    "examplesTr": [
+      "Bana yardım edebilir misin?",
+      "Annesine yemek yapmaya yardım eder.",
+      "Yardımınız için teşekkürler."
+    ],
+    "synonyms": ["assist", "aid", "support"],
+    "antonyms": ["hinder", "obstruct"],
+    "usageNotes": "Can be followed by object + infinitive: 'help me do it'.",
+    "commonMistakes": "Don't use 'help' + 'ing'. Use 'help someone do' or 'help with'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "use",
+    "phonetic": "/juːz/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["kullanmak"],
+    "definitionsEn": ["To employ something for a purpose"],
+    "examplesEn": [
+      "I use my computer for work.",
+      "Can I use your phone?",
+      "She uses English every day."
+    ],
+    "examplesTr": [
+      "İşim için bilgisayarımı kullanırım.",
+      "Telefonunu kullanabilir miyim?",
+      "Her gün İngilizce kullanıyor."
+    ],
+    "synonyms": ["utilize", "employ", "apply"],
+    "antonyms": ["ignore", "waste"],
+    "usageNotes": "Very common verb with many applications.",
+    "commonMistakes": "Don't say 'use to' for past habits - that's 'used to'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "call",
+    "phonetic": "/kɔːl/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["aramak", "çağırmak"],
+    "definitionsEn": ["To telephone someone", "To give a name to someone"],
+    "examplesEn": [
+      "I'll call you later.",
+      "She called her mother.",
+      "What do you call this in English?"
+    ],
+    "examplesTr": [
+      "Seni sonra ararım.",
+      "Annesini aradı.",
+      "Buna İngilizcede ne dersin?"
+    ],
+    "synonyms": ["phone", "telephone", "name"],
+    "antonyms": [],
+    "usageNotes": "Can mean to telephone or to name someone/something.",
+    "commonMistakes": "Use 'call someone' not 'call to someone'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "buy",
+    "phonetic": "/baɪ/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["satın almak", "almak"],
+    "definitionsEn": ["To obtain in exchange for payment"],
+    "examplesEn": [
+      "I need to buy groceries.",
+      "She bought a new dress.",
+      "Where did you buy this?"
+    ],
+    "examplesTr": [
+      "Market alışverişi yapmam gerekiyor.",
+      "Yeni bir elbise aldı.",
+      "Bunu nereden aldın?"
+    ],
+    "synonyms": ["purchase", "acquire", "shop for"],
+    "antonyms": ["sell", "get rid of"],
+    "usageNotes": "Past tense is 'bought', not 'buyed'.",
+    "commonMistakes": "Past tense is 'bought', not 'buyed'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "sell",
+    "phonetic": "/sel/",
+    "partOfSpeech": ["verb"],
+    "level": "A1",
+    "meaningsTr": ["satmak"],
+    "definitionsEn": ["To give something to someone in exchange for money"],
+    "examplesEn": [
+      "They sell cars at this dealership.",
+      "She sold her old bike.",
+      "This store sells books."
+    ],
+    "examplesTr": [
+      "Bu bayide araba satıyorlar.",
+      "Eski bisikletini sattı.",
+      "Bu mağaza kitap satar."
+    ],
+    "synonyms": ["market", "vend", "trade"],
+    "antonyms": ["buy", "purchase"],
+    "usageNotes": "Past tense is 'sold'.",
+    "commonMistakes": "Past tense is 'sold', not 'selled'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "clean",
+    "phonetic": "/kliːn/",
+    "partOfSpeech": ["adjective", "verb"],
+    "level": "A1",
+    "meaningsTr": ["temiz", "temizlemek"],
+    "definitionsEn": ["Free from dirt or impurities", "To make something clean"],
+    "examplesEn": [
+      "The room is very clean.",
+      "I clean my house every weekend.",
+      "Please clean your room."
+    ],
+    "examplesTr": [
+      "Oda çok temiz.",
+      "Her hafta sonu evi temizlerim.",
+      "Lütfen odanı temizle."
+    ],
+    "synonyms": ["tidy", "wash", "pure"],
+    "antonyms": ["dirty", "messy"],
+    "usageNotes": "Can be an adjective or a verb.",
+    "commonMistakes": "Don't confuse 'clean' (no dirt) with 'tidy' (organized).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "dirty",
+    "phonetic": "/ˈdɜːrti/",
+    "partOfSpeech": ["adjective"],
+    "level": "A1",
+    "meaningsTr": ["kirli", "pis"],
+    "definitionsEn": ["Not clean", "Covered with dirt or mud"],
+    "examplesEn": [
+      "My shoes are dirty.",
+      "Don't touch that - it's dirty!",
+      "He washed his dirty clothes."
+    ],
+    "examplesTr": [
+      "Ayakkabılarım kirli.",
+      "Buna dokunma - kirli!",
+      "Kirli kıyafetlerini yıkadı."
+    ],
+    "synonyms": ["unclean", "filthy", "soiled"],
+    "antonyms": ["clean", "pure"],
+    "usageNotes": "Can refer to physical dirt or moral impurity.",
+    "commonMistakes": "The comparative is 'dirtier', not 'more dirty'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "open",
+    "phonetic": "/ˈoʊpən/",
+    "partOfSpeech": ["adjective", "verb"],
+    "level": "A1",
+    "meaningsTr": ["açık", "açmak"],
+    "definitionsEn": ["Not closed or sealed", "To move a door or window to allow access"],
+    "examplesEn": [
+      "The store is open today.",
+      "Please open the window.",
+      "She opened the door."
+    ],
+    "examplesTr": [
+      "Dükkan bugün açık.",
+      "Lütfen pencereyi aç.",
+      "Kapıyı açtı."
+    ],
+    "synonyms": ["unlocked", "available", "unlock"],
+    "antonyms": ["closed", "shut"],
+    "usageNotes": "Can be physical state or action.",
+    "commonMistakes": "Don't say 'open the light' - say 'turn on the light'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "closed",
+    "phonetic": "/kloʊzd/",
+    "partOfSpeech": ["adjective"],
+    "level": "A1",
+    "meaningsTr": ["kapalı"],
+    "definitionsEn": ["Not open", "Not allowing people to enter"],
+    "examplesEn": [
+      "The bank is closed today.",
+      "Her eyes were closed.",
+      "The store is closed on Sundays."
+    ],
+    "examplesTr": [
+      "Banka bugün kapalı.",
+      "Gözleri kapalıydı.",
+      "Mağaza pazar günleri kapalı."
+    ],
+    "synonyms": ["shut", "locked"],
+    "antonyms": ["open"],
+    "usageNotes": "Refers to state of being not open.",
+    "commonMistakes": "The verb is 'close' (pronounced /kloʊz/), the adjective is 'closed' (pronounced /kloʊzd/).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "hot",
+    "phonetic": "/hɑːt/",
+    "partOfSpeech": ["adjective"],
+    "level": "A1",
+    "meaningsTr": ["sıcak", "ateşli"],
+    "definitionsEn": ["Having a high temperature", "Spicy"],
+    "examplesEn": [
+      "It's very hot today.",
+      "This soup is too hot to eat.",
+      "I love hot food."
+    ],
+    "examplesTr": [
+      "Bugün çok sıcak.",
+      "Bu çorba yemek için çok sıcak.",
+      "Acı yemekleri severim."
+    ],
+    "synonyms": ["warm", "heated", "spicy"],
+    "antonyms": ["cold", "cool"],
+    "usageNotes": "Can refer to temperature or spiciness of food.",
+    "commonMistakes": "Can also mean spicy for food - context makes it clear.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "cold",
+    "phonetic": "/koʊld/",
+    "partOfSpeech": ["adjective"],
+    "level": "A1",
+    "meaningsTr": ["soğuk", "hapşırmak"],
+    "definitionsEn": ["Having a low temperature", "Suffering from a cold"],
+    "examplesEn": [
+      "It's cold in winter.",
+      "I have a cold.",
+      "The water is too cold."
+    ],
+    "examplesTr": [
+      "Kışın hava soğuktur.",
+      "Nezle oldum.",
+      "Su çok soğuk."
+    ],
+    "synonyms": ["chilly", "frigid", "cool"],
+    "antonyms": ["hot", "warm"],
+    "usageNotes": "Can refer to weather, temperature, or illness.",
+    "commonMistakes": "'A cold' is the illness. 'Cold' alone is temperature.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "beautiful",
+    "phonetic": "/ˈbjuːtɪfəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "A1",
+    "meaningsTr": ["güzel", "harika"],
+    "definitionsEn": ["Pleasing to the senses or mind"],
+    "examplesEn": [
+      "She is a beautiful woman.",
+      "What a beautiful day!",
+      "The view is beautiful."
+    ],
+    "examplesTr": [
+      "O güzel bir kadın.",
+      "Ne kadar güzel bir gün!",
+      "Manzara güzel."
+    ],
+    "synonyms": ["pretty", "attractive", "lovely"],
+    "antonyms": ["ugly", "unattractive"],
+    "usageNotes": "Used for people, places, things, and experiences.",
+    "commonMistakes": "The adverb is 'beautifully', not 'beautiful'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "ugly",
+    "phonetic": "/ˈʌɡli/",
+    "partOfSpeech": ["adjective"],
+    "level": "A1",
+    "meaningsTr": ["çirkin", "berbat"],
+    "definitionsEn": ["Unpleasant to look at", "Offensive to the senses"],
+    "examplesEn": [
+      "That building is ugly.",
+      "Don't be ugly to others.",
+      "The weather is ugly today."
+    ],
+    "examplesTr": [
+      "O bina çirkin.",
+      "Başalarına kötü davranma.",
+      "Hava bugün berbat."
+    ],
+    "synonyms": ["unattractive", "hideous", "unsightly"],
+    "antonyms": ["beautiful", "attractive"],
+    "usageNotes": "Can refer to appearance or behavior/attitude.",
+    "commonMistakes": "The comparative is 'uglier', not 'more ugly'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "easy",
+    "phonetic": "/ˈiːzi/",
+    "partOfSpeech": ["adjective"],
+    "level": "A1",
+    "meaningsTr": ["kolay"],
+    "definitionsEn": ["Achieved without great effort", "Not difficult"],
+    "examplesEn": [
+      "The test was easy.",
+      "It's easy to learn English.",
+      "That was an easy game."
+    ],
+    "examplesTr": [
+      "Testtiydi.",
+      "İngilizce öğrenmek kolay.",
+      "Bu kolay bir oyun oldu."
+    ],
+    "synonyms": ["simple", "effortless", "uncomplicated"],
+    "antonyms": ["difficult", "hard"],
+    "usageNotes": "Used for tasks, activities, or situations.",
+    "commonMistakes": "The comparative is 'easier', not 'more easy'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "difficult",
+    "phonetic": "/ˈdɪfɪkəlt/",
+    "partOfSpeech": ["adjective"],
+    "level": "A1",
+    "meaningsTr": ["zor", "güç"],
+    "definitionsEn": ["Needing much effort or skill", "Not easy to do"],
+    "examplesEn": [
+      "The exam was very difficult.",
+      "It's difficult to understand him.",
+      "She has a difficult job."
+    ],
+    "examplesTr": [
+      "Sınav çok zordu.",
+      "Onu anlamak zor.",
+      "Zor bir işi var."
+    ],
+    "synonyms": ["hard", "challenging", "tough"],
+    "antonyms": ["easy", "simple"],
+    "usageNotes": "More formal than 'hard'.",
+    "commonMistakes": "The comparative is 'more difficult' or 'harder'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "expensive",
+    "phonetic": "/ɪkˈspensɪv/",
+    "partOfSpeech": ["adjective"],
+    "level": "A1",
+    "meaningsTr": ["pahalı"],
+    "definitionsEn": ["Costing a lot of money"],
+    "examplesEn": [
+      "That car is very expensive.",
+      "This restaurant is too expensive.",
+      "She bought an expensive dress."
+    ],
+    "examplesTr": [
+      "O araba çok pahalı.",
+      "Bu restoran çok pahalı.",
+      "Pahalı bir elbise aldı."
+    ],
+    "synonyms": ["costly", "pricey", "dear"],
+    "antonyms": ["cheap", "inexpensive"],
+    "usageNotes": "Only about price, not quality.",
+    "commonMistakes": "The comparative is 'more expensive', not 'expensiver'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "cheap",
+    "phonetic": "/tʃiːp/",
+    "partOfSpeech": ["adjective"],
+    "level": "A1",
+    "meaningsTr": ["ucuz"],
+    "definitionsEn": ["Not costing a lot of money", "Of poor quality"],
+    "examplesEn": [
+      "This is very cheap.",
+      "He bought a cheap phone.",
+      "I found a cheap hotel."
+    ],
+    "examplesTr": [
+      "Bu çok ucuz.",
+      "Ucuz bir telefon aldı.",
+      "Ucuz bir otel buldum."
+    ],
+    "synonyms": ["inexpensive", "low-cost"],
+    "antonyms": ["expensive", "costly"],
+    "usageNotes": "Can mean low price OR poor quality depending on context.",
+    "commonMistakes": "The comparative is 'cheaper', not 'more cheap'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "right",
+    "phonetic": "/raɪt/",
+    "partOfSpeech": ["adjective", "adverb", "noun"],
+    "level": "A1",
+    "meaningsTr": ["doğru", "sağ", "hak"],
+    "definitionsEn": ["Correct or true", "Direction opposite to left", "Moral or legal entitlement"],
+    "examplesEn": [
+      "That's the right answer.",
+      "Turn right at the corner.",
+      "You have the right to remain silent."
+    ],
+    "examplesTr": [
+      "Doğru cevap bu.",
+      "Köşede sağa dön.",
+      "Susturma hakkın var."
+    ],
+    "synonyms": ["correct", "true", "conservative"],
+    "antonyms": ["wrong", "left"],
+    "usageNotes": "Very versatile word with many meanings.",
+    "commonMistakes": "Don't confuse 'write' (verb) with 'right' (correct/direction).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "wrong",
+    "phonetic": "/rɔːŋ/",
+    "partOfSpeech": ["adjective"],
+    "level": "A1",
+    "meaningsTr": ["yanlış"],
+    "definitionsEn": ["Not correct", "Not appropriate"],
+    "examplesEn": [
+      "That's the wrong way.",
+      "You're wrong about this.",
+      "Something is wrong with my car."
+    ],
+    "examplesTr": [
+      "Bu yanlış yol.",
+      "Bu konuda yanılıyorsun.",
+      "Arabamla ilgili bir sorun var."
+    ],
+    "synonyms": ["incorrect", "false", "mistaken"],
+    "antonyms": ["right", "correct"],
+    "usageNotes": "Can be about facts, directions, or morality.",
+    "commonMistakes": "Don't say 'you wrong' - use 'you are wrong' or 'you're wrong'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "question",
+    "phonetic": "/ˈkwestʃən/",
+    "partOfSpeech": ["noun"],
+    "level": "A1",
+    "meaningsTr": ["soru", "sormak"],
+    "definitionsEn": ["A sentence worded to elicit information"],
+    "examplesEn": [
+      "Can I ask a question?",
+      "The answer to your question is yes.",
+      "She asked many questions."
+    ],
+    "examplesTr": [
+      "Bir soru sorabilir miyim?",
+      "Sorunun cevabı evet.",
+      "Çok soru sordu."
+    ],
+    "synonyms": ["inquiry", "query", "doubt"],
+    "antonyms": ["answer", "response"],
+    "usageNotes": "Used in academic, casual, and formal contexts.",
+    "commonMistakes": "Don't confuse 'question' (noun) with 'ask' (verb).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "answer",
+    "phonetic": "/ˈænsər/",
+    "partOfSpeech": ["noun", "verb"],
+    "level": "A1",
+    "meaningsTr": ["cevap", "cevaplamak"],
+    "definitionsEn": ["A response to a question", "To respond to a question"],
+    "examplesEn": [
+      "Do you know the answer?",
+      "Please answer my question.",
+      "She answered correctly."
+    ],
+    "examplesTr": [
+      "Cevabı biliyor musun?",
+      "Lütfen sorumu cevapla.",
+      "Doğru cevap verdi."
+    ],
+    "synonyms": ["response", "reply", "solution"],
+    "antonyms": ["question"],
+    "usageNotes": "Can be both noun and verb.",
+    "commonMistakes": "As a verb, say 'answer the phone' not 'pick up the phone' (though both are used).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "people",
+    "phonetic": "/ˈpiːpəl/",
+    "partOfSpeech": ["noun"],
+    "level": "A1",
+    "meaningsTr": ["insanlar", "halk"],
+    "definitionsEn": ["Human beings in general", "Members of a nation or community"],
+    "examplesEn": [
+      "Many people like music.",
+      "Who are those people?",
+      "The Turkish people are friendly."
+    ],
+    "examplesTr": [
+      "Birçok insan müziği sever.",
+      "Şu insanlar kim?",
+      "Türk halkı dost canlısı."
+    ],
+    "synonyms": ["humans", "persons", "folks"],
+    "antonyms": [],
+    "usageNotes": "Plural noun. 'A people' refers to an ethnic group.",
+    "commonMistakes": "Don't say 'peoples' unless referring to multiple ethnic groups.",
+    "imageUrl": "",
+    "audioUrl": ""
+  }
+]

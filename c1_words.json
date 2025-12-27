@@ -1,0 +1,1298 @@
+[
+  {
+    "word": "unprecedented",
+    "phonetic": "/ʌnˈpresɪdentɪd/",
+    "partOfSpeech": ["adjective"],
+    "level": "C1",
+    "meaningsTr": ["daha önce hiç olmamış", "benzeri görülmemiş", "eşsiz"],
+    "definitionsEn": ["Never done or known before", "Having no previous example for comparison"],
+    "examplesEn": [
+      "The pandemic created unprecedented challenges.",
+      "We witnessed unprecedented economic growth.",
+      "The decision was unprecedented in legal history."
+    ],
+    "examplesTr": [
+      "Salgın daha önce hiç karşılaşılmamış zorluklar yarattı.",
+      "Benzersiz ekonomik büyüme tanık olduk.",
+      "Bu karar hukuk tarihinde benzersizdi."
+    ],
+    "synonyms": ["unparalleled", "novel", "groundbreaking", "record-breaking"],
+    "antonyms": ["precedented", "common", "ordinary", "familiar"],
+    "usageNotes": "Reserve for truly exceptional situations with no prior comparison.",
+    "commonMistakes": "Don't use for routine events - must be truly unique.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "hypothetical",
+    "phonetic": "/ˌhaɪpəˈθetɪkəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "C1",
+    "meaningsTr": ["varsayımsal", "teorik", "hipotetik"],
+    "definitionsEn": ["Based on or serving as a hypothesis", "Supposed but not necessarily real"],
+    "examplesEn": [
+      "Let's discuss a hypothetical scenario.",
+      "This is just a hypothetical question.",
+      "The theory remains hypothetical."
+    ],
+    "examplesTr": [
+      "Varsayımsal bir senaryo tartışalım.",
+      "Bu sadece varsayımsal bir soru.",
+      "Teori varsayımsal olmaya devam ediyor."
+    ],
+    "synonyms": ["theoretical", "assumed", "supposed", "potential"],
+    "antonyms": ["actual", "real", "factual", "proven"],
+    "usageNotes": "Used for imagined situations that may not happen.",
+    "commonMistakes": "Don't confuse with 'hypothermia' (medical condition).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "abstract",
+    "phonetic": "/ˈæbstrækt/",
+    "partOfSpeech": ["adjective", "noun"],
+    "level": "C1",
+    "meaningsTr": ["soyut", "öz", "özet"],
+    "definitionsEn": ["Existing in thought or as an idea but not physical", "A summary of a research paper"],
+    "examplesEn": [
+      "Philosophy deals with abstract concepts.",
+      "Truth and justice are abstract ideas.",
+      "Read the abstract before the paper."
+    ],
+    "examplesTr": [
+      "Felsefe soyut kavramlarla uğraşır.",
+      "Hakikat ve adalet soyut fikirlerdir.",
+      "Makaleden önce özeti okuyun."
+    ],
+    "synonyms": ["theoretical", "conceptual", "intangible", "summary"],
+    "antonyms": ["concrete", "physical", "tangible", "detailed"],
+    "usageNotes": "Can describe ideas or be a noun meaning summary.",
+    "commonMistakes": "Adjective stress on first syllable, verb on second.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "manifestation",
+    "phonetic": "/ˌmænɪfeˈsteɪʃən/",
+    "partOfSpeech": ["noun"],
+    "level": "C1",
+    "meaningsTr": ["tezahür", "belirti", "ifade"],
+    "definitionsEn": ["An event, action, or object that clearly shows something", "The act of appearing"],
+    "examplesEn": [
+      "The disease has different manifestations.",
+      "This is a manifestation of stress.",
+      "Protests were a manifestation of public anger."
+    ],
+    "examplesTr": [
+      "Hastalığın farklı tezahürleri vardır.",
+      "Bu stresin bir tezahürüdür.",
+      "Protestolar halk öfkesinin bir tezahürüydu."
+    ],
+    "synonyms": ["demonstration", "expression, indication", "sign"],
+    "antonyms": ["concealment, hiding, suppression"],
+    "usageNotes": "Formal word for showing or revealing something.",
+    "commonMistakes": "Don't use for simple displays - formal contexts only.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "contingency",
+    "phonetic": "/kənˈtɪndʒənsi/",
+    "partOfSpeech": ["noun"],
+    "level": "C1",
+    "meaningsTr": ["olaylık", "ihtimal", "acil durum"],
+    "definitionsEn": ["A future event or circumstance that is possible but not certain", "A provision for an unforeseen event"],
+    "examplesEn": [
+      "We need a contingency plan.",
+      "Prepare for all contingencies.",
+      "The contingency fund covers emergencies."
+    ],
+    "examplesTr": [
+      "Acil durum planına ihtiyacımız var.",
+      "Tüm ihtimallere hazırlanın.",
+      "Acil durum fonu acil durumları kapsar."
+    ],
+    "synonyms": ["possibility, emergency, provision", "eventuality"],
+    "antonyms": ["certainty, inevitability, assurance"],
+    "usageNotes": "Use 'contingency plan' for backup plans.",
+    "commonMistakes": "Don't confuse with 'continence' (self-control).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "feasibility",
+    "phonetic": "/ˌfiːzəˈbɪləti/",
+    "partOfSpeech": ["noun"],
+    "level": "C1",
+    "meaningsTr": ["yapılabilirlik", "uygunluk", "mümkünlük"],
+    "definitionsEn": ["The state of being possible or likely", "Practicality of a plan"],
+    "examplesEn": [
+      "We need to assess the feasibility.",
+      "The study confirmed the project's feasibility.",
+      "Financial feasibility is questionable."
+    ],
+    "examplesTr": [
+      "Yapılabilirliği değerlendirmeliyiz.",
+      "Çalışma projenin yapılabilirliğini doğruladı.",
+      "Mali yapılabilirlik şüpheli."
+    ],
+    "synonyms": ["practicality, viability, possibility", "workability"],
+    "antonyms": ["impossibility, impracticality", "unfeasibility"],
+    "usageNotes": "Used in business and project planning.",
+    "commonMistakes": "Don't use 'feasibility' for ability - only for possibility of doing something.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "implication",
+    "phonetic": "/ˌɪmplɪˈkeɪʃən/",
+    "partOfSpeech": ["noun"],
+    "level": "C1",
+    "meaningsTr": ["implication", "sonuç", "itmam"],
+    "definitionsEn": ["A likely consequence of something", "A suggestion implied rather than stated"],
+    "examplesEn": [
+      "The implications are far-reaching.",
+      "Consider the legal implications.",
+      "The implication was clear."
+    ],
+    "examplesTr": [
+      "Sonuçları geniş kapsamlı.",
+      "Hukuki sonuçları göz önünde bulundurun.",
+      "İtbar açıkçası belliydi."
+    ],
+    "synonyms": ["consequence, effect, suggestion", "inference"],
+    "antonyms": [],
+    "usageNotes": "Can mean future effect or hinted meaning.",
+    "commonMistakes": "Don't confuse with 'application' - implication is about consequences.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "correlation",
+    "phonetic": "/ˌkɔːrəˈleɪʃən/",
+    "partOfSpeech": ["noun"],
+    "level": "C1",
+    "meaningsTr": ["korelasyon", "ilişki", "bağlantı"],
+    "definitionsEn": ["A mutual relationship or connection between two or more things"],
+    "examplesEn": [
+      "Studies show a correlation between diet and health.",
+      "There's a strong correlation noted.",
+      "Correlation does not imply causation."
+    ],
+    "examplesTr": [
+      "Çalışmalar diyet ve sağlık arasında korelasyon gösteriyor.",
+      "Güçlü bir ilişki tespit edildi.",
+      "Korelasyon nedensellik anlamına gelmez."
+    ],
+    "synonyms": ["relationship, connection, association", "link"],
+    "antonyms": ["disconnection, independence", "dissociation"],
+    "usageNotes": "Used in statistics and academic contexts.",
+    "commonMistakes": "Don't confuse correlation (relationship) with causation (cause).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "causation",
+    "phonetic": "/kɔːˈzeɪʃən/",
+    "partOfSpeech": ["noun"],
+    "level": "C1",
+    "meaningsTr": ["nedenlik", "sebep", "illiyet"],
+    "definitionsEn": ["The action of causing something", "The relationship between cause and effect"],
+    "examplesEn": [
+      "The study examined causation.",
+      "Proving causation is difficult.",
+      "Causation was established in court."
+    ],
+    "examplesTr": [
+      "Çalışma nedenliği inceledi.",
+      "Nedenliği kanıtlamak zordur.",
+      "Mahkemede illiyet kuruldu."
+    ],
+    "synonyms": ["cause, origin, source", "causality"],
+    "antonyms": ["effect, consequence, result"],
+    "usageNotes": "Formal academic and legal term.",
+    "commonMistakes": "Don't confuse with 'correlation' - causation means one thing causes another.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "synthesis",
+    "phonetic": "/ˈsɪnθəsɪs/",
+    "partOfSpeech": ["noun"],
+    "level": "C1",
+    "meaningsTr": ["sentez", "bileşim", "terkip"],
+    "definitionsEn": ["The combination of ideas to form a theory or system", "The production of chemical compounds"],
+    "examplesEn": [
+      "The book is a synthesis of Eastern and Western thought.",
+      "Chemical synthesis requires precision.",
+      "Her theory represents a brilliant synthesis."
+    ],
+    "examplesTr": [
+      "Bu kitap Doğu ve Batı düşüncesinin bir sentezidir.",
+      "Kimyasal sentez hassasiyet gerektirir.",
+      "Teorisi harika bir sentezi temsil ediyor."
+    ],
+    "synonyms": ["combination, blend, integration", "fusion"],
+    "antonyms": ["analysis, separation, breakdown", "isolation"],
+    "usageNotes": "Plural is 'syntheses'. Opposite of analysis.",
+    "commonMistakes": "Don't confuse with 'synthetic' (artificial).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "consensus",
+    "phonetic": "/kənˈsensəs/",
+    "partOfSpeech": ["noun"],
+    "level": "C1",
+    "meaningsTr": ["mutabakat", "fikir birliği", "uyuşma"],
+    "definitionsEn": ["General agreement among a group of people"],
+    "examplesEn": [
+      "The committee reached a consensus.",
+      "Building consensus takes time.",
+      "Scientific consensus supports this theory."
+    ],
+    "examplesTr": [
+      "Komite fikir birliğine vardı.",
+      "Fikir birliği oluşturmak zaman alır.",
+      "Bilimsel mutabakat bu teoriyi destekliyor."
+    ],
+    "synonyms": ["agreement, accord, unanimity", "harmony"],
+    "antonyms": ["disagreement, conflict, dispute", "dissent"],
+    "usageNotes": "Use 'reach a consensus' or 'consensus on something'.",
+    "commonMistakes": "Don't say 'consensus about' - use 'consensus on' or 'consensus that'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "paradigm",
+    "phonetic": "/ˈpærədaɪm/",
+    "partOfSpeech": ["noun"],
+    "level": "C1",
+    "meaningsTr": ["paradigma", "örnek", "kalıp"],
+    "definitionsEn": ["A typical example or pattern of something", "A worldview or conceptual framework"],
+    "examplesEn": [
+      "This represents a new paradigm in medicine.",
+      "The paradigm has shifted dramatically.",
+      "Challenge the existing paradigm."
+    ],
+    "examplesTr": [
+      "Bu tıpta yeni bir paradigmayı temsil ediyor.",
+      "Paradigma dramatik bir şekilde değişti.",
+      "Mevcut paradigmayı meydan okuyun."
+    ],
+    "synonyms": ["model, pattern, framework", "example"],
+    "antonyms": ["anomaly, exception, deviation"],
+    "usageNotes": "Academic and technical contexts.",
+    "commonMistakes": "Don't use for simple examples - implies a whole framework.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "phenomenon",
+    "phonetic": "/fəˈnɑːmɪnən/",
+    "partOfSpeech": ["noun"],
+    "level": "C1",
+    "meaningsTr": ["fenomen", "olgu", "hadi̇se"],
+    "definitionsEn": ["A fact or situation that is observed to exist", "An extraordinary person or thing"],
+    "examplesEn": [
+      "Climate change is a global phenomenon.",
+      "This phenomenon requires further study.",
+      "She's a phenomenon in her field."
+    ],
+    "examplesTr": [
+      "İklim değişikliği küresel bir olgudur.",
+      "Bu olgu daha fazla çalışma gerektiriyor.",
+      "Kendi alanında bir olgu."
+    ],
+    "synonyms": ["occurrence, event, marvel", "wonder"],
+    "antonyms": [],
+    "usageNotes": "Plural is 'phenomena'. Scientific or impressive events.",
+    "commonMistakes": "Plural is 'phenomena', not 'phenomenons'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "criterion",
+    "phonetic": "/kraɪˈtɪriən/",
+    "partOfSpeech": ["noun"],
+    "level": "C1",
+    "meaningsTr": ["kriter", "ölçüt", "standart"],
+    "definitionsEn": ["A principle or standard by which something may be judged"],
+    "examplesEn": [
+      "What is the main criterion for selection?",
+      "Success is measured by specific criteria.",
+      "This meets all our criteria."
+    ],
+    "examplesTr": [
+      "Seçim için ana kriter nedir?",
+      "Başarı belirli kriterlere göre ölçülür.",
+      "Bu tüm kriterlerimizi karşılıyor."
+    ],
+    "synonyms": ["standard, measure, benchmark", "requirement"],
+    "antonyms": [],
+    "usageNotes": "Singular is 'criterion', plural is 'criteria'.",
+    "commonMistakes": "Don't use 'criterias' - plural is 'criteria'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "anomaly",
+    "phonetic": "/əˈnɑːməli/",
+    "partOfSpeech": ["noun"],
+    "level": "C1",
+    "meaningsTr": ["anormallik", "sapma", "istisna"],
+    "definitionsEn": ["Something that deviates from what is standard or expected"],
+    "examplesEn": [
+      "The data shows an anomaly.",
+      "This result is an anomaly.",
+      "Explain this apparent anomaly."
+    ],
+    "examplesTr": [
+      "Veri bir anormallik gösteriyor.",
+      "Bu sonuç bir anomali.",
+      "Bu bariz anormalliliği açıklayın."
+    ],
+    "synonyms": ["irregularity, exception, deviation", "abnormality"],
+    "antonyms": ["norm, standard, regularity", "conformity"],
+    "usageNotes": "Scientific and academic contexts.",
+    "commonMistakes": "Don't confuse with 'anonymity' (being unnamed).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "equilibrium",
+    "phonetic": "/ˌiːkwɪˈlɪbriəm/",
+    "partOfSpeech": ["noun"],
+    "level": "C1",
+    "meaningsTr": ["denge", "istirahat", "muvazene"],
+    "definitionsEn": ["A state of physical balance", "A calm state of mind"],
+    "examplesEn": [
+      "The market reached equilibrium.",
+      "Maintain ecological equilibrium.",
+      "She regained her emotional equilibrium."
+    ],
+    "examplesTr": [
+      "Piyasa dengeye ulaştı.",
+      "Ekolojik dengeyi koruyun.",
+      "Duygusal dengesini geri kazandı."
+    ],
+    "synonyms": ["balance, stability, equilibrium", "poise"],
+    "antonyms": ["imbalance, instability, disequilibrium", "chaos"],
+    "usageNotes": "Scientific, economic, and emotional contexts.",
+    "commonMistakes": "Don't confuse with 'equator' (geographic line).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "hierarchy",
+    "phonetic": "/ˈhaɪərɑːrki/",
+    "partOfSpeech": ["noun"],
+    "level": "C1",
+    "meaningsTr": ["hierarşi", "derece", "basamak"],
+    "definitionsEn": ["A system in which members are ranked according to status or authority"],
+    "examplesEn": [
+      "Understand the corporate hierarchy.",
+      "Social hierarchy influences behavior.",
+      "The hierarchy is clearly defined."
+    ],
+    "examplesTr": [
+      "Kurumsal hiyerarşiyi anlayın.",
+      "Sosyal hiyerarşi davranışı etkiler.",
+      "Hiyerarşi açıkça tanımlanmıştır."
+    ],
+    "synonyms": ["ranking, order, structure", "ladder"],
+    "antonyms": ["equality, democracy, level"],
+    "usageNotes": "Used in organizations, societies, and systems.",
+    "commonMistakes": "Don't confuse with 'anarchy' (no hierarchy).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "infrastructure",
+    "phonetic": "/ˈɪnfrəstrʌktʃər/",
+    "partOfSpeech": ["noun"],
+    "level": "C1",
+    "meaningsTr": ["altyapı", "tesisat", "müessese"],
+    "definitionsEn": ["The basic physical and organizational structures needed for society"],
+    "examplesEn": [
+      "Invest in infrastructure.",
+      "Digital infrastructure is critical.",
+      "The infrastructure is aging."
+    ],
+    "examplesTr": [
+      "Altyapıya yatırım yapın.",
+      "Dijital altyapı kritiktir.",
+      "Altyapı yaşlanıyor."
+    ],
+    "synonyms": ["foundation, base, framework", "system"],
+    "antonyms": ["superstructure, surface", "exterior"],
+    "usageNotes": "Physical structures (roads, power) or systems (IT, organizational).",
+    "commonMistakes": "Don't use for superficial things - means foundational systems.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "mechanism",
+    "phonetic": "/ˈmekənɪzəm/",
+    "partOfSpeech": ["noun"],
+    "level": "C1",
+    "meaningsTr": ["mekanizma", "sistem", "yöntem"],
+    "definitionsEn": ["A system of parts working together", "A natural process"],
+    "examplesEn": [
+      "Explain the mechanism of action.",
+      "The feedback mechanism works well.",
+      "Defense mechanisms protect the ego."
+    ],
+    "examplesTr": [
+      "Eylem mekanizmasını açıklayın.",
+      "Geri bildirim mekanizması iyi çalışıyor.",
+      "Savunma mekanizmaları egoyu korur."
+    ],
+    "synonyms": ["system, process, method", "structure"],
+    "antonyms": [],
+    "usageNotes": "Can be mechanical, biological, or abstract.",
+    "commonMistakes": "Don't confuse with 'mechanic' (person who repairs machines).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "methodology",
+    "phonetic": "/meθəˈdɑːlədʒi/",
+    "partOfSpeech": ["noun"],
+    "level": "C1",
+    "meaningsTr": ["metodoloji", "yöntembilim", "usul"],
+    "definitionsEn": ["A system of methods used in a particular area of study or activity"],
+    "examplesEn": [
+      "The research methodology is sound.",
+      "We need a new methodology.",
+      "Scientific methodology requires rigor."
+    ],
+    "examplesTr": [
+      "Araştırma metodolojisi sağlam.",
+      "Yeni bir metodolojiye ihtiyacımız var.",
+      "Bilimsel metodoloji titizlik gerektirir."
+    ],
+    "synonyms": ["method, approach, procedure", "technique"],
+    "antonyms": [],
+    "usageNotes": "Academic and research contexts.",
+    "commonMistakes": "Don't use for simple methods - methodology is systematic.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "heterogeneous",
+    "phonetic": "/ˌhetərəˈdʒiːniəs/",
+    "partOfSpeech": ["adjective"],
+    "level": "C1",
+    "meaningsTr": ["heterojen", "çeşitli", "farklı"],
+    "definitionsEn": ["Diverse in character or content", "Composed of different kinds"],
+    "examplesEn": [
+      "The population is heterogeneous.",
+      "A heterogeneous group of students.",
+      "Heterogeneous mixtures are visible."
+    ],
+    "examplesTr": [
+      "Nüfus heterojendir.",
+      "Çeşitli öğrenci grubu.",
+      "Heterojen karışımlar görünür."
+    ],
+    "synonyms": ["diverse, mixed, varied", "assorted"],
+    "antonyms": ["homogeneous, uniform, similar", "identical"],
+    "usageNotes": "Scientific and formal contexts.",
+    "commonMistakes": "Don't confuse with 'homogeneous' (same throughout).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "homogeneous",
+    "phonetic": "/ˌhoʊməˈdʒiːniəs/",
+    "partOfSpeech": ["adjective"],
+    "level": "C1",
+    "meaningsTr": ["homojen", "türdeş", "aynı"],
+    "definitionsEn": ["Of the same kind", "Uniform throughout"],
+    "examplesEn": [
+      "The sample was homogeneous.",
+      "A homogeneous society.",
+      "Homogeneous mixtures appear uniform."
+    ],
+    "examplesTr": [
+      "Örnek homojendi.",
+      "Homojen bir toplum.",
+      "Homojen karışımlar tekdüze görünür."
+    ],
+    "synonyms": ["uniform, consistent, identical", "similar"],
+    "antonyms": ["heterogeneous, diverse, mixed", "varied"],
+    "usageNotes": "Scientific and sociological contexts.",
+    "commonMistakes": "Don't confuse with 'heterogeneous' (diverse/mixed).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "theoretical",
+    "phonetic": "/ˌθiːəˈretɪkəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "C1",
+    "meaningsTr": ["teorik", "teorik", "nazari"],
+    "definitionsEn": ["Concerned with theory rather than practice", "Existing only as a theory"],
+    "examplesEn": [
+      "This is a theoretical possibility.",
+      "Theoretical physics explores concepts.",
+      "The framework is purely theoretical."
+    ],
+    "examplesTr": [
+      "Bu teorik bir ihtimal.",
+      "Teorik fizik kavramları araştırır.",
+      "Çerçeve tamamen teorik."
+    ],
+    "synonyms": ["hypothetical, academic, abstract", "conceptual"],
+    "antonyms": ["practical, empirical, applied", "concrete"],
+    "usageNotes": "About ideas and theories, not practice.",
+    "commonMistakes": "Don't use when something has been proven - theoretical means unproven.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "empirical",
+    "phonetic": "/emˈpɪrɪkəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "C1",
+    "meaningsTr": ["ampirik", "deneysel", "gözlemsel"],
+    "definitionsEn": ["Based on observation or experience", "Verifiable by evidence"],
+    "examplesEn": [
+      "We need empirical evidence.",
+      "Empirical research requires data.",
+      "Empirical studies support this claim."
+    ],
+    "examplesTr": [
+      "Ampirik kanıta ihtiyacımız var.",
+      "Deneysel araştırma veri gerektirir.",
+      "Gözlemsel çalışmalar bu iddiayı destekliyor."
+    ],
+    "synonyms": ["observational, experimental, evidence-based", "practical"],
+    "antonyms": ["theoretical, hypothetical, abstract", "speculative"],
+    "usageNotes": "Scientific and academic contexts.",
+    "commonMistakes": "Don't confuse with 'empire' (kingdom/domain).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "quantitative",
+    "phonetic": "/ˈkwɑːntəteɪtɪv/",
+    "partOfSpeech": ["adjective"],
+    "level": "C1",
+    "meaningsTr": ["nicel", "ölçülebilir", "sayısal"],
+    "definitionsEn": ["Relating to, measuring, or measured by quantity", "Expressible as a number"],
+    "examplesEn": [
+      "Quantitative analysis uses statistics.",
+      "We need quantitative data.",
+      "Quantitative methods measure variables."
+    ],
+    "examplesTr": [
+      "Nicel analiz istatistik kullanır.",
+      "Nicel verilere ihtiyacımız var.",
+      "Nicel yöntemler değişkenleri ölçer."
+    ],
+    "synonyms": ["measurable, numerical, statistical", "computable"],
+    "antonyms": ["qualitative, subjective, descriptive"],
+    "usageNotes": "Research and scientific contexts.",
+    "commonMistakes": "Don't confuse with 'qualitative' (descriptive/quality-based).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "qualitative",
+    "phonetic": "/ˈkwɑːlɪteɪtɪv/",
+    "partOfSpeech": ["adjective"],
+    "level": "C1",
+    "meaningsTr": ["niteliksel", "kalitatif", "niteliğe göre"],
+    "definitionsEn": ["Relating to quality or kind", "Based on descriptions rather than numbers"],
+    "examplesEn": [
+      "Qualitative research examines behavior.",
+      "We need qualitative data.",
+      "Qualitative analysis provides insights."
+    ],
+    "examplesTr": [
+      "Niteliksel araştırma davranışı inceler.",
+      "Niteliksel verilere ihtiyacımız var.",
+      "Niteliksel analiz içgörü sağlar."
+    ],
+    "synonyms": ["descriptive, subjective, non-numerical", "explanatory"],
+    "antonyms": ["quantitative, numerical, measurable", "statistical"],
+    "usageNotes": "Research focusing on qualities, not quantities.",
+    "commonMistakes": "Don't confuse with 'quantitative' (number-based).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "intrinsic",
+    "phonetic": "/ɪnˈtrɪnzɪk/",
+    "partOfSpeech": ["adjective"],
+    "level": "C1",
+    "meaningsTr": ["içsel", "özsel", "temel"],
+    "definitionsEn": ["Belonging naturally; essential", "Inherent"],
+    "examplesEn": [
+      "Math has intrinsic beauty.",
+      "The intrinsic value of gold.",
+      "Motivation must be intrinsic."
+    ],
+    "examplesTr": [
+      "Matematiğin içsel güzelliği vardır.",
+      "Altının içsel değeri.",
+      "Motivasyon içsel olmalı."
+    ],
+    "synonyms": ["inherent, innate, essential", "natural"],
+    "antonyms": ["extrinsic, external, accidental", "incidental"],
+    "usageNotes": "About essential, inherent qualities.",
+    "commonMistakes": "Don't confuse with 'extrinsic' (external).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "extrinsic",
+    "phonetic": "/ekˈstrɪnzɪk/",
+    "partOfSpeech": ["adjective"],
+    "level": "C1",
+    "meaningsTr": ["harici", "dışsal", "kendi"],
+    "definitionsEn": ["Not part of the essential nature", "Coming from outside"],
+    "examplesEn": [
+      "Extrinsic motivation includes rewards.",
+      "Extrinsic factors affect performance.",
+      "Consider extrinsic evidence."
+    ],
+    "examplesTr": [
+      "Dışsal motivasyon ödülleri içerir.",
+      "Dışsal faktörler performansı etkiler.",
+      "Dışsal kanıtı göz önünde bulundurun."
+    ],
+    "synonyms": ["external, extraneous, outside", "incidental"],
+    "antonyms": ["intrinsic, inherent, internal", "essential"],
+    "usageNotes": "About external factors or motivations.",
+    "commonMistakes": "Don't confuse with 'intrinsic' (internal/essential).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "prospective",
+    "phonetic": "/prəˈspektɪv/",
+    "partOfSpeech": ["adjective"],
+    "level": "C1",
+    "meaningsTr": ["olası", "gelecekteki", "muhtemel"],
+    "definitionsEn": ["Expected or expecting to be something in the future", "Potential"],
+    "examplesEn": [
+      "We interviewed prospective employees.",
+      "Prospective buyers visited the property.",
+      "Consider prospective outcomes."
+    ],
+    "examplesTr": [
+      "Olası çalışanları mülakata yaptık.",
+      "Muhtemel alıcılar mülkü ziyaret etti.",
+      "Olası sonuçları göz önünde bulundurun."
+    ],
+    "synonyms": ["potential, expected, future", "anticipated"],
+    "antonyms": ["retrospective, current, actual"],
+    "usageNotes": "About future possibilities or candidates.",
+    "commonMistakes": "Don't confuse with 'perspective' (viewpoint).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "retrospective",
+    "phonetic": "/ˌretroʊˈspektɪv/",
+    "partOfSpeech": ["adjective"],
+    "level": "C1",
+    "meaningsTr": ["retrospektif", "geçmişe dönük", "arızi"],
+    "definitionsEn": ["Looking back on or dealing with past events or situations"],
+    "examplesEn": [
+      "A retrospective exhibition of his work.",
+      "Retrospective analysis revealed patterns.",
+      "In retrospect, it was obvious."
+    ],
+    "examplesTr": [
+      "Çalışmalarının retrospektif sergisi.",
+      "Geriye dönük analiz kalıplarını ortaya çıkardı.",
+      "Geriye dönük bakınca, barizdi."
+    ],
+    "synonyms": ["looking back, backward-looking", " nostalgic"],
+    "antonyms": ["prospective, forward-looking", "anticipatory"],
+    "usageNotes": "Looking back at past events.",
+    "commonMistakes": "Don't confuse with 'prospective' (looking forward).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "simultaneous",
+    "phonetic": "/ˌsaɪməlˈteɪniəs/",
+    "partOfSpeech": ["adjective"],
+    "level": "C1",
+    "meaningsTr": ["eşzamanlı", "aynı anda", "simültane"],
+    "definitionsEn": ["Occurring at the same time", "Synchronized"],
+    "examplesEn": [
+      "Simultaneous translation is difficult.",
+      "They made simultaneous discoveries.",
+      "The events were simultaneous."
+    ],
+    "examplesTr": [
+      "Eşzamanlı çeviri zordur.",
+      "Aynı anda keşifler yaptılar.",
+      "Olaylar eşzamanlıydı."
+    ],
+    "synonyms": ["concurrent, synchronized, coincident", "parallel"],
+    "antonyms": ["sequential, consecutive, separate", "staggered"],
+    "usageNotes": "About things happening at exactly the same time.",
+    "commonMistakes": "Don't use for things that happen close in time - must be exact same time.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "spontaneous",
+    "phonetic": "/spɑːnˈteɪniəs/",
+    "partOfSpeech": ["adjective"],
+    "level": "C1",
+    "meaningsTr": ["kendiliğinden", "doğaçlama", "ani"],
+    "definitionsEn": ["Performed without planning", "Happening naturally without external cause"],
+    "examplesEn": [
+      "It was a spontaneous decision.",
+      "Spontaneous combustion is rare.",
+      "She has a spontaneous personality."
+    ],
+    "examplesTr": [
+      "Kendiliğinden bir karardı.",
+      "Kendiliğinden yanma nadirdir.",
+      "Kendiliğinden bir kişiliği var."
+    ],
+    "synonyms": ["impulsive, unplanned, natural", "instinctive"],
+    "antonyms": ["planned, deliberate, rehearsed", "prepared"],
+    "usageNotes": "About actions or events without prior planning.",
+    "commonMistakes": "Don't confuse with 'impulsive' (acting without thinking).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "inevitable",
+    "phonetic": "/ɪnˈevɪtəbəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "C1",
+    "meaningsTr": ["kaçınılmaz", "mukadder", "elzem"],
+    "definitionsEn": ["Certain to happen; unavoidable"],
+    "examplesEn": [
+      "Change is inevitable.",
+      "War became inevitable.",
+      "Death is inevitable."
+    ],
+    "examplesTr": [
+      "Değişim kaçınılmazdır.",
+      "Savaş kaçınılmaz hale geldi.",
+      "Ölüm kaçınılmazdır."
+    ],
+    "synonyms": ["unavoidable, certain, inescapable", "destined"],
+    "antonyms": ["avoidable, preventable, uncertain", "unlikely"],
+    "usageNotes": "Very strong - means absolutely cannot be avoided.",
+    "commonMistakes": "Don't use for things that can be prevented.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "deteriorate",
+    "phonetic": "/dɪˈtɪriəreɪt/",
+    "partOfSpeech": ["verb"],
+    "level": "C1",
+    "meaningsTr": ["bozulmak", "kötüleşmek", "irca etmek"],
+    "definitionsEn": ["To become progressively worse", "To decline in quality"],
+    "examplesEn": [
+      "His health began to deteriorate.",
+      "The situation deteriorated rapidly.",
+      "Weather conditions deteriorated."
+    ],
+    "examplesTr": [
+      "Sağlığı bozulmaya başladı.",
+      "Durum hızla kötüleşti.",
+      "Hava koşulları bozuldu."
+    ],
+    "synonyms": ["worsen, decline, degenerate", "decay"],
+    "antonyms": ["improve, recover, strengthen", "develop"],
+    "usageNotes": "About getting worse over time.",
+    "commonMistakes": "Don't use for sudden bad events - implies gradual decline.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "exacerbate",
+    "phonetic": "/ɪɡˈzæsərbeɪt/",
+    "partOfSpeech": ["verb"],
+    "level": "C1",
+    "meaningsTr": ["kötüleştirmek", "şiddetlendirmek", "ağırlaştırmak"],
+    "definitionsEn": ["To make a problem or bad situation worse"],
+    "examplesEn": [
+      "His comments exacerbated the tension.",
+      "The policy exacerbated inequality.",
+      "Stress can exacerbate health problems."
+    ],
+    "examplesTr": [
+      "Yorumları gerilimi şiddetlendirdi.",
+      "Politika eşitsizliği kötüleştirdi.",
+      "Stres sağlık sorunlarını ağırlaştırabilir."
+    ],
+    "synonyms": ["worsen, aggravate, intensify", "inflame"],
+    "antonyms": ["improve, alleviate, relieve", "improve"],
+    "usageNotes": "Formal word for making worse.",
+    "commonMistakes": "Don't confuse with 'exasperate' (annoy/irritate).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "alleviate",
+    "phonetic": "/əˈliːvieɪt/",
+    "partOfSpeech": ["verb"],
+    "level": "C1",
+    "meaningsTr": ["hafifletmek", "dindirmek", "azaltmak"],
+    "definitionsEn": ["To make suffering or a problem less severe"],
+    "examplesEn": [
+      "Medication can alleviate pain.",
+      "We need to alleviate poverty.",
+      "Measures to alleviate traffic."
+    ],
+    "examplesTr": [
+      "İlaç ağrıyı hafifletebilir.",
+      "Yoksulluğu hafifletmeliyiz.",
+      "Trafiği hafifletmek için önlemler."
+    ],
+    "synonyms": ["relieve, ease, reduce", "mitigate"],
+    "antonyms": ["worsen, aggravate, intensify", "exacerbate"],
+    "usageNotes": "Formal word for making something bad less severe.",
+    "commonMistakes": "Don't use for complete elimination - means making less severe.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "mitigate",
+    "phonetic": "/ˈmɪtɪɡeɪt/",
+    "partOfSpeech": ["verb"],
+    "level": "C1",
+    "meaningsTr": ["hafifletmek", "azaltmak", "yumuşatmak"],
+    "definitionsEn": ["To make less severe or serious", "To moderate in force or intensity"],
+    "examplesEn": [
+      "Strategies to mitigate risk.",
+      "We must mitigate climate change.",
+      "Punishment mitigated by circumstances."
+    ],
+    "examplesTr": [
+      "Riski azaltma stratejileri.",
+      "İklim değişikliğini hafifletmeliyiz.",
+      "Cezanın şiddeti koşullarla yumuşatıldı."
+    ],
+    "synonyms": ["alleviate, reduce, lessen", "diminish"],
+    "antonyms": ["aggravate, worsen, intensify", "increase"],
+    "usageNotes": "Technical/formal contexts, especially risk and law.",
+    "commonMistakes": "Don't confuse with 'militate' (to have effect).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "amplify",
+    "phonetic": "/ˈæmplɪfaɪ/",
+    "partOfSpeech": ["verb"],
+    "level": "C1",
+    "meaningsTr": ["yükseltmek", "büyütmek", "pekiştirmek"],
+    "definitionsEn": ["To increase the volume of sound", "To make larger or more significant"],
+    "examplesEn": [
+      "Amplify the signal.",
+      "She amplified her point with examples.",
+      "The microphone amplifies your voice."
+    ],
+    "examplesTr": [
+      "Sinyali yükseltin.",
+      "Noktasını örneklerle pekiştirdi.",
+      "Mikrofon sesinizi yükseltir."
+    ],
+    "synonyms": ["increase, expand, enlarge", "intensify"],
+    "antonyms": ["reduce, diminish, decrease", "quiet"],
+    "usageNotes": "Technical (sound) or figurative (emphasize) meanings.",
+    "commonMistakes": "Don't confuse with 'magnify' (make appear larger visually).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "exemplify",
+    "phonetic": "/ɪɡˈzemplɪfaɪ/",
+    "partOfSpeech": ["verb"],
+    "level": "C1",
+    "meaningsTr": ["örneklemek", "misal göstermek", "temsil etmek"],
+    "definitionsEn": ["To be a typical example of", "To illustrate by example"],
+    "examplesEn": [
+      "This painting exemplifies his style.",
+      "Her behavior exemplifies professionalism.",
+      "Statistics exemplify the trend."
+    ],
+    "examplesTr": [
+      "Bu tablo stilini temsil eder.",
+      "Davranışı profesyonelliği örneklendirir.",
+      "İstatistikler trendi örneklendirir."
+    ],
+    "synonyms": ["represent, illustrate, typify", "demonstrate"],
+    "antonyms": ["contradict, differ from", "deviate from"],
+    "usageNotes": "About showing something as a perfect example.",
+    "commonMistakes": "Don't use for simple examples - means being a perfect representation.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "substantiate",
+    "phonetic": "/səbˈstænʃieɪt/",
+    "partOfSpeech": ["verb"],
+    "level": "C1",
+    "meaningsTr": ["kanıtlamak", "doğrulamak", "teyit etmek"],
+    "definitionsEn": ["To provide evidence to support or prove the truth of"],
+    "examplesEn": [
+      "Substantiate your claims with evidence.",
+      "Data substantiates the theory.",
+      "She couldn't substantiate her allegations."
+    ],
+    "examplesTr": [
+      "İddialarınızı kanıtlarla destekleyin.",
+      "Veri teoriyi doğruluyor.",
+      "İddialarını doğrulayamadı."
+    ],
+    "synonyms": ["prove, verify, confirm", "support"],
+    "antonyms": ["refute, disprove, contradict", "challenge"],
+    "usageNotes": "Formal and legal contexts.",
+    "commonMistakes": "Don't use 'substantiate for' - use 'substantiate' + object.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "validate",
+    "phonetic": "/ˈvælɪdeɪt/",
+    "partOfSpeech": ["verb"],
+    "level": "C1",
+    "meaningsTr": ["doğrulamak", "geçerli kılmak", "onaylamak"],
+    "definitionsEn": ["To check or prove the validity of", "To confirm or support"],
+    "examplesEn": [
+      "We must validate the data.",
+      "Her feelings were validated.",
+      "The results validate our approach."
+    ],
+    "examplesTr": [
+      "Verileri doğrulamalıyız.",
+      "Duyguları doğrulandı.",
+      "Sonuçlar yaklaşımımızı doğruluyor."
+    ],
+    "synonyms": ["confirm, verify, authenticate", "support"],
+    "antonyms": ["invalidate, reject, disprove", "refute"],
+    "usageNotes": "Technical, research, and emotional contexts.",
+    "commonMistakes": "Don't confuse with 'vindicate' (clear from blame).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "scrutinize",
+    "phonetic": "/ˈskruːtənaɪz/",
+    "partOfSpeech": ["verb"],
+    "level": "C1",
+    "meaningsTr": ["incelemek", "irmik etmek", "didik didik etmek"],
+    "definitionsEn": ["To examine or inspect closely and thoroughly"],
+    "examplesEn": [
+      "We must scrutinize the contract.",
+      "The media scrutinized his past.",
+      "Scrutinize the data for errors."
+    ],
+    "examplesTr": [
+      "Sözleşmeyi incelemeliyiz.",
+      "Medya geçmişini didik didik etti.",
+      "Verileri hatalar için inceleyin."
+    ],
+    "synonyms": ["examine, inspect, investigate", "analyze"],
+    "antonyms": ["ignore, overlook, glance at", "neglect"],
+    "usageNotes": "Very close, critical examination.",
+    "commonMistakes": "Don't use for casual looking - implies detailed, critical examination.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "contemplate",
+    "phonetic": "/ˈkɑːntəmpleɪt/",
+    "partOfSpeech": ["verb"],
+    "level": "C1",
+    "meaningsTr": ["düşünmek", "tasarlamak", "seyretmek"],
+    "definitionsEn": ["To look thoughtfully for a long time", "To think profoundly about something"],
+    "examplesEn": [
+      "She contemplated the painting.",
+      "We're contemplating a move abroad.",
+      "Contemplate the consequences carefully."
+    ],
+    "examplesTr": [
+      "Tabloya hayran hayran baktı.",
+      "Yurt dışına taşınmayı düşünüyoruz.",
+      "Sonuçları dikkatlice düşünün."
+    ],
+    "synonyms": ["consider, think about, ponder", "reflect on"],
+    "antonyms": ["ignore, disregard, neglect", "dismiss"],
+    "usageNotes": "Deep thinking or gazing at something.",
+    "commonMistakes": "Don't use for quick thoughts - implies deep, prolonged thought.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "perceive",
+    "phonetic": "/pərˈsiːv/",
+    "partOfSpeech": ["verb"],
+    "level": "C1",
+    "meaningsTr": ["algılamak", "farketmek", "kavramak"],
+    "definitionsEn": ["To become aware of through the senses", "To understand or interpret something in a particular way"],
+    "examplesEn": [
+      "I perceive a change in his attitude.",
+      "She perceived the situation differently.",
+      "Loud noises can be perceived as threatening."
+    ],
+    "examplesTr": [
+      "Tavırında bir değişiklik algılıyorum.",
+      "Durumu farklı algıladı.",
+      "Yüksek sesler tehditkar algılanabilir."
+    ],
+    "synonyms": ["see, notice, observe", "understand"],
+    "antonyms": ["ignore, overlook, miss", "misunderstand"],
+    "usageNotes": "Physical sensing or mental interpretation.",
+    "commonMistakes": "Don't use 'perceive as something' - use 'perceive something AS'.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "conceive",
+    "phonetic": "/kənˈsiːv/",
+    "partOfSpeech": ["verb"],
+    "level": "C1",
+    "meaningsTr": ["tasarlamak", "hamile kalmak", "kavramak"],
+    "definitionsEn": ["To create or form an idea", "To become pregnant"],
+    "examplesEn": [
+      "She conceived a brilliant plan.",
+      "It's difficult to conceive of failure.",
+      "The baby was conceived in March."
+    ],
+    "examplesTr": [
+      "Harika bir plan tasarladı.",
+      "Başarısızlığı kavramak zor.",
+      "Bebek martta conceived."
+    ],
+    "synonyms": ["imagine, devise, create", "form"],
+    "antonyms": ["misconceive, reject, ignore"],
+    "usageNotes": "Creating ideas or biological conception.",
+    "commonMistakes": "Don't confuse with 'perceive' (to notice/see).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "anticipate",
+    "phonetic": "/ænˈtɪsɪpeɪt/",
+    "partOfSpeech": ["verb"],
+    "level": "C1",
+    "meaningsTr": ["önceden kestirmek", "beklemek", "ümit etmek"],
+    "definitionsEn": ["To expect or predict", "To act before someone else has a chance"],
+    "examplesEn": [
+      "We anticipate problems.",
+      "Anticipate customer needs.",
+      "I didn't anticipate this outcome."
+    ],
+    "examplesTr": [
+      "Sorunları önceden kestiriyoruz.",
+      "Müşteri ihtiyaçlarını önceden kestirin.",
+      "Bu sonucu beklemiyordum."
+    ],
+    "synonyms": ["expect, predict, foresee", "prepare for"],
+    "antonyms": ["surprise, shock, misjudge", "dread"],
+    "usageNotes": "More formal than 'expect'.",
+    "commonMistakes": "Don't say 'anticipate on' - use 'anticipate' + object.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "speculate",
+    "phonetic": "/ˈspekjəleɪt/",
+    "partOfSpeech": ["verb"],
+    "level": "C1",
+    "meaningsTr": ["tahmin yürütmek", "spekülasyon yapmak"],
+    "definitionsEn": ["To form a theory without firm evidence", "To invest in risky ventures"],
+    "examplesEn": [
+      "Scientists speculate about extraterrestrial life.",
+      "Don't speculate with your savings.",
+      "We can only speculate on the causes."
+    ],
+    "examplesTr": [
+      "Bilim insanları uzaylı hayatı hakkında tahmin yürütüyor.",
+      "Birikimlerinle spekülasyon yapma.",
+      "Sebepler hakkında sadece spekülasyon yapabiliriz."
+    ],
+    "synonyms": ["guess, theorize, hypothesize", "gamble"],
+    "antonyms": ["know, prove, verify", "confirm"],
+    "usageNotes": "Theorizing without evidence or financial risk-taking.",
+    "commonMistakes": "Don't use when you have facts - only for theories.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "hypothesize",
+    "phonetic": "/haɪˈpɑːθəsaɪz/",
+    "partOfSpeech": ["verb"],
+    "level": "C1",
+    "meaningsTr": ["hipotez kurmak", "varsaymak", "tahmin etmek"],
+    "definitionsEn": ["To suggest something as a possible theory", "To propose as a hypothesis"],
+    "examplesEn": [
+      "Scientists hypothesize about climate change.",
+      "We hypothesize that sleep affects memory.",
+      "Let's hypothesize and then test."
+    ],
+    "examplesTr": [
+      "Bilim insanları iklim değişikliği hakkında hipotez kuruyor.",
+      "Uykunun hafızayı etkilediğini varsayıyoruz.",
+      "Hipotez kuralım ve sonra test edelim."
+    ],
+    "synonyms": ["theorize, propose, speculate", "suggest"],
+    "antonyms": ["prove, demonstrate, confirm", "verify"],
+    "usageNotes": "Scientific method context.",
+    "commonMistakes": "Don't use for conclusions - only for initial theories to be tested.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "synthesize",
+    "phonetic": "/ˈsɪnθəsaɪz/",
+    "partOfSpeech": ["verb"],
+    "level": "C1",
+    "meaningsTr": ["sentezlemek", "birleştirmek", "bileşik yapmak"],
+    "definitionsEn": ["To combine separate elements into a whole", "To produce by synthesis"],
+    "examplesEn": [
+      "We need to synthesize the findings.",
+      "Plants synthesize sunlight into energy.",
+      "Synthesize different perspectives."
+    ],
+    "examplesTr": [
+      "Bulguları sentezlememiz gerekiyor.",
+      "Bitkiler güneş ışığını enerjiye dönüştürür.",
+      "Farklı bakış açılarını birleştirin."
+    ],
+    "synonyms": ["combine, integrate, blend", "fuse"],
+    "antonyms": ["analyze, separate, break down", "divide"],
+    "usageNotes": "Combining elements or chemical production.",
+    "commonMistakes": "Don't confuse with 'synthesize' vs 'synchronize' (coordinate timing).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "articulate",
+    "phonetic": "/ɑːrˈtɪkjəleɪt/",
+    "partOfSpeech": ["verb", "adjective"],
+    "level": "C1",
+    "meaningsTr": ["ifade etmek", "belli konuşmak", "eklemli"],
+    "definitionsEn": ["To express ideas clearly", "Having or showing the ability to speak fluently"],
+    "examplesEn": [
+      "She articulates her thoughts clearly.",
+      "An articulate young man.",
+      "He couldn't articulate his feelings."
+    ],
+    "examplesTr": [
+      "Düşüncelerini açıkça ifade eder.",
+      "Beliğ konuşan genç bir adam.",
+      "Duygularını ifade edemedi."
+    ],
+    "synonyms": ["express (verb), eloquent, fluent", "clear"],
+    "antonyms": ["mumble, stutter, confused", "unclear"],
+    "usageNotes": "Verb: /ɑːrˈtɪkjəleɪt/, Adjective: /ɑːrˈtɪkjələt/",
+    "commonMistakes": "Pronunciation changes between verb and adjective.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "elaborate",
+    "phonetic": "/ɪˈlæbərət/",
+    "partOfSpeech": ["verb", "adjective"],
+    "level": "C1",
+    "meaningsTr": ["detaylandırmak", " karmaşık", "safsata"],
+    "definitionsEn": ["To explain in greater detail", "Involving many careful details"],
+    "examplesEn": [
+      "Elaborate on your main points.",
+      "An elaborate plan.",
+      "She elaborated the theory."
+    ],
+    "examplesTr": [
+      "Ana noktalarınızı detaylandırın.",
+      "Karmaşık bir plan.",
+      "Teoriyi detaylandırdı."
+    ],
+    "synonyms": ["expand (verb), detailed, intricate", "complex"],
+    "antonyms": ["simplify, summarize, basic", "plain"],
+    "usageNotes": "Verb: /ɪˈlæbəreɪt/, Adjective: /ɪˈlæbərət/",
+    "commonMistakes": "Pronunciation differs between verb and adjective forms.",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "ambiguous",
+    "phonetic": "/æmˈbɪɡjuəs/",
+    "partOfSpeech": ["adjective"],
+    "level": "C1",
+    "meaningsTr": ["belirsiz", "muğlak", "şüpheli"],
+    "definitionsEn": ["Open to more than one interpretation", "Unclear or inexact"],
+    "examplesEn": [
+      "The message was ambiguous.",
+      "Ambiguous terms cause confusion.",
+      "An ambiguous answer."
+    ],
+    "examplesTr": [
+      "Mesaj belirsizdi.",
+      "Belirsiz terimler kafa karıştırır.",
+      "Belirsiz bir cevap."
+    ],
+    "synonyms": ["unclear, vague, equivocal", "confusing"],
+    "antonyms": ["clear, unambiguous, definite", "explicit"],
+    "usageNotes": "Different from 'vague' - ambiguous has multiple possible meanings.",
+    "commonMistakes": "Don't confuse with 'ambivalent' (having mixed feelings).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "unilateral",
+    "phonetic": "/ˌjuːnɪˈlætərəl/",
+    "partOfSpeech": ["adjective"],
+    "level": "C1",
+    "meaningsTr": ["tek taraflı", "bir yanlı", "müfred"],
+    "definitionsEn": ["Performed by only one person or group involved in a situation"],
+    "examplesEn": [
+      "A unilateral decision.",
+      "The country took unilateral action.",
+      "Unilateral agreements are rare."
+    ],
+    "examplesTr": [
+      "Tek taraflı bir karar.",
+      "Ülke tek taraflı eylemde bulundu.",
+      "Tek taraflı anlaşmalar nadirdir."
+    ],
+    "synonyms": ["one-sided, single-party, independent", "autonomous"],
+    "antonyms": ["bilateral, multilateral, joint", "mutual"],
+    "usageNotes": "Political and legal contexts.",
+    "commonMistakes": "Don't confuse with 'bilateral' (two-sided) or 'multilateral' (many-sided).",
+    "imageUrl": "",
+    "audioUrl": ""
+  },
+  {
+    "word": "consensus",
+    "phonetic": "/kənˈsensəs/",
+    "partOfSpeech": ["noun"],
+    "level": "C1",
+    "meaningsTr": ["mutabakat", "fikir birliği", "kelam"],
+    "definitionsEn": ["General agreement among a group"],
+    "examplesEn": [
+      "Reach a consensus before proceeding.",
+      "Scientific consensus on climate change.",
+      "The group couldn't reach consensus."
+    ],
+    "examplesTr": [
+      "Devam etmeden önce fikir birliğine varın.",
+      "İklim değişikliği konusunda bilimsel mutabakat.",
+      "Grup fikir birliğine varamadı."
+    ],
+    "synonyms": ["agreement, accord, unanimity", "harmony"],
+    "antonyms": ["disagreement, conflict, dispute", "dissent"],
+    "usageNotes": "Use 'consensus on/about' or 'reach a consensus'.",
+    "commonMistakes": "Don't use 'consensus about' when discussing opinions - 'consensus on' is better.",
+    "imageUrl": "",
+    "audioUrl": ""
+  }
+]
