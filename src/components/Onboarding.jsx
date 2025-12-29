@@ -28,6 +28,12 @@ const onboardingSlides = [
         icon: 'school',
         gradient: 'from-green-500 to-teal-600',
         bgColor: 'bg-green-500/10',
+        particles: [
+            { icon: 'menu_book', x: 15, y: 15, delay: 0 },
+            { icon: 'spellcheck', x: 75, y: 20, delay: 0.2 },
+            { icon: 'translate', x: 80, y: 70, delay: 0.4 },
+            { icon: 'hearing', x: 10, y: 65, delay: 0.6 },
+        ],
         features: [
             { icon: 'add_circle', text: 'Kolayca kelime ekle' },
             { icon: 'import_export', text: 'JSON/CSV içe/dışa aktar' },
@@ -40,8 +46,15 @@ const onboardingSlides = [
         title: '7 Farklı Pratik Modu',
         subtitle: 'Hiç sıkılmayacaksın!',
         description: 'Ezberlemek yerine oyunlarla öğren. Her mod farklı bir becerini geliştirir.',
+        icon: 'extension',
         gradient: 'from-orange-500 to-red-600',
         bgColor: 'bg-orange-500/10',
+        particles: [
+            { icon: 'sports_esports', x: 10, y: 10, delay: 0 },
+            { icon: 'timer', x: 80, y: 15, delay: 0.15 },
+            { icon: 'extension', x: 70, y: 75, delay: 0.3 },
+            { icon: 'quiz', x: 15, y: 70, delay: 0.45 },
+        ],
         practiceModes: [
             { name: 'Flashcard', icon: 'style', desc: 'Kartlarla öğren' },
             { name: 'Sprint', icon: 'timer', desc: 'Hız yarışı' },
@@ -60,6 +73,12 @@ const onboardingSlides = [
         icon: 'auto_stories',
         gradient: 'from-purple-500 to-pink-600',
         bgColor: 'bg-purple-500/10',
+        particles: [
+            { icon: 'article', x: 10, y: 15, delay: 0 },
+            { icon: 'newspaper', x: 80, y: 10, delay: 0.2 },
+            { icon: 'library_books', x: 70, y: 70, delay: 0.4 },
+            { icon: 'bookmark', x: 20, y: 75, delay: 0.6 },
+        ],
         stats: [
             { value: '1000+', label: 'Hikaye & Haber' },
             { value: 'A1-C1', label: 'Seviye Aralığı' },
@@ -73,8 +92,14 @@ const onboardingSlides = [
         description: 'XP kazan, seviye atla, rozetleri topla. Liderlik tablosunda diğerleriyle yarış.',
         gradient: 'from-yellow-500 to-amber-600',
         bgColor: 'bg-yellow-500/10',
+        particles: [
+            { icon: 'military_tech', x: 10, y: 10, delay: 0 },
+            { icon: 'local_fire_department', x: 80, y: 15, delay: 0.15 },
+            { icon: 'star', x: 70, y: 75, delay: 0.3 },
+            { icon: 'emoji_events', x: 15, y: 70, delay: 0.45 },
+        ],
         achievements: [
-            { icon: 'military_tech', color: 'text-yellow-500', label: 'Rozetler' },
+            { icon: 'military_tech', color: 'text-white', label: 'Rozetler' },
             { icon: 'local_fire_department', color: 'text-orange-500', label: 'Seri' },
             { icon: 'trending_up', color: 'text-green-500', label: 'Seviyeler' },
             { icon: 'leaderboard', color: 'text-blue-500', label: 'Liderlik' },
@@ -85,9 +110,16 @@ const onboardingSlides = [
         title: 'Öğrenmeye Başla! 🚀',
         subtitle: 'Yolculuğuna şimdi katıl',
         description: '10.000+ öğrenci her gün WordBox ile İngilizce öğreniyor. Sen de aralarına katıl!',
-        icon: 'rocket_launch',
+        icon: 'star',
         gradient: 'from-indigo-500 to-blue-600',
         bgColor: 'bg-indigo-500/10',
+        particles: [
+            { icon: 'rocket_launch', x: 50, y: 10, delay: 0 },
+            { icon: 'star', x: 10, y: 20, delay: 0.2 },
+            { icon: 'favorite', x: 85, y: 25, delay: 0.4 },
+            { icon: 'celebration', x: 20, y: 75, delay: 0.6 },
+            { icon: 'confetti', x: 80, y: 70, delay: 0.8 },
+        ],
         isFinal: true,
         ctaText: 'Hemen Kayıt Ol',
         testimonials: [
@@ -211,9 +243,10 @@ export default function Onboarding({ onComplete }) {
         }
     };
 
-    // Handle skip
+    // Handle skip - go to final slide
     const handleSkip = () => {
-        handleComplete();
+        directionRef.current = 1;
+        setCurrentSlide(onboardingSlides.length - 1);
     };
 
     // Handle completion
@@ -281,31 +314,29 @@ export default function Onboarding({ onComplete }) {
             {/* Main content */}
             <div
                 ref={slideRef}
-                className="relative w-full max-w-5xl mx-auto"
+                className="relative w-full max-w-5xl mx-auto flex items-center justify-center min-h-[600px]"
             >
-                {/* Skip button - only show on non-final slides */}
-                {currentSlide < onboardingSlides.length - 1 && (
-                    <button
-                        onClick={handleSkip}
-                        className={`absolute -top-16 right-0 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                            isDark
-                                ? 'text-gray-400 hover:text-white hover:bg-white/10'
-                                : 'text-gray-500 hover:text-gray-700 hover:bg-gray-200'
-                        }`}
-                    >
-                        Atla
-                    </button>
-                )}
-
                 {/* Slide card */}
                 <div
                     className={`rounded-3xl shadow-2xl overflow-hidden backdrop-blur-xl ${
                         isDark ? 'bg-gray-800/80 border border-gray-700' : 'bg-white/80 border border-white/50'
                     }`}
                 >
-                    <div className="flex flex-col lg:flex-row min-h-[600px]">
+                    <div className="flex flex-col lg:flex-row min-h-[520px]">
                         {/* Left side - Visual */}
-                        <div className={`lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center items-center text-center bg-gradient-to-br ${slide.gradient} text-white relative overflow-hidden`}>
+                        <div className={`lg:w-1/2 p-6 lg:p-8 flex flex-col justify-center items-center text-center bg-gradient-to-br ${slide.gradient} text-white relative overflow-hidden`}>
+                            {/* Skip button - only show on non-final slides */}
+                            {currentSlide < onboardingSlides.length - 1 ? (
+                                <button
+                                    onClick={handleSkip}
+                                    className="absolute top-4 right-4 px-5 py-2.5 rounded-full text-sm font-semibold text-white bg-black/20 hover:bg-black/40 border border-white/30 backdrop-blur-sm transition-all duration-300 z-20"
+                                >
+                                    Atla →
+                                </button>
+                            ) : (
+                                // Invisible placeholder to maintain height
+                                <div className="absolute top-4 right-4 w-[88px] h-[42px]"></div>
+                            )}
                             {/* Animated background pattern */}
                             <div className="absolute inset-0 opacity-20">
                                 <svg className="w-full h-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -341,9 +372,9 @@ export default function Onboarding({ onComplete }) {
                             )}
 
                             {/* Main icon */}
-                            <div className="relative z-10">
-                                <div className={`w-32 h-32 lg:w-40 lg:h-40 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-8 ${currentSlide === 0 ? 'animate-pulse' : ''}`}>
-                                    <span className="material-symbols-outlined text-7xl lg:text-8xl" style={{ fontVariationSettings: "'FILL' 1" }}>
+                            <div className="relative z-20">
+                                <div className={`w-28 h-28 lg:w-36 lg:h-36 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-6 ${currentSlide === 0 ? 'animate-pulse' : ''}`}>
+                                    <span className="material-symbols-outlined text-6xl lg:text-7xl" style={{ fontVariationSettings: "'FILL' 1" }}>
                                         {slide.icon}
                                     </span>
                                 </div>
@@ -391,11 +422,11 @@ export default function Onboarding({ onComplete }) {
 
                                 {/* Testimonials for final slide */}
                                 {slide.testimonials && (
-                                    <div className="mt-8 space-y-3 max-w-md mx-auto">
+                                    <div className="mt-6 space-y-3 max-w-md mx-auto">
                                         {slide.testimonials.map((testimonial, index) => (
                                             <div key={index} className="bg-white/20 backdrop-blur-sm rounded-xl p-3 text-left">
                                                 <p className="text-sm italic">"{testimonial.text}"</p>
-                                                <p className="text-xs font-medium mt-1">- {testimonial.author}</p>
+                                                <p className="text-xs font-medium mt-1 opacity-90">- {testimonial.author}</p>
                                             </div>
                                         ))}
                                     </div>
@@ -404,12 +435,12 @@ export default function Onboarding({ onComplete }) {
                         </div>
 
                         {/* Right side - Content */}
-                        <div className={`lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                            <div ref={contentRef} className="space-y-6">
+                        <div className={`lg:w-1/2 p-6 lg:p-8 flex flex-col justify-center ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                            <div ref={contentRef} className="space-y-4">
                                 {/* Title */}
                                 <h2
                                     ref={titleRef}
-                                    className={`text-3xl lg:text-4xl font-bold bg-gradient-to-r ${slide.gradient} bg-clip-text text-transparent`}
+                                    className={`text-2xl lg:text-3xl font-bold bg-gradient-to-r ${slide.gradient} bg-clip-text text-transparent`}
                                 >
                                     {slide.title}
                                 </h2>
@@ -502,14 +533,7 @@ export default function Onboarding({ onComplete }) {
                     </div>
                 </div>
 
-                {/* Bottom hint */}
-                {currentSlide < onboardingSlides.length - 1 && (
-                    <div className="text-center mt-6">
-                        <p className={`text-sm ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
-                            Sonraki için veya → tuşuna bas
-                        </p>
-                    </div>
-                )}
+                {/* Bottom hint - removed */}
             </div>
 
             {/* Keyboard navigation hint */}
