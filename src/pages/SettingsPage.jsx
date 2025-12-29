@@ -5,6 +5,7 @@ import { useTheme, THEMES } from '../context/ThemeContext';
 import { speak } from '../utils/speechSynthesis';
 import ThemeToggle from '../components/ThemeToggle';
 import KeyboardNavigationGuide from '../components/KeyboardNavigationGuide';
+import Onboarding from '../components/Onboarding';
 import {
     getNotificationSettings,
     saveNotificationSettings,
@@ -264,6 +265,7 @@ export default function SettingsPage() {
     const [currentPrefs, setCurrentPrefs] = useState({ ...user.preferences });
     const [showPasswordModal, setShowPasswordModal] = useState(false);
     const [showKeyboardGuide, setShowKeyboardGuide] = useState(false);
+    const [showOnboarding, setShowOnboarding] = useState(false);
 
     // Change Password State
     const [passwords, setPasswords] = useState({
@@ -535,10 +537,10 @@ export default function SettingsPage() {
                                     <label className="font-bold text-gray-900 dark:text-white block mb-4">Tema</label>
                                     <ThemeToggle variant="segmented" showLabel={true} />
                                     <p className="text-xs text-gray-500 mt-3">
-                                        {theme === THEMES.system 
-                                            ? 'Sistem ayarına göre otomatik değişir' 
-                                            : theme === THEMES.dark 
-                                                ? 'Karanlık tema aktif' 
+                                        {theme === THEMES.system
+                                            ? 'Sistem ayarına göre otomatik değişir'
+                                            : theme === THEMES.dark
+                                                ? 'Karanlık tema aktif'
                                                 : 'Aydınlık tema aktif'}
                                     </p>
                                 </div>
@@ -568,6 +570,27 @@ export default function SettingsPage() {
                                         <span className="text-gray-300 dark:text-gray-600">Aa</span>
                                         <span className="text-lg">Aa</span>
                                     </div>
+                                </div>
+
+                                <hr className="border-gray-100 dark:border-white/5" />
+
+                                {/* Show Onboarding Button */}
+                                <div className="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl">
+                                    <div className="flex items-center gap-4">
+                                        <div className="size-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                                            <Icon name="play_circle" className="text-white text-xl" />
+                                        </div>
+                                        <div>
+                                            <p className="font-bold text-gray-900 dark:text-white">Tanıtımı Tekrar İzle</p>
+                                            <p className="text-sm text-gray-500 dark:text-gray-400">WordBox'un özelliklerini yeniden keşfedin</p>
+                                        </div>
+                                    </div>
+                                    <button
+                                        onClick={() => setShowOnboarding(true)}
+                                        className="px-5 py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold rounded-xl hover:opacity-90 transition-all shadow-lg"
+                                    >
+                                        Başlat
+                                    </button>
                                 </div>
                             </div>
                         </SettingsCard>
@@ -874,37 +897,39 @@ export default function SettingsPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-background-dark pt-8 pb-12">
+        <div className="min-h-screen bg-gray-50 dark:bg-[#18181b] pt-8 pb-12">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col lg:flex-row gap-8">
                     {/* Sidebar */}
                     <aside className="lg:w-64 flex-shrink-0">
-                        <nav className="space-y-1 sticky top-24">
-                            <h1 className="text-2xl font-bold px-4 mb-6 hidden lg:block">Ayarlar</h1>
-                            {sections.map(section => (
-                                <button
-                                    key={section.id}
-                                    onClick={() => setActiveTab(section.id)}
-                                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all duration-200 ${activeTab === section.id
-                                        ? 'bg-white dark:bg-[#27272a] shadow-sm text-brand-blue ring-1 ring-gray-200 dark:ring-[#333]'
-                                        : 'text-gray-600 dark:text-gray-400 hover:bg-white/50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white'
-                                        }`}
-                                >
-                                    <Icon name={section.icon} className={activeTab === section.id ? 'text-brand-blue' : 'text-gray-400'} />
-                                    {section.label}
-                                </button>
-                            ))}
+                        <div className="bg-white dark:bg-[#27272a] rounded-2xl border border-gray-200 dark:border-[#333] shadow-sm p-4 sticky top-24">
+                            <h1 className="text-2xl font-bold px-2 mb-4 dark:text-white">Ayarlar</h1>
+                            <nav className="space-y-1">
+                                {sections.map(section => (
+                                    <button
+                                        key={section.id}
+                                        onClick={() => setActiveTab(section.id)}
+                                        className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium transition-all duration-200 ${activeTab === section.id
+                                            ? 'bg-brand-blue/10 dark:bg-brand-blue/20 text-brand-blue dark:text-blue-400'
+                                            : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5'
+                                            }`}
+                                    >
+                                        <Icon name={section.icon} className={activeTab === section.id ? 'text-brand-blue dark:text-blue-400' : 'text-gray-400 dark:text-gray-500'} />
+                                        <span className="text-sm">{section.label}</span>
+                                    </button>
+                                ))}
 
-                            <div className="pt-6 mt-6 border-t border-gray-200 px-4">
-                                <button
-                                    onClick={logout}
-                                    className="flex items-center gap-3 text-red-600 hover:text-red-700 font-medium transition-colors"
-                                >
-                                    <Icon name="logout" />
-                                    Çıkış Yap
-                                </button>
-                            </div>
-                        </nav>
+                                <div className="pt-4 mt-4 border-t border-gray-200 dark:border-white/10">
+                                    <button
+                                        onClick={logout}
+                                        className="flex items-center gap-3 text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 font-medium transition-colors px-3 py-2"
+                                    >
+                                        <Icon name="logout" />
+                                        <span className="text-sm">Çıkış Yap</span>
+                                    </button>
+                                </div>
+                            </nav>
+                        </div>
                     </aside>
 
                     {/* Content Area */}
@@ -1020,10 +1045,15 @@ export default function SettingsPage() {
             )}
 
             {/* Keyboard Navigation Guide */}
-            <KeyboardNavigationGuide 
-                isOpen={showKeyboardGuide} 
-                onClose={() => setShowKeyboardGuide(false)} 
+            <KeyboardNavigationGuide
+                isOpen={showKeyboardGuide}
+                onClose={() => setShowKeyboardGuide(false)}
             />
+
+            {/* Onboarding */}
+            {showOnboarding && (
+                <Onboarding onComplete={() => setShowOnboarding(false)} />
+            )}
         </div>
     );
 }

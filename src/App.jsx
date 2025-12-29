@@ -1,5 +1,5 @@
-import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
-import { lazy, Suspense, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
+import { lazy, Suspense, useState, useEffect } from 'react';
 import { UserProvider, useUser } from './context/UserContext';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { ToastProvider } from './components/Toast';
@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import ErrorBoundary from './components/ErrorBoundary';
 import KeyboardShortcutsModal from './components/KeyboardShortcutsModal';
 import AchievementNotification from './components/AchievementNotification';
+import Onboarding, { useOnboarding } from './components/Onboarding';
 import useKeyboardShortcuts from './hooks/useKeyboardShortcuts';
 
 // Pages - Lazy loaded for code splitting
@@ -28,6 +29,17 @@ const ProfilePage = lazy(() => import('./pages/ProfilePage'));
 const SettingsPage = lazy(() => import('./pages/SettingsPage'));
 const AdminPage = lazy(() => import('./pages/AdminPage'));
 const LearnNewWordsPage = lazy(() => import('./pages/LearnNewWordsPage'));
+
+// Scroll to top on route change
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [pathname]);
+
+  return null;
+}
 
 // Loading component
 function PageLoader() {
@@ -107,6 +119,7 @@ function GlobalShortcuts({ children }) {
 function AppRoutes() {
   return (
     <Suspense fallback={<PageLoader />}>
+      <ScrollToTop />
       <Routes>
         {/* Public Routes */}
         <Route
@@ -329,13 +342,27 @@ function App() {
           <UserProvider>
             <ToastProvider>
               <GlobalShortcuts>
-                <AppRoutes />
+                <AppContent />
               </GlobalShortcuts>
             </ToastProvider>
           </UserProvider>
         </Router>
       </ThemeProvider>
     </ErrorBoundary>
+  );
+}
+
+// App content with onboarding
+function AppContent() {
+  const { showOnboarding, setShowOnboarding } = useOnboarding();
+
+  return (
+    <>
+      {showOnboarding && (
+        <Onboarding onComplete={() => setShowOnboarding(false)} />
+      )}
+      <AppRoutes />
+    </>
   );
 }
 
