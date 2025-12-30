@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 /**
  * Error Boundary Component
@@ -131,12 +132,12 @@ class ErrorBoundary extends Component {
 
                             {/* Go home link */}
                             <div className="mt-4 text-center">
-                                <a
-                                    href="/dashboard"
+                                <Link
+                                    to="/dashboard"
                                     className="text-sm text-indigo-600 dark:text-indigo-400 hover:underline"
                                 >
                                     Ana Sayfaya Dön
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

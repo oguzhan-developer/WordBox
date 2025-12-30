@@ -135,13 +135,12 @@ export default function AuthPage() {
             // Race the auth request against the timeout
             await Promise.race([authPromise, timeoutPromise]);
             console.log("Auth process completed (promise resolved). Waiting for effect to navigate...");
-            
+
             // Reset rate limiter on success
             authLimiter.reset(attemptKey);
 
-            // Note: We rely on the useEffect hook to navigate when isLoggedIn becomes true.
-            // If we stop loading here, the form might flash before redirect.
-            // So we DO NOT set loading to false if successful.
+            // Reset loading state after a short delay to prevent form flash before navigation
+            setTimeout(() => setLoading(false), 500);
 
         } catch (error) {
             console.error('Auth Error:', error);
@@ -331,7 +330,9 @@ export default function AuthPage() {
                                         <input className="form-checkbox h-4 w-4 text-brand-blue rounded border-gray-300 focus:ring-brand-blue mr-2" type="checkbox" />
                                         Beni hatırla
                                     </label>
-                                    <a className="text-brand-blue hover:underline font-medium" href="#">Parolamı unuttum</a>
+                                    <button type="button" className="text-brand-blue hover:underline font-medium">
+                                        Parolamı unuttum
+                                    </button>
                                 </div>
                                 <button className="w-full py-3 rounded-lg font-bold text-white bg-gradient-to-r from-brand-blue to-purple-600 hover:from-purple-600 hover:to-brand-blue transition-all duration-300 ease-in-out shadow-lg" type="submit" disabled={loading}>
                                     {loading ? 'Giriş Yapılıyor...' : 'Giriş Yap'}
@@ -441,7 +442,9 @@ export default function AuthPage() {
                                 <div className="flex items-start text-sm">
                                     <input className="form-checkbox h-4 w-4 text-brand-blue rounded border-gray-300 focus:ring-brand-blue mt-1" id="terms-checkbox" required type="checkbox" />
                                     <label className="ml-2 text-gray-600" htmlFor="terms-checkbox">
-                                        <a className="text-brand-blue hover:underline font-medium" href="#">Kullanım koşullarını</a> kabul ediyorum.
+                                        <button type="button" className="text-brand-blue hover:underline font-medium">
+                                            Kullanım koşullarını
+                                        </button> kabul ediyorum.
                                     </label>
                                 </div>
                                 <button className="w-full py-3 rounded-lg font-bold text-white bg-gradient-to-r from-brand-blue to-purple-600 hover:from-purple-600 hover:to-brand-blue transition-all duration-300 ease-in-out shadow-lg" type="submit" disabled={loading}>

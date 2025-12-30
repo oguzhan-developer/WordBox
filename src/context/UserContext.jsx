@@ -296,8 +296,6 @@ export function UserProvider({ children }) {
         if (updates.perfect_practices !== undefined) localUpdates.perfectPractices = updates.perfect_practices;
         if (updates.vocabulary !== undefined) localUpdates.vocabulary = updates.vocabulary;
         if (updates.earned_badges !== undefined) localUpdates.earnedBadges = updates.earned_badges;
-        if (updates.preferences !== undefined) localUpdates.preferences = updates.preferences;
-        if (updates.preferences !== undefined) localUpdates.preferences = updates.preferences;
         if (updates.completed_levels !== undefined) localUpdates.completedLevels = updates.completed_levels;
         if (updates.read_articles !== undefined) localUpdates.readArticles = updates.read_articles;
         if (updates.level !== undefined) localUpdates.level = updates.level;
@@ -314,7 +312,15 @@ export function UserProvider({ children }) {
             if (error) throw error;
         } catch (error) {
             console.error('Error updating profile:', error);
-            // Ideally revert local state here on failure, but for now log it.
+            // Revert optimistic updates on failure
+            setUser(prev => {
+                const reverted = { ...prev };
+                Object.keys(localUpdates).forEach(key => {
+                    // Keep the old value by removing the local update
+                    delete reverted[key];
+                });
+                return reverted;
+            });
         }
     };
 

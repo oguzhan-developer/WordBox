@@ -86,6 +86,27 @@ function Layout({ children, showNavbar = true }) {
   );
 }
 
+// 404 Not Found Page
+function NotFoundPage() {
+  const navigate = useNavigate();
+
+  return (
+    <div className="min-h-screen bg-gray-50 pt-8 flex items-center justify-center">
+      <div className="text-center">
+        <div className="text-6xl mb-4">🤔</div>
+        <h1 className="text-2xl font-bold text-gray-900 mb-2">Sayfa Bulunamadı</h1>
+        <p className="text-gray-600 mb-6">Aradığınız sayfa mevcut değil.</p>
+        <button
+          onClick={() => navigate('/dashboard')}
+          className="px-6 py-3 rounded-xl gradient-primary text-white font-medium"
+        >
+          Ana Sayfaya Dön
+        </button>
+      </div>
+    </div>
+  );
+}
+
 // Global Keyboard Shortcuts Handler
 function GlobalShortcuts({ children }) {
   const navigate = useNavigate();
@@ -305,9 +326,11 @@ function AppRoutes() {
         <Route
           path="/admin"
           element={
-            <Layout>
-              <AdminPage />
-            </Layout>
+            <ProtectedRoute>
+              <Layout>
+                <AdminPage />
+              </Layout>
+            </ProtectedRoute>
           }
         />
 
@@ -316,16 +339,7 @@ function AppRoutes() {
           path="*"
           element={
             <Layout>
-              <div className="min-h-screen bg-gray-50 pt-8 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-6xl mb-4">🤔</div>
-                  <h1 className="text-2xl font-bold text-gray-900 mb-2">Sayfa Bulunamadı</h1>
-                  <p className="text-gray-600 mb-6">Aradığınız sayfa mevcut değil.</p>
-                  <a href="/dashboard" className="px-6 py-3 rounded-xl gradient-primary text-white font-medium">
-                    Ana Sayfaya Dön
-                  </a>
-                </div>
-              </div>
+              <NotFoundPage />
             </Layout>
           }
         />

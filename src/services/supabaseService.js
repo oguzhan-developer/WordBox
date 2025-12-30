@@ -479,7 +479,7 @@ export const supabaseService = {
     async getRandomWords(count = 10, level = null) {
         try {
             let query = supabase.from('words').select('*');
-            
+
             if (level) {
                 query = query.eq('level', level);
             }
@@ -491,8 +491,12 @@ export const supabaseService = {
                 return [];
             }
 
-            // Shuffle ve limit
-            const shuffled = data.sort(() => Math.random() - 0.5);
+            // Fisher-Yates shuffle for unbiased randomization
+            const shuffled = [...data];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
             return shuffled.slice(0, count).map(this.normalizeWord);
         } catch (err) {
             console.error('Error in getRandomWords:', err);
@@ -1015,10 +1019,10 @@ export const supabaseService = {
 
             return {
                 word: word.word,
-                phonetic: word.pronunciation || '',
+                phonetic: word.phonetic || '',
                 turkish: word.meanings_tr ? word.meanings_tr[0] : '',
                 partOfSpeech: Array.isArray(word.part_of_speech) ? word.part_of_speech : (word.part_of_speech ? [word.part_of_speech] : ['noun']),
-                definition: word.meanings_en ? word.meanings_en[0] : '',
+                definition: word.definitions_en ? word.definitions_en[0] : '',
                 example: word.example_sentence || '',
                 level: word.level,
                 category: word.category || 'general',
@@ -1359,8 +1363,12 @@ export const supabaseService = {
             // Hariç tutulanları filtrele
             const availableWords = words?.filter(w => !excludedWordIds.has(w.id)) || [];
 
-            // Rastgele karıştır ve limitle
-            const shuffled = availableWords.sort(() => Math.random() - 0.5);
+            // Fisher-Yates shuffle for unbiased randomization
+            const shuffled = [...availableWords];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
             const selected = shuffled.slice(0, count);
 
             // Normalize

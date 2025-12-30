@@ -38,14 +38,22 @@ export default function FlashcardMode() {
         const loadWords = async () => {
             let practiceWords = [];
 
+            // Fisher-Yates shuffle helper function
+            const shuffleArray = (array) => {
+                const shuffled = [...array];
+                for (let i = shuffled.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+                }
+                return shuffled;
+            };
+
             // Use user's vocabulary only
             if (user.vocabulary.length >= wordCount) {
-                practiceWords = [...user.vocabulary]
-                    .sort(() => Math.random() - 0.5)
-                    .slice(0, wordCount);
+                practiceWords = shuffleArray(user.vocabulary).slice(0, wordCount);
             } else if (user.vocabulary.length > 0) {
                 // If not enough words, use what's available
-                practiceWords = [...user.vocabulary].sort(() => Math.random() - 0.5);
+                practiceWords = shuffleArray(user.vocabulary);
             }
 
             setWords(practiceWords);

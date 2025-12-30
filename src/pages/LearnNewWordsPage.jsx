@@ -84,9 +84,16 @@ export default function LearnNewWordsPage() {
             const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 (C major chord)
             const duration = 0.15;
 
+            // Store references to nodes for cleanup
+            const oscillators = [];
+            const gainNodes = [];
+
             notes.forEach((freq, index) => {
                 const oscillator = audioContext.createOscillator();
                 const gainNode = audioContext.createGain();
+
+                oscillators.push(oscillator);
+                gainNodes.push(gainNode);
 
                 oscillator.connect(gainNode);
                 gainNode.connect(audioContext.destination);
@@ -104,7 +111,18 @@ export default function LearnNewWordsPage() {
                 gainNode.gain.exponentialRampToValueAtTime(0.01, endTime);
             });
 
-            audioContext.close();
+            // Properly close audio context after all notes are played
+            const totalDuration = duration + (notes.length * 0.05) + 0.1;
+            setTimeout(() => {
+                audioContext.close().catch(console.error);
+                // Disconnect all nodes
+                gainNodes.forEach(node => {
+                    try { node.disconnect(); } catch {}
+                });
+                oscillators.forEach(node => {
+                    try { node.disconnect(); } catch {}
+                });
+            }, totalDuration * 1000);
         } catch (e) {
             console.log('Audio play failed:', e);
         }

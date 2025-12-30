@@ -84,7 +84,7 @@ export default function Dashboard() {
     }, [user.level]);
 
     // Study Goals - memoize properly (these read from localStorage, don't depend on wordsToday)
-    const dailyGoalStatus = useMemo(() => getDailyGoalStatus(), []);
+    const dailyGoalStatus = useMemo(() => getDailyGoalStatus(), [wordsToday, dailyGoal]);
     const motivation = useMemo(() => getMotivationMessage(), []);
 
     // Handle learning WOTD - useCallback to prevent recreating function
